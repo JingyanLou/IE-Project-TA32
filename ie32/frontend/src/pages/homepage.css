@@ -1,24 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    width: 100%;
+}
+
 .homepage {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
     font-family: 'Roboto', sans-serif;
+    color: white;
+    width: 100%;
+    /* Ensure full width */
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
 }
 
 .navbar {
     background: transparent;
-    /* Fully transparent background */
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    box-sizing: border-box;
 }
 
 .navbar ul {
@@ -49,35 +62,63 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.content {
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
     text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    /* Ensure full width */
+    box-sizing: border-box;
+    /* Include padding in width */
 }
 
-.content h1 {
+.hero h1 {
     font-size: 94px;
     margin: 0;
-    padding: 0 20px;
+    padding: 0;
     font-weight: 700;
     line-height: 1.2;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
 }
 
-.content p {
+.hero p {
     font-size: 19px;
     margin-top: 20px;
-    padding: 0 20px;
     line-height: 1.5;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     font-weight: 300;
-    /* Light font weight */
     opacity: 0.85;
-    /* Slightly lighter text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.arrow-down {
+    margin-top: 50px;
+}
+
+.arrow-down span {
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }

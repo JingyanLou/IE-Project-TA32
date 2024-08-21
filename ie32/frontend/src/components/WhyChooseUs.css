@@ -1,0 +1,82 @@
+.why-choose-us-section {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.info-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.info-section .content {
+    color: white;
+    max-width: 90%;
+}
+
+.tech-item h2 {
+    font-size: 48px;
+    /* Increased size */
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    /* Condensed bold font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 15px;
+}
+
+.tech-item p {
+    font-size: 22px;
+    /* Increased size */
+    font-weight: 600;
+    /* More bold than regular */
+    font-family: 'Roboto Condensed', sans-serif;
+    /* More condensed and bold */
+    color: grey;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    text-shadow: none;
+}
+
+.legend-section {
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.legend-text {
+    font-size: 144px;
+    /* Increased size by 50% from 96px */
+    font-weight: bold;
+    text-align: right;
+    color: white;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    line-height: 1.1;
+}
+
+.legend-text div {
+    margin-bottom: 10px;
+}
+
+.background-image {
+    position: absolute;
+    bottom: 0;
+    /* Move the image behind the legend */
+    right: 0;
+    width: 70%;
+    /* Increased size */
+    z-index: 1;
+    /* Lower than legend text */
+    opacity: 0.6;
+    /* Optional: add opacity to make the text stand out more */
+}
