@@ -63,8 +63,15 @@ body {
 }
 
 .arrow-down {
-    margin-top: 50px;
+    position: absolute;
+    bottom: 40px;
+    /* Position it 20px from the bottom of the parent container */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center it horizontally */
 }
+
+
 
 .arrow-down span {
     font-size: 40px;
