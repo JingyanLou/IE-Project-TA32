@@ -16,7 +16,7 @@ const Homepage = () => {
             </nav>
             <div className="content">
                 <h1>Empower your energy savings today.</h1>
-                <p>Take control of your energy consumption with personalized insights, cost-saving tools, and tailored solutions. Make every watt count towards a greener, more affordable future.</p>
+                <p>Take control of your energy consumption with personalized insights, cost-saving tools, and tailored solutions. Make every watt count towards a greener, more affordable future.Take control of your energy consumption with personalized insights, cost-saving tools, and tailored solutions. Make every watt count towards a greener, more affordable future</p>
                 <div className="arrow-down">
                     <span>&#9662;</span>
                 </div>

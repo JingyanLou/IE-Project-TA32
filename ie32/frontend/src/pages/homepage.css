@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
 
 .homepage {
-    background-image: url('../../public/images/homecosmo.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     font-family: 'Roboto', sans-serif;
-    font-weight: 700;
 }
 
 .navbar {
@@ -58,26 +56,28 @@
 }
 
 .content h1 {
-    font-size: 56px;
+    font-size: 94px;
     margin: 0;
     padding: 0 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
 }
 
 .content p {
-    font-size: 18px;
+    font-size: 19px;
     margin-top: 20px;
     padding: 0 20px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    display: inline-block;
-}
-
-.arrow-down {
-    margin-top: 40px;
-}
-
-.arrow-down span {
-    font-size: 40px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    display: inline-block;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    font-weight: 300;
+    /* Light font weight */
+    opacity: 0.85;
+    /* Slightly lighter text */
 }
