@@ -21,7 +21,6 @@ body {
     /* Prevent horizontal scrolling */
 }
 
-
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
     background-size: 50%;
@@ -41,7 +40,6 @@ body {
     background-color: black;
 }
 
-
 .hero h1 {
     font-size: 94px;
     margin: 0;
@@ -51,6 +49,10 @@ body {
     line-height: 1.2;
     max-width: 1200px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+    animation-delay: 0.5s;
 }
 
 .hero p {
@@ -59,7 +61,10 @@ body {
     line-height: 1.5;
     max-width: 800px;
     font-weight: 300;
-    opacity: 0.85;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease forwards;
+    animation-delay: 1.5s;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
@@ -69,10 +74,11 @@ body {
     /* Position it 20px from the bottom of the parent container */
     left: 50%;
     transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+    animation-delay: 2.5s;
     /* Center it horizontally */
 }
-
-
 
 .arrow-down span {
     font-size: 40px;
@@ -80,6 +86,18 @@ body {
     cursor: pointer;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     animation: bounce 2s infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes bounce {
