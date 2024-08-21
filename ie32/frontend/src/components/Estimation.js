@@ -2,6 +2,7 @@ import React from 'react';
 import './Estimation.css';
 
 const Estimation = () => {
+
     return (
         <div className="section-two">
             <div className="image-section"></div>
@@ -19,7 +20,7 @@ const Estimation = () => {
                         </div>
                     </div>
                     <p className="description">Upload images of your home to discover which appliances are driving up your energy bills. Our advanced image detection tool will analyze your energy consumption and provide tailored tips to help you save.</p>
-
+                    <button className="start-button">Start Now</button>
                 </div>
             </div>
         </div>
