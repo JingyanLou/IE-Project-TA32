@@ -36,7 +36,7 @@
     justify-content: center;
     align-items: center;
     background-color: black;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
     z-index: 0.5;
 }
@@ -69,15 +69,19 @@
     z-index: 3;
     white-space: nowrap;
     text-align: right;
-    width: 120%;
-    margin-left: -68%;
-    align-self: flex-start;
+    align-self: flex-end;
+    /* Align the h1 to the end, right-aligning it with the content */
+    margin-left: 0;
+    /* Reset the margin-left to 0 */
+    width: auto;
+    /* Adjust the width so it doesn't overlap */
     opacity: 0;
     /* Start hidden */
     transform: translateY(20px);
     transition: opacity 1.5s ease, transform 1.5s ease;
     transition-delay: 0.5s;
 }
+
 
 .reveal .info-section h1 {
     opacity: 1;
