@@ -5,13 +5,11 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    /* Use fixed instead of sticky */
     top: 0;
     z-index: 10;
     width: 100%;
     box-sizing: border-box;
 }
-
 
 .navbar ul {
     list-style-type: none;
@@ -39,4 +37,37 @@
     font-weight: 700;
     font-size: 16px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    /* Add padding to make it look like a button */
+    border-radius: 5px;
+    /* Add border radius */
+    border: 2px solid transparent;
+    /* Initially transparent border */
+    background-color: transparent;
+    /* Initially transparent background */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    /* Smooth transition */
+}
+
+.navbar ul.brand li span {
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    /* Optional: If you want padding like a button */
+    border-radius: 5px;
+    /* Optional: If you want it to look like a button */
+}
+
+
+.navbar ul li a:hover {
+    background-color: white;
+    /* Change background to white on hover */
+    color: black;
+    /* Change text color to black on hover */
+    border: 2px solid white;
+    /* Add a white border on hover */
+    text-shadow: none;
+    /* Optionally, remove text shadow on hover */
 }
