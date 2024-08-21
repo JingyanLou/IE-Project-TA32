@@ -1,30 +1,25 @@
-.why-choose-us-container {
+.why-choose-us-container-custom {
     height: 100vh;
-    /* Full viewport height */
     width: 100%;
     background-color: black;
-    /* Background color of the entire container */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 140px 16%;
-    /* Reduced top and bottom padding */
     box-sizing: border-box;
     z-index: 10;
-    /* Set this to a higher value */
 }
 
-.why-choose-us-section {
+.why-choose-us-section-custom {
     display: flex;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
     padding: 28px;
-    /* Decreased padding inside the section by 30% */
     background-color: black;
 }
 
-.info-section {
+.info-section-custom {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -33,34 +28,32 @@
     box-sizing: border-box;
 }
 
-.info-section .content {
+.info-section-custom .content-custom {
     color: white;
     max-width: 100%;
 }
 
-.tech-item h2 {
-    font-size: 33.6px;
-    /* Decreased size from 48px by 30% */
-    font-weight: bold;
-    font-family: 'Roboto Condensed', sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 10.5px;
-    /* Adjusted margin-bottom */
+.tech-item-custom h2,
+.tech-item-custom p {
+    opacity: 0;
+    /* Initially hidden */
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
 }
 
-.tech-item p {
-    font-size: 15.4px;
-    /* Decreased size from 22px by 30% */
-    font-weight: 600;
-    font-family: 'Roboto Condensed', sans-serif;
-    color: grey;
-    line-height: 1.5;
-    margin-bottom: 21px;
-    /* Adjusted margin-bottom */
-    text-shadow: none;
+.reveal-whychooseus .tech-item-custom h2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
 }
 
-.legend-section {
+.reveal-whychooseus .tech-item-custom p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s;
+}
+
+.legend-section-custom {
     flex: 1;
     position: relative;
     display: flex;
@@ -70,9 +63,8 @@
     box-sizing: border-box;
 }
 
-.legend-text {
+.legend-text-custom {
     font-size: 100.8px;
-    /* Decreased size from 144px by 30% */
     font-weight: bold;
     text-align: right;
     color: white;
@@ -81,12 +73,11 @@
     line-height: 1.1;
 }
 
-.legend-text div {
+.legend-text-custom div {
     margin-bottom: 7px;
-    /* Adjusted margin-bottom */
 }
 
-.background-image {
+.background-image-custom {
     position: absolute;
     bottom: 0;
     right: 0;
