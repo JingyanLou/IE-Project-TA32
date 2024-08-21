@@ -70,7 +70,7 @@ body {
 }
 
 .arrow-down-container {
-    position: fixed;
+    position: absolute;
     /* Change to fixed to make it stick to the viewport */
     bottom: 20px;
     /* Adjust this value to change how close it is to the bottom */
