@@ -1,22 +1,40 @@
+.why-choose-us-container {
+    height: 100vh;
+    /* Full viewport height */
+    width: 100%;
+    background-color: black;
+    /* Background color of the entire container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 200px;
+    /* Internal padding */
+    box-sizing: border-box;
+}
+
 .why-choose-us-section {
     display: flex;
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+    /* Equal padding inside the section */
+    background-color: black;
+    /* Optional if you want the same background color */
 }
 
 .info-section {
-    width: 50%;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    padding: 20px;
     box-sizing: border-box;
 }
 
 .info-section .content {
     color: white;
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .tech-item h2 {
@@ -43,13 +61,12 @@
 }
 
 .legend-section {
-    width: 50%;
+    flex: 1;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -74,9 +91,7 @@
     /* Move the image behind the legend */
     right: 0;
     width: 70%;
-    /* Increased size */
     z-index: 1;
-    /* Lower than legend text */
     opacity: 0.6;
     /* Optional: add opacity to make the text stand out more */
 }
