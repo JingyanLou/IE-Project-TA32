@@ -15,7 +15,20 @@
     width: 45%;
     height: 80%;
     z-index: 1;
+    animation: rotate 80s linear infinite;
+
 }
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 .info-section {
     width: 50%;

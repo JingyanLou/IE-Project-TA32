@@ -12,6 +12,8 @@ const Homepage = () => {
         }
     };
 
+
+
     return (
         <div className="homepage">
 
@@ -27,7 +29,10 @@ const Homepage = () => {
                 <Estimation />
             </div>
 
-            <WhyChooseUs />
+            <div id="why-choose-us-section">
+                <WhyChooseUs />
+            </div>
+
 
         </div>
     );

@@ -21,6 +21,9 @@ body {
     /* Prevent horizontal scrolling */
 }
 
+
+
+
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
     background-size: 50%;
