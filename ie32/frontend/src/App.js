@@ -1,11 +1,12 @@
 import React from 'react';
+import Navbar from './components/Navbar'; // Import the Navbar component
 import Homepage from './pages/homepage';
-import Estimation from './components/Estimation';
 
 function App() {
   return (
     <div className="App">
-      <Homepage></Homepage>
+      <Navbar /> {/* Navbar will be used across all pages */}
+      <Homepage />
     </div>
   );
 }

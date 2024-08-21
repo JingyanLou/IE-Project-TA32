@@ -21,46 +21,6 @@ body {
     /* Prevent horizontal scrolling */
 }
 
-.navbar {
-    background: transparent;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    z-index: 10;
-    box-sizing: border-box;
-}
-
-.navbar ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul.brand {
-    justify-content: flex-start;
-}
-
-.navbar ul.nav-items {
-    justify-content: flex-end;
-    margin-left: auto;
-}
-
-.navbar ul li {
-    margin-left: 20px;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
 
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
