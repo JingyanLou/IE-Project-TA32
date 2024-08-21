@@ -71,7 +71,7 @@
     text-align: right;
     align-self: flex-end;
     /* Align the h1 to the end, right-aligning it with the content */
-    margin-left: 0;
+    margin-right: -5%;
     /* Reset the margin-left to 0 */
     width: auto;
     /* Adjust the width so it doesn't overlap */
