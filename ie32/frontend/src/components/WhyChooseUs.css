@@ -7,8 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 200px;
-    /* Internal padding */
+    padding: 140px 16%;
+    /* Reduced top and bottom padding */
     box-sizing: border-box;
 }
 
@@ -17,10 +17,9 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    padding: 40px;
-    /* Equal padding inside the section */
+    padding: 28px;
+    /* Decreased padding inside the section by 30% */
     background-color: black;
-    /* Optional if you want the same background color */
 }
 
 .info-section {
@@ -38,25 +37,24 @@
 }
 
 .tech-item h2 {
-    font-size: 48px;
-    /* Increased size */
+    font-size: 33.6px;
+    /* Decreased size from 48px by 30% */
     font-weight: bold;
     font-family: 'Roboto Condensed', sans-serif;
-    /* Condensed bold font */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 15px;
+    margin-bottom: 10.5px;
+    /* Adjusted margin-bottom */
 }
 
 .tech-item p {
-    font-size: 22px;
-    /* Increased size */
+    font-size: 15.4px;
+    /* Decreased size from 22px by 30% */
     font-weight: 600;
-    /* More bold than regular */
     font-family: 'Roboto Condensed', sans-serif;
-    /* More condensed and bold */
     color: grey;
     line-height: 1.5;
-    margin-bottom: 30px;
+    margin-bottom: 21px;
+    /* Adjusted margin-bottom */
     text-shadow: none;
 }
 
@@ -71,8 +69,8 @@
 }
 
 .legend-text {
-    font-size: 144px;
-    /* Increased size by 50% from 96px */
+    font-size: 100.8px;
+    /* Decreased size from 144px by 30% */
     font-weight: bold;
     text-align: right;
     color: white;
@@ -82,16 +80,15 @@
 }
 
 .legend-text div {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
+    /* Adjusted margin-bottom */
 }
 
 .background-image {
     position: absolute;
     bottom: 0;
-    /* Move the image behind the legend */
     right: 0;
     width: 70%;
     z-index: 1;
     opacity: 0.6;
-    /* Optional: add opacity to make the text stand out more */
 }
