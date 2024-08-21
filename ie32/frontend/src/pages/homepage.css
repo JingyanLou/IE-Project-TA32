@@ -70,18 +70,29 @@ body {
 }
 
 .arrow-down-container {
-    position: absolute;
-    bottom: 40px;
-    /* Adjust this as necessary */
-    left: 50%;
+    position: fixed;
+    /* Change to fixed to make it stick to the viewport */
+    bottom: 20px;
+    /* Adjust this value to change how close it is to the bottom */
+    left: 48%;
+    /* Center horizontally */
     transform: translateX(-50%);
+    /* Adjust for exact centering */
     display: flex;
     flex-direction: column;
+    /* Stack text and arrow vertically */
     align-items: center;
+    /* Center align the text and arrow */
     opacity: 0;
+    /* Initially hidden */
     animation: fadeInUp 1.5s ease forwards;
+    /* Apply fade-in animation */
     animation-delay: 2.5s;
+    /* Delay the animation to make it smooth */
+    z-index: 1000;
+    /* Ensure it's above other content */
 }
+
 
 .scroll-down-text {
     font-size: 16px;
