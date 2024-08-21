@@ -24,7 +24,10 @@ body {
 
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('../../public/images/homecosmo.jpg');
-    background-size: cover;
+    background-size: 50%;
+    /* Reduce the image size by 50% */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
     background-position: center;
     height: 100vh;
     text-align: center;
@@ -34,10 +37,10 @@ body {
     align-items: center;
     padding: 20px;
     width: 100%;
-    /* Ensure full width */
     box-sizing: border-box;
-    /* Include padding in width */
+    background-color: black;
 }
+
 
 .hero h1 {
     font-size: 94px;
