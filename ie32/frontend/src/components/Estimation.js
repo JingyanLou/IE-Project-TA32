@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Estimation.css';
 
 const Estimation = () => {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal');
+                        console.log('Estimation section is visible');  // This confirms the section is being revealed
+                    }
+                });
+            },
+            { threshold: 0.1 } // Trigger when 10% of the section is visible
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <div className="section-two">
+        <div className="section-two" ref={sectionRef}>
             <div className="image-section"></div>
             <div className="info-section">
                 <div className="content">

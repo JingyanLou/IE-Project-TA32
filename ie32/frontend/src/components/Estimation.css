@@ -1,3 +1,4 @@
+/* Estimation.css */
 .section-two {
     display: flex;
     justify-content: space-between;
@@ -15,8 +16,8 @@
     width: 45%;
     height: 80%;
     z-index: 1;
-    animation: rotate 80s linear infinite;
-
+    /* Adding a smooth rotation to the image */
+    animation: rotate 40s linear infinite;
 }
 
 @keyframes rotate {
@@ -28,7 +29,6 @@
         transform: rotate(360deg);
     }
 }
-
 
 .info-section {
     width: 50%;
@@ -50,9 +50,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    opacity: 0;
+
+    /* Start hidden */
     transform: translateY(20px);
-    animation: fadeInUp 1.5s ease forwards;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.reveal .info-section .content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-section h1 {
@@ -67,9 +73,15 @@
     margin-left: -68%;
     align-self: flex-start;
     opacity: 0;
+    /* Start hidden */
     transform: translateY(20px);
-    animation: fadeInUp 1.5s ease forwards;
-    animation-delay: 0.5s;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transition-delay: 0.5s;
+}
+
+.reveal .info-section h1 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-section .stats {
@@ -79,10 +91,17 @@
     gap: 10px;
     z-index: 3;
     margin-right: -7%;
+
     opacity: 0;
+    /* Start hidden */
     transform: translateY(20px);
-    animation: fadeInUp 1.5s ease forwards;
-    animation-delay: 1.5s;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transition-delay: 1.5s;
+}
+
+.reveal .info-section .stats {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-section .stat-item {
@@ -108,6 +127,7 @@
     margin: 0;
 }
 
+
 .info-section .description {
     font-size: 27px;
     font-weight: 300;
@@ -117,9 +137,15 @@
     z-index: 2;
     margin-right: -4%;
     opacity: 0;
+    /* Start hidden */
     transform: translateY(20px);
-    animation: fadeInUp 1.5s ease forwards;
-    animation-delay: 2.5s;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transition-delay: 2.5s;
+}
+
+.reveal .info-section .description {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-section .start-button {
@@ -138,24 +164,18 @@
     align-self: flex-end;
     margin-right: -4%;
     opacity: 0;
+    /* Start hidden */
     transform: translateY(20px);
-    animation: fadeInUp 1.5s ease forwards;
-    animation-delay: 3.5s;
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    transition-delay: 3.5s;
+}
+
+.reveal .info-section .start-button {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .info-section .start-button:hover {
     background-color: white;
     color: black;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
