@@ -18,6 +18,7 @@ const Homepage = () => {
             <div className="hero">
                 <h1>Empower your energy savings today.</h1>
                 <p>Take control of your energy consumption with personalized insights, cost-saving tools, and tailored solutions. Make every watt count towards a greener, more affordable future.</p>
+                <div className="scroll-down-text">Scroll Down</div>
                 <div className="arrow-down" onClick={scrollToEstimation}>
                     <span>&#9662;</span>
                 </div>

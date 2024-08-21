@@ -69,16 +69,32 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.arrow-down {
+.arrow-down-container {
     position: absolute;
     bottom: 40px;
-    /* Position it 20px from the bottom of the parent container */
+    /* Adjust this as necessary */
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     opacity: 0;
     animation: fadeInUp 1.5s ease forwards;
     animation-delay: 2.5s;
-    /* Center it horizontally */
+}
+
+.scroll-down-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    /* 70% transparent */
+    margin-bottom: 0px;
+    /* Space between text and arrow */
+    opacity: 0;
+    /* Initially hidden */
+    animation: fadeInUp 1.5s ease forwards;
+    /* Apply fade-in animation */
+    animation-delay: 2.5s;
+    /* Delay the animation to make it smooth */
 }
 
 .arrow-down span {
@@ -87,7 +103,14 @@ body {
     cursor: pointer;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     animation: bounce 2s infinite;
+    opacity: 0;
+    /* Initially hidden */
+    animation: fadeInUp 1.5s ease forwards;
+    /* Apply fade-in animation */
+    animation-delay: 2.5s;
+    /* Delay the animation to make it smooth */
 }
+
 
 @keyframes fadeInUp {
     from {
