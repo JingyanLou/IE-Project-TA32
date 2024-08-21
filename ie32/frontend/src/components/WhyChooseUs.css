@@ -5,7 +5,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 140px 16%;
+    padding: 140px 10% 140px 20%;
+    /* More padding on the right, less on the left */
+    /* Increased padding on left and right */
     box-sizing: border-box;
     z-index: 10;
 }
