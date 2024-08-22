@@ -10,6 +10,41 @@
     /* Center content vertically */
 }
 
+/* Background images for the red box sections */
+.background-image {
+    position: absolute;
+    background-image: url('../../public/images/cosmolight.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    /* Ensure the background is behind other content */
+}
+
+/* Specific positions for the three background images */
+.background-image.one {
+    width: 300px;
+    height: 300px;
+    top: 250px;
+    left: 150px;
+}
+
+.background-image.two {
+    width: 300px;
+    height: 300px;
+    top: 250px;
+    right: 950px;
+}
+
+.background-image.three {
+    width: 300px;
+    height: 300px;
+    bottom: 100px;
+    left: 30%;
+    transform: translateX(-50%);
+
+}
+
+
 .progress-bar-container {
     width: 80%;
     position: absolute;
