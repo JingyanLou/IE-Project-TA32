@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: -650px;
 }
 
 /* Container for navigation arrows */
@@ -94,7 +95,7 @@
     background-color: gray;
     top: 29%;
     /* Position the line above the circles but below the labels */
-    left: 5%;
+    left: 6%;
     z-index: 1;
     /* Send the line to the back */
 
