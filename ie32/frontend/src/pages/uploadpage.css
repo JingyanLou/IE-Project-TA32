@@ -1,3 +1,4 @@
+/* Main container for the upload page */
 .upload-page {
     background-color: black;
     color: white;
@@ -5,25 +6,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    /* Center content vertically */
 }
 
 .progress-bar-container {
     width: 80%;
-    margin-top: 120px;
+    margin-top: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Container for navigation arrows */
+.nav-arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for navigation arrows */
 .nav-arrow {
     background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
+.nav-arrow span {
+    font-size: 24px;
+    color: white;
+}
+
+/* The main progress bar style */
 .progress-bar {
     display: flex;
     flex-grow: 1;
@@ -32,14 +52,61 @@
     position: relative;
 }
 
+/* Style for each step in the progress bar */
 .step {
-    width: 100%;
-    text-align: center;
-    color: gray;
-    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
-.step.active {
+/* The circle that represents the step number */
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
     color: white;
-    font-weight: bold;
+    margin-bottom: 8px;
+    /* Space between the circle and the label */
+    position: relative;
+    z-index: 3;
+    /* Ensures the circle is above the line */
+}
+
+/* Active state for the step circle */
+.circle.active {
+    background-color: #ff7b00;
+    /* Orange color for the active step */
+    z-index: 4;
+}
+
+/* Line connecting the steps */
+.line {
+    position: absolute;
+    height: 2px;
+    width: 86%;
+    /* Adjust the line width to connect to the next step */
+    background-color: gray;
+    top: 29%;
+    /* Position the line above the circles but below the labels */
+    left: 5%;
+    z-index: 1;
+    /* Send the line to the back */
+
+}
+
+/* Label below each step circle */
+.step-label {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    z-index: 4;
+    /* Ensures the label is above the line */
 }
