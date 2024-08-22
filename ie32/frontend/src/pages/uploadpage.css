@@ -1,4 +1,3 @@
-/* Main container for the upload page */
 .upload-page {
     background-color: black;
     color: white;
@@ -141,7 +140,7 @@
     z-index: 4;
 }
 
-/* Container for step 1 form and appliance display */
+/* Ensure fixed size for both containers */
 .step1-container {
     display: flex;
     justify-content: space-between;
@@ -150,19 +149,31 @@
     z-index: 2;
 }
 
-/* Form container */
+.form-title,
+.appliance-title {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+    position: relative;
+    right: -5.5%;
+    top: -21%;
+    transform: translateX(50%);
+    white-space: nowrap;
+    /* Prevents the text from wrapping to the next line */
+
+}
+
+/* Form container with fixed height */
 .form-container {
     width: 45%;
+    height: 400px;
+    /* Fixed height */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-}
-
-.form-container h2 {
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
+    overflow: hidden;
+    /* Hide any overflow */
 }
 
 .form-group {
@@ -180,6 +191,7 @@
     margin-right: 10px;
 }
 
+/* Ensure input bars are visible */
 .form-group input {
     flex: 2;
     padding: 10px;
@@ -190,9 +202,12 @@
     font-weight: bold;
     transition: background-color 0.3s ease, border 0.3s ease;
     padding-left: 10px;
+    visibility: visible;
+    /* Make the input bars visible by default */
 }
 
-.form-group input:hover {
+.form-group input:hover,
+.form-group input:focus {
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid #ff7b00;
 }
@@ -205,27 +220,25 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
 }
 
 .add-appliance-button:hover {
     background-color: #e66a00;
 }
 
-/* Appliance display container */
+/* Appliance display container with fixed height and scrollbar */
 .appliance-display {
     width: 45%;
+    height: 400px;
+    /* Fixed height */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
-    max-height: 400px;
-}
-
-.appliance-display h2 {
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
+    /* Scrollbar for overflow items */
 }
 
 .appliance-display ul {

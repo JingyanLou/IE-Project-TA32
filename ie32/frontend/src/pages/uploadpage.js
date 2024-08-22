@@ -43,8 +43,9 @@ const Upload = () => {
     return (
         <div className="upload-page">
             {/* Background images */}
-
+            <div className="background-image one"></div>
             <div className="background-image two"></div>
+            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
@@ -83,8 +84,8 @@ const Upload = () => {
             {/* Only show the form and appliance display in step 1 */}
             {currentStep === 1 && (
                 <div className="step1-container">
+                    <h2 className="form-title">Manually fill-in</h2>
                     <div className="form-container">
-                        <h2>Manually fill-in</h2>
                         <div className="form-group">
                             <label>Brand</label>
                             <input
@@ -135,8 +136,8 @@ const Upload = () => {
                         </button>
                     </div>
 
+                    <h2 className="appliance-title">Your Appliance</h2>
                     <div className="appliance-display">
-                        <h2>Your Appliance</h2>
                         <ul>
                             {appliances.map((appliance, index) => (
                                 <li key={index}>
