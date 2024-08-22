@@ -30,7 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -34px;
+    margin-top: -40px;
 }
 
 /* Style for navigation arrows */
@@ -44,12 +44,31 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    /* Smooth transition for the hover effect */
+}
+
+/* Hover effect for the navigation arrows */
+.nav-arrow:hover {
+    background-color: #ff7b00;
+    /* Orange background when hovered */
+    border-color: #ff7b00;
+    /* Orange border when hovered */
 }
 
 .nav-arrow span {
     font-size: 24px;
     color: white;
+    transition: color 0.3s ease;
+    /* Smooth transition for the text color */
 }
+
+/* Change the color of the arrow itself on hover */
+.nav-arrow:hover span {
+    color: white;
+    /* Keep the arrow color white for contrast */
+}
+
 
 /* The main progress bar style */
 .progress-bar {
