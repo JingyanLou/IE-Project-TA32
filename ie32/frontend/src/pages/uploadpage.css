@@ -12,18 +12,25 @@
 
 .progress-bar-container {
     width: 80%;
-    margin-top: 0px;
+    position: absolute;
+    /* Change position to absolute to place it relative to the page */
+    top: 110px;
+    /* Adjust the top value to move it upwards on the page */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center the container horizontally */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -650px;
 }
+
 
 /* Container for navigation arrows */
 .nav-arrow-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -34px;
 }
 
 /* Style for navigation arrows */
@@ -95,7 +102,7 @@
     background-color: gray;
     top: 29%;
     /* Position the line above the circles but below the labels */
-    left: 6%;
+    left: 7%;
     z-index: 1;
     /* Send the line to the back */
 
@@ -106,7 +113,12 @@
     color: white;
     font-size: 16px;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
+    /* Allow text to wrap */
+    width: 159px;
+    /* Adjust width as needed to allow multiple lines */
+    line-height: 1.2;
+    /* Adjust line height for better spacing between lines */
     position: relative;
     z-index: 4;
     /* Ensures the label is above the line */
