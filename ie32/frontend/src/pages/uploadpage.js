@@ -3,6 +3,14 @@ import './uploadpage.css'; // Import CSS for styling the page
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
+    const [appliances, setAppliances] = useState([]);
+    const [formInput, setFormInput] = useState({
+        brand: '',
+        applianceType: '',
+        usageFrequency: '',
+        energyRating: '',
+        modelName: ''
+    });
 
     const handleNextStep = () => {
         if (currentStep < 4) {
@@ -16,12 +24,27 @@ const Upload = () => {
         }
     };
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormInput({ ...formInput, [name]: value });
+    };
+
+    const handleAddAppliance = () => {
+        setAppliances([...appliances, formInput]);
+        setFormInput({
+            brand: '',
+            applianceType: '',
+            usageFrequency: '',
+            energyRating: '',
+            modelName: ''
+        });
+    };
+
     return (
         <div className="upload-page">
             {/* Background images */}
-            <div className="background-image one"></div>
+
             <div className="background-image two"></div>
-            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
@@ -56,6 +79,78 @@ const Upload = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Only show the form and appliance display in step 1 */}
+            {currentStep === 1 && (
+                <div className="step1-container">
+                    <div className="form-container">
+                        <h2>Manually fill-in</h2>
+                        <div className="form-group">
+                            <label>Brand</label>
+                            <input
+                                type="text"
+                                name="brand"
+                                value={formInput.brand}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Appliance type</label>
+                            <input
+                                type="text"
+                                name="applianceType"
+                                value={formInput.applianceType}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Usage Frequency</label>
+                            <input
+                                type="text"
+                                name="usageFrequency"
+                                value={formInput.usageFrequency}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Energy Rating</label>
+                            <input
+                                type="text"
+                                name="energyRating"
+                                value={formInput.energyRating}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Model name (optional)</label>
+                            <input
+                                type="text"
+                                name="modelName"
+                                value={formInput.modelName}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <button className="add-appliance-button" onClick={handleAddAppliance}>
+                            Add Appliance
+                        </button>
+                    </div>
+
+                    <div className="appliance-display">
+                        <h2>Your Appliance</h2>
+                        <ul>
+                            {appliances.map((appliance, index) => (
+                                <li key={index}>
+                                    <div>Brand: {appliance.brand}</div>
+                                    <div>Type: {appliance.applianceType}</div>
+                                    <div>Usage: {appliance.usageFrequency}</div>
+                                    <div>Rating: {appliance.energyRating}</div>
+                                    <div>Model: {appliance.modelName || 'None'}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

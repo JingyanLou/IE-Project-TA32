@@ -7,7 +7,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Center content vertically */
 }
 
 /* Background images for the red box sections */
@@ -17,10 +16,8 @@
     background-size: cover;
     background-position: center;
     z-index: 0;
-    /* Ensure the background is behind other content */
 }
 
-/* Specific positions for the three background images */
 .background-image.one {
     width: 300px;
     height: 300px;
@@ -41,24 +38,18 @@
     bottom: 100px;
     left: 30%;
     transform: translateX(-50%);
-
 }
-
 
 .progress-bar-container {
     width: 80%;
     position: absolute;
-    /* Change position to absolute to place it relative to the page */
     top: 110px;
-    /* Adjust the top value to move it upwards on the page */
     left: 50%;
     transform: translateX(-50%);
-    /* Center the container horizontally */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 
 /* Container for navigation arrows */
 .nav-arrow-container {
@@ -80,30 +71,18 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    /* Smooth transition for the hover effect */
 }
 
-/* Hover effect for the navigation arrows */
 .nav-arrow:hover {
     background-color: #ff7b00;
-    /* Orange background when hovered */
     border-color: #ff7b00;
-    /* Orange border when hovered */
 }
 
 .nav-arrow span {
     font-size: 24px;
     color: white;
     transition: color 0.3s ease;
-    /* Smooth transition for the text color */
 }
-
-/* Change the color of the arrow itself on hover */
-.nav-arrow:hover span {
-    color: white;
-    /* Keep the arrow color white for contrast */
-}
-
 
 /* The main progress bar style */
 .progress-bar {
@@ -114,7 +93,6 @@
     position: relative;
 }
 
-/* Style for each step in the progress bar */
 .step {
     display: flex;
     flex-direction: column;
@@ -122,7 +100,6 @@
     position: relative;
 }
 
-/* The circle that represents the step number */
 .circle {
     width: 40px;
     height: 40px;
@@ -134,46 +111,133 @@
     font-size: 18px;
     color: white;
     margin-bottom: 8px;
-    /* Space between the circle and the label */
     position: relative;
     z-index: 3;
-    /* Ensures the circle is above the line */
 }
 
-/* Active state for the step circle */
 .circle.active {
     background-color: #ff7b00;
-    /* Orange color for the active step */
     z-index: 4;
 }
 
-/* Line connecting the steps */
 .line {
     position: absolute;
     height: 2px;
     width: 86%;
-    /* Adjust the line width to connect to the next step */
     background-color: gray;
     top: 29%;
-    /* Position the line above the circles but below the labels */
     left: 7%;
     z-index: 1;
-    /* Send the line to the back */
-
 }
 
-/* Label below each step circle */
 .step-label {
     color: white;
     font-size: 16px;
     text-align: center;
     white-space: normal;
-    /* Allow text to wrap */
     width: 159px;
-    /* Adjust width as needed to allow multiple lines */
     line-height: 1.2;
-    /* Adjust line height for better spacing between lines */
     position: relative;
     z-index: 4;
-    /* Ensures the label is above the line */
+}
+
+/* Container for step 1 form and appliance display */
+.step1-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-top: 150px;
+    z-index: 2;
+}
+
+/* Form container */
+.form-container {
+    width: 45%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-container h2 {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    flex: 1;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+}
+
+.form-group input {
+    flex: 2;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: grey;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    padding-left: 10px;
+}
+
+.form-group input:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ff7b00;
+}
+
+.add-appliance-button {
+    padding: 10px 20px;
+    background-color: #ff7b00;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-appliance-button:hover {
+    background-color: #e66a00;
+}
+
+/* Appliance display container */
+.appliance-display {
+    width: 45%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.appliance-display h2 {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.appliance-display ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.appliance-display li {
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
