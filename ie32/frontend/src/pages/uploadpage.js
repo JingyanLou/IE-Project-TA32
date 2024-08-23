@@ -60,9 +60,6 @@ const Upload = () => {
     return (
         <div className="upload-page">
             {/* Background images */}
-            <div className="background-image one"></div>
-            <div className="background-image two"></div>
-            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">

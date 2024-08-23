@@ -7,6 +7,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Background images styling */
@@ -16,6 +18,8 @@
     background-size: cover;
     background-position: center;
     z-index: 0;
+    opacity: 0.5;
+
 }
 
 .background-image.one {
@@ -50,6 +54,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 
 .nav-arrow-container {
@@ -70,17 +75,18 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .nav-arrow:hover {
     background-color: #ff7b00;
     border-color: #ff7b00;
+    color: white;
 }
 
-.nav-arrow span {
-    font-size: 24px;
-    color: white;
-    transition: color 0.3s ease;
+.nav-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .progress-bar {
@@ -89,6 +95,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
+    padding: 0 20px;
 }
 
 .step {
@@ -111,6 +118,7 @@
     margin-bottom: 8px;
     position: relative;
     z-index: 3;
+    transition: background-color 0.3s ease;
 }
 
 .circle.active {
@@ -137,146 +145,4 @@
     line-height: 1.2;
     position: relative;
     z-index: 4;
-}
-
-/* Step 1 container and titles styling */
-.step1-container {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin-top: 150px;
-    z-index: 2;
-}
-
-.form-title,
-.appliance-title {
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
-    position: relative;
-    right: -5.5%;
-    top: -21%;
-    transform: translateX(50%);
-    white-space: nowrap;
-}
-
-/* Form container */
-.form-container {
-    width: 45%;
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    flex: 1;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-right: 10px;
-}
-
-.form-group select,
-.form-group input {
-    flex: 2;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 5px;
-    color: grey;
-    font-weight: bold;
-    transition: background-color 0.3s ease, border 0.3s ease;
-    padding-left: 10px;
-}
-
-.form-group select:hover,
-.form-group input:hover,
-.form-group input:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 0px solid #ff7b00;
-}
-
-/* Add appliance button */
-.add-appliance-button {
-    padding: 10px 20px;
-    background-color: #ff7b00;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 0 auto;
-    display: block;
-}
-
-.add-appliance-button:hover {
-    background-color: #e66a00;
-}
-
-/* Appliance display container */
-.appliance-display {
-    width: 45%;
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    overflow-y: scroll;
-}
-
-/* Custom scrollbar for the appliance display container */
-.appliance-display::-webkit-scrollbar {
-    width: 12px;
-}
-
-.appliance-display::-webkit-scrollbar-track {
-    background: black;
-    border-radius: 10px;
-}
-
-.appliance-display::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 10px;
-    border: 3px solid black;
-}
-
-.appliance-display ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.appliance-display li {
-    margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.316);
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    position: relative;
-}
-
-/* Delete button styling */
-.delete-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: red;
-    cursor: pointer;
-}
-
-.delete-button:hover {
-    color: #ff0000;
 }
