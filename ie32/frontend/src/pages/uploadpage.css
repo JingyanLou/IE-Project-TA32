@@ -159,21 +159,17 @@
     top: -21%;
     transform: translateX(50%);
     white-space: nowrap;
-    /* Prevents the text from wrapping to the next line */
-
 }
 
 /* Form container with fixed height */
 .form-container {
     width: 45%;
     height: 400px;
-    /* Fixed height */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    /* Hide any overflow */
 }
 
 .form-group {
@@ -191,24 +187,24 @@
     margin-right: 10px;
 }
 
-/* Ensure input bars are visible */
+/* Drop-down select style */
+.form-group select,
 .form-group input {
     flex: 2;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 5px;
     color: grey;
     font-weight: bold;
     transition: background-color 0.3s ease, border 0.3s ease;
     padding-left: 10px;
-    visibility: visible;
-    /* Make the input bars visible by default */
 }
 
+.form-group select:hover,
 .form-group input:hover,
 .form-group input:focus {
-    background-color: rgba(255, 255, 255, 0.566);
+    background-color: rgba(255, 255, 255, 0.2);
     border: 0px solid #ff7b00;
 }
 
@@ -232,37 +228,28 @@
 .appliance-display {
     width: 45%;
     height: 400px;
-    /* Fixed height */
     background-color: rgba(255, 255, 255, 0);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
-    /* Scrollbar for overflow items */
 }
-
 
 /* Custom scrollbar for the appliance display container */
 /* For WebKit browsers (Chrome, Safari, etc.) */
 .appliance-display::-webkit-scrollbar {
     width: 12px;
-    /* Width of the scrollbar */
 }
 
 .appliance-display::-webkit-scrollbar-track {
     background: black;
-    /* Scrollbar background color */
     border-radius: 10px;
-    /* Rounded corners for the scrollbar track */
 }
 
 .appliance-display::-webkit-scrollbar-thumb {
     background-color: grey;
-    /* Scroller (thumb) color */
     border-radius: 10px;
-    /* Rounded corners for the scroller */
     border: 3px solid black;
-    /* Border to create some padding effect */
 }
 
 .appliance-display ul {
@@ -277,4 +264,16 @@
     border-radius: 5px;
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Ensure the delete icon is visible */
+.appliance-display li::after {
+    content: '✕';
+    font-size: 16px;
+    color: red;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }

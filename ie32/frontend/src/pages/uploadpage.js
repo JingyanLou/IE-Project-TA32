@@ -5,12 +5,12 @@ const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [appliances, setAppliances] = useState([]);
     const [formInput, setFormInput] = useState({
-        brand: '',
-        applianceType: '',
-        usageFrequency: '',
-        energyRating: '',
-        modelName: ''
+        applianceType: 'Refrigerator',
+        dailyHours: 10,
+        quantity: 1
     });
+
+    const applianceOptions = ['Refrigerator', 'Washing Machine', 'Television', 'Air Conditioner'];
 
     const handleNextStep = () => {
         if (currentStep < 4) {
@@ -32,20 +32,15 @@ const Upload = () => {
     const handleAddAppliance = () => {
         setAppliances([...appliances, formInput]);
         setFormInput({
-            brand: '',
-            applianceType: '',
-            usageFrequency: '',
-            energyRating: '',
-            modelName: ''
+            applianceType: 'Refrigerator',
+            dailyHours: 10,
+            quantity: 1
         });
     };
 
     return (
         <div className="upload-page">
             {/* Background images */}
-            <div className="background-image one"></div>
-            <div className="background-image two"></div>
-            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
@@ -87,48 +82,39 @@ const Upload = () => {
                     <h2 className="form-title">Manually fill-in</h2>
                     <div className="form-container">
                         <div className="form-group">
-                            <label>Brand</label>
-                            <input
-                                type="text"
-                                name="brand"
-                                value={formInput.brand}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Appliance type</label>
-                            <input
-                                type="text"
+                            <label>Appliance Type</label>
+                            <select
                                 name="applianceType"
                                 value={formInput.applianceType}
                                 onChange={handleInputChange}
+                            >
+                                {applianceOptions.map((option, index) => (
+                                    <option key={index} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Daily Hours</label>
+                            <input
+                                type="number"
+                                name="dailyHours"
+                                value={formInput.dailyHours}
+                                onChange={handleInputChange}
+                                min="1"
+                                max="24"
                             />
                         </div>
                         <div className="form-group">
-                            <label>Usage Frequency</label>
+                            <label>Quantity</label>
                             <input
-                                type="text"
-                                name="usageFrequency"
-                                value={formInput.usageFrequency}
+                                type="number"
+                                name="quantity"
+                                value={formInput.quantity}
                                 onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Energy Rating</label>
-                            <input
-                                type="text"
-                                name="energyRating"
-                                value={formInput.energyRating}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Model name (optional)</label>
-                            <input
-                                type="text"
-                                name="modelName"
-                                value={formInput.modelName}
-                                onChange={handleInputChange}
+                                min="1"
+                                max="10"
                             />
                         </div>
                         <button className="add-appliance-button" onClick={handleAddAppliance}>
@@ -141,11 +127,9 @@ const Upload = () => {
                         <ul>
                             {appliances.map((appliance, index) => (
                                 <li key={index}>
-                                    <div>Brand: {appliance.brand}</div>
-                                    <div>Type: {appliance.applianceType}</div>
-                                    <div>Usage: {appliance.usageFrequency}</div>
-                                    <div>Rating: {appliance.energyRating}</div>
-                                    <div>Model: {appliance.modelName || 'None'}</div>
+                                    <div>Appliance Type: {appliance.applianceType}</div>
+                                    <div>Quantity: {appliance.quantity}</div>
+                                    <div>Daily Hours: {appliance.dailyHours}</div>
                                 </li>
                             ))}
                         </ul>
