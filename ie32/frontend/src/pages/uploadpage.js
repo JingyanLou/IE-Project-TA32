@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import './uploadpage.css'; // Import CSS for styling the page
+import { applianceData } from '../utils/data'; // Import the appliance data
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [appliances, setAppliances] = useState([]);
     const [formInput, setFormInput] = useState({
-        applianceType: 'Refrigerator',
+        applianceType: applianceData[0].type,
         dailyHours: 10,
         quantity: 1
     });
-
-    const applianceOptions = ['Refrigerator', 'Washing Machine', 'Television', 'Air Conditioner'];
 
     const handleNextStep = () => {
         if (currentStep < 4) {
@@ -26,13 +25,16 @@ const Upload = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormInput({ ...formInput, [name]: value });
+        setFormInput({
+            ...formInput,
+            [name]: value
+        });
     };
 
     const handleAddAppliance = () => {
         setAppliances([...appliances, formInput]);
         setFormInput({
-            applianceType: 'Refrigerator',
+            applianceType: applianceData[0].type,
             dailyHours: 10,
             quantity: 1
         });
@@ -45,9 +47,6 @@ const Upload = () => {
     return (
         <div className="upload-page">
             {/* Background images */}
-            <div className="background-image one"></div>
-            <div className="background-image two"></div>
-            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
@@ -95,9 +94,9 @@ const Upload = () => {
                                 value={formInput.applianceType}
                                 onChange={handleInputChange}
                             >
-                                {applianceOptions.map((option, index) => (
-                                    <option key={index} value={option}>
-                                        {option}
+                                {applianceData.map((appliance, index) => (
+                                    <option key={index} value={appliance.type}>
+                                        {appliance.type}
                                     </option>
                                 ))}
                             </select>
