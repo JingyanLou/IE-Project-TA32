@@ -1,11 +1,11 @@
 import React from 'react';
-import './step1container.css'; // Import CSS for styling
 import PropTypes from 'prop-types';
+import './step1container.css';
+import { applianceData } from '../utils/data';
 
 const Step1Container = ({
-    applianceData,
+    appliances = [],
     formInput,
-    appliances,
     handleInputChange,
     handleAddAppliance,
     handleDeleteAppliance
@@ -55,7 +55,7 @@ const Step1Container = ({
                 </button>
             </div>
 
-            <h2 className="appliance-title">Your Appliances</h2>
+            <h2 className="appliance-title">Your Appliance</h2>
             <div className="appliance-display">
                 <ul>
                     {appliances.map((appliance, index) => (
@@ -77,11 +77,9 @@ const Step1Container = ({
     );
 };
 
-// PropTypes for type checking and better maintenance
 Step1Container.propTypes = {
-    applianceData: PropTypes.array.isRequired,
+    appliances: PropTypes.array,
     formInput: PropTypes.object.isRequired,
-    appliances: PropTypes.array.isRequired,
     handleInputChange: PropTypes.func.isRequired,
     handleAddAppliance: PropTypes.func.isRequired,
     handleDeleteAppliance: PropTypes.func.isRequired,

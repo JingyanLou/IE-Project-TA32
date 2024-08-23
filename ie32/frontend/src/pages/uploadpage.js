@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import './uploadpage.css'; // Import CSS for styling the page
-import { applianceData } from '../utils/data'; // Import the appliance data
-import Step1Container from '../components/Step1Container'; // Import the Step1Container component
+import './uploadpage.css';
+import { applianceData } from '../utils/data';
+import Step1Container from '../components/Step1Container';
+import Step2Container from '../components/Step2Container'; // Import Step2Container
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [appliances, setAppliances] = useState([]);
     const [formInput, setFormInput] = useState({
         applianceType: applianceData[0].type,
-        dailyHours: applianceData[0].dailyHours || 10, // Default daily hours
+        dailyHours: applianceData[0].dailyHours || 10,
         quantity: 1
     });
 
@@ -45,7 +46,8 @@ const Upload = () => {
     };
 
     const handleAddAppliance = () => {
-        setAppliances([...appliances, formInput]);
+        const selectedAppliance = applianceData.find(appliance => appliance.type === formInput.applianceType);
+        setAppliances([...appliances, { ...formInput, energyConsumption: selectedAppliance.energyConsumption }]);
         setFormInput({
             applianceType: applianceData[0].type,
             dailyHours: applianceData[0].dailyHours || 10,
@@ -103,17 +105,17 @@ const Upload = () => {
                 </div>
             </div>
 
-            {/* Render Step1Container when currentStep is 1 */}
             {currentStep === 1 && (
                 <Step1Container
-                    applianceData={applianceData}
-                    formInput={formInput}
                     appliances={appliances}
+                    formInput={formInput}
                     handleInputChange={handleInputChange}
                     handleAddAppliance={handleAddAppliance}
                     handleDeleteAppliance={handleDeleteAppliance}
                 />
             )}
+
+            {currentStep === 2 && <Step2Container appliances={appliances} />}
         </div>
     );
 };

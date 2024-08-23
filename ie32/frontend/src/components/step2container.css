@@ -1,0 +1,76 @@
+/* Container for Step 2 */
+.step2-container {
+    width: 80%;
+    margin-top: 50px;
+    z-index: 2;
+    text-align: center;
+}
+
+.ranking-title {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Scrollable list */
+.ranking-display {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.ranking-display ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.rank-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Ranking number styling */
+.rank-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.rank-1 .rank-number {
+    color: #ff7b00;
+}
+
+.rank-2 .rank-number {
+    color: #b87333;
+}
+
+.rank-3 .rank-number {
+    color: #cd7f32;
+}
+
+/* Appliance details */
+.appliance-details {
+    text-align: left;
+}
+
+/* Scrollbar customization */
+.ranking-display::-webkit-scrollbar {
+    width: 12px;
+}
+
+.ranking-display::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 10px;
+}
+
+.ranking-display::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 10px;
+    border: 3px solid black;
+}
