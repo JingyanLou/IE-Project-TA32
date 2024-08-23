@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './uploadpage.css'; // Import CSS for styling the page
 import { applianceData } from '../utils/data'; // Import the appliance data
+import Step1Container from '../components/Step1Container'; // Import the Step1Container component
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -27,7 +28,9 @@ const Upload = () => {
         const { name, value } = e.target;
 
         if (name === 'applianceType') {
-            const selectedAppliance = applianceData.find(appliance => appliance.type === value);
+            const selectedAppliance = applianceData.find(
+                appliance => appliance.type === value
+            );
             setFormInput({
                 ...formInput,
                 applianceType: value,
@@ -63,7 +66,11 @@ const Upload = () => {
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
-                    <button className="nav-arrow left-arrow" onClick={handlePrevStep}>
+                    <button
+                        className="nav-arrow left-arrow"
+                        onClick={handlePrevStep}
+                        disabled={currentStep === 1}
+                    >
                         <span>&larr;</span>
                     </button>
                 </div>
@@ -89,77 +96,26 @@ const Upload = () => {
                     </div>
                 </div>
                 <div className="nav-arrow-container">
-                    <button className="nav-arrow right-arrow" onClick={handleNextStep}>
+                    <button
+                        className="nav-arrow right-arrow"
+                        onClick={handleNextStep}
+                        disabled={currentStep === 4}
+                    >
                         <span>&rarr;</span>
                     </button>
                 </div>
             </div>
 
-            {/* Only show the form and appliance display in step 1 */}
+            {/* Render Step1Container when currentStep is 1 */}
             {currentStep === 1 && (
-                <div className="step1-container">
-                    <h2 className="form-title">Manually fill-in</h2>
-                    <div className="form-container">
-                        <div className="form-group">
-                            <label>Appliance Type</label>
-                            <select
-                                name="applianceType"
-                                value={formInput.applianceType}
-                                onChange={handleInputChange}
-                            >
-                                {applianceData.map((appliance, index) => (
-                                    <option key={index} value={appliance.type}>
-                                        {appliance.type}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Daily Hours</label>
-                            <input
-                                type="number"
-                                name="dailyHours"
-                                value={formInput.dailyHours}
-                                onChange={handleInputChange}
-                                min="1"
-                                max="24"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Quantity</label>
-                            <input
-                                type="number"
-                                name="quantity"
-                                value={formInput.quantity}
-                                onChange={handleInputChange}
-                                min="1"
-                                max="10"
-                            />
-                        </div>
-                        <button className="add-appliance-button" onClick={handleAddAppliance}>
-                            Add Appliance
-                        </button>
-                    </div>
-
-                    <h2 className="appliance-title">Your Appliance</h2>
-                    <div className="appliance-display">
-                        <ul>
-                            {appliances.map((appliance, index) => (
-                                <li key={index}>
-                                    <div>Appliance Type: {appliance.applianceType}</div>
-                                    <div>Quantity: {appliance.quantity}</div>
-                                    <div>Daily Hours: {appliance.dailyHours}</div>
-                                    <button
-                                        className="delete-button"
-                                        onClick={() => handleDeleteAppliance(index)}
-                                    >
-                                        ✕
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
+                <Step1Container
+                    applianceData={applianceData}
+                    formInput={formInput}
+                    appliances={appliances}
+                    handleInputChange={handleInputChange}
+                    handleAddAppliance={handleAddAppliance}
+                    handleDeleteAppliance={handleDeleteAppliance}
+                />
             )}
         </div>
     );
