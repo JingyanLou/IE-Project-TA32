@@ -7,7 +7,7 @@ const Upload = () => {
     const [appliances, setAppliances] = useState([]);
     const [formInput, setFormInput] = useState({
         applianceType: applianceData[0].type,
-        dailyHours: 10,
+        dailyHours: applianceData[0].dailyHours || 10, // Default daily hours
         quantity: 1
     });
 
@@ -25,17 +25,27 @@ const Upload = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormInput({
-            ...formInput,
-            [name]: value
-        });
+
+        if (name === 'applianceType') {
+            const selectedAppliance = applianceData.find(appliance => appliance.type === value);
+            setFormInput({
+                ...formInput,
+                applianceType: value,
+                dailyHours: selectedAppliance?.dailyHours || 10,
+            });
+        } else {
+            setFormInput({
+                ...formInput,
+                [name]: value
+            });
+        }
     };
 
     const handleAddAppliance = () => {
         setAppliances([...appliances, formInput]);
         setFormInput({
             applianceType: applianceData[0].type,
-            dailyHours: 10,
+            dailyHours: applianceData[0].dailyHours || 10,
             quantity: 1
         });
     };
@@ -47,6 +57,9 @@ const Upload = () => {
     return (
         <div className="upload-page">
             {/* Background images */}
+            <div className="background-image one"></div>
+            <div className="background-image two"></div>
+            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
