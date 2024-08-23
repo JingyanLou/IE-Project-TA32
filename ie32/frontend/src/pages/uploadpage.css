@@ -1,3 +1,4 @@
+/* General page styling */
 .upload-page {
     background-color: black;
     color: white;
@@ -8,7 +9,7 @@
     justify-content: center;
 }
 
-/* Background images for the red box sections */
+/* Background images styling */
 .background-image {
     position: absolute;
     background-image: url('../../public/images/cosmolight.jpg');
@@ -39,6 +40,7 @@
     transform: translateX(-50%);
 }
 
+/* Progress bar styling */
 .progress-bar-container {
     width: 80%;
     position: absolute;
@@ -50,7 +52,6 @@
     align-items: center;
 }
 
-/* Container for navigation arrows */
 .nav-arrow-container {
     display: flex;
     justify-content: center;
@@ -58,7 +59,6 @@
     margin-top: -40px;
 }
 
-/* Style for navigation arrows */
 .nav-arrow {
     background: none;
     border: 2px solid white;
@@ -83,7 +83,6 @@
     transition: color 0.3s ease;
 }
 
-/* The main progress bar style */
 .progress-bar {
     display: flex;
     flex-grow: 1;
@@ -140,7 +139,7 @@
     z-index: 4;
 }
 
-/* Ensure fixed size for both containers */
+/* Step 1 container and titles styling */
 .step1-container {
     display: flex;
     justify-content: space-between;
@@ -161,7 +160,7 @@
     white-space: nowrap;
 }
 
-/* Form container with fixed height */
+/* Form container */
 .form-container {
     width: 45%;
     height: 400px;
@@ -187,7 +186,6 @@
     margin-right: 10px;
 }
 
-/* Drop-down select style */
 .form-group select,
 .form-group input {
     flex: 2;
@@ -208,6 +206,7 @@
     border: 0px solid #ff7b00;
 }
 
+/* Add appliance button */
 .add-appliance-button {
     padding: 10px 20px;
     background-color: #ff7b00;
@@ -224,7 +223,7 @@
     background-color: #e66a00;
 }
 
-/* Appliance display container with fixed height and scrollbar */
+/* Appliance display container */
 .appliance-display {
     width: 45%;
     height: 400px;
@@ -236,7 +235,6 @@
 }
 
 /* Custom scrollbar for the appliance display container */
-/* For WebKit browsers (Chrome, Safari, etc.) */
 .appliance-display::-webkit-scrollbar {
     width: 12px;
 }
@@ -267,13 +265,18 @@
     position: relative;
 }
 
-/* Ensure the delete icon is visible */
-.appliance-display li::after {
-    content: '✕';
-    font-size: 16px;
-    color: red;
+/* Delete button styling */
+.delete-button {
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: red;
     cursor: pointer;
+}
+
+.delete-button:hover {
+    color: #ff0000;
 }

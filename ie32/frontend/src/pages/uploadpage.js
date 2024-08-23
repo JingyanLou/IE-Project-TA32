@@ -38,9 +38,16 @@ const Upload = () => {
         });
     };
 
+    const handleDeleteAppliance = (indexToDelete) => {
+        setAppliances(appliances.filter((_, index) => index !== indexToDelete));
+    };
+
     return (
         <div className="upload-page">
             {/* Background images */}
+            <div className="background-image one"></div>
+            <div className="background-image two"></div>
+            <div className="background-image three"></div>
 
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
@@ -130,6 +137,12 @@ const Upload = () => {
                                     <div>Appliance Type: {appliance.applianceType}</div>
                                     <div>Quantity: {appliance.quantity}</div>
                                     <div>Daily Hours: {appliance.dailyHours}</div>
+                                    <button
+                                        className="delete-button"
+                                        onClick={() => handleDeleteAppliance(index)}
+                                    >
+                                        ✕
+                                    </button>
                                 </li>
                             ))}
                         </ul>
