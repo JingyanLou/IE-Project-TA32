@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /frontend/node_modules/**/*.pack
 /frontend/node_modules/.cache/
@@ -8,10 +6,6 @@
 /backend/node_modules/
 /.pnp
 .pnp.js
-
-# cache
-/frontend/.cache/
-*.cache
 
 # testing
 /frontend/coverage/
