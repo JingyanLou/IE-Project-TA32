@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './uploadpage.css';
 import { applianceData } from '../utils/data';
 import Step1Container from '../components/Step1Container';
-import Step2Container from '../components/Step2Container'; // Import Step2Container
-import Step3Container from '../components/Step3Container'; // Import Step3Container
+import Step2Container from '../components/Step2Container';
+import Step3Container from '../components/Step3Container';
+import Step4Container from '../components/Step4Container'; // Import Step4Container
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -11,7 +12,10 @@ const Upload = () => {
     const [formInput, setFormInput] = useState({
         applianceType: applianceData[0].type,
         dailyHours: applianceData[0].dailyHours || 10,
-        quantity: 1
+        quantity: 1,
+        userLocation: '',
+        energyProvider: '',
+        household: 1,
     });
 
     const handleNextStep = () => {
@@ -125,8 +129,12 @@ const Upload = () => {
                 />
             )}
 
-
-
+            {currentStep === 4 && (
+                <Step4Container
+                    appliances={appliances}
+                    userInformation={formInput} // Pass the entire formInput for user info
+                />
+            )}
         </div>
     );
 };

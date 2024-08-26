@@ -1,0 +1,87 @@
+/* Container for Step 4 */
+.step4-container {
+    width: 80%;
+    margin-top: 250px;
+    /* Added margin-top for space between progression bar and container */
+    display: flex;
+    justify-content: space-between;
+    /* Distribute space between left and right sections */
+    text-align: left;
+    color: white;
+}
+
+/* Left section containing insights and treemap */
+.left-section {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Space out insights and treemap */
+}
+
+/* Insights section styling */
+.insight-section {
+    display: flex;
+    /* To arrange insights side by side */
+    justify-content: space-between;
+    /* Ensure insights are spaced properly */
+    margin-bottom: 40px;
+}
+
+.insight {
+    width: 45%;
+    /* Adjust width for both insights to fit in a row */
+}
+
+.insight h3 {
+    color: grey;
+    font-size: 1.2rem;
+}
+
+.insight-value {
+    font-size: 2rem;
+    color: white;
+}
+
+/* Treemap section styling */
+.treemap-section {
+    width: 100%;
+}
+
+.treemap-section h3 {
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.treemap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.treemap-item {
+    width: 30%;
+    height: 150px;
+    background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Right section for the map */
+.map-section {
+    width: 58%;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: #333;
+    border-radius: 15px;
+}
