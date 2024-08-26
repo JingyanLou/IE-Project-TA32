@@ -1,8 +1,59 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import * as d3 from 'd3';
 import './step4container.css';
 
 const Step4Container = ({ appliances, userInformation }) => {
+    const treemapRef = useRef(null);
+
+    useEffect(() => {
+        if (appliances.length > 0) {
+            createTreemap();
+        }
+    }, [appliances]);
+
+    const createTreemap = () => {
+        const width = 600;
+        const height = 300;
+
+        const root = d3.hierarchy({ children: appliances })
+            .sum(d => d.dailyHours * d.energyConsumption * d.quantity)
+            .sort((a, b) => b.value - a.value);
+
+        const treemapLayout = d3.treemap()
+            .size([width, height])
+            .padding(2);
+
+        treemapLayout(root);
+
+        const svg = d3.select(treemapRef.current)
+            .attr('width', width)
+            .attr('height', height);
+
+        svg.selectAll('g').remove(); // Clear previous treemap if any
+
+        const nodes = svg
+            .selectAll('g')
+            .data(root.leaves())
+            .enter()
+            .append('g')
+            .attr('transform', d => `translate(${d.x0},${d.y0})`);
+
+        nodes
+            .append('rect')
+            .attr('width', d => d.x1 - d.x0)
+            .attr('height', d => d.y1 - d.y0)
+            .attr('fill', d => d3.interpolateBlues(d.value / root.value));
+
+        nodes
+            .append('text')
+            .attr('x', 3)
+            .attr('y', 15)
+            .text(d => d.data.applianceType)
+            .attr('font-size', '12px')
+            .attr('fill', 'white');
+    };
+
     // Calculate the estimated monthly bill based on appliances data
     const totalConsumption = appliances.reduce((total, appliance) => {
         return total + appliance.dailyHours * appliance.energyConsumption * appliance.quantity;
@@ -28,18 +79,7 @@ const Step4Container = ({ appliances, userInformation }) => {
                 </div>
                 <div className="treemap-section">
                     <h3>Your Home Appliance Consumption Ranking</h3>
-                    <div className="treemap">
-                        {appliances.length > 0 ? (
-                            appliances.map((appliance, index) => (
-                                <div key={index} className="treemap-item">
-                                    <p>Object {index + 1}</p>
-                                    <p>{appliance.applianceType}</p>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="treemap-placeholder">Treemap Placeholder</div>
-                        )}
-                    </div>
+                    <svg ref={treemapRef}></svg>
                 </div>
             </div>
             <div className="map-section">
