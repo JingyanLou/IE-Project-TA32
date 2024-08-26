@@ -29,17 +29,20 @@ const Step4Container = ({ appliances, userInformation }) => {
                 <div className="treemap-section">
                     <h3>Your Home Appliance Consumption Ranking</h3>
                     <div className="treemap">
-                        {appliances.map((appliance, index) => (
-                            <div key={index} className="treemap-item">
-                                <p>Object {index + 1}</p>
-                                <p>{appliance.applianceType}</p>
-                            </div>
-                        ))}
+                        {appliances.length > 0 ? (
+                            appliances.map((appliance, index) => (
+                                <div key={index} className="treemap-item">
+                                    <p>Object {index + 1}</p>
+                                    <p>{appliance.applianceType}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="treemap-placeholder">Treemap Placeholder</div>
+                        )}
                     </div>
                 </div>
             </div>
             <div className="map-section">
-                {/* Mapbox map placeholder */}
                 <div className="map-placeholder">Map Placeholder</div>
             </div>
         </div>
