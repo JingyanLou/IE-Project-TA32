@@ -1,0 +1,81 @@
+/* Step 3 container styling */
+.step3-container {
+    width: 60%;
+    margin-top: 100px;
+    /* Add margin to move the container downwards */
+    z-index: 2;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+/* Title styling */
+.form-title-step3 {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    /* Adjust the space between the title and the form */
+    text-align: left;
+    /* Align title to the left */
+    padding-left: 10%;
+    /* Adjust padding to align with the form */
+}
+
+/* Form container styling */
+.form-container-step3 {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-top: 20px;
+    /* Ensure some space below the title */
+}
+
+/* Form group styling */
+.form-group-step3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-label-step3 {
+    flex: 1;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-right: 10px;
+}
+
+.form-input-step3 {
+    flex: 2;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: grey;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    padding-left: 10px;
+}
+
+/* Estimate Now button styling */
+.estimate-button-step3 {
+    padding: 10px 20px;
+    background-color: #ff7b00;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
+}
+
+.estimate-button-step3:hover {
+    background-color: #e66a00;
+}

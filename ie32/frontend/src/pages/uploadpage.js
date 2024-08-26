@@ -3,6 +3,7 @@ import './uploadpage.css';
 import { applianceData } from '../utils/data';
 import Step1Container from '../components/Step1Container';
 import Step2Container from '../components/Step2Container'; // Import Step2Container
+import Step3Container from '../components/Step3Container'; // Import Step3Container
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -116,6 +117,16 @@ const Upload = () => {
             )}
 
             {currentStep === 2 && <Step2Container appliances={appliances} />}
+
+            {currentStep === 3 && (
+                <Step3Container
+                    formInput={formInput}
+                    handleInputChange={handleInputChange}
+                />
+            )}
+
+
+
         </div>
     );
 };
