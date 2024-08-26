@@ -16,8 +16,8 @@ const Homepage = () => {
         <div className="homepage">
 
             <div className="hero">
-                <h1>Empower your energy savings today.</h1>
-                <p>Take control of your energy consumption with personalized insights, cost-saving tools, and tailored solutions. Make every watt count towards a greener, more affordable future.</p>
+                <h1>Redefining Your Energy Efficiency.</h1>
+                <p>Our site offers Melbourne residents insights into high-energy-consuming appliances, provides affordable energy-saving strategies, and connects you with government subsidies for renewable energy. Navigate your way to lower bills and sustainable living with our comprehensive tools.</p>
                 <div className="arrow-down-container" onClick={scrollToEstimation}>
                     <div className="scroll-down-text">Scroll Down</div>
                     <div className="arrow-down">

@@ -41,7 +41,7 @@ const Estimation = () => {
             <div className="image-section"></div>
             <div className="info-section">
                 <div className="content">
-                    <h1>Identify Your Home’s Energy Consumption</h1>
+                    <h1>Analyse Your Home's Energy Consumption</h1>
                     <div className="stats">
                         <div className="stat-item">
                             <h2>Average Home Consumption</h2>
@@ -52,8 +52,9 @@ const Estimation = () => {
                             <p>$542.27/M</p>
                         </div>
                     </div>
-                    <p className="description">Upload images of your home to discover which appliances are driving up your energy bills. Our advanced image detection tool will analyze your energy consumption and provide tailored tips to help you save.</p>
-                    <button className="start-button" onClick={handleStartClick}>Start Now</button>
+                    <p className="description">Upload details about your appliances to identify which ones drive up your energy bill. Recieve a personalised estimate for your household, compare your usage with benchmarks, and see how it measures up against neighbouring homes..</p>
+                    <button className="start-button" onClick={handleStartClick}>Analyse Now
+                    </button>
                 </div>
             </div>
         </div>

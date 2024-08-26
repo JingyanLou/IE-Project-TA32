@@ -67,10 +67,10 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin-bottom: 30px;
     z-index: 3;
-    white-space: nowrap;
+
     text-align: right;
     align-self: flex-end;
-    /* Align the h1 to the end, right-aligning it with the content */
+    /* Align the h1 to the end, right-aligning it with the content white-space: nowrap;  */
     margin-right: -5%;
     /* Reset the margin-left to 0 */
     width: auto;
