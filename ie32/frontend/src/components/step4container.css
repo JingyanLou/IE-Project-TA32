@@ -2,7 +2,6 @@
 .step4-container {
     width: 80%;
     padding-top: 10px;
-    /* Reduced margin-top for space between progress bar and container */
     display: flex;
     justify-content: space-between;
     text-align: left;
@@ -22,7 +21,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
-    /* Reduced margin-bottom for less padding between insights and treemap */
 }
 
 .insight {
@@ -33,60 +31,29 @@
     color: grey;
     font-size: 1.2rem;
     margin-bottom: 5px;
-    /* Reduced margin to decrease space between h3 and p */
 }
 
 .insight-value {
     font-size: 1rem;
     color: white;
     margin-top: 1px;
-    /* Reduced margin to decrease space between h3 and p */
 }
 
 /* Treemap section styling */
 .treemap-section {
     width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .treemap-section h3 {
     color: grey;
     margin-bottom: 4px;
-    /* Reduced margin for less space between title and treemap */
 }
 
-.treemap {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.treemap-item {
-    width: 30%;
-    height: 150px;
-    background: linear-gradient(135deg, #6a1b9a, #8e24aa);
-    border-radius: 15px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: green;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-/* Treemap placeholder styling */
-.treemap-placeholder {
-    width: 100%;
-    height: 250px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1rem;
-    margin-bottom: 0px;
+/* Styles for each treemap node */
+.treemap-node rect {
+    border-radius: 10px;
 }
 
 /* Right section for the map */

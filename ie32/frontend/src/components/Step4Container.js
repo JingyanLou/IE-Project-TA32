@@ -16,10 +16,21 @@ const Step4Container = ({ appliances, userInformation }) => {
         const width = 600;
         const height = 300;
 
-        const root = d3.hierarchy({ children: appliances })
-            .sum(d => d.dailyHours * d.energyConsumption * d.quantity)
+        // Convert the appliances data to a hierarchical format
+        const data = {
+            name: 'root',
+            children: appliances.map(appliance => ({
+                name: appliance.applianceType,
+                value: appliance.dailyHours * appliance.energyConsumption * appliance.quantity
+            }))
+        };
+
+        // Create a root node from the data
+        const root = d3.hierarchy(data)
+            .sum(d => d.value)
             .sort((a, b) => b.value - a.value);
 
+        // Generate the treemap layout
         const treemapLayout = d3.treemap()
             .size([width, height])
             .padding(2);
@@ -32,26 +43,43 @@ const Step4Container = ({ appliances, userInformation }) => {
 
         svg.selectAll('g').remove(); // Clear previous treemap if any
 
+        // Define a pattern for the background image
+        const defs = svg.append('defs');
+        defs.append('pattern')
+            .attr('id', 'image-pattern')
+            .attr('patternUnits', 'objectBoundingBox')
+            .attr('width', 1)
+            .attr('height', 1)
+            .append('image')
+            .attr('xlink:href', '/images/treemapitem.jpg')
+            .attr('width', 600)
+            .attr('height', 300)
+            .attr('preserveAspectRatio', 'none');  // Ensures the image fills the entire rect
+
         const nodes = svg
             .selectAll('g')
             .data(root.leaves())
             .enter()
             .append('g')
-            .attr('transform', d => `translate(${d.x0},${d.y0})`);
+            .attr('transform', d => `translate(${d.x0},${d.y0})`)
+            .attr('class', 'treemap-node');
 
         nodes
             .append('rect')
             .attr('width', d => d.x1 - d.x0)
             .attr('height', d => d.y1 - d.y0)
-            .attr('fill', d => d3.interpolateBlues(d.value / root.value));
+            .attr('rx', 10)
+            .attr('fill', 'url(#image-pattern)')
+            .attr('stroke', 'white')
+            .attr('stroke-width', '2');
 
         nodes
             .append('text')
-            .attr('x', 3)
-            .attr('y', 15)
-            .text(d => d.data.applianceType)
+            .attr('x', 5)
+            .attr('y', 20)
             .attr('font-size', '12px')
-            .attr('fill', 'white');
+            .attr('fill', 'white')
+            .text(d => d.data.name);
     };
 
     // Calculate the estimated monthly bill based on appliances data
