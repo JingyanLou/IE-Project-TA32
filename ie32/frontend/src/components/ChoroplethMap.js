@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './choroplethmap.css';
 
-const ChoroplethMap = () => {  // Ensure the component name matches the export
+const ChoroplethMap = () => {
     const mapContainerRef = useRef(null);
 
     useEffect(() => {
