@@ -2,35 +2,27 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import './step4container.css';
+import ChoroplethMap from './ChoroplethMap';
 
 const Step4Container = ({ appliances, userInformation }) => {
     const treemapRef = useRef(null);
-
-    useEffect(() => {
-        if (appliances.length > 0) {
-            createTreemap();
-        }
-    }, [appliances]);
 
     const createTreemap = () => {
         const width = 600;
         const height = 300;
 
-        // Convert the appliances data to a hierarchical format
         const data = {
             name: 'root',
             children: appliances.map(appliance => ({
                 name: appliance.applianceType,
-                value: appliance.dailyHours * appliance.energyConsumption * appliance.quantity
+                value: appliance.dailyHours * appliance.energyConsumption * appliance.quantity,
             }))
         };
 
-        // Create a root node from the data
         const root = d3.hierarchy(data)
             .sum(d => d.value)
             .sort((a, b) => b.value - a.value);
 
-        // Generate the treemap layout
         const treemapLayout = d3.treemap()
             .size([width, height])
             .padding(2);
@@ -41,9 +33,8 @@ const Step4Container = ({ appliances, userInformation }) => {
             .attr('width', width)
             .attr('height', height);
 
-        svg.selectAll('g').remove(); // Clear previous treemap if any
+        svg.selectAll('g').remove();
 
-        // Define a pattern for the background image
         const defs = svg.append('defs');
         defs.append('pattern')
             .attr('id', 'image-pattern')
@@ -54,7 +45,7 @@ const Step4Container = ({ appliances, userInformation }) => {
             .attr('xlink:href', '/images/treemapitem.jpg')
             .attr('width', 600)
             .attr('height', 300)
-            .attr('preserveAspectRatio', 'none');  // Ensures the image fills the entire rect
+            .attr('preserveAspectRatio', 'none');
 
         const nodes = svg
             .selectAll('g')
@@ -82,15 +73,19 @@ const Step4Container = ({ appliances, userInformation }) => {
             .text(d => d.data.name);
     };
 
-    // Calculate the estimated monthly bill based on appliances data
+    useEffect(() => {
+        if (appliances.length > 0) {
+            createTreemap();
+        }
+    }, [appliances]);  // Remove `createTreemap` from dependencies, define it inside the component
+
     const totalConsumption = appliances.reduce((total, appliance) => {
         return total + appliance.dailyHours * appliance.energyConsumption * appliance.quantity;
     }, 0);
 
-    const estimatedMonthlyBill = (totalConsumption * 30).toFixed(2); // Example calculation
+    const estimatedMonthlyBill = (totalConsumption * 30).toFixed(2);
 
-    // Define a fixed benchmark for now
-    const benchmark = 38; // kWh
+    const benchmark = 38;
 
     return (
         <div className="step4-container">
@@ -111,7 +106,7 @@ const Step4Container = ({ appliances, userInformation }) => {
                 </div>
             </div>
             <div className="map-section">
-                <div className="map-placeholder">Map Placeholder</div>
+                <ChoroplethMap />
             </div>
         </div>
     );
