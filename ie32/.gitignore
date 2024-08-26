@@ -3,6 +3,10 @@
 /frontend/node_modules/.cache/
 .eslintcache
 
+/frontend/node_modules/.cache/
+*.pack
+
+
 /backend/node_modules/
 /.pnp
 .pnp.js
