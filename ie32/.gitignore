@@ -1,15 +1,14 @@
 # dependencies
-/frontend/node_modules/**/*.pack
-/frontend/node_modules/.cache/
-.eslintcache
+/frontend/node_modules/
+/backend/node_modules/
 
-/frontend/node_modules/.cache/
+# Ignore all .pack files
 *.pack
 
-
-/backend/node_modules/
-/.pnp
-.pnp.js
+# Ignore the .cache directory
+/frontend/node_modules/.cache/
+/backend/node_modules/.cache/
+.eslintcache
 
 # testing
 /frontend/coverage/
