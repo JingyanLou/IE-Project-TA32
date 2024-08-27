@@ -2,7 +2,6 @@
 .step3-container {
     width: 60%;
     margin-top: 100px;
-    /* Add margin to move the container downwards */
     z-index: 2;
     text-align: center;
     margin-left: auto;
@@ -16,11 +15,8 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     font-size: 2rem;
     margin-bottom: 20px;
-    /* Adjust the space between the title and the form */
     text-align: left;
-    /* Align title to the left */
     padding-left: 34%;
-    /* Adjust padding to align with the form */
 }
 
 /* Form container styling */
@@ -32,7 +28,6 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     position: relative;
     margin-top: 20px;
-    /* Ensure some space below the title */
 }
 
 /* Form group styling */
@@ -60,7 +55,6 @@
     color: grey;
     font-weight: bold;
     transition: background-color 0.3s ease, border 0.3s ease;
-
 }
 
 /* Estimate Now button styling */
@@ -78,4 +72,41 @@
 
 .estimate-button-step3:hover {
     background-color: #e66a00;
+}
+
+/* Custom Mapbox Geocoder styles */
+.mapboxgl-ctrl-geocoder {
+    width: 100%;
+}
+
+.mapboxgl-ctrl-geocoder--mapboxgl-ctrl {
+    width: 100%;
+}
+
+
+.mapboxgl-ctrl-geocoder--input {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: grey;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.mapboxgl-ctrl-geocoder--input:hover,
+.mapboxgl-ctrl-geocoder--input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 0px solid #ff7b00;
+}
+
+.mapboxgl-ctrl-geocoder--suggestion {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.mapboxgl-ctrl-geocoder--suggestion:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: black;
 }
