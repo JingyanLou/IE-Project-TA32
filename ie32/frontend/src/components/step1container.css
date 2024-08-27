@@ -121,13 +121,28 @@
 
 .appliance-display li {
     margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.316);
+    background-color: black;
+    /* Change background color to black */
     padding: 5px;
     border-radius: 5px;
     color: white;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     position: relative;
+    border: 0.2px solid white;
+    /* Add a thick white border */
+    box-shadow: 0 0 5px white;
+    /* Add a white stroke-like shadow effect */
 }
+
+.appliance-display li:hover {
+    filter: saturate(0.5);
+    /* Decrease saturation on hover */
+    background-color: rgba(232, 232, 232, 0.358);
+    /* Keep the background black and fully opaque */
+    opacity: 1;
+    /* Make the item fully opaque */
+}
+
 
 /* Delete button styling */
 .delete-button {
@@ -137,7 +152,7 @@
     background: none;
     border: none;
     font-size: 16px;
-    color: red;
+    color: rgb(183, 181, 181);
     cursor: pointer;
 }
 
