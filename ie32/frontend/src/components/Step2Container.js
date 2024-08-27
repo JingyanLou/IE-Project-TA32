@@ -6,11 +6,14 @@ const Step2Container = ({ appliances }) => {
     // Calculate consumption for each appliance and sort them in descending order
     const sortedAppliances = appliances
         .map(appliance => ({
-            ...appliance,
-            consumption: appliance.dailyHours * appliance.energyConsumption * appliance.quantity
+            applianceType: appliance[0], // appliance type
+            quantity: appliance[1],      // quantity
+            dailyHours: appliance[2],    // daily hours
+            consumption: appliance[2] * appliance[1] // consumption calculation
         }))
         .sort((a, b) => b.consumption - a.consumption);
 
+    console.log(appliances)
     return (
         <div className="step2-container">
             <h2 className="ranking-title">Your Appliance Consumption Ranking</h2>

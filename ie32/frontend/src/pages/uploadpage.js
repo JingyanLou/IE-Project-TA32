@@ -8,7 +8,11 @@ import Step4Container from '../components/Step4Container';
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
-    const [appliances, setAppliances] = useState([]);
+    const [data, setData] = useState({
+        'Appliances-list': [], // Initially, the appliance list is an empty array
+        'User information': [], // Initially, the user information is an empty array
+    });
+
     const [formInput, setFormInput] = useState({
         applianceType: applianceData[0].type,
         dailyHours: applianceData[0].dailyHours || 10,
@@ -52,7 +56,18 @@ const Upload = () => {
 
     const handleAddAppliance = () => {
         const selectedAppliance = applianceData.find(appliance => appliance.type === formInput.applianceType);
-        setAppliances([...appliances, { ...formInput, energyConsumption: selectedAppliance.energyConsumption }]);
+        const newAppliance = [
+            formInput.applianceType,
+            formInput.quantity,
+            formInput.dailyHours
+        ];
+
+        // Update the appliances list in the data object
+        setData(prevData => ({
+            ...prevData,
+            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+        }));
+
         setFormInput({
             applianceType: applianceData[0].type,
             dailyHours: applianceData[0].dailyHours || 10,
@@ -61,7 +76,25 @@ const Upload = () => {
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
-        setAppliances(appliances.filter((_, index) => index !== indexToDelete));
+        // Update the appliances list in the data object
+        setData(prevData => ({
+            ...prevData,
+            'Appliances-list': prevData['Appliances-list'].filter((_, index) => index !== indexToDelete)
+        }));
+    };
+
+    const handleUserInformation = () => {
+        // Add user information to the data object
+        setData(prevData => ({
+            ...prevData,
+            'User information': [
+                formInput.userLocation,
+                formInput.energyProvider,
+                formInput.household
+            ]
+        }));
+
+        handleNextStep(); // Move to the next step after setting the user information
     };
 
     return (
@@ -110,7 +143,7 @@ const Upload = () => {
 
             {currentStep === 1 && (
                 <Step1Container
-                    appliances={appliances}
+                    appliances={data['Appliances-list']}
                     formInput={formInput}
                     handleInputChange={handleInputChange}
                     handleAddAppliance={handleAddAppliance}
@@ -118,20 +151,19 @@ const Upload = () => {
                 />
             )}
 
-            {currentStep === 2 && <Step2Container appliances={appliances} />}
+            {currentStep === 2 && <Step2Container appliances={data['Appliances-list']} />}
 
             {currentStep === 3 && (
                 <Step3Container
                     formInput={formInput}
                     handleInputChange={handleInputChange}
-                    handleNextStep={handleNextStep} // Pass handleNextStep to Step3Container
+                    handleNextStep={handleUserInformation} // Pass handleUserInformation to move to Step 4 with updated data
                 />
             )}
 
             {currentStep === 4 && (
                 <Step4Container
-                    appliances={appliances}
-                    userInformation={formInput} // Pass the entire formInput for user info
+                    data={data} // Pass the entire data object containing both appliances list and user information
                 />
             )}
         </div>

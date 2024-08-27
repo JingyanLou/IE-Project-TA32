@@ -60,9 +60,9 @@ const Step1Container = ({
                 <ul>
                     {appliances.map((appliance, index) => (
                         <li key={index}>
-                            <div>Appliance Type: {appliance.applianceType}</div>
-                            <div>Quantity: {appliance.quantity}</div>
-                            <div>Daily Hours: {appliance.dailyHours}</div>
+                            <div>Appliance Type: {appliance[0]}</div> {/* Adjusted to match the array structure */}
+                            <div>Quantity: {appliance[1]}</div> {/* Adjusted to match the array structure */}
+                            <div>Daily Hours: {appliance[2]}</div> {/* Adjusted to match the array structure */}
                             <button
                                 className="delete-button"
                                 onClick={() => handleDeleteAppliance(index)}

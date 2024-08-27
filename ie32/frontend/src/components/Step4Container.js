@@ -4,17 +4,21 @@ import * as d3 from 'd3';
 import './step4container.css';
 import ChoroplethMap from './ChoroplethMap';
 
-const Step4Container = ({ appliances, userInformation }) => {
+const Step4Container = ({ data }) => {
     const treemapRef = useRef(null);
+    const appliances = data['Appliances-list'] || []; // Ensure appliances is an array
+    const userInformation = data['User information'] || {}; // Ensure userInformation is defined
 
     useEffect(() => {
         // Log the user information when the component mounts
-        console.log('User Information:', userInformation);
+        console.log('Received User Information:', userInformation);
+        console.log('Received Appliances List:', appliances);
+        console.log(data);
 
         if (appliances.length > 0) {
             createTreemap();
         }
-    }, [appliances, userInformation]); // Add `userInformation` to the dependencies
+    }, [appliances, userInformation]);
 
     const createTreemap = () => {
         const width = 600;
@@ -23,8 +27,8 @@ const Step4Container = ({ appliances, userInformation }) => {
         const data = {
             name: 'root',
             children: appliances.map(appliance => ({
-                name: appliance.applianceType,
-                value: appliance.dailyHours * appliance.energyConsumption * appliance.quantity,
+                name: appliance[0],  // Appliance type
+                value: appliance[1] * appliance[2], // Quantity * Daily Hours
             }))
         };
 
@@ -83,7 +87,7 @@ const Step4Container = ({ appliances, userInformation }) => {
     };
 
     const totalConsumption = appliances.reduce((total, appliance) => {
-        return total + appliance.dailyHours * appliance.energyConsumption * appliance.quantity;
+        return total + appliance[1] * appliance[2]; // Quantity * Daily Hours
     }, 0);
 
     const estimatedMonthlyBill = (totalConsumption * 30).toFixed(2);
@@ -116,8 +120,10 @@ const Step4Container = ({ appliances, userInformation }) => {
 };
 
 Step4Container.propTypes = {
-    appliances: PropTypes.array.isRequired,
-    userInformation: PropTypes.object.isRequired,
+    data: PropTypes.shape({
+        'Appliances-list': PropTypes.array.isRequired,
+        'User information': PropTypes.array.isRequired
+    }).isRequired,
 };
 
 export default Step4Container;

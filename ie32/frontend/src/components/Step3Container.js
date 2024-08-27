@@ -45,6 +45,19 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
         }
     }, [handleInputChange]);
 
+    const handleEstimateNowClick = () => {
+        const userInformation = {
+            userLocation: formInput.userLocation,
+            energyProvider: formInput.energyProvider,
+            household: formInput.household,
+        };
+
+        console.log('User Information:', userInformation);
+
+        // Call the handleNextStep to navigate to the next step (Step 4)
+        handleNextStep();
+    };
+
     return (
         <div className="step3-container">
             <h2 className="form-title-step3">Enter your information</h2>
@@ -82,7 +95,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
                 </div>
                 <button
                     className="estimate-button-step3"
-                    onClick={handleNextStep}
+                    onClick={handleEstimateNowClick} // Use the new handler for button click
                 >
                     Estimate Now
                 </button>
@@ -94,7 +107,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
 Step3Container.propTypes = {
     formInput: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleNextStep: PropTypes.func.isRequired, // Add handleNextStep prop
+    handleNextStep: PropTypes.func.isRequired,
 };
 
 export default Step3Container;
