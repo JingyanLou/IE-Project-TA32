@@ -13,8 +13,8 @@ const ChoroplethMap = ({ longitude, latitude }) => {
         if (!mapRef.current) {
             const map = new mapboxgl.Map({
                 container: mapContainerRef.current,
-                style: 'mapbox://styles/jyoti6797/cm05a1ny000if01rbf1131wli',  // Replace with your Mapbox Studio style URL
-                center: [longitude || 144.9631, latitude || -37.8136], // Default to Melbourne if no coordinates
+                style: 'mapbox://styles/jyoti6797/cm05a1ny000if01rbf1131wli',
+                center: [longitude || 144.9631, latitude || -37.8136],
                 zoom: 14,
                 pitch: 0,
                 bearing: 0,
@@ -22,7 +22,6 @@ const ChoroplethMap = ({ longitude, latitude }) => {
 
             map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-            // Add a vector source and layer for the point
             map.on('load', () => {
                 map.addSource('point', {
                     type: 'geojson',
@@ -53,23 +52,55 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                     }
                 });
 
-                // Fly to the user's location and adjust the view to show 3D buildings
-                map.flyTo({
-                    center: [longitude, latitude],
-                    zoom: 18, // Zoom in close to the point
-                    pitch: 60, // Tilt the map to show 3D buildings
-                    bearing: -17.6, // Adjust the bearing to orient the view
-                    speed: 1.6, // Fly speed (default is 1.2, higher is faster)
-                    curve: 1, // Fly curve (default is 1, making it smoother)
-                    easing: (t) => t, // Easing function (linear in this case)
-                    essential: true // This animation is essential with respect to prefers-reduced-motion
+                // Add a layer to highlight the hovered block
+                map.addLayer({
+                    id: 'block-highlight-layer',
+                    type: 'line',
+                    source: {
+                        type: 'geojson',
+                        data: {
+                            type: 'FeatureCollection',
+                            features: []
+                        }
+                    },
+                    paint: {
+                        'line-color': '#ffffff',
+                        'line-width': 3
+                    }
+                });
+
+                map.on('mousemove', 'block-level-2021-c33313', (e) => {
+                    if (e.features.length > 0) {
+                        const feature = e.features[0];
+                        const totalEnergy = feature.properties.total;
+                        const mouseCoordinates = e.point;
+
+                        // Update the highlight layer with the hovered block geometry
+                        map.getSource('block-highlight-layer').setData({
+                            type: 'FeatureCollection',
+                            features: [feature]
+                        });
+
+                        setHoverInfo({
+                            coordinates: mouseCoordinates,
+                            totalEnergy: totalEnergy
+                        });
+                    }
+                });
+
+                map.on('mouseleave', 'block-level-2021-c33313', () => {
+                    setHoverInfo(null);
+
+                    // Remove the highlight by clearing the layer's data
+                    map.getSource('block-highlight-layer').setData({
+                        type: 'FeatureCollection',
+                        features: []
+                    });
                 });
             });
 
-            // Store the map instance in the ref
             mapRef.current = map;
         } else {
-            // Update the source data when longitude/latitude change
             mapRef.current.getSource('point').setData({
                 type: 'FeatureCollection',
                 features: [
@@ -84,15 +115,14 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                 ]
             });
 
-            // Fly to the user's location if the coordinates change
             mapRef.current.flyTo({
                 center: [longitude, latitude],
-                zoom: 18, // Zoom in close to the point
-                pitch: 60, // Tilt the map to show 3D buildings
-                bearing: -17.6, // Adjust the bearing to orient the view
-                speed: 1.6, // Fly speed
-                curve: 1, // Fly curve
-                easing: (t) => t, // Easing function
+                zoom: 18,
+                pitch: 60,
+                bearing: -17.6,
+                speed: 1.6,
+                curve: 1,
+                easing: (t) => t,
                 essential: true
             });
         }
@@ -106,7 +136,21 @@ const ChoroplethMap = ({ longitude, latitude }) => {
     }, [longitude, latitude]);
 
     return (
-        <div className="choropleth-map-container" ref={mapContainerRef} style={{ width: '100%', height: '100%' }}></div>
+        <div className="choropleth-map-container" ref={mapContainerRef}>
+            {hoverInfo && (
+                <div
+                    className="map-tooltip"
+                    style={{
+                        left: `${hoverInfo.coordinates.x + 10}px`, // Offset to avoid covering the pointer
+                        top: `${hoverInfo.coordinates.y + 10}px`,
+                        opacity: 1 // Ensure tooltip is fully visible
+                    }}
+                >
+                    Total Block consumption <br />
+                    <strong>{hoverInfo.totalEnergy} Kwh</strong>
+                </div>
+            )}
+        </div>
     );
 };
 

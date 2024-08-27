@@ -7,3 +7,27 @@
     background-color: white;
     /* This is just a fallback in case the map fails to load */
 }
+
+.map-tooltip {
+    position: absolute;
+    background-color: rgba(12, 12, 12, 0.8);
+    /* 80% transparent background */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    pointer-events: none;
+    z-index: 9999;
+    /* Highest z-index */
+    white-space: nowrap;
+    /* No wrapping */
+    font-family: Arial, sans-serif;
+    opacity: 1;
+    /* Start hidden */
+    transition: opacity 0.3s ease-in-out;
+    /* Smooth fade-in */
+}
+
+.map-tooltip strong {
+    color: #F2F2F2;
+    /* Light grey color for the energy value */
+}
