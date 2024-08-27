@@ -52,6 +52,18 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         'circle-stroke-color': '#ffffff'
                     }
                 });
+
+                // Fly to the user's location and adjust the view to show 3D buildings
+                map.flyTo({
+                    center: [longitude, latitude],
+                    zoom: 18, // Zoom in close to the point
+                    pitch: 60, // Tilt the map to show 3D buildings
+                    bearing: -17.6, // Adjust the bearing to orient the view
+                    speed: 1.6, // Fly speed (default is 1.2, higher is faster)
+                    curve: 1, // Fly curve (default is 1, making it smoother)
+                    easing: (t) => t, // Easing function (linear in this case)
+                    essential: true // This animation is essential with respect to prefers-reduced-motion
+                });
             });
 
             // Store the map instance in the ref
@@ -70,6 +82,18 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         properties: {}
                     }
                 ]
+            });
+
+            // Fly to the user's location if the coordinates change
+            mapRef.current.flyTo({
+                center: [longitude, latitude],
+                zoom: 18, // Zoom in close to the point
+                pitch: 60, // Tilt the map to show 3D buildings
+                bearing: -17.6, // Adjust the bearing to orient the view
+                speed: 1.6, // Fly speed
+                curve: 1, // Fly curve
+                easing: (t) => t, // Easing function
+                essential: true
             });
         }
 
