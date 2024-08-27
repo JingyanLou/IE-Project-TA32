@@ -46,7 +46,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                     source: 'point',
                     paint: {
                         'circle-radius': 10,
-                        'circle-color': '#ff0000',
+                        'circle-color': '#FFA500', // Dark orange color
                         'circle-stroke-width': 1,
                         'circle-stroke-color': '#ffffff'
                     }
@@ -72,7 +72,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                 map.on('mousemove', 'block-level-2021-c33313', (e) => {
                     if (e.features.length > 0) {
                         const feature = e.features[0];
-                        const totalEnergy = feature.properties.total;
+                        const totalEnergy = feature.properties.total.toFixed(2);
                         const mouseCoordinates = e.point;
 
                         // Update the highlight layer with the hovered block geometry
@@ -97,34 +97,68 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         features: []
                     });
                 });
+
+                // Fly to the user's location and adjust the view to show 3D buildings
+                map.flyTo({
+                    center: [longitude, latitude],
+                    zoom: 18, // Zoom in close to the point
+                    pitch: 60, // Tilt the map to show 3D buildings
+                    bearing: -17.6, // Adjust the bearing to orient the view
+                    speed: 1.6, // Fly speed (default is 1.2, higher is faster)
+                    curve: 1, // Fly curve (default is 1, making it smoother)
+                    easing: (t) => t, // Easing function (linear in this case)
+                    essential: true // This animation is essential with respect to prefers-reduced-motion
+                });
             });
 
             mapRef.current = map;
         } else {
-            mapRef.current.getSource('point').setData({
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [longitude, latitude],
-                        },
-                        properties: {}
-                    }
-                ]
-            });
+            // Ensure the map has loaded before attempting to flyTo and update the source data
+            if (mapRef.current.isStyleLoaded()) {
+                mapRef.current.getSource('point').setData({
+                    type: 'FeatureCollection',
+                    features: [
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [longitude, latitude],
+                            },
+                            properties: {}
+                        }
+                    ]
+                });
 
-            mapRef.current.flyTo({
-                center: [longitude, latitude],
-                zoom: 18,
-                pitch: 60,
-                bearing: -17.6,
-                speed: 1.6,
-                curve: 1,
-                easing: (t) => t,
-                essential: true
-            });
+                mapRef.current.flyTo({
+                    center: [longitude, latitude],
+                    zoom: 18,
+                    pitch: 60,
+                    bearing: -17.6,
+                    speed: 1.6,
+                    curve: 1,
+                    easing: (t) => t,
+                    essential: true
+                });
+            } else {
+                // If the map is not fully loaded, use a setTimeout to delay flyTo
+                const flyToMap = () => {
+                    if (mapRef.current.isStyleLoaded()) {
+                        mapRef.current.flyTo({
+                            center: [longitude, latitude],
+                            zoom: 18,
+                            pitch: 60,
+                            bearing: -17.6,
+                            speed: 1.6,
+                            curve: 1,
+                            easing: (t) => t,
+                            essential: true
+                        });
+                    } else {
+                        setTimeout(flyToMap, 100); // Retry after 100ms
+                    }
+                };
+                flyToMap();
+            }
         }
 
         return () => {
