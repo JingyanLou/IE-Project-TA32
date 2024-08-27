@@ -7,7 +7,7 @@ import ChoroplethMap from './ChoroplethMap';
 const Step4Container = ({ data }) => {
     const treemapRef = useRef(null);
     const appliances = data['Appliances-list'] || []; // Ensure appliances is an array
-    const userInformation = data['User information'] || {}; // Ensure userInformation is defined
+    const userInformation = data['User information'] || []; // Ensure userInformation is defined
 
     useEffect(() => {
         // Log the user information when the component mounts
@@ -113,7 +113,10 @@ const Step4Container = ({ data }) => {
                 </div>
             </div>
             <div className="map-section">
-                <ChoroplethMap />
+                <ChoroplethMap
+                    longitude={userInformation[0]?.longitude}
+                    latitude={userInformation[0]?.latitude}
+                />
             </div>
         </div>
     );
