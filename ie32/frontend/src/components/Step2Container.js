@@ -20,7 +20,7 @@ const Step2Container = ({ appliances }) => {
                         <li key={index} className={`rank-item ${index < 3 ? `rank-${index + 1}` : ''}`}>
                             <span className="rank-number">
                                 {index + 1}
-                                {index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : ''}
+                                {index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th'}
                             </span>
                             <div className="appliance-details">
                                 <div>Appliance Type: {appliance.applianceType}</div>
