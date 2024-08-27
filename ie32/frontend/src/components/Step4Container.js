@@ -7,6 +7,15 @@ import ChoroplethMap from './ChoroplethMap';
 const Step4Container = ({ appliances, userInformation }) => {
     const treemapRef = useRef(null);
 
+    useEffect(() => {
+        // Log the user information when the component mounts
+        console.log('User Information:', userInformation);
+
+        if (appliances.length > 0) {
+            createTreemap();
+        }
+    }, [appliances, userInformation]); // Add `userInformation` to the dependencies
+
     const createTreemap = () => {
         const width = 600;
         const height = 300;
@@ -72,12 +81,6 @@ const Step4Container = ({ appliances, userInformation }) => {
             .attr('fill', 'white')
             .text(d => d.data.name);
     };
-
-    useEffect(() => {
-        if (appliances.length > 0) {
-            createTreemap();
-        }
-    }, [appliances]);  // Remove `createTreemap` from dependencies, define it inside the component
 
     const totalConsumption = appliances.reduce((total, appliance) => {
         return total + appliance.dailyHours * appliance.energyConsumption * appliance.quantity;

@@ -4,7 +4,7 @@ import { applianceData } from '../utils/data';
 import Step1Container from '../components/Step1Container';
 import Step2Container from '../components/Step2Container';
 import Step3Container from '../components/Step3Container';
-import Step4Container from '../components/Step4Container'; // Import Step4Container
+import Step4Container from '../components/Step4Container';
 
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -66,8 +66,6 @@ const Upload = () => {
 
     return (
         <div className="upload-page">
-            {/* Background images */}
-
             <div className="progress-bar-container">
                 <div className="nav-arrow-container">
                     <button
@@ -126,6 +124,7 @@ const Upload = () => {
                 <Step3Container
                     formInput={formInput}
                     handleInputChange={handleInputChange}
+                    handleNextStep={handleNextStep} // Pass handleNextStep to Step3Container
                 />
             )}
 

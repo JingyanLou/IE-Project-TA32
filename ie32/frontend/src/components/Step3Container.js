@@ -7,7 +7,7 @@ import './step3container.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianlvdGk2Nzk3IiwiYSI6ImNtMGF5bjNoNDAycGsybm9vbjVkbWN2NmcifQ.NCGxbDcL13CXjZwhDwaK4g';
 
-const Step3Container = ({ formInput, handleInputChange }) => {
+const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
     const geocoderContainerRef = useRef(null);
 
     useEffect(() => {
@@ -27,17 +27,23 @@ const Step3Container = ({ formInput, handleInputChange }) => {
             geocoder.addTo(geocoderContainerRef.current);
 
             geocoder.on('result', (e) => {
-                console.log('Selected location:', e.result.geometry.coordinates);
+                const [longitude, latitude] = e.result.geometry.coordinates;
+                handleInputChange({
+                    target: {
+                        name: 'userLocation',
+                        value: { longitude, latitude }
+                    }
+                });
             });
 
             // Clean up on unmount to ensure the geocoder instance is properly removed
             return () => {
                 if (geocoderContainerRef.current) {
-                    geocoder.clear(); // Properly clear the geocoder instance
+                    geocoder.clear();
                 }
             };
         }
-    }, []);
+    }, [handleInputChange]);
 
     return (
         <div className="step3-container">
@@ -70,10 +76,16 @@ const Step3Container = ({ formInput, handleInputChange }) => {
                         value={formInput.household || ''}
                         onChange={handleInputChange}
                         min="1"
+                        max="5"
                         className="form-input-step3"
                     />
                 </div>
-                <button className="estimate-button-step3">Estimate Now</button>
+                <button
+                    className="estimate-button-step3"
+                    onClick={handleNextStep}
+                >
+                    Estimate Now
+                </button>
             </div>
         </div>
     );
@@ -82,6 +94,7 @@ const Step3Container = ({ formInput, handleInputChange }) => {
 Step3Container.propTypes = {
     formInput: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
+    handleNextStep: PropTypes.func.isRequired, // Add handleNextStep prop
 };
 
 export default Step3Container;
