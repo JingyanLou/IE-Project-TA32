@@ -7,33 +7,36 @@ import './step3container.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianlvdGk2Nzk3IiwiYSI6ImNtMGF5bjNoNDAycGsybm9vbjVkbWN2NmcifQ.NCGxbDcL13CXjZwhDwaK4g';
 
-const Step3Container = ({ formInput, handleInputChange, handleLocationSelect }) => {
+const Step3Container = ({ formInput, handleInputChange }) => {
     const geocoderContainerRef = useRef(null);
 
     useEffect(() => {
-        if (geocoderContainerRef.current) {
-            geocoderContainerRef.current.innerHTML = ''; // Clear the container to prevent multiple instances
-
+        if (geocoderContainerRef.current.children.length === 0) {
             const geocoder = new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
-                types: 'place',
+                types: 'address',
                 placeholder: 'Enter your location',
                 mapboxgl: mapboxgl,
+                proximity: {
+                    longitude: 144.9631,  // Melbourne's Longitude
+                    latitude: -37.8136     // Melbourne's Latitude
+                },
+                countries: 'AU'  // Restrict results to Australia
             });
 
             geocoder.addTo(geocoderContainerRef.current);
 
             geocoder.on('result', (e) => {
-                handleLocationSelect(e.result);
-                console.log('Selected location:', e.result);
+                console.log('Selected location:', e.result.geometry.coordinates);
             });
 
-            // Clean up the Geocoder instance on component unmount
+            // Clean up on unmount to ensure the geocoder instance is properly removed
             return () => {
+                geocoderContainerRef.current.innerHTML = '';
                 geocoder.clear();
             };
         }
-    }, [handleLocationSelect]);
+    }, []);
 
     return (
         <div className="step3-container">
@@ -78,7 +81,6 @@ const Step3Container = ({ formInput, handleInputChange, handleLocationSelect }) 
 Step3Container.propTypes = {
     formInput: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
-    handleLocationSelect: PropTypes.func.isRequired,
 };
 
 export default Step3Container;
