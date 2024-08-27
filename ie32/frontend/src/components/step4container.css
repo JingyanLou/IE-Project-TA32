@@ -6,6 +6,7 @@
     justify-content: space-between;
     text-align: left;
     color: white;
+    padding-left: 10px;
 }
 
 /* Left section containing insights and treemap */
