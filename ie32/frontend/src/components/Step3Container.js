@@ -11,7 +11,7 @@ const Step3Container = ({ formInput, handleInputChange }) => {
     const geocoderContainerRef = useRef(null);
 
     useEffect(() => {
-        if (geocoderContainerRef.current.children.length === 0) {
+        if (geocoderContainerRef.current && geocoderContainerRef.current.children.length === 0) {
             const geocoder = new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
                 types: 'address',
@@ -32,8 +32,9 @@ const Step3Container = ({ formInput, handleInputChange }) => {
 
             // Clean up on unmount to ensure the geocoder instance is properly removed
             return () => {
-                geocoderContainerRef.current.innerHTML = '';
-                geocoder.clear();
+                if (geocoderContainerRef.current) {
+                    geocoder.clear(); // Properly clear the geocoder instance
+                }
             };
         }
     }, []);
@@ -84,4 +85,3 @@ Step3Container.propTypes = {
 };
 
 export default Step3Container;
-
