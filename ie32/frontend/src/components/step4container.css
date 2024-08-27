@@ -54,7 +54,15 @@
 
 /* Styles for each treemap node */
 .treemap-node rect {
-    border-radius: 10px;
+    border-radius: 15px;
+    stroke: black;
+}
+
+.treemap-node rect:hover {
+    filter: saturate(2);
+    /* Increase saturation on hover */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
 
 /* Right section for the map */
