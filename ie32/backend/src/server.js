@@ -17,6 +17,22 @@ const dbConfig = {
 
 const connection = mysql.createConnection(dbConfig);
 
+// Function to ping the database
+const pingDatabase = () => {
+    console.log('Pinging the database...');
+    connection.ping((err) => {
+        if (err) {
+            console.error('Database ping failed:', err);
+        } else {
+            console.log('Database ping successful');
+        }
+    });
+};
+
+// Ping the database every 30 minutes (1800000 ms)
+setInterval(pingDatabase, 1800000);
+
+
 // Routes
 app.get('/api/appliances', (req, res) => {
     const query = 'SELECT * FROM appliance_data';
