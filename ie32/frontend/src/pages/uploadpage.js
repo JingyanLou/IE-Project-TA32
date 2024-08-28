@@ -96,11 +96,21 @@ const Upload = () => {
 
 
     const handleAddAppliance = () => {
+
+        // Find the selected appliance in the applianceData array
+        const selectedAppliance = applianceData.find(appliance => appliance.Device === formInput.applianceType);
+        // If the selected appliance is found, extract its energy consumption (kWh/hour)
+        const energyConsumptionKWh = selectedAppliance ? selectedAppliance['Energy Consumption (kWh/hour)'] : 0;
+
+
         const newAppliance = [
             formInput.applianceType,
             formInput.quantity,
-            formInput.dailyHours
+            formInput.dailyHours,
+            energyConsumptionKWh // Energy Consumption (kWh/hour)
         ];
+
+        console.log('Adding new appliance:', newAppliance);
 
         setData(prevData => ({
             ...prevData,
