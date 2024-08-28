@@ -1,4 +1,3 @@
-/* Step 3 container styling */
 .step3-container {
     width: 60%;
     margin-top: 100px;
@@ -7,6 +6,21 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below the final position */
+    animation: revealStep3Container 0.8s ease-out forwards;
+    /* Smooth reveal animation */
+}
+
+/* Animation for the entire Step3 container */
+@keyframes revealStep3Container {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
 }
 
 /* Title styling */
@@ -19,7 +33,6 @@
     padding-left: 34%;
 }
 
-/* Form container styling */
 .form-container-step3 {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.1);
@@ -28,6 +41,23 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     position: relative;
     margin-top: 20px;
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below the final position */
+    animation: revealFormContainerStep3 0.8s ease-out forwards;
+    /* Smooth reveal animation */
+    animation-delay: 0.3s;
+    /* Delay to start after Step3 container animation */
+}
+
+/* Animation for the form container inside Step3 */
+@keyframes revealFormContainerStep3 {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
 }
 
 /* Form group styling */
