@@ -44,6 +44,15 @@
     margin-right: 20px;
 }
 
+.rank-item:hover {
+    filter: saturate(0.5);
+    /* Decrease saturation on hover */
+    background-color: rgba(232, 232, 232, 0.358);
+    /* Light background on hover */
+    opacity: 1;
+    /* Make the item fully opaque */
+}
+
 .rank-1 .rank-number {
     color: #ff7b00;
 }
