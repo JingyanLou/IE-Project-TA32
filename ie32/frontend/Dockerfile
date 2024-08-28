@@ -19,7 +19,8 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Build the application with increased memory limit
-RUN REACT_APP_API_URL_LOCAL=$REACT_APP_API_URL_LOCAL \
+RUN echo "Building with API URL: $REACT_APP_API_URL_PROD" && \
+    REACT_APP_API_URL_LOCAL=$REACT_APP_API_URL_LOCAL \
     REACT_APP_API_URL_PROD=$REACT_APP_API_URL_PROD \
     node --max-old-space-size=1024 node_modules/.bin/react-scripts build
 
