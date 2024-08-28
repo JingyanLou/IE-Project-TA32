@@ -1,10 +1,3 @@
-#!/bin/bash
-# Print debug information
-echo "Docker username: $DOCKER_USERNAME"
-
-# Navigate to the home directory of the ubuntu user
-cd /home/ubuntu
-
 # Pull the latest Docker images
 docker pull $DOCKER_USERNAME/frontendie32:latest
 docker pull $DOCKER_USERNAME/backendie32:latest
@@ -24,17 +17,20 @@ if [ "$(docker ps -q -f name=backendie32)" ]; then
     echo "Backend container stopped and removed"
 fi
 
-# Remove old Docker images, only keep the most recent one 
+# Remove old Docker images, only keep the most recent one
 docker image prune -f
 echo "Unnecessary images deleted"
 
-# Run the frontend container on port 443 for HTTPS
-docker run -d --name frontendie32 -p 443:3000 $DOCKER_USERNAME/frontendie32:latest
+# Run the frontend container on port 443 for HTTPS, mounting the SSL directory
+docker run -d --name frontendie32 -p 443:443 \
+  -v /home/ubuntu/ssl:/usr/src/app/ssl \
+  $DOCKER_USERNAME/frontendie32:latest
 echo "Frontend deployed successfully on HTTPS (port 443)"
 
-# Run the backend container on port 5000 (if directly exposing the backend)
-docker run -d --name backendie32 -p 5000:5000 -v /home/ubuntu/ssl:/usr/src/app/ssl $DOCKER_USERNAME/backendie32:latest
-echo "Backend deployed successfully on port 5000"
-
+# Run the backend container on port 5000, mounting the SSL directory for HTTPS
+docker run -d --name backendie32 -p 5000:5000 \
+  -v /home/ubuntu/ssl:/usr/src/app/ssl \
+  $DOCKER_USERNAME/backendie32:latest
+echo "Backend deployed successfully on port 5000 with HTTPS"
 
 echo "Deployment completed successfully"

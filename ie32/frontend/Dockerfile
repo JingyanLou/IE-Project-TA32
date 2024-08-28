@@ -34,8 +34,8 @@ COPY --from=build /usr/src/app/build /usr/src/app/build
 # Install serve to serve the build files
 RUN npm install -g serve
 
-# Expose port 3000
-EXPOSE 3000
+# Expose port 443 for HTTPS
+EXPOSE 443
 
-# Run the application
-CMD ["serve", "-s", "build"]
+# Run the application with HTTPS
+CMD ["serve", "-s", "build", "-l", "443", "--ssl-cert", "/usr/src/app/ssl/fullchain.pem", "--ssl-key", "/usr/src/app/ssl/privkey.pem"]
