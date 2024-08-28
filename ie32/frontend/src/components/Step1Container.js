@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './step1container.css';
-import { applianceData } from '../utils/data';
 
 const Step1Container = ({
     appliances = [],
+    applianceData = [],
     formInput,
     handleInputChange,
     handleAddAppliance,
@@ -22,8 +22,8 @@ const Step1Container = ({
                         onChange={handleInputChange}
                     >
                         {applianceData.map((appliance, index) => (
-                            <option key={index} value={appliance.type}>
-                                {appliance.type}
+                            <option key={index} value={appliance.Device}>
+                                {appliance.Device}
                             </option>
                         ))}
                     </select>
@@ -60,9 +60,9 @@ const Step1Container = ({
                 <ul>
                     {appliances.map((appliance, index) => (
                         <li key={index}>
-                            <div>Appliance Type: {appliance[0]}</div> {/* Adjusted to match the array structure */}
-                            <div>Quantity: {appliance[1]}</div> {/* Adjusted to match the array structure */}
-                            <div>Daily Hours: {appliance[2]}</div> {/* Adjusted to match the array structure */}
+                            <div>Appliance Type: {appliance[0]}</div>
+                            <div>Quantity: {appliance[1]}</div>
+                            <div>Daily Hours: {appliance[2]}</div>
                             <button
                                 className="delete-button"
                                 onClick={() => handleDeleteAppliance(index)}
@@ -79,6 +79,7 @@ const Step1Container = ({
 
 Step1Container.propTypes = {
     appliances: PropTypes.array,
+    applianceData: PropTypes.array.isRequired,
     formInput: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
     handleAddAppliance: PropTypes.func.isRequired,

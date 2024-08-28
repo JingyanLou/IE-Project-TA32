@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './uploadpage.css';
-import { applianceData } from '../utils/data';
 import Step1Container from '../components/Step1Container';
 import Step2Container from '../components/Step2Container';
 import Step3Container from '../components/Step3Container';
@@ -9,18 +8,36 @@ import Step4Container from '../components/Step4Container';
 const Upload = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [data, setData] = useState({
-        'Appliances-list': [], // Initially, the appliance list is an empty array
-        'User information': [], // Initially, the user information is an empty array
+        'Appliances-list': [],
+        'User information': [],
     });
 
+    const [applianceData, setApplianceData] = useState([]);
     const [formInput, setFormInput] = useState({
-        applianceType: applianceData[0].type,
-        dailyHours: applianceData[0].dailyHours || 10,
+        applianceType: '', // Default to empty string
+        dailyHours: 10,
         quantity: 1,
         userLocation: '',
         energyProvider: '',
         household: 1,
     });
+    // Fetch appliance data from the backend
+    useEffect(() => {
+        fetch('http://localhost:5000/api/appliances')
+            .then(response => response.json())
+            .then(data => {
+                setApplianceData(data);
+                console.log(data);
+                console.log(data[0]?.Device);
+                console.log(data[0]?.Average_Daily_Hours);
+                setFormInput(prevFormInput => ({
+                    ...prevFormInput,
+                    applianceType: data[0]?.Device || '',
+                    dailyHours: data[0]?.['Average Daily Hours'] || 10,
+                }));
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
     const handleNextStep = () => {
         if (currentStep < 4) {
@@ -33,18 +50,21 @@ const Upload = () => {
             setCurrentStep(currentStep - 1);
         }
     };
-
+    // Handle input change for form fields
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
         if (name === 'applianceType') {
             const selectedAppliance = applianceData.find(
-                appliance => appliance.type === value
+                appliance => appliance.Device === value
             );
+            console.log(selectedAppliance);
+            console.log(value);
+            console.log(selectedAppliance?.Average_Daily_Hours);
             setFormInput({
                 ...formInput,
                 applianceType: value,
-                dailyHours: selectedAppliance?.dailyHours || 10,
+                dailyHours: selectedAppliance?.['Average Daily Hours'] || 10, // Use bracket notation
             });
         } else {
             setFormInput({
@@ -54,29 +74,27 @@ const Upload = () => {
         }
     };
 
+
     const handleAddAppliance = () => {
-        const selectedAppliance = applianceData.find(appliance => appliance.type === formInput.applianceType);
         const newAppliance = [
             formInput.applianceType,
             formInput.quantity,
             formInput.dailyHours
         ];
 
-        // Update the appliances list in the data object
         setData(prevData => ({
             ...prevData,
             'Appliances-list': [...prevData['Appliances-list'], newAppliance]
         }));
 
         setFormInput({
-            applianceType: applianceData[0].type,
-            dailyHours: applianceData[0].dailyHours || 10,
+            applianceType: applianceData[0]?.Device || '',
+            dailyHours: applianceData[0]?.Average_Daily_Hours || 10,
             quantity: 1
         });
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
-        // Update the appliances list in the data object
         setData(prevData => ({
             ...prevData,
             'Appliances-list': prevData['Appliances-list'].filter((_, index) => index !== indexToDelete)
@@ -84,7 +102,6 @@ const Upload = () => {
     };
 
     const handleUserInformation = () => {
-        // Add user information to the data object
         setData(prevData => ({
             ...prevData,
             'User information': [
@@ -94,7 +111,7 @@ const Upload = () => {
             ]
         }));
 
-        handleNextStep(); // Move to the next step after setting the user information
+        handleNextStep();
     };
 
     return (
@@ -144,6 +161,7 @@ const Upload = () => {
             {currentStep === 1 && (
                 <Step1Container
                     appliances={data['Appliances-list']}
+                    applianceData={applianceData}
                     formInput={formInput}
                     handleInputChange={handleInputChange}
                     handleAddAppliance={handleAddAppliance}
@@ -157,13 +175,13 @@ const Upload = () => {
                 <Step3Container
                     formInput={formInput}
                     handleInputChange={handleInputChange}
-                    handleNextStep={handleUserInformation} // Pass handleUserInformation to move to Step 4 with updated data
+                    handleNextStep={handleUserInformation}
                 />
             )}
 
             {currentStep === 4 && (
                 <Step4Container
-                    data={data} // Pass the entire data object containing both appliances list and user information
+                    data={data}
                 />
             )}
         </div>
