@@ -1,6 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const fs = require('fs');
+const https = require('https');
+const http = require('http');
 
 const app = express();
 app.use(cors());
@@ -14,7 +17,7 @@ const dbConfig = {
 
 const connection = mysql.createConnection(dbConfig);
 
-// Route to fetch appliance data
+// Routes
 app.get('/api/appliances', (req, res) => {
     const query = 'SELECT * FROM appliance_data';
     connection.query(query, (error, results) => {
@@ -47,7 +50,22 @@ app.get('/api/benchmark-vic', (req, res) => {
     });
 });
 
+// Other routes...
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
+// Check environment and use HTTPS in production
+if (process.env.NODE_ENV === 'production') {
+    const httpsOptions = {
+        key: fs.readFileSync('/etc/letsencrypt/live/ta32.me/privkey.pem'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/ta32.me/fullchain.pem'),
+    };
+
+    https.createServer(httpsOptions, app).listen(PORT, () => {
+        console.log(`Server is running in production on port ${PORT} with HTTPS`);
+    });
+} else {
+    http.createServer(app).listen(PORT, () => {
+        console.log(`Server is running in development on port ${PORT} with HTTP`);
+    });
+}
