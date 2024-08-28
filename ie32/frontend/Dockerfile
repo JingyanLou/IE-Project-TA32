@@ -5,7 +5,7 @@ FROM node:16-alpine AS build
 ENV NODE_ENV=production
 
 # Hardcode the production API URL
-ENV REACT_APP_API_URL_PROD=https://54.252.177.132:5000/api
+ENV REACT_APP_API_URL_PROD=https://ta32.me/api
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
