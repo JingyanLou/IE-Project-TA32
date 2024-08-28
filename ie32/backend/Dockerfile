@@ -13,6 +13,10 @@ RUN npm install
 # Copy the entire project directory to the container.
 COPY . .
 
+# Copy SSL certificates into the container.
+COPY ssl/privkey.pem /etc/letsencrypt/live/ta32.me/privkey.pem
+COPY ssl/fullchain.pem /etc/letsencrypt/live/ta32.me/fullchain.pem
+
 # Clean up npm cache to reduce image size.
 RUN npm cache clean --force
 
