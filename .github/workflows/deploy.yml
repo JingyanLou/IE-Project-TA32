@@ -1,10 +1,3 @@
-name: Build and Deploy
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -27,15 +20,13 @@ jobs:
         NODE_ENV: production
         REACT_APP_API_URL_PROD: ${{ secrets.REACT_APP_API_URL_PROD }}
       run: |
-        cd frontend
+        cd ie32/frontend
         docker build --platform linux/amd64 --build-arg REACT_APP_API_URL_PROD=${{ secrets.REACT_APP_API_URL_PROD }} -t ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest
 
     - name: Build and push backend Docker image
-      env:
-        NODE_ENV: production
       run: |
-        cd backend
+        cd ie32/backend
         docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/backendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/backendie32:latest
 
