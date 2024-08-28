@@ -50,5 +50,6 @@ jobs:
       run: |
         echo "${{ secrets.EC2_KEY }}" > ec2-key.pem
         chmod 400 ec2-key.pem
+        cat ec2-key.pem
         scp -o StrictHostKeyChecking=no -i ec2-key.pem deploy.sh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} bash /home/${{ secrets.EC2_USER }}/deploy.sh'
