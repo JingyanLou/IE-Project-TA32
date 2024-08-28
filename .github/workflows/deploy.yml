@@ -35,7 +35,7 @@ jobs:
       env:
         NODE_ENV: production
       run: |
-        cd ie/backend
+        cd ie32/backend
         docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/backendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/backendie32:latest
 
