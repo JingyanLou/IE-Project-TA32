@@ -25,10 +25,14 @@ jobs:
     - name: Build and push frontend Docker image
       env:
         NODE_ENV: production
+        REACT_APP_API_URL_LOCAL: http://localhost:5000/api
         REACT_APP_API_URL_PROD: ${{ secrets.REACT_APP_API_URL_PROD }}
       run: |
         cd ie32/frontend
-        docker build --platform linux/amd64 --build-arg REACT_APP_API_URL_PROD=${{ secrets.REACT_APP_API_URL_PROD }} -t ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest .
+        docker build --platform linux/amd64 \
+          --build-arg REACT_APP_API_URL_LOCAL=${{ env.REACT_APP_API_URL_LOCAL }} \
+          --build-arg REACT_APP_API_URL_PROD=${{ secrets.REACT_APP_API_URL_PROD }} \
+          -t ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest
 
     - name: Build and push backend Docker image

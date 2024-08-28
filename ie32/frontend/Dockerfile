@@ -3,6 +3,8 @@ FROM node:16-alpine AS build
 
 # Set environment variables
 ENV NODE_ENV=production
+ARG REACT_APP_API_URL_LOCAL
+ARG REACT_APP_API_URL_PROD
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
@@ -17,7 +19,9 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Build the application with increased memory limit
-RUN node --max-old-space-size=1024 node_modules/.bin/react-scripts build
+RUN REACT_APP_API_URL_LOCAL=$REACT_APP_API_URL_LOCAL \
+    REACT_APP_API_URL_PROD=$REACT_APP_API_URL_PROD \
+    node --max-old-space-size=1024 node_modules/.bin/react-scripts build
 
 # Stage 2: Runtime
 FROM node:16-alpine
