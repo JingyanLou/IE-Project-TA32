@@ -61,10 +61,25 @@ const Upload = () => {
     }, []);
 
     const handleNextStep = () => {
+        if (currentStep === 1 && data['Appliances-list'].length === 0) {
+            alert("Please add at least one appliance before proceeding.");
+            return;
+        }
+
+        if (currentStep === 3) {
+            const { userLocation, energyProvider, household } = formInput;
+
+            if (!userLocation || !energyProvider || !household) {
+                alert("Please fill in all the required fields: address, energy provider, and household number.");
+                return;
+            }
+        }
+
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
         }
     };
+
     const handlePrevStep = () => {
         if (currentStep > 1) {
             setCurrentStep(currentStep - 1);
