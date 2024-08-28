@@ -14,8 +14,31 @@ const dbConfig = {
 
 const connection = mysql.createConnection(dbConfig);
 
+// Route to fetch appliance data
 app.get('/api/appliances', (req, res) => {
     const query = 'SELECT * FROM appliance_data';
+    connection.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route to fetch energy provider data
+app.get('/api/energy-providers', (req, res) => {
+    const query = 'SELECT * FROM electricity_plans';
+    connection.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route to fetch benchmark data
+app.get('/api/benchmark-vic', (req, res) => {
+    const query = 'SELECT * FROM benchmark_vic';
     connection.query(query, (error, results) => {
         if (error) {
             return res.status(500).json({ error: error.message });
