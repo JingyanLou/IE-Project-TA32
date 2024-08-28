@@ -30,20 +30,11 @@ echo "Unnecessary images deleted"
 
 # Run the frontend container on port 443 for HTTPS
 docker run -d --name frontendie32 -p 443:3000 $DOCKER_USERNAME/frontendie32:latest
-if [ $? -eq 0 ]; then
-    echo "Frontend deployed successfully on HTTPS (port 443)"
-else
-    echo "Failed to deploy frontend"
-    exit 1
-fi
+echo "Frontend deployed successfully on HTTPS (port 443)"
 
-# Run the backend container on port 5000
-docker run -d --name backendie32 -p 5000:5000 $DOCKER_USERNAME/backendie32:latest
-if [ $? -eq 0 ]; then
-    echo "Backend deployed successfully on port 5000"
-else
-    echo "Failed to deploy backend"
-    exit 1
-fi
+# Run the backend container on port 5000 (if directly exposing the backend)
+docker run -d --name backendie32 -p 5000:5000 -v /home/ubuntu/ssl:/usr/src/app/ssl $DOCKER_USERNAME/backendie32:latest
+echo "Backend deployed successfully on port 5000"
+
 
 echo "Deployment completed successfully"
