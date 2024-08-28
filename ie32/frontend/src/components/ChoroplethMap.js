@@ -64,8 +64,8 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         }
                     },
                     paint: {
-                        'line-color': '#ffffff',
-                        'line-width': 3
+                        'line-color': '#fffff',
+                        'line-width': 15
                     }
                 });
 
@@ -101,10 +101,10 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                 // Fly to the user's location and adjust the view to show 3D buildings
                 map.flyTo({
                     center: [longitude, latitude],
-                    zoom: 18, // Zoom in close to the point
-                    pitch: 60, // Tilt the map to show 3D buildings
-                    bearing: -17.6, // Adjust the bearing to orient the view
-                    speed: 1.6, // Fly speed (default is 1.2, higher is faster)
+                    zoom: 17.5, // Zoom in close to the point
+                    pitch: 30, // Tilt the map to show 3D buildings
+                    bearing: -170, // Adjust the bearing to orient the view
+                    speed: 1.2, // Fly speed (default is 1.2, higher is faster)
                     curve: 1, // Fly curve (default is 1, making it smoother)
                     easing: (t) => t, // Easing function (linear in this case)
                     essential: true // This animation is essential with respect to prefers-reduced-motion
@@ -176,7 +176,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                     className="map-tooltip"
                     style={{
                         left: `${hoverInfo.coordinates.x + 10}px`, // Offset to avoid covering the pointer
-                        top: `${hoverInfo.coordinates.y + 10}px`,
+                        top: `${hoverInfo.coordinates.y + 5}px`,
                         opacity: 1 // Ensure tooltip is fully visible
                     }}
                 >
