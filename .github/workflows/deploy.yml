@@ -1,3 +1,10 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,8 +32,10 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest
 
     - name: Build and push backend Docker image
+      env:
+        NODE_ENV: production
       run: |
-        cd ie32/backend
+        cd backend
         docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/backendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/backendie32:latest
 
