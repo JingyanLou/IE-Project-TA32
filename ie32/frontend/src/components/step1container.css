@@ -6,11 +6,23 @@
     z-index: 2;
     padding-top: 20px;
     padding-left: 0px;
-    /* Reduce padding on the left */
     padding-right: 128px;
-    /* Reduce padding on the right */
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below the final position */
+    animation: revealStep1Container 0.8s ease-out forwards;
+    /* Smooth reveal animation */
 }
 
+/* Animation for the entire Step1 container */
+@keyframes revealStep1Container {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
+}
 
 .form-title,
 .appliance-title {
@@ -33,6 +45,23 @@
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below the final position */
+    animation: revealFormContainer 0.8s ease-out forwards;
+    /* Smooth reveal animation */
+    animation-delay: 0.3s;
+    /* Delay to start after Step1 container animation */
+}
+
+/* Animation for the form container */
+@keyframes revealFormContainer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
 }
 
 .form-group {
@@ -87,7 +116,6 @@
     background-color: #e66a00;
 }
 
-/* Appliance display container */
 .appliance-display {
     width: 45%;
     height: 400px;
@@ -96,6 +124,23 @@
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     overflow-y: scroll;
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below the final position */
+    animation: revealApplianceDisplay 0.8s ease-out forwards;
+    /* Smooth reveal animation */
+    animation-delay: 0.6s;
+    /* Delay to start after form container animation */
+}
+
+/* Animation for the appliance display container */
+@keyframes revealApplianceDisplay {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Final position */
+    }
 }
 
 /* Custom scrollbar for the appliance display container */
