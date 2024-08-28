@@ -19,17 +19,18 @@ const Upload = () => {
         quantity: 1,
         userLocation: '',
         energyProvider: '',
-        household: 1,
+        household: '1', // Default to '1'
     });
+
+    const [energyProviders, setEnergyProviders] = useState([]);
+    const [benchmarkData, setBenchmarkData] = useState([]);
+
     // Fetch appliance data from the backend
     useEffect(() => {
         fetch('http://localhost:5000/api/appliances')
             .then(response => response.json())
             .then(data => {
                 setApplianceData(data);
-                console.log(data);
-                console.log(data[0]?.Device);
-                console.log(data[0]?.Average_Daily_Hours);
                 setFormInput(prevFormInput => ({
                     ...prevFormInput,
                     applianceType: data[0]?.Device || '',
@@ -37,6 +38,21 @@ const Upload = () => {
                 }));
             })
             .catch(error => console.error('Error fetching data:', error));
+
+        fetch('http://localhost:5000/api/energy-providers')
+            .then(response => response.json())
+            .then(data => {
+                setEnergyProviders(data);
+            })
+            .catch(error => console.error('Error fetching energy providers:', error));
+
+        fetch('http://localhost:5000/api/benchmark-vic')
+            .then(response => response.json())
+            .then(data => {
+                setBenchmarkData(data);
+            })
+            .catch(error => console.error('Error fetching benchmark data:', error));
+
     }, []);
 
     const handleNextStep = () => {
@@ -50,28 +66,19 @@ const Upload = () => {
             setCurrentStep(currentStep - 1);
         }
     };
+
     // Handle input change for form fields
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'applianceType') {
-            const selectedAppliance = applianceData.find(
-                appliance => appliance.Device === value
-            );
-            console.log(selectedAppliance);
-            console.log(value);
-            console.log(selectedAppliance?.Average_Daily_Hours);
-            setFormInput({
-                ...formInput,
-                applianceType: value,
-                dailyHours: selectedAppliance?.['Average Daily Hours'] || 10, // Use bracket notation
-            });
-        } else {
-            setFormInput({
-                ...formInput,
+        setFormInput((prevFormInput) => {
+            const updatedFormInput = {
+                ...prevFormInput,
                 [name]: value
-            });
-        }
+            };
+            console.log('Updated formInput:', updatedFormInput);
+            return updatedFormInput;
+        });
     };
 
 
@@ -89,7 +96,7 @@ const Upload = () => {
 
         setFormInput({
             applianceType: applianceData[0]?.Device || '',
-            dailyHours: applianceData[0]?.Average_Daily_Hours || 10,
+            dailyHours: applianceData[0]?.['Average Daily Hours'] || 10,
             quantity: 1
         });
     };
@@ -102,17 +109,37 @@ const Upload = () => {
     };
 
     const handleUserInformation = () => {
+        console.log('Saving user information with current formInput:', formInput);
+
+        // Ensure all necessary values are set before saving
         setData(prevData => ({
             ...prevData,
             'User information': [
                 formInput.userLocation,
-                formInput.energyProvider,
-                formInput.household
+                formInput.energyProvider || 'Not provided',
+                formInput.household || 'Not provided',
+                formInput.usageRate || 'Not provided',
+                formInput.supplyCharge,
+                formInput.monthlyBenchmark || 'Not provided',
             ]
         }));
 
-        handleNextStep();
+        console.log('Data state after saving user information:', {
+            ...data,
+            'User information': [
+                formInput.userLocation,
+                formInput.energyProvider,
+                formInput.household,
+                formInput.usageRate,
+                formInput.supplyCharge,
+                formInput.monthlyBenchmark,
+            ]
+        });
+
+        handleNextStep(); // Proceed to the next step only after setting data
     };
+
+
 
     return (
         <div className="upload-page">
@@ -176,6 +203,8 @@ const Upload = () => {
                     formInput={formInput}
                     handleInputChange={handleInputChange}
                     handleNextStep={handleUserInformation}
+                    energyProviders={energyProviders}
+                    benchmarkData={benchmarkData}
                 />
             )}
 

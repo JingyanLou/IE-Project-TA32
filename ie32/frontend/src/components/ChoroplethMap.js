@@ -64,7 +64,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         }
                     },
                     paint: {
-                        'line-color': '#fffff',
+                        'line-color': '#ffffff',
                         'line-width': 17
                     }
                 });

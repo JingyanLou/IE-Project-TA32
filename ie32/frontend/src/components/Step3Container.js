@@ -7,27 +7,29 @@ import './step3container.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianlvdGk2Nzk3IiwiYSI6ImNtMGF5bjNoNDAycGsybm9vbjVkbWN2NmcifQ.NCGxbDcL13CXjZwhDwaK4g';
 
-const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
+const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyProviders, benchmarkData }) => {
     const geocoderContainerRef = useRef(null);
 
     useEffect(() => {
         if (geocoderContainerRef.current && geocoderContainerRef.current.children.length === 0) {
+            console.log('Initializing Mapbox Geocoder');
             const geocoder = new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
                 types: 'address',
                 placeholder: 'Enter your location',
                 mapboxgl: mapboxgl,
                 proximity: {
-                    longitude: 144.9631,  // Melbourne's Longitude
-                    latitude: -37.8136     // Melbourne's Latitude
+                    longitude: 144.9631,
+                    latitude: -37.8136
                 },
-                countries: 'AU'  // Restrict results to Australia
+                countries: 'AU'
             });
 
             geocoder.addTo(geocoderContainerRef.current);
 
             geocoder.on('result', (e) => {
                 const [longitude, latitude] = e.result.geometry.coordinates;
+                console.log('Geocoder result:', { longitude, latitude });
                 handleInputChange({
                     target: {
                         name: 'userLocation',
@@ -36,9 +38,9 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
                 });
             });
 
-            // Clean up on unmount to ensure the geocoder instance is properly removed
             return () => {
                 if (geocoderContainerRef.current) {
+                    console.log('Clearing Mapbox Geocoder');
                     geocoder.clear();
                 }
             };
@@ -50,13 +52,87 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
             userLocation: formInput.userLocation,
             energyProvider: formInput.energyProvider,
             household: formInput.household,
+            usageRate: formInput.usageRate,
+            supplyCharge: formInput.supplyCharge,
+            monthlyBenchmark: formInput.monthlyBenchmark,
         };
 
-        console.log('User Information:', userInformation);
-
-        // Call the handleNextStep to navigate to the next step (Step 4)
+        console.log('Estimate Now Clicked. User Information:', userInformation);
         handleNextStep();
     };
+
+    const handleEnergyProviderChange = (e) => {
+        const selectedPlan = energyProviders.find(
+            provider => provider.Plan === e.target.value
+        );
+
+        console.log('Energy Provider selected:', e.target.value);
+        console.log('Selected Plan details:', selectedPlan);
+
+        // Update energyProvider, usageRate, and supplyCharge
+        handleInputChange({
+            target: {
+                name: 'energyProvider',
+                value: selectedPlan?.Plan || ''
+            }
+        });
+
+        handleInputChange({
+            target: {
+                name: 'usageRate',
+                value: selectedPlan?.UsageRate || 0
+            }
+        });
+
+        handleInputChange({
+            target: {
+                name: 'supplyCharge',
+                value: selectedPlan?.SupplyCharge || 0
+            }
+        });
+
+        // Log the form input state after changes
+        setTimeout(() => {
+            console.log('Updated formInput state after energy provider change:', { ...formInput, energyProvider: selectedPlan?.Plan });
+        }, 0);
+    };
+
+    const handleHouseholdChange = (e) => {
+        const householdSize = e.target.value;
+        console.log('Household size selected:', householdSize);
+
+        // Filter to find the correct benchmark based on the household size and season "Winter"
+        const selectedBenchmark = benchmarkData.find(
+            benchmark => benchmark.Season === 'Winter' && benchmark['Household size'] === householdSize
+        );
+
+        console.log('Selected Benchmark for household size:', selectedBenchmark);
+
+        // Update household size and monthly benchmark
+        handleInputChange({
+            target: {
+                name: 'household',
+                value: householdSize
+            }
+        });
+
+        handleInputChange({
+            target: {
+                name: 'monthlyBenchmark',
+                value: selectedBenchmark?.['Monthly Benchmark (kWh)'] || 0
+            }
+        });
+
+        // Log the updated formInput state after changes
+        setTimeout(() => {
+            console.log('Updated formInput state after household change:', {
+                ...formInput,
+                household: householdSize,
+                monthlyBenchmark: selectedBenchmark?.['Monthly Benchmark (kWh)'] || 0
+            });
+        }, 0);
+    };
+
 
     return (
         <div className="step3-container">
@@ -70,32 +146,35 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep }) => {
                     <label className="form-label-step3">Energy Provider</label>
                     <select
                         name="energyProvider"
-                        value={formInput.energyProvider || ''}
-                        onChange={handleInputChange}
+                        value={formInput.energyProvider}
+                        onChange={handleEnergyProviderChange}
                         className="form-input-step3"
                     >
-                        {['Provider A', 'Provider B', 'Provider C'].map((provider, index) => (
-                            <option key={index} value={provider}>
-                                {provider}
+                        {energyProviders.map((provider, index) => (
+                            <option key={index} value={provider.Plan}>
+                                {provider.Provider} - {provider.Plan}
                             </option>
                         ))}
                     </select>
                 </div>
                 <div className="form-group-step3">
-                    <label className="form-label-step3">Household</label>
-                    <input
-                        type="number"
+                    <label className="form-label-step3">Household Size</label>
+                    <select
                         name="household"
-                        value={formInput.household || ''}
-                        onChange={handleInputChange}
-                        min="1"
-                        max="5"
+                        value={formInput.household}
+                        onChange={handleHouseholdChange}
                         className="form-input-step3"
-                    />
+                    >
+                        {['1', '2', '3', '4', '5+'].map((size, index) => (
+                            <option key={index} value={size}>
+                                {size}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button
                     className="estimate-button-step3"
-                    onClick={handleEstimateNowClick} // Use the new handler for button click
+                    onClick={handleEstimateNowClick}
                 >
                     Estimate Now
                 </button>
@@ -108,6 +187,8 @@ Step3Container.propTypes = {
     formInput: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
     handleNextStep: PropTypes.func.isRequired,
+    energyProviders: PropTypes.array.isRequired,
+    benchmarkData: PropTypes.array.isRequired,
 };
 
 export default Step3Container;
