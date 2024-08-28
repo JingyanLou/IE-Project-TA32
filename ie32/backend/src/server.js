@@ -54,6 +54,7 @@ app.get('/api/benchmark-vic', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 console.log('PORT:', PORT);
+console.log('PORT:', PORT);
 // Check environment and use HTTPS in production
 if (process.env.NODE_ENV === 'production') {
     const httpsOptions = {
