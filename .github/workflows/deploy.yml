@@ -35,7 +35,7 @@ jobs:
       env:
         NODE_ENV: production
       run: |
-        cd backend
+        cd ie/backend
         docker build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/backendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/backendie32:latest
 
@@ -52,4 +52,3 @@ jobs:
         chmod 400 ec2-key.pem
         scp -o StrictHostKeyChecking=no -i ec2-key.pem deploy.sh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }} bash /home/${{ secrets.EC2_USER }}/deploy.sh'
-
