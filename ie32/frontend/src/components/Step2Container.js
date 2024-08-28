@@ -13,14 +13,18 @@ const Step2Container = ({ appliances }) => {
         }))
         .sort((a, b) => b.consumption - a.consumption);
 
-    console.log(appliances)
+    console.log(appliances);
     return (
         <div className="step2-container">
             <h2 className="ranking-title">Your Appliance Consumption Ranking</h2>
             <div className="ranking-display">
                 <ul>
                     {sortedAppliances.map((appliance, index) => (
-                        <li key={index} className={`rank-item ${index < 3 ? `rank-${index + 1}` : ''}`}>
+                        <li
+                            key={index}
+                            className={`rank-item ${index < 3 ? `rank-${index + 1}` : ''}`}
+                            style={{ '--index': index }} /* Set index for animation delay */
+                        >
                             <span className="rank-number">
                                 {index + 1}
                                 {index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th'}
