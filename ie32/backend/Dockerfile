@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install the application dependencies.
 RUN npm install
 
+# Explicitly copy the ssl directory
+COPY ssl /usr/src/app/ssl
+
 # Copy the entire project directory to the container.
 COPY . .
 

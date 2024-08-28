@@ -24,6 +24,19 @@ if [ "$(docker ps -q -f name=backendie32)" ]; then
     echo "Backend container stopped and removed"
 fi
 
+# Stop and remove the existing backend container if it is running
+if [ "$(docker ps -q -f name=backendie32)" ]; then
+    docker stop backendie32
+    echo "Backend container stopped"
+fi
+
+# Remove any container with the name backendie32 (whether running or not)
+if [ "$(docker ps -aq -f name=backendie32)" ]; then
+    docker rm backendie32
+    echo "Backend container removed"
+fi
+
+
 # Remove old Docker images, only keep the most recent one 
 docker image prune -f
 echo "Unnecessary images deleted"
