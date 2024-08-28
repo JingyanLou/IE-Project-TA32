@@ -76,14 +76,24 @@ const Upload = () => {
         const { name, value } = e.target;
 
         setFormInput((prevFormInput) => {
-            const updatedFormInput = {
+            let updatedFormInput = {
                 ...prevFormInput,
                 [name]: value
             };
+
+            // If the applianceType is changed, update the dailyHours to match the selected appliance's default
+            if (name === 'applianceType') {
+                const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
+                if (selectedAppliance) {
+                    updatedFormInput.dailyHours = selectedAppliance['Average Daily Hours'] || 10;
+                }
+            }
+
             console.log('Updated formInput:', updatedFormInput);
             return updatedFormInput;
         });
     };
+
 
     const handleAddAppliance = () => {
         const newAppliance = [
