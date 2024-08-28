@@ -2,3 +2,5 @@ ie32/frontend/node_modules/.cache/.eslintcache
 ie32/frontend/node_modules/.cache/default-development/1.pack
 ie32/frontend/node_modules/.cache/default-development/index.pack
 ie32/frontend/node_modules/.cache/default-development/index.pack.old
+ie32/backend/ssl/fullchain.pem
+ie32/backend/ssl/privkey.pem

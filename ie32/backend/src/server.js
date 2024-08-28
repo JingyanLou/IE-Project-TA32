@@ -59,8 +59,8 @@ console.log('PORT:', PORT);
 // Check environment and use HTTPS in production
 if (process.env.NODE_ENV === 'production') {
     const httpsOptions = {
-        key: fs.readFileSync('/etc/letsencrypt/live/ta32.me/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/ta32.me/fullchain.pem'),
+        key: fs.readFileSync('/usr/src/app/ssl/privkey.pem'),
+        cert: fs.readFileSync('/usr/src/app/ssl/fullchain.pem'),
     };
 
     https.createServer(httpsOptions, app).listen(PORT, () => {
