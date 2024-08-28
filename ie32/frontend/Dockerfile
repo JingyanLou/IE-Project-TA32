@@ -3,8 +3,6 @@ FROM node:16-alpine AS build
 
 # Set environment variables
 ENV NODE_ENV=production
-ARG REACT_APP_API_URL_LOCAL
-ARG REACT_APP_API_URL_PROD
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
@@ -15,8 +13,12 @@ COPY package*.json ./
 # Install dependencies with --legacy-peer-deps flag.
 RUN npm install --legacy-peer-deps
 
-# Copy the local code to the container image.
+# Copy the local code and .env file to the container image
 COPY . .
+COPY .env .env  
+
+# Echo the contents of the .env file for debugging purposes
+RUN echo "Contents of .env file:" && cat .env
 
 # Build the application with increased memory limit
 RUN echo "Building with API URL: $REACT_APP_API_URL_PROD" && \
