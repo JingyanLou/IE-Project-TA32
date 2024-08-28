@@ -4,8 +4,11 @@ import Step1Container from '../components/Step1Container';
 import Step2Container from '../components/Step2Container';
 import Step3Container from '../components/Step3Container';
 import Step4Container from '../components/Step4Container';
+import { getApiBaseUrl } from '../utils/api'; // Import the base URL function
 
 const Upload = () => {
+
+    const apiUrl = getApiBaseUrl(); // Get the base API URL
 
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -13,7 +16,6 @@ const Upload = () => {
         'Appliances-list': [],
         'User information': [],
     });
-
 
     const [applianceData, setApplianceData] = useState([]);
 
@@ -31,8 +33,10 @@ const Upload = () => {
     const [benchmarkData, setBenchmarkData] = useState([]);
 
     // Fetch appliance data from the backend
+    // Fetch appliance data from the backend
     useEffect(() => {
-        fetch('http://localhost:5000/api/appliances')
+        console.log(`Fetching from ${apiUrl}/appliances`);
+        fetch(`${apiUrl}/appliances`)
             .then(response => response.json())
             .then(data => {
                 setApplianceData(data);
@@ -44,21 +48,23 @@ const Upload = () => {
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        fetch('http://localhost:5000/api/energy-providers')
+        console.log(`Fetching from ${apiUrl}/energy-providers`);
+        fetch(`${apiUrl}/energy-providers`)
             .then(response => response.json())
             .then(data => {
                 setEnergyProviders(data);
             })
             .catch(error => console.error('Error fetching energy providers:', error));
 
-        fetch('http://localhost:5000/api/benchmark-vic')
+        console.log(`Fetching from ${apiUrl}/benchmark-vic`);
+        fetch(`${apiUrl}/benchmark-vic`)
             .then(response => response.json())
             .then(data => {
                 setBenchmarkData(data);
             })
             .catch(error => console.error('Error fetching benchmark data:', error));
 
-    }, []);
+    }, [apiUrl]);
 
     const handleNextStep = () => {
         if (currentStep === 1 && data['Appliances-list'].length === 0) {
