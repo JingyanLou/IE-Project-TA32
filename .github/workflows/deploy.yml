@@ -27,11 +27,15 @@ jobs:
         NODE_ENV: production
         REACT_APP_API_URL_LOCAL: http://localhost:5000/api
         REACT_APP_API_URL_PROD: ${{ secrets.REACT_APP_API_URL_PROD }}
+        REACT_APP_MAPBOX_ACCESS_TOKEN: ${{ secrets.REACT_APP_MAPBOX_ACCESS_TOKEN }}
+        REACT_APP_MAPBOX_CHOROPLETH_ACCESS_TOKEN: ${{ secrets.REACT_APP_MAPBOX_CHOROPLETH_ACCESS_TOKEN }}
       run: |
         cd ie32/frontend
         docker build --platform linux/amd64 \
           --build-arg REACT_APP_API_URL_LOCAL=${{ env.REACT_APP_API_URL_LOCAL }} \
           --build-arg REACT_APP_API_URL_PROD=${{ secrets.REACT_APP_API_URL_PROD }} \
+          --build-arg REACT_APP_MAPBOX_ACCESS_TOKEN=${{ secrets.REACT_APP_MAPBOX_ACCESS_TOKEN }} \
+          --build-arg REACT_APP_MAPBOX_CHOROPLETH_ACCESS_TOKEN=${{ secrets.REACT_APP_MAPBOX_CHOROPLETH_ACCESS_TOKEN }} \
           -t ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/frontendie32:latest
 
