@@ -86,13 +86,64 @@ const Step4Container = ({ data }) => {
             .text(d => d.data.name);
     };
 
-    const totalConsumption = appliances.reduce((total, appliance) => {
-        return total + appliance[1] * appliance[2]; // Quantity * Daily Hours
-    }, 0);
+    // Extract user information
+    const userLocation = userInformation[0];
+    const energyProvider = userInformation[1];
+    const household = userInformation[2];
+    const usageRate = parseFloat(userInformation[3]); // Cost per kWh
+    const dailySupplyCharge = parseFloat(userInformation[4]); // Fixed daily charge in AUD
+    const monthlyBenchmark = parseFloat(userInformation[5]); // Benchmark in kWh
 
-    const estimatedMonthlyBill = (totalConsumption * 30).toFixed(2);
+    // Print all values in one console log as a paragraph
+    console.log(`User Information: 
+    The user is located at longitude ${userLocation?.longitude}, latitude ${userLocation?.latitude}. 
+    They have selected the energy provider '${energyProvider}', and their household consists of ${household} members. 
+    The energy provider charges a usage rate of $${usageRate} per kWh and a fixed daily supply charge of $${dailySupplyCharge}. 
+    The estimated monthly benchmark for their household size is ${monthlyBenchmark} kWh.`);
 
-    const benchmark = 38;
+    // Initialize variables for total electricity consumption and days in month
+    let totalElectricityConsumptionKWh = 0;
+    const daysInMonth = 30;
+
+    // Loop through each appliance to calculate total electricity consumption
+    for (let i = 0; i < appliances.length; i++) {
+        const appliance = appliances[i];
+        const powerKWh = parseFloat(appliance[0]); // Ensure power consumption is in kWh
+        const quantity = parseFloat(appliance[1]); // Ensure quantity is a number
+        const dailyUsageHours = parseFloat(appliance[2]); // Ensure daily hours of usage is a number
+
+        // Debugging: Log the values before calculation
+        console.log(`Appliance ${i + 1} details: Power=${powerKWh} kW, Quantity=${quantity}, Daily Usage=${dailyUsageHours} hours`);
+
+        // Ensure all values are numbers before proceeding
+        if (!isNaN(powerKWh) && !isNaN(quantity) && !isNaN(dailyUsageHours)) {
+            // Calculate the electricity consumption for this appliance over the entire month in kWh
+            const applianceMonthlyConsumptionKWh = powerKWh * quantity * dailyUsageHours * daysInMonth;
+
+            // Add this appliance's consumption to the total electricity consumption
+            totalElectricityConsumptionKWh += applianceMonthlyConsumptionKWh;
+
+            // Log the monthly electricity consumption for this appliance
+            console.log(`Appliance ${i + 1}: Power=${powerKWh} kW, Quantity=${quantity}, Daily Usage=${dailyUsageHours} hours, Monthly Electricity Consumption=${applianceMonthlyConsumptionKWh.toFixed(2)} kWh`);
+        } else {
+            console.warn(`Invalid input for Appliance ${i + 1}: Power=${powerKWh}, Quantity=${quantity}, Daily Usage=${dailyUsageHours}`);
+        }
+    }
+
+    // Calculate the estimated monthly electricity cost
+    const totalElectricityCostAUD = (totalElectricityConsumptionKWh * usageRate).toFixed(2);
+
+    // Calculate the total supply charge cost
+    const totalSupplyChargeCostAUD = (dailySupplyCharge * daysInMonth).toFixed(2);
+
+    // Calculate the final estimated monthly bill
+    const estimatedMonthlyBillAUD = (parseFloat(totalElectricityCostAUD) + parseFloat(totalSupplyChargeCostAUD)).toFixed(2);
+
+    // Display the final estimated monthly bill
+    console.log(`Total Electricity Consumption: ${totalElectricityConsumptionKWh.toFixed(2)} kWh`);
+    console.log(`Total Electricity Cost: ${totalElectricityCostAUD} AUD`);
+    console.log(`Total Supply Charge Cost: ${totalSupplyChargeCostAUD} AUD`);
+    console.log(`Estimated Monthly Bill: ${estimatedMonthlyBillAUD} AUD`);
 
     return (
         <div className="step4-container">
@@ -100,11 +151,11 @@ const Step4Container = ({ data }) => {
                 <div className="insight-section">
                     <div className="insight-bill insight">
                         <h3>Your Estimated Monthly Bill</h3>
-                        <p className="insight-value">{estimatedMonthlyBill} AUD</p>
+                        <p className="insight-value">{estimatedMonthlyBillAUD} AUD</p>
                     </div>
                     <div className="insight-benchmark insight">
                         <h3>Your Estimated Benchmark</h3>
-                        <p className="insight-value">{benchmark} kWh</p>
+                        <p className="insight-value">{monthlyBenchmark} kWh</p>
                     </div>
                 </div>
                 <div className="treemap-section">
@@ -114,8 +165,8 @@ const Step4Container = ({ data }) => {
             </div>
             <div className="map-section">
                 <ChoroplethMap
-                    longitude={userInformation[0]?.longitude}
-                    latitude={userInformation[0]?.latitude}
+                    longitude={userLocation?.longitude}
+                    latitude={userLocation?.latitude}
                 />
             </div>
         </div>

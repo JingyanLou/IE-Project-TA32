@@ -6,13 +6,17 @@ import Step3Container from '../components/Step3Container';
 import Step4Container from '../components/Step4Container';
 
 const Upload = () => {
+
     const [currentStep, setCurrentStep] = useState(1);
+
     const [data, setData] = useState({
         'Appliances-list': [],
         'User information': [],
     });
 
+
     const [applianceData, setApplianceData] = useState([]);
+
     const [formInput, setFormInput] = useState({
         applianceType: '', // Default to empty string
         dailyHours: 10,
@@ -23,6 +27,7 @@ const Upload = () => {
     });
 
     const [energyProviders, setEnergyProviders] = useState([]);
+
     const [benchmarkData, setBenchmarkData] = useState([]);
 
     // Fetch appliance data from the backend
@@ -60,7 +65,6 @@ const Upload = () => {
             setCurrentStep(currentStep + 1);
         }
     };
-
     const handlePrevStep = () => {
         if (currentStep > 1) {
             setCurrentStep(currentStep - 1);
@@ -80,7 +84,6 @@ const Upload = () => {
             return updatedFormInput;
         });
     };
-
 
     const handleAddAppliance = () => {
         const newAppliance = [
@@ -138,7 +141,6 @@ const Upload = () => {
 
         handleNextStep(); // Proceed to the next step only after setting data
     };
-
 
 
     return (
