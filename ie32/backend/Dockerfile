@@ -16,6 +16,9 @@ COPY . .
 # Clean up npm cache to reduce image size.
 RUN npm cache clean --force
 
+# Set NODE_ENV to production
+ENV NODE_ENV=production
+
 # Expose the port the app runs on.
 EXPOSE 5000
 
