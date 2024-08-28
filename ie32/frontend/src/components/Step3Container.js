@@ -5,7 +5,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import './step3container.css';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoianlvdGk2Nzk3IiwiYSI6ImNtMGF5bjNoNDAycGsybm9vbjVkbWN2NmcifQ.NCGxbDcL13CXjZwhDwaK4g';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyProviders, benchmarkData }) => {
     const geocoderContainerRef = useRef(null);

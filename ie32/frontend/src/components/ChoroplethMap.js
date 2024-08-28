@@ -8,7 +8,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
     const [hoverInfo, setHoverInfo] = useState(null);
 
     useEffect(() => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoianlvdGk2Nzk3IiwiYSI6ImNsemRzZWxydDBwczgyanBxMW10cmgxOXcifQ.-U4-1sM_x984t1UzkmlgaA';
+        mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_CHOROPLETH_ACCESS_TOKEN;
 
         if (!mapRef.current) {
             const map = new mapboxgl.Map({
