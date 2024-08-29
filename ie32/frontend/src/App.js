@@ -12,8 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} /> {/* Route for homepage */}
           <Route path="/upload" element={<Upload />} /> {/* Route for upload page */}
-          <Route path="/placeholder1" element={<div>Placeholder Page 1</div>} /> {/* Placeholder route */}
-          <Route path="/placeholder2" element={<div>Placeholder Page 2</div>} /> {/* Placeholder route */}
+
         </Routes>
       </div>
     </Router>

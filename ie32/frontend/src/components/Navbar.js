@@ -13,8 +13,7 @@ const Navbar = () => {
                 <li><Link to="/">Home</Link></li>
 
                 {/* Placeholder links with no actual navigation */}
-                <li><a href="#" onClick={(e) => e.preventDefault()}>Placeholder 1</a></li>
-                <li><a href="#" onClick={(e) => e.preventDefault()}>Placeholder 2</a></li>
+
             </ul>
         </nav>
     );
