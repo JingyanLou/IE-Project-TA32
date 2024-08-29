@@ -41,7 +41,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
             return () => {
                 if (geocoderContainerRef.current) {
                     console.log('Clearing Mapbox Geocoder');
-                    geocoder.clear();
+                    //geocoder.clear();
                 }
             };
         }
