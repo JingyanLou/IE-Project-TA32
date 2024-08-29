@@ -154,11 +154,47 @@ const Step4Container = ({ data }) => {
                     <div className="insight-bill insight">
                         <h3>Your Estimated Monthly Bill</h3>
                         <p className="insight-value">{estimatedMonthlyBillAUD} AUD</p>
+                        {/* Tooltip */}
+                        <div class="tooltip">
+                            <div class="tooltip-title">Estimation Specification</div>
+                            <p>
+                                <strong>Electricity Usage</strong>
+                                <span class="tooltip-value">${totalElectricityConsumptionKWh.toFixed(2)} kWh</span>
+                            </p>
+                            <p>
+                                <strong>Your Provider Rate</strong>
+                                <span class="tooltip-value">${usageRate.toFixed(2)} AUD/kWh</span>
+                            </p>
+                            <p>
+                                <strong>Total Energy Cost</strong>
+                                <span class="tooltip-value">${totalElectricityCostAUD} AUD</span>
+                            </p>
+                            <p>
+                                <strong>Total Supply Charge</strong>
+                                <span class="tooltip-value">${totalSupplyChargeCostAUD} AUD</span>
+                            </p>
+                        </div>
+
+
                     </div>
                     <div className="insight-benchmark insight">
                         <h3>Your Estimated Benchmark</h3>
                         <p className="insight-value">{monthlyBenchmark} kWh</p>
+                        <div className="tooltip-benchmark">
+                            <div className="tooltip-title">Benchmark Specification</div>
+                            <p>
+                                <strong>Season:</strong>
+                                <span className="tooltip-value">Winter</span>
+                            </p>
+                            <p>
+                                <strong>Household Size:</strong>
+                                <span className="tooltip-value">{household}</span>
+                            </p>
+                        </div>
+
+
                     </div>
+
                 </div>
                 <div className="treemap-section">
                     <h3>Your Home Appliance Consumption Ranking</h3>
@@ -172,6 +208,7 @@ const Step4Container = ({ data }) => {
                 />
             </div>
         </div>
+
     );
 };
 

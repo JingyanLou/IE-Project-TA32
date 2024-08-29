@@ -178,10 +178,10 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                         left: `${hoverInfo.coordinates.x + 10}px`, // Offset to avoid covering the pointer
                         top: `${hoverInfo.coordinates.y + 5}px`,
                         opacity: 1 // Ensure tooltip is fully visible
-                    }}
+                    }} // total energy is yearly need to divide by 12
                 >
-                    Total Block consumption <br />
-                    <strong>{hoverInfo.totalEnergy} Kwh</strong>
+                    Total Monthly Block Energy Consumption <br />
+                    <strong>{(hoverInfo.totalEnergy / 12).toFixed(2)} Kwh</strong>
                 </div>
             )}
         </div>
