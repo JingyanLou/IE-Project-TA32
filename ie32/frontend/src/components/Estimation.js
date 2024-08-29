@@ -44,12 +44,12 @@ const Estimation = () => {
                     <h1>Analyse Your Home's Energy Consumption</h1>
                     <div className="stats">
                         <div className="stat-item">
-                            <h2>Average Home Consumption</h2>
-                            <p>3000Kwh/M</p>
+                            <h2>Average Electricity Bill</h2>
+                            <p>$1290/Year</p>
                         </div>
                         <div className="stat-item">
-                            <h2>Average Bill Cost</h2>
-                            <p>$542.27/M</p>
+                            <h2>Average Energy Usage</h2>
+                            <p>18.71kWh/Day</p>
                         </div>
                     </div>
                     <p className="description">Upload details about your appliances to identify which ones drive up your energy bill. Recieve a personalised estimate for your household, compare your usage with benchmarks, and see how it measures up against neighbouring homes..</p>

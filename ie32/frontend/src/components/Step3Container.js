@@ -40,7 +40,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
 
             return () => {
                 if (geocoderContainerRef.current) {
-                    console.log('Clearing Mapbox Geocoder');
+                    //console.log('Clearing Mapbox Geocoder');
                     //geocoder.clear();
                 }
             };
@@ -184,7 +184,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
                 </div>
 
                 <div className="form-group-step3">
-                    <label className="form-label-step3">Household Size</label>
+                    <label className="form-label-step3">Number of People</label>
                     <select
                         name="household"
                         value={formInput.household}
