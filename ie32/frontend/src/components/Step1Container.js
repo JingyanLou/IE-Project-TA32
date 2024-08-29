@@ -10,6 +10,30 @@ const Step1Container = ({
     handleAddAppliance,
     handleDeleteAppliance
 }) => {
+
+    const handleNumericInput = (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    };
+
+    const handleDailyHoursInput = (e) => {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        if (value !== '') {
+            value = Math.max(1, Math.min(24, parseInt(value)));
+        }
+        e.target.value = value;
+        handleInputChange(e);
+    };
+
+    const handleQuantityInput = (e) => {
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        if (value !== '') {
+            value = Math.max(1, Math.min(10, parseInt(value)));
+        }
+        e.target.value = value;
+        handleInputChange(e);
+    };
+
+
     return (
         <div className="step1-container">
             <h2 className="form-title">Manually fill-in</h2>
@@ -35,6 +59,7 @@ const Step1Container = ({
                         name="dailyHours"
                         value={formInput.dailyHours}
                         onChange={handleInputChange}
+                        onInput={handleDailyHoursInput}
                         min="1"
                         max="24"
                     />
@@ -46,6 +71,7 @@ const Step1Container = ({
                         name="quantity"
                         value={formInput.quantity}
                         onChange={handleInputChange}
+                        onInput={handleQuantityInput}
                         min="1"
                         max="10"
                     />
