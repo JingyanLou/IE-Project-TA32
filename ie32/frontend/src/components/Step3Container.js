@@ -62,40 +62,63 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
     };
 
     const handleEnergyProviderChange = (e) => {
-        const selectedPlan = energyProviders.find(
-            provider => provider.Plan === e.target.value
-        );
+        const selectedValue = e.target.value;
 
-        console.log('Energy Provider selected:', e.target.value);
-        console.log('Selected Plan details:', selectedPlan);
+        console.log('Energy Provider selected:', selectedValue);
 
-        // Update energyProvider, usageRate, and supplyCharge
-        handleInputChange({
-            target: {
-                name: 'energyProvider',
-                value: selectedPlan?.Plan || ''
-            }
-        });
+        // Update energyProvider, usageRate, and supplyCharge based on selection
+        if (selectedValue === 'Not selected') {
+            handleInputChange({
+                target: {
+                    name: 'energyProvider',
+                    value: 'Not selected'
+                }
+            });
 
-        handleInputChange({
-            target: {
-                name: 'usageRate',
-                value: selectedPlan?.UsageRate || 0
-            }
-        });
+            handleInputChange({
+                target: {
+                    name: 'usageRate',
+                    value: 0
+                }
+            });
 
-        handleInputChange({
-            target: {
-                name: 'supplyCharge',
-                value: selectedPlan?.SupplyCharge || 0
-            }
-        });
+            handleInputChange({
+                target: {
+                    name: 'supplyCharge',
+                    value: 0
+                }
+            });
+        } else {
+            const selectedPlan = energyProviders.find(provider => provider.Plan === selectedValue);
+
+            handleInputChange({
+                target: {
+                    name: 'energyProvider',
+                    value: selectedPlan?.Plan || ''
+                }
+            });
+
+            handleInputChange({
+                target: {
+                    name: 'usageRate',
+                    value: selectedPlan?.UsageRate || 0
+                }
+            });
+
+            handleInputChange({
+                target: {
+                    name: 'supplyCharge',
+                    value: selectedPlan?.SupplyCharge || 0
+                }
+            });
+        }
 
         // Log the form input state after changes
         setTimeout(() => {
-            console.log('Updated formInput state after energy provider change:', { ...formInput, energyProvider: selectedPlan?.Plan });
+            console.log('Updated formInput state after energy provider change:', { ...formInput, energyProvider: selectedValue });
         }, 0);
     };
+
 
     const handleHouseholdChange = (e) => {
         const householdSize = e.target.value;
@@ -142,6 +165,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
                     <label className="form-label-step3">User Location</label>
                     <div ref={geocoderContainerRef} className="form-input-step3 location-input"></div>
                 </div>
+
                 <div className="form-group-step3">
                     <label className="form-label-step3">Energy Provider</label>
                     <select
@@ -150,6 +174,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
                         onChange={handleEnergyProviderChange}
                         className="form-input-step3"
                     >
+                        <option value="Not selected">Not selected</option>
                         {energyProviders.map((provider, index) => (
                             <option key={index} value={provider.Plan}>
                                 {provider.Provider} - {provider.Plan}
@@ -157,6 +182,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
                         ))}
                     </select>
                 </div>
+
                 <div className="form-group-step3">
                     <label className="form-label-step3">Household Size</label>
                     <select
@@ -165,6 +191,7 @@ const Step3Container = ({ formInput, handleInputChange, handleNextStep, energyPr
                         onChange={handleHouseholdChange}
                         className="form-input-step3"
                     >
+                        <option value="Not selected">Not selected</option>
                         {['1', '2', '3', '4', '5+'].map((size, index) => (
                             <option key={index} value={size}>
                                 {size}

@@ -75,8 +75,18 @@ const Upload = () => {
         if (currentStep === 3) {
             const { userLocation, energyProvider, household } = formInput;
 
-            if (!userLocation || !energyProvider || !household) {
-                alert("Please fill in all the required fields: address, energy provider, and household number.");
+            if (!userLocation) {
+                alert("Please enter your location.");
+                return;
+            }
+
+            if (!energyProvider || energyProvider === 'Not selected') { //! to check if undefined, "" to check if empty, "Not selected" to check if not selected
+                alert("Please select an energy provider.");
+                return;
+            }
+
+            if (!household || household === 'Not selected') {
+                alert("Please select your household size.");
                 return;
             }
         }
@@ -85,6 +95,7 @@ const Upload = () => {
             setCurrentStep(currentStep + 1);
         }
     };
+
 
     const handlePrevStep = () => {
         if (currentStep > 1) {
@@ -160,7 +171,7 @@ const Upload = () => {
             ...prevData,
             'User information': [
                 formInput.userLocation,
-                formInput.energyProvider || 'Not provided',
+                formInput.energyProvider || 'Not provided', //if empty or not selected, default to 'Not provided'
                 formInput.household || 'Not provided',
                 formInput.usageRate || 'Not provided',
                 formInput.supplyCharge,
