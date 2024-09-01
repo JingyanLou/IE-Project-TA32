@@ -24,7 +24,7 @@
 }
 
 .appliances-section {
-    margin-top: 80px;
+    margin-top: 100px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -33,17 +33,23 @@
     /* Prevent wrapping to keep elements in the same row */
 }
 
+/* Bar Chart Section */
 .barchart-section {
     width: 58%;
-    /* Set a specific height for the bar chart section */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+    /* Add some padding to align with the suggestions */
 }
 
-/* Suggestion Section Styling */
+/* Suggestion Section */
 .suggestion-section {
     width: 40%;
     margin-left: 25px;
-    padding-top: 20px;
-    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .suggestion-list {

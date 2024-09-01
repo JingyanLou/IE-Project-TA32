@@ -31,14 +31,14 @@ const mockData = [
 const ApplianceBarChart = () => {
     return (
         <div className="barchart-container">
-            <h2 className="barchart-title">Your home appliance consumption ranking</h2>
+
             <div className="barchart">
                 {mockData.map((item, index) => (
                     <div key={index} className="barchart-item">
                         <div className={`barchart-bar ${item.name === 'Fridge' ? 'highlight' : ''}`}
                             style={{ height: `${item.value * 2}px` }}>
                         </div>
-                        <div className="barchart-label">{item.name}</div>
+                        <div className="barchart-label">{item.name.substring(0, 6)}</div>
                     </div>
                 ))}
             </div>

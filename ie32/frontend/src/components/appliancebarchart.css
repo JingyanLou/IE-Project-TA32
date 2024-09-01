@@ -12,7 +12,6 @@
     font-size: 1.2rem;
     margin-bottom: 5px;
     text-align: left;
-
 }
 
 /* Style the scrollbar */
@@ -37,24 +36,27 @@
     /* Padding around the scrollbar thumb */
 }
 
-
 .barchart {
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
-
-
+    justify-content: space-between;
+    height: 100%;
+    /* Ensure it takes the full height of the container */
 }
 
 .barchart-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 9px;
+    width: 50px;
+    /* Fixed width for each bar chart item */
+    margin: 0 5px;
+    /* Margin between each bar chart item */
 }
 
 .barchart-bar {
     width: 30px;
+    /* Fixed width for the bar */
     background-color: grey;
     border-radius: 25px;
     transition: all 0.3s ease;
@@ -68,8 +70,11 @@
 
 .barchart-label {
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 0.5rem;
     color: white;
     text-align: center;
     max-width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

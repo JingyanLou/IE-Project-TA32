@@ -238,11 +238,12 @@ const Step4Container = ({ data }) => {
 
             <div className="appliances-section">
                 <div className="barchart-section">
+                    <h3>Energy-efficient appliance suggestions for your selection.</h3>
                     <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
                 </div>
 
                 <div className="suggestion-section">
-                    <h3>Energy-efficient appliance suggestions for your selection.</h3>
+                    <h3>Energy-efficient appliance suggestions.</h3>
                     <ul className="suggestion-list">
                         {applianceSuggestions.map((item, index) => (
                             <li key={index} className="suggestion-item">
