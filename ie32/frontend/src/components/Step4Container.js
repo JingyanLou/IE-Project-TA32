@@ -263,15 +263,32 @@ const Step4Container = ({ data }) => {
                 </div>
             </div>
 
-            <div className="appliances-section">
-                <div className="barchart-section">
-                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
-                </div>
-
-                <div className="suggestion-section">
-                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+            <div className="explore-more-section">
+                <div className="explore-more-card">
+                    <div className="explore-more-image-container">
+                        <img src="/images/exploremore.jpg" alt="Explore More" className="explore-more-image" />
+                        <div className="explore-more-image-text">
+                            Explore more on<br />Energy Saving
+                        </div>
+                    </div>
+                    <div className="explore-more-info">
+                        <h2 className="explore-more-title">Explore more on Energy Saving Tips..</h2>
+                        <p className="explore-more-description">
+                            Our website also offers comprehensive energy-saving tips to help you seamlessly integrate energy efficiency into your daily routine. Whether it's adjusting your home appliances, optimizing your energy usage, or adopting sustainable practices, we've got you covered with practical advice that makes saving energy simple and effective.
+                        </p>
+                        <button className="explore-more-button">Learn More</button>
+                    </div>
                 </div>
             </div>
+
+
+            <div className="black-box-section">
+                {/* Any content you'd like to add inside the black box */}
+            </div>
+
+
+
+
 
         </div>
     );
