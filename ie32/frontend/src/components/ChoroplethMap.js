@@ -101,7 +101,7 @@ const ChoroplethMap = ({ longitude, latitude }) => {
                 // Fly to the user's location and adjust the view to show 3D buildings
                 map.flyTo({
                     center: [longitude, latitude],
-                    zoom: 17.5, // Zoom in close to the point
+                    zoom: 15.9, // Zoom in close to the point
                     pitch: 30, // Tilt the map to show 3D buildings
                     bearing: -170, // Adjust the bearing to orient the view
                     speed: 1.2, // Fly speed (default is 1.2, higher is faster)

@@ -9,6 +9,8 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    overflow-y: auto;
+    /* Allow the page to scroll when content overflows */
 }
 
 /* Background images styling */

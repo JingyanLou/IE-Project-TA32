@@ -12,7 +12,20 @@ const mockData = [
     { name: 'Oven', value: 40 },
     { name: 'Dishwasher', value: 22 },
     { name: 'Label', value: 35 },
-    { name: 'Label', value: 12 }
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+    { name: 'Label', value: 35 },
+    { name: 'Label', value: 12 },
+
 ];
 
 const ApplianceBarChart = () => {

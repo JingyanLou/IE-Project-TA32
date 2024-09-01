@@ -1,19 +1,43 @@
 .barchart-container {
     background-color: black;
-    padding: 20px;
+
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+
     color: white;
     overflow-x: auto;
 }
 
 .barchart-title {
-    color: lightgrey;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
+    color: grey;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-align: left;
+
 }
+
+/* Style the scrollbar */
+.barchart-container::-webkit-scrollbar {
+    height: 5px;
+    /* Height of the scrollbar */
+}
+
+.barchart-container::-webkit-scrollbar-track {
+    background: #000000;
+    /* Background color of the scrollbar track */
+    border-radius: 10px;
+    /* Rounded corners for the scrollbar track */
+}
+
+.barchart-container::-webkit-scrollbar-thumb {
+    background-color: #323232;
+    /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    /* Rounded corners for the scrollbar thumb */
+    border: 3px solid #333;
+    /* Padding around the scrollbar thumb */
+}
+
 
 .barchart {
     display: flex;
@@ -26,18 +50,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 9px;
 }
 
 .barchart-bar {
-    width: 50px;
+    width: 30px;
     background-color: grey;
     border-radius: 25px;
     transition: all 0.3s ease;
-}
-
-.barchart-bar.highlight {
-    background: linear-gradient(180deg, rgba(183, 28, 255, 1) 0%, rgba(103, 58, 183, 1) 100%);
 }
 
 .barchart-bar:hover {
