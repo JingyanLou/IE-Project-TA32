@@ -360,12 +360,14 @@
     /* Center the tooltip */
 }
 
-/* Explore More Section Styling */
 .explore-more-section {
-    width: 100%;
+    width: 75%;
+    /* Set the width to 75% */
     display: flex;
     justify-content: center;
-    margin-top: 140px;
+    /* Center content horizontally within the section */
+    margin: 140px auto 0 auto;
+    /* Center the section itself */
 }
 
 .explore-more-card {
