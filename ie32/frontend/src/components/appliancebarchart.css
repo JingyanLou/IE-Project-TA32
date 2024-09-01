@@ -1,11 +1,10 @@
 .barchart-container {
     background-color: black;
-
     width: 100%;
     max-width: 1200px;
-
     color: white;
     overflow-x: auto;
+    height: 100%;
 }
 
 .barchart-title {

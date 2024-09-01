@@ -224,8 +224,24 @@ const Step4Container = ({ data }) => {
                 </div>
             </div>
 
-            <div className="barchart-section">
-                <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+            <div className="appliances-section">
+                <div className="barchart-section">
+                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                </div>
+
+                <div className="suggestion-section">
+                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                </div>
+            </div>
+
+            <div className="appliances-section">
+                <div className="barchart-section">
+                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                </div>
+
+                <div className="suggestion-section">
+                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                </div>
             </div>
 
         </div>

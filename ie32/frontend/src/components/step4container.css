@@ -1,14 +1,14 @@
 /* Container for Step 4 */
 .step4-container {
     width: 80%;
-    padding-top: 500px;
+    margin-top: 500px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     text-align: left;
     color: white;
-    padding-left: 10px;
-    margin: 0 auto;
+    min-height: 100vh;
+    /* Ensure it takes the full viewport height at minimum */
     /* Center the container */
 
 }
@@ -19,14 +19,32 @@
     width: 100%;
     justify-content: space-between;
     /* Ensure items use the available space */
+    flex-wrap: nowrap;
+    /* Prevent wrapping to ensure left and right sections stay in the same row */
+}
+
+.appliances-section {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 75px;
+    flex-wrap: nowrap;
+    /* Prevent wrapping to keep elements in the same row */
 }
 
 .barchart-section {
-    margin-top: 80px;
-    width: 39%;
+    width: 58%;
+    /* Set a specific height for the bar chart section */
+}
+
+.suggestion-section {
+    width: 40%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding-right: 75px;
+    margin-left: 30px;
+
 }
 
 /* Left section containing insights and treemap */
