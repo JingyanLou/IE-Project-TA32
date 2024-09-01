@@ -1,0 +1,55 @@
+.barchart-container {
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+    overflow-x: auto;
+}
+
+.barchart-title {
+    color: lightgrey;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.barchart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.barchart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.barchart-bar {
+    width: 50px;
+    background-color: grey;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.barchart-bar.highlight {
+    background: linear-gradient(180deg, rgba(183, 28, 255, 1) 0%, rgba(103, 58, 183, 1) 100%);
+}
+
+.barchart-bar:hover {
+    background-image: url('../../public/images/treemapitem.jpg');
+    background-size: cover;
+    cursor: pointer;
+}
+
+.barchart-label {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    max-width: 70px;
+}
