@@ -165,6 +165,18 @@ const Step4Container = ({ data }) => {
     console.log(`Total Supply Charge Cost: ${totalSupplyChargeCostAUD} AUD`);
     console.log(`Estimated Monthly Bill: ${estimatedMonthlyBillAUD} AUD`);
 
+    // Mock data for the appliance suggestions
+    const applianceSuggestions = [
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
+
+    ];
+
 
     return (
         <div className="step4-container">
@@ -230,7 +242,23 @@ const Step4Container = ({ data }) => {
                 </div>
 
                 <div className="suggestion-section">
-                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                    <h3>Energy-efficient appliance suggestions for your selection.</h3>
+                    <ul className="suggestion-list">
+                        {applianceSuggestions.map((item, index) => (
+                            <li key={index} className="suggestion-item">
+                                <div>
+                                    <strong>{item.brand}</strong>
+                                    <br />
+                                    {item.model}
+                                    <br />
+                                    Output range: {item.output}
+                                    <br />
+                                    EER: {item.eer}
+                                </div>
+                                <button className="buy-now">Buy now <span role="img" aria-label="buy now">🔗</span></button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
 
