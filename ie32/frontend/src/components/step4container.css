@@ -7,6 +7,8 @@
     text-align: left;
     color: white;
     padding-left: 10px;
+    margin: 0 auto;
+    /* Center the container */
 }
 
 /* Left section containing insights and treemap */
@@ -43,10 +45,26 @@
 }
 
 /* Treemap section styling */
+/* Treemap section styling */
 .treemap-section {
     width: 100%;
+    height: auto;
+    max-width: 600px;
+    /* Add max-width to prevent the section from growing too large */
     border-radius: 10px;
+    overflow: hidden;
+    /* Ensure any overflow is hidden */
 }
+
+.treemap-section svg {
+    width: 100%;
+    height: auto;
+    /* Set the SVG to scale with its container */
+    display: block;
+    max-width: 100%;
+    /* Ensure the SVG does not overflow its container */
+}
+
 
 .treemap-section h3 {
     color: grey;

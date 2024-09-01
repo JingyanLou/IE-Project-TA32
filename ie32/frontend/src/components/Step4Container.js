@@ -10,6 +10,20 @@ const Step4Container = ({ data }) => {
     const userInformation = data['User information'] || []; // Ensure userInformation is defined
 
     useEffect(() => {
+
+        createTreemap();
+
+        const handleResize = () => {
+            createTreemap(); // Recreate the treemap on resize
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
         // Log the user information when the component mounts
         console.log('Received User Information:', userInformation);
         console.log('Received Appliances List:', appliances);
@@ -21,8 +35,8 @@ const Step4Container = ({ data }) => {
     }, [appliances, userInformation]);
 
     const createTreemap = () => {
-        const width = 600;
-        const height = 300;
+        const containerWidth = treemapRef.current.clientWidth;
+        const containerHeight = containerWidth / 2; // Maintain the aspect ratio (2:1)
 
         const data = {
             name: 'root',
@@ -37,14 +51,14 @@ const Step4Container = ({ data }) => {
             .sort((a, b) => b.value - a.value);
 
         const treemapLayout = d3.treemap()
-            .size([width, height])
+            .size([containerWidth, containerHeight]) // Update size based on container width
             .padding(2);
 
         treemapLayout(root);
 
         const svg = d3.select(treemapRef.current)
-            .attr('width', width)
-            .attr('height', height);
+            .attr('width', containerWidth)
+            .attr('height', containerHeight);
 
         svg.selectAll('g').remove();
 
@@ -56,8 +70,8 @@ const Step4Container = ({ data }) => {
             .attr('height', 1)
             .append('image')
             .attr('xlink:href', '/images/treemapitem.jpg')
-            .attr('width', 600)
-            .attr('height', 300)
+            .attr('width', containerWidth)
+            .attr('height', containerHeight)
             .attr('preserveAspectRatio', 'none');
 
         const nodes = svg
@@ -85,6 +99,10 @@ const Step4Container = ({ data }) => {
             .attr('fill', 'white')
             .text(d => d.data.name);
     };
+
+
+
+
 
     // Extract user information
     // Extract user information
