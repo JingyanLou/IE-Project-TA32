@@ -37,28 +37,35 @@ const Step4Container = ({ data }) => {
         }
     }, [appliances, userInformation]);
 
+
     const createTreemap = () => {
         const containerWidth = treemapRef.current.clientWidth;
         const containerHeight = containerWidth / 2; // Maintain the aspect ratio (2:1)
 
+        // Calculate the total consumption across all appliances
         let totalConsumption = appliances.reduce((total, appliance) => {
-            return total + (appliance[1] * appliance[2]);
+            return total + (appliance[1] * appliance[2] * appliance[3]);
         }, 0);
 
         const data = {
             name: 'root',
-            children: appliances.map(appliance => ({
-                name: appliance[0],  // Appliance type
-                value: appliance[2] * appliance[3], // Quantity * Daily Hours
-                details: {
-                    consumption: `${appliance[1] * appliance[2]} kWh`,
-                    consumptionPerHour: `${appliance[3]} kWh`,
-                    quantity: `${appliance[1]}`,
-                    percentage: `${((appliance[1] * appliance[2]) / totalConsumption * 100).toFixed(2)}%`,
-                    dailyHours: `${appliance[2]} hours`,// Added daily hours metric
-                    totalConsumption: `${appliance[2] * appliance[3] * appliance[1]} kWh` // Added total consumption metric
-                }
-            }))
+            children: appliances.map(appliance => {
+                // Calculate each appliance's total consumption
+                const applianceConsumption = appliance[1] * appliance[2] * appliance[3];
+
+                return {
+                    name: appliance[0],  // Appliance type
+                    value: applianceConsumption, // Use actual consumption as the value
+                    details: {
+                        consumption: `${appliance[1] * appliance[2]} kWh`,
+                        consumptionPerHour: `${appliance[3]} kWh`,
+                        quantity: `${appliance[1]}`,
+                        percentage: `${((applianceConsumption / totalConsumption) * 100).toFixed(2)}%`,
+                        dailyHours: `${appliance[2]} hours`, // Added daily hours metric
+                        totalConsumption: `${applianceConsumption.toFixed(2)} kWh` // Total consumption metric
+                    }
+                };
+            })
         };
 
         const root = d3.hierarchy(data)
@@ -67,7 +74,7 @@ const Step4Container = ({ data }) => {
 
         const treemapLayout = d3.treemap()
             .size([containerWidth, containerHeight])
-            .padding(2);
+            .padding(3);
 
         treemapLayout(root);
 
@@ -151,10 +158,11 @@ const Step4Container = ({ data }) => {
             .attr('font-size', '12px')
             .attr('fill', 'white')
             .html(d => {
-                const percentage = ((d.data.value / totalConsumption) * 100).toFixed(2);
                 return `${d.data.name}<tspan x="5" dy="1.2em">${d.data.details.percentage}</tspan>`;
             });
     };
+
+
 
 
 
