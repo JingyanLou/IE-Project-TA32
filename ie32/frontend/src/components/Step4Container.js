@@ -75,7 +75,9 @@ const Step4Container = ({ data }) => {
             .attr('width', containerWidth)
             .attr('height', containerHeight);
 
+        // Remove old nodes and tooltips
         svg.selectAll('g').remove();
+        d3.select('body').selectAll('.treemap-tooltip').remove();
 
         const defs = svg.append('defs');
         defs.append('pattern')
@@ -89,10 +91,14 @@ const Step4Container = ({ data }) => {
             .attr('height', containerHeight)
             .attr('preserveAspectRatio', 'none');
 
-
-        const tooltip = d3.select('body').append('div')
+        // Create tooltip inside the SVG to ensure it's contained within the component
+        const tooltip = d3.select(treemapRef.current.parentNode).append('div')
             .attr('class', 'treemap-tooltip')
-            .style('opacity', 0);
+            .style('opacity', 0)
+            .style('position', 'absolute')
+            .style('pointer-events', 'none')
+            .style('z-index', 1000)
+            .style('overflow', 'hidden');
 
         const nodes = svg
             .selectAll('g')
@@ -103,23 +109,29 @@ const Step4Container = ({ data }) => {
             .attr('class', 'treemap-node')
             .on('mouseover', function (event, d) {
                 tooltip.transition()
-                    .duration(0)
+                    .duration(200)
                     .style('opacity', 1);
                 tooltip.html(`
                     <div class="tooltip-title">Appliance Detail</div>
-                    <p><strong>Appliance name</strong> ${d.data.name}</p>  <!-- Corrected to show the appliance name -->
-                    <p><strong>Daily Usage</strong> ${d.data.details.dailyHours}</p>  <!-- Added daily usage metric -->
+                    <p><strong>Appliance name</strong> ${d.data.name}</p>
+                    <p><strong>Daily Usage</strong> ${d.data.details.dailyHours}</p>
                     <p><strong>Consumption per Hour</strong> ${d.data.details.consumptionPerHour}</p>
-                    <p><strong>Total Consumption</strong> ${d.data.details.totalConsumption}</p>  <!-- Added consumption metric -->
+                    <p><strong>Total Consumption</strong> ${d.data.details.totalConsumption}</p>
                     <p><strong>Quantity</strong> ${d.data.details.quantity}</p>
                     <p><strong>Percentage</strong> ${d.data.details.percentage}</p>
-                `)
-                    .style('left', (event.pageX + 5) + 'px')
-                    .style('top', (event.pageY - 28) + 'px');
+                `);
+            })
+            .on('mousemove', function (event) {
+                const [tooltipWidth, tooltipHeight] = [tooltip.node().offsetWidth, tooltip.node().offsetHeight];
+                const [pageX, pageY] = [event.pageX, event.pageY];
+
+                tooltip
+                    .style('left', `${Math.min(pageX + 10, window.innerWidth - tooltipWidth - 10)}px`)
+                    .style('top', `${Math.min(pageY + 10, window.innerHeight - tooltipHeight - 10)}px`);
             })
             .on('mouseout', function () {
                 tooltip.transition()
-                    .duration(0)
+                    .duration(200)
                     .style('opacity', 0);
             });
 
@@ -140,11 +152,9 @@ const Step4Container = ({ data }) => {
             .attr('fill', 'white')
             .html(d => {
                 const percentage = ((d.data.value / totalConsumption) * 100).toFixed(2);
-                return `${d.data.name}<tspan x="5" dy="1.2em">${percentage}%</tspan>`;
+                return `${d.data.name}<tspan x="5" dy="1.2em">${d.data.details.percentage}</tspan>`;
             });
     };
-
-
 
 
 

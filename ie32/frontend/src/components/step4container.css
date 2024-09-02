@@ -463,7 +463,6 @@
     /* Prevent it from shrinking */
 }
 
-
 .treemap-tooltip {
     position: absolute;
     text-align: left;
@@ -478,8 +477,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     line-height: 1.4;
     opacity: 0;
-    /* Start tooltip invisible */
     transition: opacity 0.3s ease-in-out;
+    overflow: hidden;
+    z-index: 1000;
 }
 
 .treemap-tooltip .tooltip-title {
