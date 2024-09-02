@@ -462,3 +462,40 @@
     flex-shrink: 0;
     /* Prevent it from shrinking */
 }
+
+
+.treemap-tooltip {
+    position: absolute;
+    text-align: left;
+    width: 250px;
+    padding: 10px;
+    font-size: 14px;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    pointer-events: none;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+    opacity: 0;
+    /* Start tooltip invisible */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.treemap-tooltip .tooltip-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.treemap-tooltip p {
+    margin: 4px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.treemap-tooltip strong {
+    color: grey;
+    font-weight: bold;
+}

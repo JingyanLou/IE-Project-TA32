@@ -10,6 +10,11 @@ const Step4Container = ({ data }) => {
     const appliances = data['Appliances-list'] || []; // Ensure appliances is an array
     const userInformation = data['User information'] || []; // Ensure userInformation is defined
 
+    // Log the user information when the component mounts
+    console.log('Received User Information:', userInformation);
+    console.log('Received Appliances List:', appliances);
+    console.log(data);
+
     useEffect(() => {
 
         createTreemap();
@@ -25,10 +30,7 @@ const Step4Container = ({ data }) => {
             window.removeEventListener('resize', handleResize);
         };
 
-        // Log the user information when the component mounts
-        console.log('Received User Information:', userInformation);
-        console.log('Received Appliances List:', appliances);
-        console.log(data);
+
 
         if (appliances.length > 0) {
             createTreemap();
@@ -39,11 +41,23 @@ const Step4Container = ({ data }) => {
         const containerWidth = treemapRef.current.clientWidth;
         const containerHeight = containerWidth / 2; // Maintain the aspect ratio (2:1)
 
+        let totalConsumption = appliances.reduce((total, appliance) => {
+            return total + (appliance[1] * appliance[2]);
+        }, 0);
+
         const data = {
             name: 'root',
             children: appliances.map(appliance => ({
                 name: appliance[0],  // Appliance type
-                value: appliance[1] * appliance[2], // Quantity * Daily Hours
+                value: appliance[2] * appliance[3], // Quantity * Daily Hours
+                details: {
+                    consumption: `${appliance[1] * appliance[2]} kWh`,
+                    consumptionPerHour: `${appliance[3]} kWh`,
+                    quantity: `${appliance[1]}`,
+                    percentage: `${((appliance[1] * appliance[2]) / totalConsumption * 100).toFixed(2)}%`,
+                    dailyHours: `${appliance[2]} hours`,// Added daily hours metric
+                    totalConsumption: `${appliance[2] * appliance[3] * appliance[1]} kWh` // Added total consumption metric
+                }
             }))
         };
 
@@ -52,7 +66,7 @@ const Step4Container = ({ data }) => {
             .sort((a, b) => b.value - a.value);
 
         const treemapLayout = d3.treemap()
-            .size([containerWidth, containerHeight]) // Update size based on container width
+            .size([containerWidth, containerHeight])
             .padding(2);
 
         treemapLayout(root);
@@ -75,13 +89,39 @@ const Step4Container = ({ data }) => {
             .attr('height', containerHeight)
             .attr('preserveAspectRatio', 'none');
 
+
+        const tooltip = d3.select('body').append('div')
+            .attr('class', 'treemap-tooltip')
+            .style('opacity', 0);
+
         const nodes = svg
             .selectAll('g')
             .data(root.leaves())
             .enter()
             .append('g')
             .attr('transform', d => `translate(${d.x0},${d.y0})`)
-            .attr('class', 'treemap-node');
+            .attr('class', 'treemap-node')
+            .on('mouseover', function (event, d) {
+                tooltip.transition()
+                    .duration(0)
+                    .style('opacity', 1);
+                tooltip.html(`
+                    <div class="tooltip-title">Appliance Detail</div>
+                    <p><strong>Appliance name</strong> ${d.data.name}</p>  <!-- Corrected to show the appliance name -->
+                    <p><strong>Daily Usage</strong> ${d.data.details.dailyHours}</p>  <!-- Added daily usage metric -->
+                    <p><strong>Consumption per Hour</strong> ${d.data.details.consumptionPerHour}</p>
+                    <p><strong>Total Consumption</strong> ${d.data.details.totalConsumption}</p>  <!-- Added consumption metric -->
+                    <p><strong>Quantity</strong> ${d.data.details.quantity}</p>
+                    <p><strong>Percentage</strong> ${d.data.details.percentage}</p>
+                `)
+                    .style('left', (event.pageX + 5) + 'px')
+                    .style('top', (event.pageY - 28) + 'px');
+            })
+            .on('mouseout', function () {
+                tooltip.transition()
+                    .duration(0)
+                    .style('opacity', 0);
+            });
 
         nodes
             .append('rect')
@@ -98,7 +138,10 @@ const Step4Container = ({ data }) => {
             .attr('y', 20)
             .attr('font-size', '12px')
             .attr('fill', 'white')
-            .text(d => d.data.name);
+            .html(d => {
+                const percentage = ((d.data.value / totalConsumption) * 100).toFixed(2);
+                return `${d.data.name}<tspan x="5" dy="1.2em">${percentage}%</tspan>`;
+            });
     };
 
 
