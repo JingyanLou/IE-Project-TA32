@@ -42,15 +42,15 @@ const SavingTips = () => {
             <div className="info-saving-tips">
                 <div className="content">
 
-                    <h1>Uncover Energy-Saving Secrets and Transform Your Home appliances </h1>
+                    <h1>Uncover Energy-Saving Secrets and Transform Your Home </h1>
                     <div className="stats">
                         <div className="stat-item">
-                            <h2>Cut annual energy costs</h2>
-                            <p>up to 30% Lower</p>
+                            <h2>Cut Annual Energy</h2>
+                            <p>30% Lower</p>
                         </div>
                         <div className="stat-item">
-                            <h2>Reduce Your Daily Energy Consumption</h2>
-                            <p>up tp 20% Lower</p>
+                            <h2>Reduce Consumption</h2>
+                            <p>20% Lower</p>
                         </div>
                     </div>
                     <p className="description">Using our interactive 3D storytelling, learn how small changes can make a big difference in your energy consumption. Our tips are designed to help you reduce energy usage, lower your bills, and contribute to a greener planet</p>
