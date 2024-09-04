@@ -14,7 +14,7 @@
     background-size: cover;
     background-position: center;
     width: 45%;
-    height: 80%;
+    height: 60%;
     z-index: 1;
     animation: rotate 40s linear infinite;
 }
