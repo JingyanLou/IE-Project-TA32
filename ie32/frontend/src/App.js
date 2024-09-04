@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';  // Import the Navbar component
 import Homepage from './pages/homepage';
 import Upload from './pages/uploadpage'; // Import the Upload component
-import RecommendationsPage from './pages/Recommendationspage'; // With lowercase 'p'
+import RecommendationsPage from './pages/RecommendationsPage'; // With lowercase 'p'
 
 // Import the new RecommendationsPage component
 
