@@ -1,0 +1,213 @@
+/* Title and Guide Description Styling */
+.header-container {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+    z-index: 2;
+    /* Ensure it stays above the background */
+    /* Move it to the top */
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Ensure it stays centered horizontally */
+
+}
+
+.page-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.page-description {
+    font-size: 1.2em;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Rest of the page CSS remains the same */
+
+/* Container for the entire page */
+.estimation-intro-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1;
+}
+
+/* Content container to hold the cards and buttons */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Grid to display the four cards */
+.card-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 140px;
+}
+
+/* Main Card Styling */
+.card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    transition: 0.4s;
+    perspective: 1000px;
+}
+
+/* Icon styling with white background */
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    /* Add white background */
+    border-radius: 50%;
+    /* Make the background circular */
+    filter: brightness(1.2) contrast(1.5);
+    /* Adjust brightness and contrast */
+}
+
+.face {
+    width: 300px;
+    height: 200px;
+    transition: 0.4s;
+    backface-visibility: hidden;
+}
+
+/* Face 1 Styling */
+.face1 {
+    position: relative;
+    background: #292828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+
+.card:hover .face1 {
+    transform: translateY(0);
+    box-shadow: inset 0 0 60px whitesmoke,
+        inset 20px 0 80px #f0f,
+        inset -20px 0 80px #0ff,
+        inset 20px 0 300px #f0f,
+        inset -20px 0 300px #0ff,
+        0 0 50px #fff,
+        -10px 0 80px #f0f,
+        10px 0 80px #0ff;
+}
+
+/* Face 1 content */
+.face1 .content {
+    opacity: 0.2;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.card:hover .face1 .content {
+    opacity: 1;
+}
+
+.face1 .content i {
+    font-size: 3em;
+    color: #fff;
+    display: inline-block;
+}
+
+.face1 .content h3 {
+    font-size: 1em;
+    color: #fff;
+    text-align: center;
+}
+
+/* Face 2 Styling */
+.face2 {
+    position: relative;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.card:hover .face2 {
+    transform: translateY(0);
+}
+
+.face2 .content p,
+.face2 .content a {
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.face2 .content a {
+    text-decoration: none;
+    color: #111;
+    box-sizing: border-box;
+    outline: 1px solid #333;
+    padding: 10px;
+    margin: 15px 0 0;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.face2 .content a:hover {
+    background: #333;
+    color: #fff;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effect for buttons */
+.button-container {
+    position: absolute;
+    margin-top: 700px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    background-color: rgba(192, 192, 192, 0.8);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.back-button {
+    background-color: rgba(192, 192, 192, 0.8);
+}
+
+.proceed-button {
+    background-color: rgba(128, 128, 128, 0.8);
+}
+
+button:active {
+    transform: scale(0.95);
+}

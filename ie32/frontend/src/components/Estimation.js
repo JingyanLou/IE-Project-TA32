@@ -33,7 +33,8 @@ const Estimation = () => {
     }, []);
 
     const handleStartClick = () => {
-        navigate('/upload'); // Use navigate to go to the upload page
+        //navigate('/upload'); // Use navigate to go to the upload page
+        navigate('/estimation-introduction'); // Use navigate to go to the estimation introduction page
     };
 
     return (

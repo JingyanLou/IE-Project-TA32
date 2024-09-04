@@ -41,12 +41,14 @@
 .text-section h1 {
     font-size: 36px;
     font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
 }
 
 .text-section p {
     font-size: 18px;
     margin-top: 10px;
     /* Ensure text wraps if it exceeds the width */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 
 }
 
@@ -64,9 +66,9 @@
 }
 
 .text-section.mid {
-    left: 50%;
+    left: 30%;
     transform: translateX(-50%);
-    top: 40%;
+    top: 14%;
     text-align: center;
     max-width: 500px;
     width: auto;
