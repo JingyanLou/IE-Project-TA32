@@ -7,7 +7,7 @@
     /* Ensure it stays above the background */
     /* Move it to the top */
     position: absolute;
-    top: 150px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     /* Ensure it stays centered horizontally */
