@@ -1,27 +1,29 @@
-// src/pages/RecommendationsPage.js
 import React from 'react';
+import './recommendationpage.css';
 import ModelViewer from '../components/ModelViewer';
 
-function RecommendationsPage() {
+const RecommendationsPage = () => {
     return (
-        <div style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            <ModelViewer />
-            <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                zIndex: 1,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                pointerEvents: 'none',  // Ensures the overlay doesn't block the canvas interaction
-            }}>
-                <h1 style={{ color: 'white', zIndex: 2 }}>Appliance Usage Recommendations</h1>
-            </div>
+        <div className="recommendations-page">
+            <header className="recommendations-header">
+                <h1>Energy-Saving Recommendations</h1>
+            </header>
+
+            <section className="model-viewer-section">
+                <ModelViewer />
+            </section>
+
+            <section className="recommendations-content">
+                <p>Discover expert recommendations for optimizing your energy use and finding more efficient appliances.</p>
+                <ul>
+                    <li>Replace old appliances with energy-efficient models.</li>
+                    <li>Use smart devices to monitor and control your energy consumption.</li>
+                    <li>Explore renewable energy sources like solar power.</li>
+                    <li>Adopt energy-saving habits like turning off unused electronics.</li>
+                </ul>
+            </section>
         </div>
     );
-}
+};
 
 export default RecommendationsPage;

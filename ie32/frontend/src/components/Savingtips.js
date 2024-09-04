@@ -33,7 +33,7 @@ const SavingTips = () => {
     }, []);
 
     const handleDiscoverClick = () => {
-        navigate('/compare');
+        navigate('/recommendations');
     };
 
     return (

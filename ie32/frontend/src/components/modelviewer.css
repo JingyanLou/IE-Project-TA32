@@ -1,0 +1,39 @@
+.model-viewer-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    /* Black background for the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* Change cursor to pointer to indicate clicking */
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Remove any default borders */
+}
+
+@media (max-width: 768px) {
+    .model-viewer-container {
+        height: 80vh;
+        /* Adjust height for smaller screens */
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.model-viewer-container {
+    animation: fadeIn 1s ease-in-out;
+}
