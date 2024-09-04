@@ -5,6 +5,9 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import * as THREE from 'three'; // Import THREE.js
 import HALO from 'vanta/dist/vanta.halo.min'; // Import Vanta.js HALO effect
 
+import Savingtips from '../components/Savingtips';
+
+
 const Homepage = () => {
     const vantaRef = useRef(null);
 
@@ -62,6 +65,11 @@ const Homepage = () => {
             <div id="why-choose-us-section">
                 <WhyChooseUs />
             </div>
+
+            <div id="saving-tips">
+                <Savingtips />
+            </div>
+
         </div>
     );
 }

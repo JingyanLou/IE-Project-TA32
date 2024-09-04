@@ -28,6 +28,9 @@
     align-items: center;
     background-color: black;
     box-sizing: border-box;
+    transform: translateX(-100px);
+    /* Negative values move it to the left */
+    /* Adjust this value as needed */
 }
 
 .info-section-custom .content-custom {
