@@ -4,6 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const https = require('https');
 const http = require('http');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 app.use(cors());
@@ -31,7 +32,6 @@ const pingDatabase = () => {
 
 // Ping the database every 30 minutes (1800000 ms)
 setInterval(pingDatabase, 1800000);
-
 
 // Routes
 app.get('/api/appliances', (req, res) => {
@@ -66,11 +66,17 @@ app.get('/api/benchmark-vic', (req, res) => {
     });
 });
 
-// Other routes...
+// Proxy requests to /iteration1 to the Iteration 1 frontend running on port 3001
+app.use('/iteration1', createProxyMiddleware({
+    target: 'http://localhost:3001',  // Iteration 1 frontend
+    changeOrigin: true,
+}));
+
+// Serve the main website (Iteration 2) on the default route
+app.use(express.static('public')); // Make sure the public directory contains the Iteration 2 frontend build
 
 const PORT = process.env.PORT || 5000;
 console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('PORT:', PORT);
 console.log('PORT:', PORT);
 
 // Check environment and use HTTPS in production
