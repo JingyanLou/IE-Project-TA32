@@ -78,6 +78,7 @@ app.use(express.static('public')); // Make sure the public directory contains th
 const PORT = process.env.PORT || 5000;
 console.log('NODE_ENV:', process.env.NODE_ENV);
 console.log('PORT:', PORT);
+console.log("Meow")
 
 // Check environment and use HTTPS in production
 if (process.env.NODE_ENV === 'production') {
