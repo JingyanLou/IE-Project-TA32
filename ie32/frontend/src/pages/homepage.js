@@ -48,7 +48,7 @@ const Homepage = () => {
     return (
         <div className="homepage">
             <div ref={vantaRef} className="hero">
-                <h1>Redefining Your Energy Efficiency.</h1>
+                <h1>Improving Your Energy Efficiency.</h1>
                 <p>Our site offers Melbourne residents insights into high-energy-consuming appliances, provides affordable energy-saving strategies, and connects you with government subsidies for renewable energy. Navigate your way to lower bills and sustainable living with our comprehensive tools.</p>
                 <div className="arrow-down-container" onClick={scrollToEstimation}>
                     <div className="scroll-down-text">Scroll Down</div>

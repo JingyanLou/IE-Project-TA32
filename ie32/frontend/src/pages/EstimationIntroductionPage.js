@@ -59,7 +59,7 @@ const EstimationIntroductionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>Fill in the details for each appliance, including its default daily hours and quantity. You can adjust the daily hours as needed. Once added, the appliance will appear in your list.</p>
-                                <a href="#" type="button">Read More</a>
+
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ const EstimationIntroductionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>We will rank your entered appliances based on their energy consumption using average values. This will help you identify the most energy-consuming appliances in your home.</p>
-                                <a href="#" type="button">Read More</a>
+
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ const EstimationIntroductionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>Provide your home address (Melbourne CBD only), energy provider, and the number of people in your home. This information will be combined with your appliance data for further analysis.</p>
-                                <a href="#" type="button">Read More</a>
+
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ const EstimationIntroductionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>Estimate your monthly electricity bill, compare it to government benchmarks, and view a block-level map showing energy consumption. See how much each appliance contributes and get suggestions for new, energy-efficient replacements.</p>
-                                <a href="#" type="button">Read More</a>
+
                             </div>
                         </div>
                     </div>
