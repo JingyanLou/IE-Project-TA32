@@ -9,7 +9,7 @@ const rooms = {
     livingRoom: {
         model: "/livingroom.glb",
         cameraPositions: [
-            initialCameraPosition, //landing page position
+            initialCameraPosition, // Landing page position
             { x: -0.1, y: 1, z: 1 },    // 1st 
             { x: 0, y: 0, z: 0.1 },    // 2nd 
             { x: -0.1, y: 0, z: 0.1 }, // 3rd 
@@ -21,6 +21,8 @@ const rooms = {
             { title: "Fridge", content: "Fridges can be one of the biggest energy consumers in your home. Ensure it's energy-efficient." },
         ]
     },
+    // Other rooms...
+
     kitchen: {
         model: "/kitchen.glb",
         cameraPositions: [
@@ -81,23 +83,30 @@ const rooms = {
             { title: "Outdoor Lighting", content: "Use solar-powered or LED outdoor lighting to illuminate your garden efficiently." },
         ]
     },
+
 };
 
-function Model({ url, cameraPosition, modelPosition }) {
+function Model({ url }) {
     const { nodes } = useGLTF(url);
-    const { camera } = useThree();
-
-    useFrame(() => {
-        camera.position.lerp(cameraPosition, 0.1);
-    });
 
     return (
-        <group position={modelPosition}>
+        <group position={[0, 0, 0]}>
             {Object.keys(nodes).map((key) => (
                 <mesh key={key} geometry={nodes[key].geometry} material={nodes[key].material} />
             ))}
         </group>
     );
+}
+
+function CameraController({ cameraPosition }) {
+    const { camera } = useThree();
+
+    useFrame(() => {
+        camera.position.lerp(cameraPosition, 0.1); // Smoothly transition to the new camera position
+        camera.lookAt(0, 0, 0); // Ensure the camera is always looking at the model (assuming the model's center is at (0, 0, 0))
+    });
+
+    return null;
 }
 
 export default function RecommendationsPage() {
@@ -106,7 +115,7 @@ export default function RecommendationsPage() {
 
     const handleRoomSelection = (room) => {
         setSelectedRoom(room);
-        setCurrentStep(0);
+        setCurrentStep(0); // Reset to the first step of the room
     };
 
     const handleNavigation = (direction) => {
@@ -115,22 +124,11 @@ export default function RecommendationsPage() {
 
         if (newStep >= 0 && newStep < maxSteps) {
             setCurrentStep(newStep);
-
-            const currentRoom = rooms[selectedRoom];
-            const cameraPosition = currentRoom.cameraPositions[newStep];
-            const modelPosition = newStep > 0 ? [0, 1, 0] : [0, 0.7, 0];
-            const title = newStep > 0 ? currentRoom.texts[newStep - 1]?.title || 'N/A' : 'Landing Page';
-
-            console.log(`Navigation ${direction}:`);
-            console.log('Camera Position:', cameraPosition);
-            console.log('Model Position:', modelPosition);
-            console.log('Current Title:', title);
         }
     };
 
     const currentRoom = rooms[selectedRoom];
     const currentCameraPosition = currentRoom.cameraPositions[currentStep];
-    const modelPosition = currentStep > 0 ? [0, 1, 0] : [0, 0.7, 0];
 
     return (
         <div className="recommendations-page">
@@ -156,7 +154,8 @@ export default function RecommendationsPage() {
                 <Canvas>
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[10, 10, 5]} intensity={1} />
-                    <Model url={currentRoom.model} cameraPosition={currentCameraPosition} modelPosition={modelPosition} />
+                    <Model url={currentRoom.model} />
+                    <CameraController cameraPosition={currentCameraPosition} />
                 </Canvas>
             </div>
 
