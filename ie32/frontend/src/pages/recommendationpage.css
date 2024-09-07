@@ -63,13 +63,14 @@ html {
 .text-section {
     position: absolute;
     top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 600px;
+    left: 0;
+    right: 0;
     text-align: center;
     z-index: 10;
     transition: opacity 0.5s ease, transform 0.5s ease;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
 }
 
 .text-section h1 {
@@ -79,7 +80,11 @@ html {
     margin-bottom: 8px;
     background: var(--neon-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 0 20px;
 }
 
 .text-section p {
@@ -87,12 +92,18 @@ html {
     line-height: 1.6;
     font-weight: 300;
     margin-bottom: 5px;
+    white-space: normal;
+    max-width: 600px;
+    /* Adjust this value to your preference */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
 }
 
 /* Room Buttons */
 .room-buttons {
     position: absolute;
-    top: 22%;
+    top: 26%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
