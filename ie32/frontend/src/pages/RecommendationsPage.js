@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import './recommendationpage.css';
@@ -9,13 +9,13 @@ const rooms = {
     livingRoom: {
         model: "/livingroom.glb",
         cameraPositions: [
-            initialCameraPosition,
-            { x: -0.1, y: 1, z: 1 },    // Living Room Overview
-            { x: 0, y: 0, z: 0.1 },    // TV position
-            { x: -0.1, y: 0, z: 0.1 }, // Fridge position
+            initialCameraPosition, //landing page position
+            { x: -0.1, y: 1, z: 1 },    // 1st 
+            { x: 0, y: 0, z: 0.1 },    // 2nd 
+            { x: -0.1, y: 0, z: 0.1 }, // 3rd 
         ],
         texts: [
-            { title: "Start ", content: "Explore energy-saving tips for your living room." },
+            { title: "Living Room", content: "Explore energy-saving tips for your living room." },
             { title: "Living Room Overview", content: "Welcome to your energy-efficient living room! Every corner of this space is packed with potential savings." },
             { title: "Television", content: "Did you know that your TV can be an energy hog? Make sure to turn it off when not in use." },
             { title: "Fridge", content: "Fridges can be one of the biggest energy consumers in your home. Ensure it's energy-efficient." },
@@ -119,7 +119,7 @@ export default function RecommendationsPage() {
             const currentRoom = rooms[selectedRoom];
             const cameraPosition = currentRoom.cameraPositions[newStep];
             const modelPosition = newStep > 0 ? [0, 1, 0] : [0, 0.7, 0];
-            const title = currentRoom.texts[newStep]?.title || 'N/A';
+            const title = newStep > 0 ? currentRoom.texts[newStep - 1]?.title || 'N/A' : 'Landing Page';
 
             console.log(`Navigation ${direction}:`);
             console.log('Camera Position:', cameraPosition);
@@ -160,26 +160,25 @@ export default function RecommendationsPage() {
                 </Canvas>
             </div>
 
-            {currentRoom.texts.map((text, index) => (
-                <section
-                    key={index}
-                    className={`info-text ${currentStep === index + 1 ? 'visible' : ''}`}
-                >
-                    <h2>{text.title}</h2>
-                    <p>{text.content}</p>
+            {currentStep > 0 && currentRoom.texts[currentStep - 1] && (
+                <section className="info-text visible">
+                    <h2>{currentRoom.texts[currentStep - 1].title}</h2>
+                    <p>{currentRoom.texts[currentStep - 1].content}</p>
                 </section>
-            ))}
+            )}
 
             <div className="navigation-buttons">
                 <button
                     onClick={() => handleNavigation('up')}
                     disabled={currentStep === 0}
+                    className="nav-button up-button"
                 >
                     Up
                 </button>
                 <button
                     onClick={() => handleNavigation('down')}
                     disabled={currentStep === currentRoom.cameraPositions.length - 1}
+                    className="nav-button down-button"
                 >
                     Down
                 </button>
