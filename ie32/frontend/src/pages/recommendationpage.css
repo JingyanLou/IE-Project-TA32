@@ -1,118 +1,115 @@
-.navigation-buttons {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
 }
 
-.nav-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.nav-button:hover {
-    background-color: #45a049;
-}
-
-.nav-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Ensure other content doesn't overlap with buttons */
-.model-view,
-.info-text {
-    margin-bottom: 70px;
-}
-
-/* Fullscreen 3D Model View */
 .recommendations-page {
     position: relative;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: black;
+    background-color: #000;
 }
 
-/* Adjust the text section */
+/* Header */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4CAF50;
+}
+
+.home-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.home-button:hover {
+    color: #4CAF50;
+}
+
+/* Text Section */
 .text-section {
     position: absolute;
-    top: 5%;
-    width: 100%;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
     text-align: center;
-    color: white;
+    color: #fff;
     z-index: 10;
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 50px;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .text-section h1 {
-    font-size: 32px;
-    font-weight: bold;
-    font-stretch: condensed;
-    margin-bottom: 10px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .text-section p {
     font-size: 18px;
-    font-stretch: condensed;
+    line-height: 1.6;
     font-weight: 300;
-    margin-bottom: 20px;
 }
 
-/* Adjust the room-buttons section */
+/* Room Buttons */
 .room-buttons {
     position: absolute;
     top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    width: 100%;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
     z-index: 10;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Room Selection Buttons */
 .room-button {
-    background-color: #1a1a1a;
-    color: white;
-    border: 1px solid white;
-    border-radius: 50px;
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: rgba(26, 26, 26, 0.8);
+    color: #fff;
+    border: 2px solid #4CAF50;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-.room-button:hover {
-    background-color: #333;
-    box-shadow: inset 0 0 60px whitesmoke,
-        inset 20px 0 80px #f0f,
-        inset -20px 0 80px #0ff,
-        inset 20px 0 300px #f0f,
-        inset -20px 0 300px #0ff,
-        0 0 50px #fff,
-        -10px 0 80px #f0f,
-        10px 0 80px #0ff;
-}
-
+.room-button:hover,
 .room-button.selected {
-    background-color: #444;
-    border: 1px solid #fff;
+    background-color: #4CAF50;
+    box-shadow: 0 0 15px #4CAF50;
 }
 
-/* 3D Model Canvas */
+/* 3D Model View */
 .model-view {
     position: absolute;
     top: 0;
@@ -122,31 +119,93 @@
     z-index: 0;
 }
 
-.canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 /* Info Text */
 .info-text {
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: white;
+    color: #fff;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
     z-index: 10;
-    max-width: 80%;
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .info-text.visible {
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.info-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.info-text p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 20;
+}
+
+.nav-button {
+    padding: 12px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover:not(:disabled) {
+    background-color: #45a049;
+    box-shadow: 0 0 15px #4CAF50;
+}
+
+.nav-button:disabled {
+    background-color: #1a1a1a;
+    color: #666;
+    cursor: not-allowed;
 }
 
 .hidden {
     opacity: 0;
     pointer-events: none;
+    transform: translateY(20px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .text-section h1 {
+        font-size: 28px;
+    }
+
+    .text-section p,
+    .room-button,
+    .nav-button {
+        font-size: 16px;
+    }
+
+    .room-buttons {
+        width: 90%;
+    }
 }

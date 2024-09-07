@@ -169,8 +169,8 @@ export default function RecommendationsPage() {
         <div className="recommendations-page">
             <div className={`text-section ${currentStep === 0 ? '' : 'hidden'}`}>
                 <h1>Energy-Saving Tips for Every Room in Your Home</h1>
-                <p>Navigate through your home, zoom into appliances, and learn quick and easy tips to reduce energy consumption.</p>
-                <p>Start Exploring Rooms</p>
+                <p>Explore each room to discover simple energy-saving tips that reduce consumption and cut costs. Learn how small changes in appliance usage, lighting, and heating can make your home more efficient and eco-friendly. Select a room model and click down to start the room tour!</p>
+
             </div>
 
             <div className={`room-buttons ${currentStep === 0 ? '' : 'hidden'}`}>
