@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import './recommendationpage.css';
 
-function Model({ url, cameraPosition }) {
+const rooms = {
+    livingRoom: "/livingroom.glb",
+    bedroom: "/bedroom.glb",
+    //bathroom: "/bathroom.glb",
+    kitchen: "/kitchen.glb",
+    studyroom: "/studyroom.glb",
+    garden: "/garden.glb"
+};
+
+const modelPositionInitial = [0, -0.4, 0]; // Initial position for the model.
+const initialCameraPosition = { x: 0.2, y: 1, z: 1.9 }; // Initial camera position.
+
+function Model({ url }) {
     const { nodes } = useGLTF(url);
-    const { camera } = useThree();
-
-    // Use the frame hook to adjust the camera position smoothly
-    useFrame(() => {
-        camera.position.lerp(cameraPosition, 0.1);
-    });
-
     return (
-        <group>
+        <group position={modelPositionInitial}>
             {Object.keys(nodes).map((key) => (
                 <mesh key={key} geometry={nodes[key].geometry} material={nodes[key].material} />
             ))}
@@ -21,62 +26,58 @@ function Model({ url, cameraPosition }) {
     );
 }
 
-export default function RecommendationsPage() {
-    const [scrollProgress, setScrollProgress] = useState(0); // Use this to track progress through sections
-
-    const cameraPositions = [
-        { x: 0.2, y: 1, z: 1 },   // Living Room Overview camera position
-        { x: 0, y: 0, z: 0.1 }, //tv position
-        { x: -0.1, y: 0, z: 0.1 }, //fridge position
-
-    ];
-
-    // Capture scroll interactions
-    const handleScroll = (event) => {
-        const scroll = event.deltaY; // Scroll direction and intensity
-        setScrollProgress((prev) => Math.min(Math.max(prev + scroll * 0.001, 0), 1)); // Clamping scrollProgress between 0 and 1
-    };
+function CameraController({ cameraPosition }) {
+    const { camera } = useThree();
 
     useEffect(() => {
-        // Add wheel listener to capture scroll events
-        window.addEventListener('wheel', handleScroll);
-        return () => {
-            window.removeEventListener('wheel', handleScroll);
-        };
-    }, []);
+        camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+        camera.updateProjectionMatrix();
+    }, [cameraPosition]);
 
-    const currentCameraPosition = cameraPositions[Math.floor(scrollProgress * (cameraPositions.length - 1))]; // Pick camera position based on progress
+    return null;
+}
+
+export default function RecommendationsPage() {
+    const [selectedRoom, setSelectedRoom] = useState(rooms.livingRoom); // Default to the living room
+    const [cameraPosition, setCameraPosition] = useState(initialCameraPosition); // Set the initial camera position
+
+    const handleRoomSelection = (room) => {
+        setSelectedRoom(rooms[room]);
+        setCameraPosition(initialCameraPosition); // Reset the camera to the initial position when a room is selected
+    };
 
     return (
         <div className="recommendations-page">
-            <Canvas className="canvas">
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[10, 10, 5]} intensity={1} />
-                <Model url="/3dmodel.glb" cameraPosition={currentCameraPosition} />
-                <OrbitControls enablePan={false} enableZoom={false} enableRotate={false} />
-            </Canvas>
-
-            {/* First Text Section - Reveals at the start */}
-            <section className={`text-section ${scrollProgress < 0.25 ? 'visible' : ''}`}>
-                <h1>1. Living Room Overview:</h1>
-                <p>Welcome to your energy-efficient living room! </p>
-                <p>Every corner of this space is packed with potential savings.</p>
+            {/* Text Section */}
+            <section className="text-section">
+                <h1>Energy-Saving Tips for Every Room in Your Home</h1>
+                <p>Navigate through your home, zoom into appliances, and learn quick and easy tips to reduce energy consumption.</p>
+                <p>Start Exploring Rooms</p>
             </section>
 
-            {/* Second Text Section - Reveals when scrolling further */}
-            <section className={`text-section ${scrollProgress >= 0.25 && scrollProgress <= 0.9 ? 'visible' : ''} right`}>
-                <h1>2. Television:</h1>
-                <p>Did you know that your TV can be an energy hog?</p>
-            </section>
+            {/* Room Selection Buttons */}
+            <div className="room-buttons">
+                {Object.keys(rooms).map((room) => (
+                    <button
+                        key={room}
+                        className={`room-button ${selectedRoom === rooms[room] ? 'selected' : ''}`}
+                        onClick={() => handleRoomSelection(room)}
+                    >
+                        {room.replace(/([A-Z])/g, ' $1').trim()}
+                    </button>
+                ))}
+            </div>
 
-            {/* Third Text Section - Reveals when scrolling even further */}
-            <section className={`text-section ${scrollProgress >= 0.9 ? 'visible' : ''} mid`}>
-                <h1>3. Fridge:</h1>
-                <p>Fridges can be one of the biggest energy consumers in your home. Ensure that it's energy-efficient and consider upgrading to a more efficient model to save on electricity costs.</p>
-            </section>
-
-
-
+            {/* 3D Model Viewer */}
+            <div className="model-view">
+                <Canvas className="canvas">
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[10, 10, 5]} intensity={1} />
+                    <Model url={selectedRoom} />
+                    <CameraController cameraPosition={cameraPosition} />
+                    <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+                </Canvas>
+            </div>
         </div>
     );
 }

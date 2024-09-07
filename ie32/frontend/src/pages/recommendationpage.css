@@ -1,75 +1,96 @@
+/* Fullscreen 3D Model View */
 .recommendations-page {
-    height: 100vh;
-    /* Full viewport height */
     position: relative;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
-    /* Prevents scroll bar */
     background-color: black;
 }
 
-.canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-}
-
+/* Adjust the text section */
 .text-section {
     position: absolute;
-    top: 40%;
-    left: 10%;
+    top: 5%;
+    width: 100%;
+    text-align: center;
     color: white;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-}
-
-.text-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.text-section.right {
-    left: auto;
-    right: 45%;
-    top: 40%;
-
+    z-index: 10;
+    /* Ensures it stays above the canvas */
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 50px;
+    /* Added more space to avoid overlap */
 }
 
 .text-section h1 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    font-stretch: condensed;
+    margin-bottom: 10px;
 }
 
 .text-section p {
     font-size: 18px;
-    margin-top: 10px;
-    /* Ensure text wraps if it exceeds the width */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-
+    font-stretch: condensed;
+    font-weight: 300;
+    margin-bottom: 20px;
 }
 
-/* Smooth fade-in animation for each section */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Adjust the room-buttons section */
+.room-buttons {
+    position: absolute;
+    top: 25%;
+    /* Increased the top position to move it further down */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    z-index: 10;
 }
 
-.text-section.mid {
-    left: 30%;
-    transform: translateX(-50%);
-    top: 14%;
-    text-align: center;
-    max-width: 500px;
-    width: auto;
+/* Room Selection Buttons */
+.room-button {
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Added transition for box-shadow */
+}
+
+.room-button:hover {
+    background-color: #333;
+    box-shadow: inset 0 0 60px whitesmoke,
+        inset 20px 0 80px #f0f,
+        inset -20px 0 80px #0ff,
+        inset 20px 0 300px #f0f,
+        inset -20px 0 300px #0ff,
+        0 0 50px #fff,
+        -10px 0 80px #f0f,
+        10px 0 80px #0ff;
+}
+
+
+.room-button.selected {
+    background-color: #444;
+    border: 1px solid #fff;
+}
+
+/* 3D Model Canvas */
+.model-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Behind text */
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
