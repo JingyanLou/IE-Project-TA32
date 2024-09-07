@@ -15,7 +15,7 @@ const rooms = {
             { x: -0.1, y: 0, z: 0.1 }, // Fridge position
         ],
         texts: [
-            { title: "Living Room", content: "Explore energy-saving tips for your living room." },
+            { title: "Start ", content: "Explore energy-saving tips for your living room." },
             { title: "Living Room Overview", content: "Welcome to your energy-efficient living room! Every corner of this space is packed with potential savings." },
             { title: "Television", content: "Did you know that your TV can be an energy hog? Make sure to turn it off when not in use." },
             { title: "Fridge", content: "Fridges can be one of the biggest energy consumers in your home. Ensure it's energy-efficient." },
@@ -102,47 +102,45 @@ function Model({ url, cameraPosition, modelPosition }) {
 
 export default function RecommendationsPage() {
     const [selectedRoom, setSelectedRoom] = useState('livingRoom');
-    const [scrollProgress, setScrollProgress] = useState(0);
-    const containerRef = useRef(null);
-
-    const handleScroll = (event) => {
-        const scroll = event.deltaY;
-        setScrollProgress((prev) => Math.min(Math.max(prev + scroll * 0.001, 0), 1));
-    };
-
-    useEffect(() => {
-        const container = containerRef.current;
-        if (container) {
-            container.addEventListener('wheel', handleScroll);
-        }
-
-        return () => {
-            if (container) {
-                container.removeEventListener('wheel', handleScroll);
-            }
-        };
-    }, []);
+    const [currentStep, setCurrentStep] = useState(0);
 
     const handleRoomSelection = (room) => {
         setSelectedRoom(room);
-        setScrollProgress(0);
+        setCurrentStep(0);
+    };
+
+    const handleNavigation = (direction) => {
+        const newStep = direction === 'up' ? currentStep - 1 : currentStep + 1;
+        const maxSteps = rooms[selectedRoom].cameraPositions.length;
+
+        if (newStep >= 0 && newStep < maxSteps) {
+            setCurrentStep(newStep);
+
+            const currentRoom = rooms[selectedRoom];
+            const cameraPosition = currentRoom.cameraPositions[newStep];
+            const modelPosition = newStep > 0 ? [0, 1, 0] : [0, 0.7, 0];
+            const title = currentRoom.texts[newStep]?.title || 'N/A';
+
+            console.log(`Navigation ${direction}:`);
+            console.log('Camera Position:', cameraPosition);
+            console.log('Model Position:', modelPosition);
+            console.log('Current Title:', title);
+        }
     };
 
     const currentRoom = rooms[selectedRoom];
-    const currentCameraPosition = currentRoom.cameraPositions[
-        Math.floor(scrollProgress * (currentRoom.cameraPositions.length - 1))
-    ];
-    const modelPosition = scrollProgress > 0 ? [0, 1, 0] : [0, 0.7, 0];
+    const currentCameraPosition = currentRoom.cameraPositions[currentStep];
+    const modelPosition = currentStep > 0 ? [0, 1, 0] : [0, 0.7, 0];
 
     return (
-        <div className="recommendations-page" ref={containerRef}>
-            <div className={`text-section ${scrollProgress < 0.1 ? '' : 'hidden'}`}>
+        <div className="recommendations-page">
+            <div className={`text-section ${currentStep === 0 ? '' : 'hidden'}`}>
                 <h1>Energy-Saving Tips for Every Room in Your Home</h1>
                 <p>Navigate through your home, zoom into appliances, and learn quick and easy tips to reduce energy consumption.</p>
                 <p>Start Exploring Rooms</p>
             </div>
 
-            <div className={`room-buttons ${scrollProgress < 0.1 ? '' : 'hidden'}`}>
+            <div className={`room-buttons ${currentStep === 0 ? '' : 'hidden'}`}>
                 {Object.keys(rooms).map((room) => (
                     <button
                         key={room}
@@ -165,17 +163,27 @@ export default function RecommendationsPage() {
             {currentRoom.texts.map((text, index) => (
                 <section
                     key={index}
-                    className={`info-text ${scrollProgress > 0.1 &&
-                            scrollProgress >= index / currentRoom.texts.length &&
-                            scrollProgress < (index + 1) / currentRoom.texts.length
-                            ? 'visible'
-                            : ''
-                        }`}
+                    className={`info-text ${currentStep === index + 1 ? 'visible' : ''}`}
                 >
                     <h2>{text.title}</h2>
                     <p>{text.content}</p>
                 </section>
             ))}
+
+            <div className="navigation-buttons">
+                <button
+                    onClick={() => handleNavigation('up')}
+                    disabled={currentStep === 0}
+                >
+                    Up
+                </button>
+                <button
+                    onClick={() => handleNavigation('down')}
+                    disabled={currentStep === currentRoom.cameraPositions.length - 1}
+                >
+                    Down
+                </button>
+            </div>
         </div>
     );
 }
