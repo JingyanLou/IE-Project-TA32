@@ -5,7 +5,6 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Prevent horizontal scrolling */
     width: 100%;
 }
 
@@ -16,16 +15,18 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     width: 100%;
-    /* Ensure full width */
     overflow-x: hidden;
-    /* Prevent horizontal scrolling */
 }
-
 
 .hero {
     position: relative;
     height: 100vh;
-    /* Ensure the hero section covers the full viewport height */
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,27 +34,14 @@ body {
     color: white;
     text-align: center;
     padding: 0 20px;
-    overflow: hidden;
-    /* Ensure the background stays contained */
+    z-index: 1;
 }
-
-.vanta-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    /* Send the Vanta background behind the content */
-}
-
 
 .hero h1 {
     font-size: 94px;
     margin: 0;
     padding: 0;
     font-weight: 900;
-    /* Maximum boldness */
     line-height: 1.2;
     max-width: 1200px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
@@ -78,41 +66,25 @@ body {
 
 .arrow-down-container {
     position: absolute;
-    /* Change to fixed to make it stick to the viewport */
     bottom: 20px;
-    /* Adjust this value to change how close it is to the bottom */
     left: 48%;
-    /* Center horizontally */
     transform: translateX(-50%);
-    /* Adjust for exact centering */
     display: flex;
     flex-direction: column;
-    /* Stack text and arrow vertically */
     align-items: center;
-    /* Center align the text and arrow */
     opacity: 0;
-    /* Initially hidden */
     animation: fadeInUp 1.5s ease forwards;
-    /* Apply fade-in animation */
     animation-delay: 2.5s;
-    /* Delay the animation to make it smooth */
     z-index: 1000;
-    /* Ensure it's above other content */
 }
-
 
 .scroll-down-text {
     font-size: 16px;
     color: rgba(255, 255, 255, 0.7);
-    /* 70% transparent */
     margin-bottom: 0px;
-    /* Space between text and arrow */
     opacity: 0;
-    /* Initially hidden */
     animation: fadeInUp 1.5s ease forwards;
-    /* Apply fade-in animation */
     animation-delay: 2.5s;
-    /* Delay the animation to make it smooth */
 }
 
 .arrow-down span {
@@ -122,13 +94,9 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     animation: bounce 2s infinite;
     opacity: 0;
-    /* Initially hidden */
     animation: fadeInUp 1.5s ease forwards;
-    /* Apply fade-in animation */
     animation-delay: 2.5s;
-    /* Delay the animation to make it smooth */
 }
-
 
 @keyframes fadeInUp {
     from {
