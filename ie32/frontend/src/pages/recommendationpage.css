@@ -4,6 +4,7 @@
     --neon-blue: #0ff;
     --neon-magenta: #f0f;
     --neon-white: #fff;
+    --neon-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-magenta));
 }
 
 body,
@@ -13,6 +14,7 @@ html {
     font-family: 'Roboto', sans-serif;
     background-color: #000;
     color: var(--neon-white);
+    font-size: 14px;
 }
 
 .recommendations-page {
@@ -29,7 +31,7 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,9 +39,9 @@ html {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
-    background: linear-gradient(to right, var(--neon-blue), var(--neon-magenta));
+    background: var(--neon-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -48,7 +50,7 @@ html {
     background: none;
     border: none;
     color: var(--neon-white);
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -63,42 +65,42 @@ html {
     top: 1%;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 600px;
     text-align: center;
     z-index: 10;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .text-section h1 {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 1px;
-    white-space: nowrap;
     margin-bottom: 8px;
-    background: linear-gradient(to right, var(--neon-blue), var(--neon-magenta));
+    background: var(--neon-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .text-section p {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.6;
     font-weight: 300;
+    margin-bottom: 5px;
 }
 
 /* Room Buttons */
 .room-buttons {
     position: absolute;
-    top: 25%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    width: 80%;
-    max-width: 800px;
+    gap: 12px;
+    width: 90%;
+    max-width: 600px;
     z-index: 10;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -107,17 +109,17 @@ html {
     background-color: rgba(26, 26, 26, 0.8);
     color: var(--neon-white);
     border: 1px solid var(--neon-white);
-    border-radius: 30px;
-    padding: 12px 24px;
-    font-size: 18px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .room-button:hover,
 .room-button.selected {
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-magenta));
-    box-shadow: 0 0 15px var(--neon-white);
+    background: var(--neon-gradient);
+    box-shadow: 0 0 10px var(--neon-white);
 }
 
 /* 3D Model View */
@@ -133,19 +135,20 @@ html {
 /* Info Text */
 .info-text {
     position: absolute;
-    bottom: 15%;
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
-    text-align: center;
+    text-align: left;
     opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: all 0.5s ease;
     z-index: 10;
-    width: 80%;
-    max-width: 600px;
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.85);
     padding: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--neon-white);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .info-text.visible {
@@ -154,44 +157,47 @@ html {
 }
 
 .info-text h2 {
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 10px;
-    background: linear-gradient(to right, var(--neon-blue), var(--neon-magenta));
+    background: var(--neon-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
 }
 
 .info-text p {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
 }
 
 /* Navigation Buttons */
 .navigation-buttons {
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     z-index: 20;
 }
 
 .nav-button {
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 8px 16px;
+    font-size: 14px;
     cursor: pointer;
     color: var(--neon-white);
     background-color: rgba(26, 26, 26, 0.8);
     border: 1px solid var(--neon-white);
-    border-radius: 30px;
+    border-radius: 20px;
     transition: all 0.3s ease;
 }
 
 .nav-button:hover:not(:disabled) {
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-magenta));
-    box-shadow: 0 0 15px var(--neon-white);
+    background: var(--neon-gradient);
+    box-shadow: 0 0 10px var(--neon-white);
 }
 
 .nav-button:disabled {
@@ -210,16 +216,21 @@ html {
 /* Responsive Design */
 @media (max-width: 768px) {
     .text-section h1 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .text-section p,
     .room-button,
-    .nav-button {
+    .nav-button,
+    .info-text p {
+        font-size: 12px;
+    }
+
+    .info-text h2 {
         font-size: 16px;
     }
 
     .room-buttons {
-        width: 90%;
+        width: 95%;
     }
 }
