@@ -6,7 +6,7 @@ import './recommendationpage.css';
 const rooms = {
     livingRoom: "/livingroom.glb",
     bedroom: "/bedroom.glb",
-    //bathroom: "/bathroom.glb",
+    bathroom: "/bathroom.glb",
     kitchen: "/kitchen.glb",
     studyroom: "/studyroom.glb",
     garden: "/garden.glb"
