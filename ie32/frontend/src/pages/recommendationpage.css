@@ -15,10 +15,9 @@
     text-align: center;
     color: white;
     z-index: 10;
-    /* Ensures it stays above the canvas */
     font-family: 'Roboto', sans-serif;
     margin-bottom: 50px;
-    /* Added more space to avoid overlap */
+    transition: opacity 0.5s ease;
 }
 
 .text-section h1 {
@@ -39,12 +38,12 @@
 .room-buttons {
     position: absolute;
     top: 25%;
-    /* Increased the top position to move it further down */
     display: flex;
     justify-content: center;
     gap: 15px;
     width: 100%;
     z-index: 10;
+    transition: opacity 0.5s ease;
 }
 
 /* Room Selection Buttons */
@@ -57,7 +56,6 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    /* Added transition for box-shadow */
 }
 
 .room-button:hover {
@@ -72,7 +70,6 @@
         10px 0 80px #0ff;
 }
 
-
 .room-button.selected {
     background-color: #444;
     border: 1px solid #fff;
@@ -86,11 +83,33 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    /* Behind text */
 }
 
 .canvas {
     width: 100%;
     height: 100%;
     display: block;
+}
+
+/* Info Text */
+.info-text {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+    max-width: 80%;
+}
+
+.info-text.visible {
+    opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }

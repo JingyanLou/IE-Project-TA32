@@ -1,24 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import React, { useState, useEffect, useRef } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
 import './recommendationpage.css';
 
+const initialCameraPosition = { x: 0.2, y: 1, z: 1.9 };
+
 const rooms = {
-    livingRoom: "/livingroom.glb",
-    bedroom: "/bedroom.glb",
-    bathroom: "/bathroom.glb",
-    kitchen: "/kitchen.glb",
-    studyroom: "/studyroom.glb",
-    garden: "/garden.glb"
+    livingRoom: {
+        model: "/livingroom.glb",
+        cameraPositions: [
+            initialCameraPosition,
+            { x: -0.1, y: 1, z: 1 },    // Living Room Overview
+            { x: 0, y: 0, z: 0.1 },    // TV position
+            { x: -0.1, y: 0, z: 0.1 }, // Fridge position
+        ],
+        texts: [
+            { title: "Living Room", content: "Explore energy-saving tips for your living room." },
+            { title: "Living Room Overview", content: "Welcome to your energy-efficient living room! Every corner of this space is packed with potential savings." },
+            { title: "Television", content: "Did you know that your TV can be an energy hog? Make sure to turn it off when not in use." },
+            { title: "Fridge", content: "Fridges can be one of the biggest energy consumers in your home. Ensure it's energy-efficient." },
+        ]
+    },
+    kitchen: {
+        model: "/kitchen.glb",
+        cameraPositions: [
+            initialCameraPosition,
+            { x: -0.1, y: 1, z: 1 },    // Kitchen Overview
+            { x: 0, y: 0, z: 0.1 },    // Stove position
+            { x: -0.1, y: 0, z: 0.1 }, // Dishwasher position
+        ],
+        texts: [
+            { title: "Kitchen", content: "Discover energy-saving tips for your kitchen." },
+            { title: "Kitchen Overview", content: "Your kitchen is a hub of energy consumption. Let's explore ways to make it more efficient." },
+            { title: "Stove", content: "Using lids on pots and pans can significantly reduce cooking time and energy use." },
+            { title: "Dishwasher", content: "Only run your dishwasher when it's full to maximize energy and water efficiency." },
+        ]
+    },
+    studyroom: {
+        model: "/studyroom.glb",
+        cameraPositions: [
+            initialCameraPosition,
+            { x: -0.1, y: 1, z: 1 },    // Study Room Overview
+            { x: 0, y: 0, z: 0.1 },    // Desk position
+            { x: -0.1, y: 0, z: 0.1 }, // Bookshelf position
+        ],
+        texts: [
+            { title: "Study Room", content: "Learn about energy-saving strategies for your study area." },
+            { title: "Study Room Overview", content: "A well-lit and energy-efficient study space can boost productivity and reduce energy bills." },
+            { title: "Desk", content: "Use LED desk lamps for focused lighting that consumes less energy." },
+            { title: "Bookshelf", content: "Consider using smart power strips to eliminate standby power consumption from electronics." },
+        ]
+    },
+    bedroom: {
+        model: "/bedroom.glb",
+        cameraPositions: [
+            initialCameraPosition,
+            { x: -0.1, y: 1, z: 1 },    // Bedroom Overview
+            { x: 0, y: 0, z: 0.1 },    // Bed position
+            { x: -0.1, y: 0, z: 0.1 }, // Closet position
+        ],
+        texts: [
+            { title: "Bedroom", content: "Explore energy-saving tips for a comfortable and efficient bedroom." },
+            { title: "Bedroom Overview", content: "Your bedroom can be a haven of comfort and energy efficiency." },
+            { title: "Bed", content: "Use smart power strips to easily turn off all standby power to devices near your bed." },
+            { title: "Closet", content: "Install LED lights with motion sensors in closets to save energy." },
+        ]
+    },
+    garden: {
+        model: "/garden.glb",
+        cameraPositions: [
+            initialCameraPosition,
+            { x: -0.1, y: 1, z: 1 },    // Garden Overview
+            { x: 0, y: 0, z: 0.1 },    // Plant position
+            { x: -0.1, y: 0, z: 0.1 }, // Outdoor lighting position
+        ],
+        texts: [
+            { title: "Garden", content: "Discover energy-saving techniques for your outdoor spaces." },
+            { title: "Garden Overview", content: "An energy-efficient garden can reduce your overall energy consumption and create a sustainable outdoor space." },
+            { title: "Plants", content: "Strategic placement of trees and shrubs can provide natural cooling and reduce the need for air conditioning." },
+            { title: "Outdoor Lighting", content: "Use solar-powered or LED outdoor lighting to illuminate your garden efficiently." },
+        ]
+    },
 };
 
-const modelPositionInitial = [0, -0.4, 0]; // Initial position for the model.
-const initialCameraPosition = { x: 0.2, y: 1, z: 1.9 }; // Initial camera position.
-
-function Model({ url }) {
+function Model({ url, cameraPosition, modelPosition }) {
     const { nodes } = useGLTF(url);
+    const { camera } = useThree();
+
+    useFrame(() => {
+        camera.position.lerp(cameraPosition, 0.1);
+    });
+
     return (
-        <group position={modelPositionInitial}>
+        <group position={modelPosition}>
             {Object.keys(nodes).map((key) => (
                 <mesh key={key} geometry={nodes[key].geometry} material={nodes[key].material} />
             ))}
@@ -26,41 +100,53 @@ function Model({ url }) {
     );
 }
 
-function CameraController({ cameraPosition }) {
-    const { camera } = useThree();
-
-    useEffect(() => {
-        camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-        camera.updateProjectionMatrix();
-    }, [cameraPosition]);
-
-    return null;
-}
-
 export default function RecommendationsPage() {
-    const [selectedRoom, setSelectedRoom] = useState(rooms.livingRoom); // Default to the living room
-    const [cameraPosition, setCameraPosition] = useState(initialCameraPosition); // Set the initial camera position
+    const [selectedRoom, setSelectedRoom] = useState('livingRoom');
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const containerRef = useRef(null);
 
-    const handleRoomSelection = (room) => {
-        setSelectedRoom(rooms[room]);
-        setCameraPosition(initialCameraPosition); // Reset the camera to the initial position when a room is selected
+    const handleScroll = (event) => {
+        const scroll = event.deltaY;
+        setScrollProgress((prev) => Math.min(Math.max(prev + scroll * 0.001, 0), 1));
     };
 
+    useEffect(() => {
+        const container = containerRef.current;
+        if (container) {
+            container.addEventListener('wheel', handleScroll);
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('wheel', handleScroll);
+            }
+        };
+    }, []);
+
+    const handleRoomSelection = (room) => {
+        setSelectedRoom(room);
+        setScrollProgress(0);
+    };
+
+    const currentRoom = rooms[selectedRoom];
+    const currentCameraPosition = currentRoom.cameraPositions[
+        Math.floor(scrollProgress * (currentRoom.cameraPositions.length - 1))
+    ];
+    const modelPosition = scrollProgress > 0 ? [0, 1, 0] : [0, 0.7, 0];
+
     return (
-        <div className="recommendations-page">
-            {/* Text Section */}
-            <section className="text-section">
+        <div className="recommendations-page" ref={containerRef}>
+            <div className={`text-section ${scrollProgress < 0.1 ? '' : 'hidden'}`}>
                 <h1>Energy-Saving Tips for Every Room in Your Home</h1>
                 <p>Navigate through your home, zoom into appliances, and learn quick and easy tips to reduce energy consumption.</p>
                 <p>Start Exploring Rooms</p>
-            </section>
+            </div>
 
-            {/* Room Selection Buttons */}
-            <div className="room-buttons">
+            <div className={`room-buttons ${scrollProgress < 0.1 ? '' : 'hidden'}`}>
                 {Object.keys(rooms).map((room) => (
                     <button
                         key={room}
-                        className={`room-button ${selectedRoom === rooms[room] ? 'selected' : ''}`}
+                        className={`room-button ${selectedRoom === room ? 'selected' : ''}`}
                         onClick={() => handleRoomSelection(room)}
                     >
                         {room.replace(/([A-Z])/g, ' $1').trim()}
@@ -68,16 +154,28 @@ export default function RecommendationsPage() {
                 ))}
             </div>
 
-            {/* 3D Model Viewer */}
             <div className="model-view">
-                <Canvas className="canvas">
+                <Canvas>
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[10, 10, 5]} intensity={1} />
-                    <Model url={selectedRoom} />
-                    <CameraController cameraPosition={cameraPosition} />
-                    <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+                    <Model url={currentRoom.model} cameraPosition={currentCameraPosition} modelPosition={modelPosition} />
                 </Canvas>
             </div>
+
+            {currentRoom.texts.map((text, index) => (
+                <section
+                    key={index}
+                    className={`info-text ${scrollProgress > 0.1 &&
+                            scrollProgress >= index / currentRoom.texts.length &&
+                            scrollProgress < (index + 1) / currentRoom.texts.length
+                            ? 'visible'
+                            : ''
+                        }`}
+                >
+                    <h2>{text.title}</h2>
+                    <p>{text.content}</p>
+                </section>
+            ))}
         </div>
     );
 }
