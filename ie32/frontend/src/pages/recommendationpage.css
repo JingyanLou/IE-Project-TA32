@@ -1,66 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
-:root {
-    --neon-blue: #0ff;
-    --neon-magenta: #f0f;
-    --neon-white: #fff;
-    --neon-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-magenta));
-}
-
-body,
-html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #000;
-    color: var(--neon-white);
-    font-size: 14px;
-}
-
 .recommendations-page {
+    --white: #fff;
+    --black: #000;
+
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 14px;
     position: relative;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: #000;
 }
 
-/* Header */
-.header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 20;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: 700;
-    background: var(--neon-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.home-button {
-    background: none;
-    border: none;
-    color: var(--neon-white);
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.home-button:hover {
-    text-shadow: 0 0 10px var(--neon-white);
-}
-
-/* Text Section */
-.text-section {
+.recommendations-page .text-section {
     position: absolute;
     top: 1%;
     left: 0;
@@ -73,35 +25,30 @@ html {
     padding: 10px 0;
 }
 
-.text-section h1 {
+.recommendations-page .text-section h1 {
     font-size: 28px;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 8px;
-    background: var(--neon-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--white);
     white-space: nowrap;
     display: inline-block;
     padding: 0 20px;
 }
 
-.text-section p {
+.recommendations-page .text-section p {
     font-size: 14px;
     line-height: 1.6;
     font-weight: 300;
     margin-bottom: 5px;
     white-space: normal;
     max-width: 600px;
-    /* Adjust this value to your preference */
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
 }
 
-/* Room Buttons */
-.room-buttons {
+.recommendations-page .room-buttons {
     position: absolute;
     top: 26%;
     left: 50%;
@@ -116,10 +63,10 @@ html {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.room-button {
+.recommendations-page .room-button {
     background-color: rgba(26, 26, 26, 0.8);
-    color: var(--neon-white);
-    border: 1px solid var(--neon-white);
+    color: var(--white);
+    border: 1px solid var(--white);
     border-radius: 20px;
     padding: 8px 16px;
     font-size: 14px;
@@ -127,14 +74,13 @@ html {
     transition: all 0.3s ease;
 }
 
-.room-button:hover,
-.room-button.selected {
-    background: var(--neon-gradient);
-    box-shadow: 0 0 10px var(--neon-white);
+.recommendations-page .room-button:hover,
+.recommendations-page .room-button.selected {
+    background-color: var(--white);
+    color: var(--black);
 }
 
-/* 3D Model View */
-.model-view {
+.recommendations-page .model-view {
     position: absolute;
     top: 0;
     left: 0;
@@ -143,8 +89,7 @@ html {
     z-index: 0;
 }
 
-/* Info Text */
-.info-text {
+.recommendations-page .info-text {
     position: absolute;
     bottom: 12%;
     left: 50%;
@@ -155,36 +100,32 @@ html {
     z-index: 10;
     width: 90%;
     max-width: 400px;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.info-text.visible {
+.recommendations-page .info-text.visible {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
 
-.info-text h2 {
+.recommendations-page .info-text h2 {
     font-size: 18px;
     margin-bottom: 10px;
-    background: var(--neon-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--white);
     letter-spacing: 0.5px;
 }
 
-.info-text p {
+.recommendations-page .info-text p {
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--white);
     margin-bottom: 0;
 }
 
-/* Navigation Buttons */
-.navigation-buttons {
+.recommendations-page .navigation-buttons {
     position: fixed;
     bottom: 20px;
     left: 50%;
@@ -195,53 +136,52 @@ html {
     z-index: 20;
 }
 
-.nav-button {
+.recommendations-page .nav-button {
     padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
-    color: var(--neon-white);
+    color: var(--white);
     background-color: rgba(26, 26, 26, 0.8);
-    border: 1px solid var(--neon-white);
+    border: 1px solid var(--white);
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-.nav-button:hover:not(:disabled) {
-    background: var(--neon-gradient);
-    box-shadow: 0 0 10px var(--neon-white);
+.recommendations-page .nav-button:hover:not(:disabled) {
+    background-color: var(--white);
+    color: var(--black);
 }
 
-.nav-button:disabled {
-    background-color: #1a1a1a;
+.recommendations-page .nav-button:disabled {
+    background-color: rgba(26, 26, 26, 0.8);
     color: #666;
     cursor: not-allowed;
     border: 1px solid #666;
 }
 
-.hidden {
+.recommendations-page .hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .text-section h1 {
+    .recommendations-page .text-section h1 {
         font-size: 24px;
     }
 
-    .text-section p,
-    .room-button,
-    .nav-button,
-    .info-text p {
+    .recommendations-page .text-section p,
+    .recommendations-page .room-button,
+    .recommendations-page .nav-button,
+    .recommendations-page .info-text p {
         font-size: 12px;
     }
 
-    .info-text h2 {
+    .recommendations-page .info-text h2 {
         font-size: 16px;
     }
 
-    .room-buttons {
+    .recommendations-page .room-buttons {
         width: 95%;
     }
 }

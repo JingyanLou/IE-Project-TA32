@@ -1,0 +1,150 @@
+.selection-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.selection-page .header-container {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+    z-index: 2;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.selection-page .page-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.selection-page .content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.selection-page .card-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 140px;
+}
+
+.selection-page .card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    transition: 0.4s;
+    perspective: 1000px;
+}
+
+.selection-page .icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    filter: brightness(1.2) contrast(1.5);
+}
+
+.selection-page .face {
+    width: 300px;
+    height: 200px;
+    transition: 0.4s;
+    backface-visibility: hidden;
+}
+
+.selection-page .face1 {
+    position: relative;
+    background: #292828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+
+.selection-page .card:hover .face1 {
+    transform: translateY(0);
+    box-shadow: inset 0 0 60px whitesmoke,
+        inset 20px 0 80px #f0f,
+        inset -20px 0 80px #0ff,
+        inset 20px 0 300px #f0f,
+        inset -20px 0 300px #0ff,
+        0 0 50px #fff,
+        -10px 0 80px #f0f,
+        10px 0 80px #0ff;
+}
+
+.selection-page .face1 .content {
+    opacity: 0.2;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.selection-page .card:hover .face1 .content {
+    opacity: 1;
+}
+
+.selection-page .face1 .content h3 {
+    font-size: 1em;
+    color: #fff;
+    text-align: center;
+}
+
+.selection-page .face2 {
+    position: relative;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.selection-page .card:hover .face2 {
+    transform: translateY(0);
+}
+
+.selection-page .face2 .content p,
+.selection-page .face2 .content button {
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.selection-page .face2 .content button {
+    text-decoration: none;
+    color: #111;
+    box-sizing: border-box;
+    outline: 1px solid #333;
+    padding: 10px;
+    margin: 15px 0 0;
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: 0.5s;
+}
+
+.selection-page .face2 .content button:hover {
+    background: #333;
+    color: #fff;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
