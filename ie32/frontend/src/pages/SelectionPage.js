@@ -12,12 +12,13 @@ const SelectionPage = () => {
     const handleExplore = (route) => {
         if (route === '/recommendations') {
             navigate(route);
+        } else if (route === '/governmentinfo') {
+            navigate(route);
         } else {
             // Disable navigation for other buttons
             console.log('This feature is not available yet');
         }
     };
-
     return (
         <div className="selection-page">
             <ShaderGradientCanvas
@@ -83,7 +84,7 @@ const SelectionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>We provide the compiled information from the government that help you with utilizing your energy benefits in Melbourne.</p>
-                                <button onClick={() => handleExplore('/government-programs')}>Explore More</button>
+                                <button onClick={() => handleExplore('/governmentinfo')}>Explore More</button>
                             </div>
                         </div>
                     </div>

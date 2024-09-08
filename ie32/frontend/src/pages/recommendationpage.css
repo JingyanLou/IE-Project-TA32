@@ -104,7 +104,13 @@
     padding: 20px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Add backdrop filter */
+    backdrop-filter: blur(10px) brightness(0.8);
+    /* Adjust the values for the desired effect */
+    -webkit-backdrop-filter: blur(10px) brightness(0.8);
+    /* For Safari support */
 }
+
 
 .recommendations-page .info-text.visible {
     opacity: 1;
