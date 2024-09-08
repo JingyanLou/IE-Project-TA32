@@ -2,11 +2,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    /* Changed from height to min-height */
     background-color: black;
-    padding: 0 15%;
-    /* Adjusted padding to match Estimation.js */
+    padding: 50px 15%;
+    /* Added top and bottom padding */
     box-sizing: border-box;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
 }
 
 .image-saving-tips {
@@ -14,20 +17,23 @@
     background-size: cover;
     background-position: center;
     width: 45%;
-    /* Reduced width to match Estimation.js */
-    height: 59%;
+    height: 59vh;
+    /* Changed from percentage to viewport height */
+    min-height: 300px;
+    /* Added a minimum height */
     z-index: 1;
     border-radius: 30px;
-    /* Border radius for rounded corners */
 }
 
 .info-saving-tips {
     width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    /* Changed from center to flex-start */
     background-color: black;
-    padding: 0px;
+    padding: 20px 0;
+    /* Added some vertical padding */
     box-sizing: border-box;
     z-index: 0.5;
 }
@@ -36,7 +42,6 @@
     max-width: 90%;
     color: white;
     text-align: right;
-    /* Align text to the right, as in Estimation.js */
     position: relative;
     z-index: 2;
     display: flex;
@@ -161,4 +166,30 @@
 .info-saving-tips .discover-button:hover {
     background-color: white;
     color: black;
+}
+
+@media (max-width: 768px) {
+    .section-saving-tips {
+        flex-direction: column;
+        padding: 30px 5%;
+    }
+
+    .image-saving-tips,
+    .info-saving-tips {
+        width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+    .info-saving-tips .content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .info-saving-tips h1,
+    .info-saving-tips .stats,
+    .info-saving-tips .description,
+    .info-saving-tips .discover-button {
+        margin-right: 0;
+    }
 }
