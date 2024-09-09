@@ -1,3 +1,29 @@
+/* Add these new keyframes at the top of your CSS file */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
 /* Animation keyframes */
 @keyframes slideInLeft {
     0% {
@@ -22,7 +48,11 @@
     }
 
     60% {
-        transform: translateX(-20px);
+        transform: translateX(-10px);
+    }
+
+    80% {
+        transform: translateX(5px);
     }
 
     100% {
@@ -107,9 +137,29 @@ html {
     width: 60%;
 }
 
+/* Update these existing styles */
 .appliance-details-bottom {
     margin-top: auto;
 }
+
+.appliance-details-bottom.initial {
+    animation: slideInLeft 1s ease-out both;
+}
+
+.appliance-details-bottom.changing {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.appliance-details-bottom.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+
 
 .appliance-details h3 {
     font-size: 28px;
@@ -126,9 +176,25 @@ html {
     width: 40%;
     height: 100%;
     object-fit: contain;
-    transition: opacity 0.3s ease;
-    animation: slideInRight 1s ease-out 0.3s both;
 }
+
+.appliance-image.initial {
+    animation: slideInRight 0.4s ease-out 0.3s both;
+}
+
+.appliance-image.changing {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.appliance-image.show {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 
 /* Appliance cards */
 .appliance-cards {

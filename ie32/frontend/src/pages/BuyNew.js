@@ -18,7 +18,7 @@ const BuyNew = () => {
     const applianceCardsRef = useRef(null);
     const brandComparisonRef = useRef(null);
     const modelSuggestionRef = useRef(null);
-    const [imageOpacity, setImageOpacity] = useState(1);
+
 
     useEffect(() => {
         const animateOnScroll = (entries, observer) => {
@@ -56,7 +56,9 @@ const BuyNew = () => {
             }, index * 100);
         });
 
-        return () => observer.disconnect();
+        // Set initialLoad to false after a short delay
+        const timer = setTimeout(() => setInitialLoad(false), 1000);
+        return () => clearTimeout(timer);
     }, []);
 
     const highlightText = (text) => {
@@ -87,12 +89,17 @@ const BuyNew = () => {
         document.addEventListener('mouseup', handleMouseUp);
     };
 
+    const [isChanging, setIsChanging] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
+
+
+
     const handleApplianceSelect = (appliance) => {
-        setImageOpacity(0);
+        setIsChanging(true);
         setTimeout(() => {
             setSelectedAppliance(appliance.name);
             setSelectedApplianceImage(`/images/${appliance.image}`);
-            setImageOpacity(1);
+            setIsChanging(false);
         }, 300);
     };
 
@@ -101,17 +108,16 @@ const BuyNew = () => {
             <section className="appliance-selection">
                 <div className="appliance-details">
                     <h2>Select the appliances that you are interested to replace</h2>
-                    <div className="appliance-details-bottom">
+                    <div className={`appliance-details-bottom ${initialLoad ? 'initial' : isChanging ? 'changing' : 'show'}`}>
                         <h3>{selectedAppliance}</h3>
                         <p>9 Different Brand Options Available</p>
                         <p>25 Different Model Options Available</p>
                     </div>
                 </div>
                 <img
-                    className="appliance-image"
+                    className={`appliance-image ${initialLoad ? 'initial' : isChanging ? 'changing' : 'show'}`}
                     src={selectedApplianceImage}
                     alt="Selected Appliance"
-                    style={{ opacity: imageOpacity }}
                 />
             </section>
 
