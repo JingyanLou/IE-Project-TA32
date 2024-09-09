@@ -28,46 +28,87 @@
 }
 
 .navbar ul li {
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
-.navbar ul li a {
+.navbar ul li a,
+.navbar ul li span {
     color: white;
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     padding: 10px 15px;
-    /* Add padding to make it look like a button */
     border-radius: 5px;
-    /* Add border radius */
     border: 2px solid transparent;
-    /* Initially transparent border */
     background-color: transparent;
-    /* Initially transparent background */
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-    /* Smooth transition */
+    cursor: pointer;
 }
 
 .navbar ul.brand li span {
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     padding: 10px 15px;
-    /* Optional: If you want padding like a button */
     border-radius: 5px;
-    /* Optional: If you want it to look like a button */
 }
 
-
-.navbar ul li a:hover {
+.navbar ul li a:hover,
+.navbar ul li span:hover {
     background-color: white;
-    /* Change background to white on hover */
     color: black;
-    /* Change text color to black on hover */
     border: 2px solid white;
-    /* Add a white border on hover */
     text-shadow: none;
-    /* Optionally, remove text shadow on hover */
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    /* Add spacing between features item and dropdown */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 10px 0;
+    min-width: 200px;
+    /* Increase width to accommodate text */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.8);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    /* Decrease font size */
+    white-space: nowrap;
+    /* Prevent text wrapping */
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
 }
