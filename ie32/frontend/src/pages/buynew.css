@@ -1,0 +1,199 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+.buy-new-container {
+    background-color: #000;
+    color: #fff;
+    font-family: Roboto, sans-serif;
+    min-height: 100vh;
+    padding: 0 10%;
+    margin-top: 5%;
+}
+
+.appliance-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    height: 55vh;
+    padding-top: 20px;
+}
+
+.appliance-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.appliance-details h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 0;
+    width: 60%;
+}
+
+.appliance-details-bottom {
+    margin-top: auto;
+}
+
+.appliance-details h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.appliance-details p {
+    font-size: 16px;
+    color: #888;
+    margin: 5px 0;
+}
+
+.appliance-image {
+    width: 60%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.appliance-cards {
+    display: flex;
+    gap: 20px;
+    padding: 40px 0;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.appliance-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.appliance-card {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 140px;
+    background-color: #000;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appliance-card img {
+    width: 80%;
+    height: auto;
+}
+
+.brand-comparison {
+    width: 60%;
+    margin: 60px auto 40px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.brand-comparison-text {
+    width: 40%;
+}
+
+.brand-comparison h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.brand-comparison p {
+    font-size: 16px;
+    color: #888;
+}
+
+.energy-chart {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px;
+}
+
+.chart-bar {
+    width: 40px;
+    background: linear-gradient(to top, #ff00ff, #8000ff);
+    position: relative;
+}
+
+.chart-bar span {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.brand-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.brand-button {
+    background-color: transparent;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.model-suggestion {
+    width: 60%;
+    margin: 40px auto;
+}
+
+.model-suggestion h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.model-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.model-item span:first-child {
+    font-size: 18px;
+}
+
+.model-item span:nth-child(2) {
+    font-size: 16px;
+    color: #888;
+}
+
+.buy-now {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}

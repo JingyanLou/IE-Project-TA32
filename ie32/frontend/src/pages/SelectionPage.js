@@ -14,6 +14,8 @@ const SelectionPage = () => {
             navigate(route);
         } else if (route === '/governmentinfo') {
             navigate(route);
+        } else if (route === '/buynew') {
+            navigate(route);
         } else {
             // Disable navigation for other buttons
             console.log('This feature is not available yet');
@@ -39,8 +41,10 @@ const SelectionPage = () => {
             </ShaderGradientCanvas>
 
             <div className="header-container">
-                <h1 className="page-title">Save Your Energy Expenses</h1>
+                <h1 className="page-title">Optimize Your Home's Energy Efficiency</h1>
+                <p>On this page, we offer various ways to reduce your energy expenses. You can explore options to replace outdated appliances with energy-efficient ones, take a 3D room tour to discover energy-saving tips for each appliance, and learn about government programs that support energy conservation efforts.</p>
             </div>
+
 
             <div className="content-container">
                 <div className="card-grid">
@@ -54,7 +58,7 @@ const SelectionPage = () => {
                         <div className="face face2">
                             <div className="content">
                                 <p>Ready to upgrade? Select the appliance you want to replace, and we'll show you a visual comparison of average energy consumption across different brands.</p>
-                                <button onClick={() => handleExplore('/replace-devices')}>Explore More</button>
+                                <button onClick={() => handleExplore('/buynew')}>Explore More</button>
                             </div>
                         </div>
                     </div>

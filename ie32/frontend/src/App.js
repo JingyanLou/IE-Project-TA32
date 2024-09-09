@@ -6,7 +6,8 @@ import Upload from './pages/uploadpage';
 import RecommendationsPage from './pages/RecommendationsPage';
 import EstimationIntroductionPage from './pages/EstimationIntroductionPage';
 import SelectionPage from './pages/SelectionPage';
-import GovernmentInfo from './pages/GovernmentInfo'; // Correct import name
+import GovernmentInfo from './pages/GovernmentInfo';
+import BuyNew from './pages/BuyNew'; // Correct import
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/recommendations" element={<RecommendationsPage />} />
           <Route path="/estimation-introduction" element={<EstimationIntroductionPage />} />
           <Route path="/selection" element={<SelectionPage />} />
-          <Route path="/governmentinfo" element={<GovernmentInfo />} /> {/* Correct component name */}
+          <Route path="/governmentinfo" element={<GovernmentInfo />} />
+          <Route path="/buynew" element={<BuyNew />} /> {/* Fixed path */}
         </Routes>
       </div>
     </Router>
