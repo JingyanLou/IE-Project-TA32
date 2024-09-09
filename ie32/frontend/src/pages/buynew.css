@@ -415,14 +415,14 @@ html {
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid #333;
-    transition: all 0.5s ease-out;
+    transition: all 0.9s ease-out;
     opacity: 0;
-    transform: translateX(-50px);
+
 }
 
 .model-item.show {
     opacity: 1;
-    transform: translateX(0);
+
 }
 
 .model-item:last-child {
