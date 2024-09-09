@@ -58,6 +58,8 @@ html {
     width: 40%;
     height: 100%;
     object-fit: contain;
+    transition: opacity 0.3s ease;
+    /* Added transition */
 }
 
 .appliance-cards {
@@ -88,6 +90,8 @@ html {
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
+    cursor: pointer;
+    /* Added cursor pointer */
 }
 
 .appliance-card:hover {
@@ -173,10 +177,13 @@ html {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
-    bottom: 100%;
+    bottom: 120%;
+    /* Changed from 100% to 120% */
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
+    z-index: 10;
+    /* Added z-index */
 }
 
 .chart-bar:hover .tooltip {

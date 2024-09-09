@@ -3,14 +3,21 @@ import './buynew.css';
 
 const BuyNew = () => {
     const [selectedAppliance, setSelectedAppliance] = useState('Air Conditioner');
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedApplianceImage, setSelectedApplianceImage] = useState('/images/aircondition.png');
     const brands = ['Sony', 'AGL', 'STK', 'HX', 'Hisense', 'Newbie', 'Dafuq'];
-    const appliances = ['aircondition', 'clothdryer', 'dishwasher', 'electriclight', 'florescentlamp', 'heater', 'lamp'];
-    const applianceCardsRef = useRef(null);
+    const appliances = [
+        { name: 'Air Conditioner', image: 'aircondition.png' },
+        { name: 'Cloth Dryer', image: 'clothdryer.png' },
+        { name: 'Dishwasher', image: 'dishwasher.png' },
+        { name: 'Electric Light', image: 'electriclight.png' },
+        { name: 'Florescent Lamp', image: 'florescentlamp.png' },
+        { name: 'Heater', image: 'heater.png' },
+        { name: 'Lamp', image: 'lamp.png' }
+    ];
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
+    const applianceCardsRef = useRef(null);
+    const [imageOpacity, setImageOpacity] = useState(1);
+
 
     const highlightText = (text) => {
         return text.split(' ').map((word, index) =>
@@ -40,6 +47,16 @@ const BuyNew = () => {
         document.addEventListener('mouseup', handleMouseUp);
     };
 
+    const handleApplianceSelect = (appliance) => {
+        setImageOpacity(0);
+        setTimeout(() => {
+            setSelectedAppliance(appliance.name);
+            setSelectedApplianceImage(`/images/${appliance.image}`);
+            setImageOpacity(1);
+        }, 300);
+    };
+
+
 
     return (
         <div className="buy-new-container">
@@ -52,7 +69,12 @@ const BuyNew = () => {
                         <p>25 Different Model Options Available</p>
                     </div>
                 </div>
-                <img className="appliance-image" src="/images/aircondition.png" alt="Selected Appliance" />
+                <img
+                    className="appliance-image"
+                    src={selectedApplianceImage}
+                    alt="Selected Appliance"
+                    style={{ opacity: imageOpacity }}
+                />
             </section>
 
             <div
@@ -61,15 +83,19 @@ const BuyNew = () => {
                 onMouseDown={handleMouseDown}
             >
                 {appliances.map((appliance, index) => (
-                    <div key={index} className="appliance-card">
-                        <img src={`/images/${appliance}.png`} alt={appliance} />
+                    <div
+                        key={index}
+                        className="appliance-card"
+                        onClick={() => handleApplianceSelect(appliance)}
+                    >
+                        <img src={`/images/${appliance.image}`} alt={appliance.name} />
                     </div>
                 ))}
             </div>
 
             <section className="brand-comparison">
                 <div className="brand-comparison-text">
-                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
+                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest  to highest")}</h3>
                     <p>Your Selected Appliances: {selectedAppliance}</p>
                 </div>
                 <div className="energy-chart">
