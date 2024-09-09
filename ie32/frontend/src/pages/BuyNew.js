@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './buynew.css';
 
 const BuyNew = () => {
@@ -16,8 +16,48 @@ const BuyNew = () => {
     ];
 
     const applianceCardsRef = useRef(null);
+    const brandComparisonRef = useRef(null);
+    const modelSuggestionRef = useRef(null);
     const [imageOpacity, setImageOpacity] = useState(1);
 
+    useEffect(() => {
+        const animateOnScroll = (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(animateOnScroll, {
+            threshold: 0.1,
+        });
+
+        const applianceCards = document.querySelectorAll('.appliance-card');
+        applianceCards.forEach((card, index) => {
+            setTimeout(() => {
+                observer.observe(card);
+            }, index * 100);
+        });
+
+        if (brandComparisonRef.current) {
+            observer.observe(brandComparisonRef.current);
+        }
+
+        if (modelSuggestionRef.current) {
+            observer.observe(modelSuggestionRef.current);
+        }
+
+        const modelItems = document.querySelectorAll('.model-item');
+        modelItems.forEach((item, index) => {
+            setTimeout(() => {
+                observer.observe(item);
+            }, index * 100);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     const highlightText = (text) => {
         return text.split(' ').map((word, index) =>
@@ -56,8 +96,6 @@ const BuyNew = () => {
         }, 300);
     };
 
-
-
     return (
         <div className="buy-new-container">
             <section className="appliance-selection">
@@ -93,9 +131,9 @@ const BuyNew = () => {
                 ))}
             </div>
 
-            <section className="brand-comparison">
+            <section className="brand-comparison" ref={brandComparisonRef}>
                 <div className="brand-comparison-text">
-                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest  to highest")}</h3>
+                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
                     <p>Your Selected Appliances: {selectedAppliance}</p>
                 </div>
                 <div className="energy-chart">
@@ -104,7 +142,7 @@ const BuyNew = () => {
                         const lowestConsumption = Math.floor(height * 10);
                         const highestConsumption = Math.floor(height * 15);
                         return (
-                            <div key={index} className="chart-bar" style={{ height: `${height}%` }}>
+                            <div key={index} className="chart-bar" style={{ height: `${height}%`, '--i': index }}>
                                 <span>{brand}</span>
                                 <div className="tooltip">
                                     Lowest: {lowestConsumption} kWh<br />
@@ -122,7 +160,7 @@ const BuyNew = () => {
                 ))}
             </div>
 
-            <section className="model-suggestion">
+            <section className="model-suggestion" ref={modelSuggestionRef}>
                 <h3>Top pick for your selected appliances</h3>
                 <div className="model-list">
                     {[...Array(10)].map((_, index) => (

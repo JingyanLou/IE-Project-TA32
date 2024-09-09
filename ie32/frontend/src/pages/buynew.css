@@ -1,3 +1,69 @@
+/* Animation keyframes */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    60% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base styles */
 body,
 html {
     margin: 0;
@@ -14,6 +80,7 @@ html {
     margin-top: 5%;
 }
 
+/* Appliance selection section */
 .appliance-selection {
     display: flex;
     justify-content: space-between;
@@ -30,6 +97,7 @@ html {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    animation: slideInLeft 1s ease-out both;
 }
 
 .appliance-details h2 {
@@ -59,9 +127,10 @@ html {
     height: 100%;
     object-fit: contain;
     transition: opacity 0.3s ease;
-    /* Added transition */
+    animation: slideInRight 1s ease-out 0.3s both;
 }
 
+/* Appliance cards */
 .appliance-cards {
     display: flex;
     gap: 20px;
@@ -89,9 +158,15 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease-out;
     cursor: pointer;
-    /* Added cursor pointer */
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.appliance-card.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .appliance-card:hover {
@@ -109,6 +184,7 @@ html {
     pointer-events: none;
 }
 
+/* Brand comparison section */
 .brand-comparison {
     width: 60%;
     margin: 60px auto 40px;
@@ -117,6 +193,14 @@ html {
     padding: 50px;
     display: flex;
     justify-content: space-between;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease-out;
+}
+
+.brand-comparison.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .brand-comparison-text {
@@ -178,18 +262,17 @@ html {
     opacity: 0;
     transition: opacity 0.3s ease;
     bottom: 120%;
-    /* Changed from 100% to 120% */
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
     z-index: 10;
-    /* Added z-index */
 }
 
 .chart-bar:hover .tooltip {
     opacity: 1;
 }
 
+/* Brand selection */
 .brand-selection {
     display: flex;
     justify-content: center;
@@ -212,23 +295,25 @@ html {
 
 .brand-button:hover {
     box-shadow: inset 0 0 10px whitesmoke,
-        /* reduced from 20px to 10px */
         inset 5px 0 10px #f0f,
-        /* reduced from 10px to 5px and 20px to 10px */
         inset -5px 0 10px #0ff,
-        /* reduced from -10px to -5px and 20px to 10px */
         0 0 10px #fff,
-        /* reduced from 20px to 10px */
         -3px 0 10px #f0f,
-        /* reduced from -5px to -3px and 20px to 10px */
         3px 0 10px #0ff;
-    /* reduced from 5px to 3px and 20px to 10px */
 }
 
-
+/* Model suggestion section */
 .model-suggestion {
     width: 60%;
     margin: 40px auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.model-suggestion.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .model-suggestion h3 {
@@ -264,7 +349,14 @@ html {
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid #333;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.model-item.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .model-item:last-child {
