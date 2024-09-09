@@ -1,10 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './buynew.css';
 
 const BuyNew = () => {
     const [selectedAppliance, setSelectedAppliance] = useState('Air Conditioner');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const brands = ['Sony', 'AGL', 'STK', 'HX', 'Hisense', 'Newbie', 'Dafuq'];
     const appliances = ['aircondition', 'clothdryer', 'dishwasher', 'electriclight', 'florescentlamp', 'heater', 'lamp'];
+    const applianceCardsRef = useRef(null);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const highlightText = (text) => {
+        return text.split(' ').map((word, index) =>
+            word.toLowerCase() === 'lowest' || word.toLowerCase() === 'highest' ?
+                <span key={index} className="highlight">{word}</span> :
+                word + ' '
+        );
+    };
+
+    const handleMouseDown = (e) => {
+        const slider = applianceCardsRef.current;
+        let startX = e.pageX - slider.offsetLeft;
+        let scrollLeft = slider.scrollLeft;
+
+        const handleMouseMove = (e) => {
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        };
+
+        const handleMouseUp = () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
+
 
     return (
         <div className="buy-new-container">
@@ -20,7 +55,11 @@ const BuyNew = () => {
                 <img className="appliance-image" src="/images/aircondition.png" alt="Selected Appliance" />
             </section>
 
-            <div className="appliance-cards">
+            <div
+                className="appliance-cards"
+                ref={applianceCardsRef}
+                onMouseDown={handleMouseDown}
+            >
                 {appliances.map((appliance, index) => (
                     <div key={index} className="appliance-card">
                         <img src={`/images/${appliance}.png`} alt={appliance} />
@@ -30,15 +69,24 @@ const BuyNew = () => {
 
             <section className="brand-comparison">
                 <div className="brand-comparison-text">
-                    <h3>Compare annual energy consumption across brands for your selected appliance from the lowest to highest</h3>
+                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
                     <p>Your Selected Appliances: {selectedAppliance}</p>
                 </div>
                 <div className="energy-chart">
-                    {brands.map((brand, index) => (
-                        <div key={index} className="chart-bar" style={{ height: `${Math.random() * 80 + 20}%` }}>
-                            <span>{brand}</span>
-                        </div>
-                    ))}
+                    {brands.map((brand, index) => {
+                        const height = Math.random() * 80 + 20;
+                        const lowestConsumption = Math.floor(height * 10);
+                        const highestConsumption = Math.floor(height * 15);
+                        return (
+                            <div key={index} className="chart-bar" style={{ height: `${height}%` }}>
+                                <span>{brand}</span>
+                                <div className="tooltip">
+                                    Lowest: {lowestConsumption} kWh<br />
+                                    Highest: {highestConsumption} kWh
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
 
@@ -50,13 +98,15 @@ const BuyNew = () => {
 
             <section className="model-suggestion">
                 <h3>Top pick for your selected appliances</h3>
-                {[...Array(5)].map((_, index) => (
-                    <div key={index} className="model-item">
-                        <span>Brand Model Name</span>
-                        <span>3.75 Stars</span>
-                        <button className="buy-now">Buy Now</button>
-                    </div>
-                ))}
+                <div className="model-list">
+                    {[...Array(10)].map((_, index) => (
+                        <div key={index} className="model-item">
+                            <span>Brand Model Name</span>
+                            <span>3.75 Stars</span>
+                            <button className="buy-now">Buy Now</button>
+                        </div>
+                    ))}
+                </div>
             </section>
         </div>
     );

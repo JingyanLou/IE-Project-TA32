@@ -69,6 +69,7 @@ html {
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    cursor: grab;
 }
 
 .appliance-cards::-webkit-scrollbar {
@@ -86,11 +87,22 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+.appliance-card:hover {
+    box-shadow: inset 0 0 20px whitesmoke,
+        inset 10px 0 20px #f0f,
+        inset -10px 0 20px #0ff,
+        0 0 20px #fff,
+        -5px 0 20px #f0f,
+        5px 0 20px #0ff;
 }
 
 .appliance-card img {
     width: 80%;
     height: auto;
+    pointer-events: none;
 }
 
 .brand-comparison {
@@ -117,6 +129,11 @@ html {
     color: #888;
 }
 
+.highlight {
+    color: #ff6600;
+    font-weight: bold;
+}
+
 .energy-chart {
     width: 55%;
     display: flex;
@@ -129,6 +146,12 @@ html {
     width: 40px;
     background: linear-gradient(to top, #ff00ff, #8000ff);
     position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+    filter: brightness(1.2);
 }
 
 .chart-bar span {
@@ -138,6 +161,26 @@ html {
     transform: translateX(-50%);
     font-size: 14px;
     white-space: nowrap;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.chart-bar:hover .tooltip {
+    opacity: 1;
 }
 
 .brand-selection {
@@ -157,7 +200,24 @@ html {
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s ease;
 }
+
+.brand-button:hover {
+    box-shadow: inset 0 0 10px whitesmoke,
+        /* reduced from 20px to 10px */
+        inset 5px 0 10px #f0f,
+        /* reduced from 10px to 5px and 20px to 10px */
+        inset -5px 0 10px #0ff,
+        /* reduced from -10px to -5px and 20px to 10px */
+        0 0 10px #fff,
+        /* reduced from 20px to 10px */
+        -3px 0 10px #f0f,
+        /* reduced from -5px to -3px and 20px to 10px */
+        3px 0 10px #0ff;
+    /* reduced from 5px to 3px and 20px to 10px */
+}
+
 
 .model-suggestion {
     width: 60%;
@@ -169,16 +229,49 @@ html {
     margin-bottom: 20px;
 }
 
+.model-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #333;
+    border-radius: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #000;
+}
+
+.model-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.model-list::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.model-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+
 .model-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border: 1px solid #333;
-    border-radius: 25px;
-    margin-bottom: 15px;
-    height: 20px;
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+}
 
+.model-item:last-child {
+    border-bottom: none;
+}
+
+.model-item:hover {
+    background-color: #111;
+    box-shadow: inset 0 0 10px whitesmoke,
+        inset 5px 0 10px #f0f,
+        inset -5px 0 10px #0ff,
+        0 0 10px #fff,
+        -2px 0 10px #f0f,
+        2px 0 10px #0ff;
 }
 
 .model-item span:first-child {
@@ -198,4 +291,9 @@ html {
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.buy-now:hover {
+    background-color: #ff8533;
 }
