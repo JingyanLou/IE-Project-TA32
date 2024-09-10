@@ -4,7 +4,12 @@ import './buynew.css';
 const BuyNew = () => {
     const [selectedAppliance, setSelectedAppliance] = useState('Air Conditioner');
     const [selectedApplianceImage, setSelectedApplianceImage] = useState('/images/aircondition.png');
-    const brands = ['Sony', 'AGL', 'STK', 'HX', 'Hisense', 'Newbie', 'Dafuq'];
+    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [brands, setBrands] = useState([]);
+    const [models, setModels] = useState([]);
+    const [isChanging, setIsChanging] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
+
     const appliances = [
         { name: 'Air Conditioner', image: 'aircondition.png' },
         { name: 'Cloth Dryer', image: 'clothdryer.png' },
@@ -18,7 +23,6 @@ const BuyNew = () => {
     const applianceCardsRef = useRef(null);
     const brandComparisonRef = useRef(null);
     const modelSuggestionRef = useRef(null);
-
 
     useEffect(() => {
         const animateOnScroll = (entries, observer) => {
@@ -56,10 +60,50 @@ const BuyNew = () => {
             }, index * 100);
         });
 
-        // Set initialLoad to false after a short delay
         const timer = setTimeout(() => setInitialLoad(false), 1000);
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        // Simulating API call to get brands for the selected appliance
+        const fetchBrands = () => {
+            const brandData = [
+                { id: 1, name: 'Sony', consumption: Math.random() * 100 + 50 },
+                { id: 2, name: 'AGL', consumption: Math.random() * 100 + 50 },
+                { id: 3, name: 'STK', consumption: Math.random() * 100 + 50 },
+                { id: 4, name: 'HX', consumption: Math.random() * 100 + 50 },
+                { id: 5, name: 'Hisense', consumption: Math.random() * 100 + 50 },
+                { id: 6, name: 'Newbie', consumption: Math.random() * 100 + 50 },
+                { id: 7, name: 'Dafuq', consumption: Math.random() * 100 + 50 },
+                { id: 8, name: 'Very Long Brand Name', consumption: Math.random() * 100 + 50 },
+                { id: 9, name: 'Another Long Brand Name', consumption: Math.random() * 100 + 50 },
+            ];
+            setBrands(brandData);
+        };
+
+        fetchBrands();
+        setSelectedBrand(null);
+    }, [selectedAppliance]);
+
+    useEffect(() => {
+        // Simulating API call to get models for the selected appliance and brand
+        const fetchModels = () => {
+            if (selectedBrand) {
+                const modelData = [
+                    { id: 1, name: 'Model A', rating: 3.5, consumption: 1.2 },
+                    { id: 2, name: 'Model B', rating: 4.0, consumption: 1.0 },
+                    { id: 3, name: 'Model C', rating: 3.8, consumption: 1.1 },
+                    { id: 4, name: 'Model D', rating: 4.2, consumption: 0.9 },
+                    { id: 5, name: 'Model E', rating: 3.7, consumption: 1.3 },
+                ];
+                setModels(modelData);
+            } else {
+                setModels([]);
+            }
+        };
+
+        fetchModels();
+    }, [selectedAppliance, selectedBrand]);
 
     const highlightText = (text) => {
         return text.split(' ').map((word, index) =>
@@ -89,11 +133,6 @@ const BuyNew = () => {
         document.addEventListener('mouseup', handleMouseUp);
     };
 
-    const [isChanging, setIsChanging] = useState(false);
-    const [initialLoad, setInitialLoad] = useState(true);
-
-
-
     const handleApplianceSelect = (appliance) => {
         setIsChanging(true);
         setTimeout(() => {
@@ -103,6 +142,10 @@ const BuyNew = () => {
         }, 300);
     };
 
+    const handleBrandSelect = (brand) => {
+        setSelectedBrand(brand);
+    };
+
     return (
         <div className="buy-new-container">
             <section className="appliance-selection">
@@ -110,8 +153,8 @@ const BuyNew = () => {
                     <h2>Select the appliances that you are interested to replace</h2>
                     <div className={`appliance-details-bottom ${initialLoad ? 'initial' : isChanging ? 'changing' : 'show'}`}>
                         <h3>{selectedAppliance}</h3>
-                        <p>9 Different Brand Options Available</p>
-                        <p>25 Different Model Options Available</p>
+                        <p>{brands.length} Different Brand Options Available</p>
+                        <p>{selectedBrand ? models.length : 0} Different Model Options Available</p>
                     </div>
                 </div>
                 <img
@@ -138,42 +181,49 @@ const BuyNew = () => {
             </div>
 
             <section className="brand-comparison" ref={brandComparisonRef}>
-                <div className="brand-comparison-text">
-                    <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
-                    <p>Your Selected Appliances: {selectedAppliance}</p>
-                </div>
-                <div className="energy-chart">
-                    {brands.map((brand, index) => {
-                        const height = Math.random() * 80 + 20;
-                        const lowestConsumption = Math.floor(height * 10);
-                        const highestConsumption = Math.floor(height * 15);
-                        return (
-                            <div key={index} className="chart-bar" style={{ height: `${height}%`, '--i': index }}>
-                                <span>{brand}</span>
+                <div className="brand-comparison-content">
+                    <div className="brand-comparison-text">
+                        <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
+                        <p>Your Selected Appliances: {selectedAppliance}</p>
+                    </div>
+                    <div className="energy-chart">
+                        {brands.map((brand) => (
+                            <div
+                                key={brand.id}
+                                className={`chart-bar ${selectedBrand === brand ? 'selected' : ''}`}
+                                style={{ height: `${(brand.consumption / Math.max(...brands.map(b => b.consumption))) * 100}%` }}
+                                onClick={() => handleBrandSelect(brand)}
+                            >
+                                <span className="brand-name">{brand.name}</span>
                                 <div className="tooltip">
-                                    Lowest: {lowestConsumption} kWh<br />
-                                    Highest: {highestConsumption} kWh
+                                    Energy Consumption: {brand.consumption.toFixed(2)} kWh/year
                                 </div>
                             </div>
-                        );
-                    })}
+                        ))}
+                    </div>
                 </div>
             </section>
 
             <div className="brand-selection">
-                {[...Array(11)].map((_, index) => (
-                    <button key={index} className="brand-button">Brand</button>
+                {brands.map((brand) => (
+                    <button
+                        key={brand.id}
+                        className={`brand-button ${selectedBrand === brand ? 'selected' : ''}`}
+                        onClick={() => handleBrandSelect(brand)}
+                    >
+                        {brand.name}
+                    </button>
                 ))}
             </div>
 
             <section className="model-suggestion" ref={modelSuggestionRef}>
                 <h3>Top pick for your selected appliances</h3>
                 <div className="model-list">
-                    {[...Array(10)].map((_, index) => (
-                        <div key={index} className="model-item">
-                            <span>Brand Model Name</span>
-                            <span>3.75 Stars</span>
-                            <button className="buy-now">Buy Now</button>
+                    {models.map((model) => (
+                        <div key={model.id} className="model-item">
+                            <span>{model.name}</span>
+                            <span>{model.rating.toFixed(2)} Stars</span>
+                            <span>{model.consumption.toFixed(2)} kWh/hour</span>
                         </div>
                     ))}
                 </div>

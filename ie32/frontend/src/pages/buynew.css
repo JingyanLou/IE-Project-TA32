@@ -1,4 +1,4 @@
-/* Add these new keyframes at the top of your CSS file */
+/* Animation keyframes */
 @keyframes fadeInSlideUp {
     from {
         opacity: 0;
@@ -23,8 +23,6 @@
     }
 }
 
-
-/* Animation keyframes */
 @keyframes slideInLeft {
     0% {
         transform: translateX(-100%);
@@ -81,10 +79,11 @@
     }
 }
 
+/* Add this new style for animating model items */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(20px);
     }
 
     to {
@@ -137,7 +136,6 @@ html {
     width: 60%;
 }
 
-/* Update these existing styles */
 .appliance-details-bottom {
     margin-top: auto;
 }
@@ -157,9 +155,6 @@ html {
     transform: translateY(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-
-
 
 .appliance-details h3 {
     font-size: 28px;
@@ -188,13 +183,11 @@ html {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-
 .appliance-image.show {
     opacity: 1;
     transform: translateX(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
 
 /* Appliance cards */
 .appliance-cards {
@@ -250,15 +243,13 @@ html {
     pointer-events: none;
 }
 
-/* Brand comparison section */
+/* Updated styles for the brand comparison section */
 .brand-comparison {
     width: 60%;
     margin: 60px auto 40px;
     border: 1px solid #333;
     border-radius: 10px;
     padding: 50px;
-    display: flex;
-    justify-content: space-between;
     opacity: 0;
     transform: scale(0.9);
     transition: all 0.8s ease-out;
@@ -269,8 +260,14 @@ html {
     transform: scale(1);
 }
 
+.brand-comparison-content {
+    display: flex;
+    justify-content: space-between;
+}
+
 .brand-comparison-text {
     width: 40%;
+    text-align: left;
 }
 
 .brand-comparison h3 {
@@ -291,30 +288,68 @@ html {
 .energy-chart {
     width: 55%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-end;
-    height: 200px;
+    height: 180px;
+    /* Reduced height to zoom out */
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* Disable vertical scrolling */
+    padding-bottom: 40px;
+    /* Increased to accommodate brand names */
+    transform: scale(0.9);
+    /* Slight zoom out */
+    transform-origin: bottom left;
 }
 
 .chart-bar {
-    width: 40px;
+    width: 35px;
+    /* Slightly reduced width */
     background: linear-gradient(to top, #ff00ff, #8000ff);
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-right: 25px;
+    /* Increased spacing between bars */
+    flex-shrink: 0;
+}
+
+.brand-name {
+    position: absolute;
+    bottom: -30px;
+    /* Adjusted to prevent cutoff */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    /* Slightly reduced font size */
+    white-space: nowrap;
+    max-width: 70px;
+    /* Increased max-width for longer names */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.chart-bar.selected {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
 }
 
 .chart-bar:hover {
     filter: brightness(1.2);
 }
 
+
+
 .chart-bar span {
     position: absolute;
     bottom: -25px;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
+    transform: translateX(-50%) rotate(-45deg);
+    font-size: 12px;
     white-space: nowrap;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tooltip {
@@ -338,13 +373,13 @@ html {
     opacity: 1;
 }
 
-/* Brand selection */
+/* Updated styles for brand selection buttons */
 .brand-selection {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
     margin: 30px 0;
-    overflow-x: auto;
     padding-bottom: 10px;
 }
 
@@ -355,8 +390,13 @@ html {
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s ease;
+}
+
+.brand-button.selected {
+    background-color: #ff6600;
+    box-shadow: 0 0 10px #ff6600;
 }
 
 .brand-button:hover {
@@ -409,20 +449,28 @@ html {
     border-radius: 6px;
 }
 
+/* Updated model item styles */
 .model-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid #333;
-    transition: all 0.9s ease-out;
-    opacity: 0;
-
+    transition: all 0.5s ease-out;
+    opacity: 1;
+    /* Set to 1 to make items visible by default */
+    transform: translateY(20px);
 }
+
+.model-item {
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: calc(var(--item-index) * 0.1s);
+}
+
 
 .model-item.show {
     opacity: 1;
-
+    transform: translateY(0);
 }
 
 .model-item:last-child {
@@ -439,26 +487,19 @@ html {
         2px 0 10px #0ff;
 }
 
+.model-item span {
+    flex: 1;
+    text-align: left;
+    padding: 0 10px;
+}
+
 .model-item span:first-child {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.model-item span:nth-child(2) {
-    font-size: 16px;
+.model-item span:nth-child(2),
+.model-item span:nth-child(3) {
+    font-size: 14px;
     color: #888;
-}
-
-.buy-now {
-    background-color: #ff6600;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-.buy-now:hover {
-    background-color: #ff8533;
 }
