@@ -3,7 +3,7 @@ import './buynew.css';
 import { getApiBaseUrl } from '../utils/api';
 
 const BuyNew = () => {
-    const [selectedAppliance, setSelectedAppliance] = useState('air conditioner');
+    const [selectedAppliance, setSelectedAppliance] = useState('AirConditioner');
     const [selectedApplianceImage, setSelectedApplianceImage] = useState('/images/aircondition.png');
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [brands, setBrands] = useState([]);
@@ -15,13 +15,13 @@ const BuyNew = () => {
 
 
     const appliances = [
-        { name: 'air conditioner', image: 'aircondition.png', displayName: 'Air Conditioner' },
-        { name: 'dryer', image: 'clothdryer.png', displayName: 'Clothes Dryer' },
-        { name: 'dishwasher', image: 'dishwasher.png', displayName: 'Dishwasher' },
-        { name: 'electric_light', image: 'electriclight.png', displayName: 'Electric Light' },
-        { name: 'florescent_lamp', image: 'florescentlamp.png', displayName: 'Florescent Lamp' },
-        { name: 'heater', image: 'heater.png', displayName: 'Heater' },
-        { name: 'lamp', image: 'lamp.png', displayName: 'Lamp' }
+        { name: 'AirConditioner', image: 'aircondition.png', displayName: 'Air Conditioner' },
+        { name: 'Dryer', image: 'clothdryer.png', displayName: 'Clothes Dryer' },
+        { name: 'Dishwasher', image: 'dishwasher.png', displayName: 'Dishwasher' },
+        { name: 'ElectricLight', image: 'electriclight.png', displayName: 'Electric Light' },
+        { name: 'FlorescentLamp', image: 'florescentlamp.png', displayName: 'Florescent Lamp' },
+        { name: 'Heater', image: 'heater.png', displayName: 'Heater' },
+        { name: 'Lamp', image: 'lamp.png', displayName: 'Lamp' }
     ];
 
     const applianceCardsRef = useRef(null);
