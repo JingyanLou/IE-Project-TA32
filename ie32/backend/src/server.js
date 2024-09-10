@@ -85,9 +85,16 @@ app.get('/api/brand-data', (req, res) => {
 
 app.get('/api/model-data', (req, res) => {
     const appliance = req.query.appliance;
-    const brand = req.query.brand;
-    const query = 'SELECT * FROM app_recomm_iter2 WHERE Device = ? AND Brand = ?';
-    connection.query(query, [appliance, brand], (error, results) => {
+    const brand = req.query.brand; // This will be undefined when fetching all models
+    let query = 'SELECT * FROM app_recomm_iter2 WHERE Device = ?';
+    let params = [appliance];
+
+    if (brand) {
+        query += ' AND Brand = ?';
+        params.push(brand);
+    }
+
+    connection.query(query, params, (error, results) => {
         if (error) {
             return res.status(500).json({ error: error.message });
         }

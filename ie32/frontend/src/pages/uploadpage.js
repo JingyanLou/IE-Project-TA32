@@ -210,22 +210,22 @@ const Upload = () => {
                 <div className="progress-bar">
                     <div className="step">
                         <div className={`circle ${currentStep >= 1 ? 'active' : ''}`}>1</div>
-                        <div className="step-label">Fill In Appliance Details</div>
+                        <div className="step-label">Your Appliance </div>
                     </div>
                     <div className="line"></div>
                     <div className="step">
                         <div className={`circle ${currentStep >= 2 ? 'active' : ''}`}>2</div>
-                        <div className="step-label">Appliance Consumption List</div>
+                        <div className="step-label">Appliance Ranking</div>
                     </div>
                     <div className="line"></div>
                     <div className="step">
                         <div className={`circle ${currentStep >= 3 ? 'active' : ''}`}>3</div>
-                        <div className="step-label">Fill In Home Energy Details</div>
+                        <div className="step-label">Details of Your Home</div>
                     </div>
                     <div className="line"></div>
                     <div className="step">
                         <div className={`circle ${currentStep >= 4 ? 'active' : ''}`}>4</div>
-                        <div className="step-label">See Your Customized Insights</div>
+                        <div className="step-label">Energy Estimation</div>
                     </div>
                 </div>
                 <div className="nav-arrow-container">

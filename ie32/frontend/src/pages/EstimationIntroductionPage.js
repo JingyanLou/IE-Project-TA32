@@ -40,10 +40,12 @@ const EstimationIntroductionPage = () => {
 
             {/* Page Title and Guide Description */}
             <div className="header-container">
-                <h1 className="page-title">EnergiseSmart: Your Estimation Guide</h1>
+                <h1 className="page-title">Estimation User Guide</h1>
+
                 <p className="page-description">
-                    This guide will walk you through the steps to estimate your monthly electricity bill, track appliance consumption, and provide suggestions to reduce your energy usage. Follow the steps below to get started.
+                    Welcome! If this is your first time using our website, we recommend reading this guide for a smoother experience with our estimator. Steps 1 through 3 involve simple data collection, with no personal information required. In Step 4, we'll use this data to generate a customized estimate for you.
                 </p>
+
             </div>
 
             {/* Page content */}
@@ -58,7 +60,8 @@ const EstimationIntroductionPage = () => {
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>Fill in the details for each appliance, including its default daily hours and quantity. You can adjust the daily hours as needed. Once added, the appliance will appear in your list.</p>
+                                <p>&#8226; Provide your appliance details.</p>
+                                <p>&#8226; Adjust the daily hours usage of your appliance if require.</p>
 
                             </div>
                         </div>
@@ -73,7 +76,7 @@ const EstimationIntroductionPage = () => {
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>We will rank your entered appliances based on their energy consumption using average values. This will help you identify the most energy-consuming appliances in your home.</p>
+                                <p>&#8226; Appliance will be ranked in descending order based on their energy consumption.</p>
 
                             </div>
                         </div>
@@ -88,7 +91,11 @@ const EstimationIntroductionPage = () => {
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>Provide your home address (Melbourne CBD only), energy provider, and the number of people in your home. This information will be combined with your appliance data for further analysis.</p>
+                                <p>&#8226; Provide your home address.</p>
+                                <p>&#8226; Melbourne CBD only.</p>
+                                <p>&#8226; Provide your energy provider.</p>
+                                <p>&#8226; Provide no. of people living in your household.</p>
+
 
                             </div>
                         </div>
@@ -103,7 +110,8 @@ const EstimationIntroductionPage = () => {
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>Estimate your monthly electricity bill, compare it to government benchmarks, and view a block-level map showing energy consumption. See how much each appliance contributes and get suggestions for new, energy-efficient replacements.</p>
+                                <p>&#8226; Select "Estimate" button </p>
+                                <p>&#8226; Your customised estimated electricity bills and energy consumption will be ready  </p>
 
                             </div>
                         </div>
@@ -115,7 +123,7 @@ const EstimationIntroductionPage = () => {
                         Back
                     </button>
                     <button className="proceed-button" onClick={handleProceed}>
-                        Proceed
+                        Let's go
                     </button>
                 </div>
             </div>

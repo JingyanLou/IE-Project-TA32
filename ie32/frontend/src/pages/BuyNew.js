@@ -11,6 +11,9 @@ const BuyNew = () => {
     const [isChanging, setIsChanging] = useState(false);
     const [initialLoad, setInitialLoad] = useState(true);
 
+    const [totalModelCount, setTotalModelCount] = useState(0);
+
+
     const [error, setError] = useState(null);
 
 
@@ -84,30 +87,41 @@ const BuyNew = () => {
 
 
     useEffect(() => {
-        const fetchBrands = async () => {
+        const fetchBrandsAndModels = async () => {
             try {
                 setError(null);
                 const apiUrl = getApiBaseUrl();
-                //const encodedAppliance = encodeURIComponent(selectedAppliance.toLowerCase().replace(' ', '_'));
-                const url = `${apiUrl}/brand-data?appliance=${selectedAppliance}`;
-                console.log(`Fetching brand data from: ${url}`);
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+
+                // Fetch brands
+                const brandsUrl = `${apiUrl}/brand-data?appliance=${selectedAppliance}`;
+                console.log(`Fetching brand data from: ${brandsUrl}`);
+                const brandsResponse = await fetch(brandsUrl);
+                if (!brandsResponse.ok) {
+                    throw new Error(`HTTP error! status: ${brandsResponse.status}`);
                 }
-                const data = await response.json();
-                console.log('Received brand data:', data);
-                setBrands(data);
+                const brandsData = await brandsResponse.json();
+                console.log('Received brand data:', brandsData);
+                setBrands(brandsData);
+
+                // Fetch all models for the selected appliance
+                const modelsUrl = `${apiUrl}/model-data?appliance=${selectedAppliance}`;
+                console.log(`Fetching all models data from: ${modelsUrl}`);
+                const modelsResponse = await fetch(modelsUrl);
+                if (!modelsResponse.ok) {
+                    throw new Error(`HTTP error! status: ${modelsResponse.status}`);
+                }
+                const modelsData = await modelsResponse.json();
+                console.log('Received all models data:', modelsData);
+                setTotalModelCount(modelsData.length);
             } catch (error) {
-                console.error('Error fetching brand data:', error);
-                setError(`Failed to fetch brand data: ${error.message}`);
+                console.error('Error fetching data:', error);
+                setError(`Failed to fetch data: ${error.message}`);
             }
         };
 
-        fetchBrands();
+        fetchBrandsAndModels();
         setSelectedBrand(null);
     }, [selectedAppliance]);
-
 
     useEffect(() => {
         const fetchModels = async () => {
@@ -115,8 +129,9 @@ const BuyNew = () => {
                 try {
                     setError(null);
                     const apiUrl = getApiBaseUrl();
-                    console.log(`Fetching model data from: ${apiUrl}/model-data?appliance=${selectedAppliance}&brand=${selectedBrand.Brand}`);
-                    const response = await fetch(`${apiUrl}/model-data?appliance=${selectedAppliance}&brand=${selectedBrand.Brand}`);
+                    const url = `${apiUrl}/model-data?appliance=${selectedAppliance}&brand=${selectedBrand.Brand}`;
+                    console.log(`Fetching model data from: ${url}`);
+                    const response = await fetch(url);
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -134,6 +149,7 @@ const BuyNew = () => {
 
         fetchModels();
     }, [selectedAppliance, selectedBrand]);
+
 
 
     const highlightText = (text) => {
@@ -172,7 +188,6 @@ const BuyNew = () => {
             setIsChanging(false);
         }, 300);
     };
-
     const handleBrandSelect = (brand) => {
         setSelectedBrand(brand);
     };
@@ -196,7 +211,7 @@ const BuyNew = () => {
                     <div className={`appliance-details-bottom ${initialLoad ? 'initial' : isChanging ? 'changing' : 'show'}`}>
                         <h3>{selectedAppliance}</h3>
                         <p>{brands.length} Different Brand Options Available</p>
-                        <p>{selectedBrand ? models.length : 0} Different Model Options Available</p>
+                        <p>{totalModelCount} Different Model Options Available</p>
                     </div>
                 </div>
                 <img

@@ -35,8 +35,8 @@ const Homepage = () => {
                     />
                 </ShaderGradientCanvas>
                 <div className="hero-content">
-                    <h1>Improving Your Energy Efficiency.</h1>
-                    <p>Our site offers Melbourne residents insights into high-energy-consuming appliances, provides affordable energy-saving strategies, and connects you with government subsidies for renewable energy. Navigate your way to lower bills and sustainable living with our comprehensive tools.</p>
+                    <h1>Make your Energy Visible and Sustainable.</h1>
+                    <p>Our goal is to make Melbourne one of the world's most sustainable cities by empowering residents to control their energy costs and reduce consumption. We’re committed to driving energy efficiency and sustainability for a greener future.</p>
                     <div className="arrow-down-container" onClick={scrollToEstimation}>
                         <div className="scroll-down-text">Scroll Down</div>
                         <div className="arrow-down">
