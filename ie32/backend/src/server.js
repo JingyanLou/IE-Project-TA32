@@ -77,7 +77,7 @@ app.get('/api/brand-data', (req, res) => {
             console.error('Database error:', error);
             return res.status(500).json({ error: error.message });
         }
-        console.log(`Query results:`, results);
+        //console.log(`Query results:`, results);
         res.json(results);
     });
 });

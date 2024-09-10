@@ -63,6 +63,34 @@
     flex-direction: row-reverse;
 }
 
+.gov-info-section.gov-info-reverse .gov-info-content {
+    text-align: right;
+    padding-left: 3rem;
+    /* Add some extra padding on the left for better spacing */
+}
+
+.gov-info-section.gov-info-reverse .gov-info-content h2,
+.gov-info-section.gov-info-reverse .gov-info-content p {
+    text-align: right;
+}
+
+.gov-info-section.gov-info-reverse .gov-info-button {
+    float: right;
+    /* Align button to the right */
+    clear: both;
+    /* Ensure it clears any floating elements */
+}
+
+/* Clearfix for the content div to contain the floated button */
+.gov-info-section.gov-info-reverse .gov-info-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+
 .gov-info-content {
     flex: 1;
     padding: 2rem;
@@ -95,7 +123,16 @@
     border-radius: 5px;
     position: relative;
     overflow: hidden;
+    -webkit-transform: translateZ(0);
+    /* For Safari */
+    transform: translateZ(0);
 }
+
+
+.gov-info-button:hover::after {
+    opacity: 1;
+}
+
 
 .gov-info-button::before {
     content: '';
@@ -112,17 +149,28 @@
 
 .gov-info-button:hover {
     background-color: #1557b0;
+    -webkit-transform: translateY(-2px);
     transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
-        0 0 20px rgba(255, 255, 255, 0.1),
-        0 0 30px rgba(0, 255, 255, 0.1),
-        0 0 40px rgba(255, 0, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .gov-info-button:hover::before {
     opacity: 1;
     top: -100%;
     left: -100%;
+}
+
+@supports (-webkit-touch-callout: none) {
+
+    /* CSS specific to iOS devices */
+    .gov-info-button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .gov-info-button:hover {
+        -webkit-transform: none;
+        transform: none;
+    }
 }
 
 .gov-info-image-container {
@@ -154,12 +202,24 @@
 }
 
 @media (max-width: 768px) {
-    .gov-info-section {
+
+    .gov-info-section,
+    .gov-info-section.gov-info-reverse {
         flex-direction: column;
     }
 
-    .gov-info-section.gov-info-reverse {
-        flex-direction: column;
+    .gov-info-section.gov-info-reverse .gov-info-content {
+        text-align: left;
+        padding-left: 2rem;
+    }
+
+    .gov-info-section.gov-info-reverse .gov-info-content h2,
+    .gov-info-section.gov-info-reverse .gov-info-content p {
+        text-align: left;
+    }
+
+    .gov-info-section.gov-info-reverse .gov-info-button {
+        float: none;
     }
 
     .gov-info-image-container {
