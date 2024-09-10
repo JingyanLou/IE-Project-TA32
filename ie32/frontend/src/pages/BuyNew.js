@@ -15,8 +15,8 @@ const BuyNew = () => {
 
 
     const appliances = [
-        { name: 'air_conditioner', image: 'aircondition.png', displayName: 'Air Conditioner' },
-        { name: 'clothes_dryer', image: 'clothdryer.png', displayName: 'Clothes Dryer' },
+        { name: 'air conditioner', image: 'aircondition.png', displayName: 'Air Conditioner' },
+        { name: 'dryer', image: 'clothdryer.png', displayName: 'Clothes Dryer' },
         { name: 'dishwasher', image: 'dishwasher.png', displayName: 'Dishwasher' },
         { name: 'electric_light', image: 'electriclight.png', displayName: 'Electric Light' },
         { name: 'florescent_lamp', image: 'florescentlamp.png', displayName: 'Florescent Lamp' },
@@ -88,8 +88,8 @@ const BuyNew = () => {
             try {
                 setError(null);
                 const apiUrl = getApiBaseUrl();
-                const encodedAppliance = encodeURIComponent(selectedAppliance.toLowerCase().replace(' ', '_'));
-                const url = `${apiUrl}/brand-data?appliance=${encodedAppliance}`;
+                //const encodedAppliance = encodeURIComponent(selectedAppliance.toLowerCase().replace(' ', '_'));
+                const url = `${apiUrl}/brand-data?appliance=${selectedAppliance}`;
                 console.log(`Fetching brand data from: ${url}`);
                 const response = await fetch(url);
                 if (!response.ok) {
