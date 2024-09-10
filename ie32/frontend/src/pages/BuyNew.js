@@ -24,6 +24,23 @@ const BuyNew = () => {
     const brandComparisonRef = useRef(null);
     const modelSuggestionRef = useRef(null);
 
+    const energyChartRef = useRef(null);
+
+    useEffect(() => {
+        if (selectedBrand && energyChartRef.current) {
+            const selectedBar = energyChartRef.current.querySelector('.selected');
+            if (selectedBar) {
+                selectedBar.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+    }, [selectedBrand]);
+
+    // Add this function to sort brands
+    const sortedBrands = [...brands].sort((a, b) => a.consumption - b.consumption);
+
+
+
+
     useEffect(() => {
         const animateOnScroll = (entries, observer) => {
             entries.forEach((entry) => {
@@ -63,6 +80,7 @@ const BuyNew = () => {
         const timer = setTimeout(() => setInitialLoad(false), 1000);
         return () => clearTimeout(timer);
     }, []);
+
 
     useEffect(() => {
         // Simulating API call to get brands for the selected appliance
@@ -186,8 +204,9 @@ const BuyNew = () => {
                         <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
                         <p>Your Selected Appliances: {selectedAppliance}</p>
                     </div>
-                    <div className="energy-chart">
-                        {brands.map((brand) => (
+
+                    <div className="energy-chart" ref={energyChartRef}>
+                        {sortedBrands.map((brand) => (
                             <div
                                 key={brand.id}
                                 className={`chart-bar ${selectedBrand === brand ? 'selected' : ''}`}

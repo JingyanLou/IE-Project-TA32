@@ -290,16 +290,28 @@ html {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    height: 180px;
-    /* Reduced height to zoom out */
+    height: 200px;
     overflow-x: auto;
     overflow-y: hidden;
-    /* Disable vertical scrolling */
     padding-bottom: 40px;
-    /* Increased to accommodate brand names */
-    transform: scale(0.9);
-    /* Slight zoom out */
-    transform-origin: bottom left;
+    margin-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #222;
+}
+
+.energy-chart::-webkit-scrollbar {
+    height: 8px;
+}
+
+.energy-chart::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+
+.energy-chart::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+    border: 2px solid #222;
 }
 
 .chart-bar {
@@ -317,21 +329,23 @@ html {
 .brand-name {
     position: absolute;
     bottom: -30px;
-    /* Adjusted to prevent cutoff */
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    /* Slightly reduced font size */
+    transform: translateX(-50%) rotate(-45deg);
+    font-size: 12px;
     white-space: nowrap;
-    max-width: 70px;
-    /* Increased max-width for longer names */
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #ccc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Style for the first bar */
+.chart-bar:first-child {
+    margin-left: 25px;
+    /* Add left margin to the first bar */
 }
 
 
 .chart-bar.selected {
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    box-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 20px #fff, 0 0 5px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 20px #ff00de, 0 0 20px #ff00de;
 }
 
 .chart-bar:hover {
@@ -354,11 +368,11 @@ html {
 
 .tooltip {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(20, 20, 20, 0.9);
     color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -367,6 +381,7 @@ html {
     transform: translateX(-50%);
     white-space: nowrap;
     z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .chart-bar:hover .tooltip {
