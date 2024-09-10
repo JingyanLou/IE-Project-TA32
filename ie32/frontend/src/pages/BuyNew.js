@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './buynew.css';
+import { getApiBaseUrl } from '../utils/api';
 
 const BuyNew = () => {
-    const [selectedAppliance, setSelectedAppliance] = useState('Air Conditioner');
+    const [selectedAppliance, setSelectedAppliance] = useState('air_conditioner');
     const [selectedApplianceImage, setSelectedApplianceImage] = useState('/images/aircondition.png');
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [brands, setBrands] = useState([]);
@@ -10,20 +11,22 @@ const BuyNew = () => {
     const [isChanging, setIsChanging] = useState(false);
     const [initialLoad, setInitialLoad] = useState(true);
 
+    const [error, setError] = useState(null);
+
+
     const appliances = [
-        { name: 'Air Conditioner', image: 'aircondition.png' },
-        { name: 'Cloth Dryer', image: 'clothdryer.png' },
-        { name: 'Dishwasher', image: 'dishwasher.png' },
-        { name: 'Electric Light', image: 'electriclight.png' },
-        { name: 'Florescent Lamp', image: 'florescentlamp.png' },
-        { name: 'Heater', image: 'heater.png' },
-        { name: 'Lamp', image: 'lamp.png' }
+        { name: 'air_conditioner', image: 'aircondition.png', displayName: 'Air Conditioner' },
+        { name: 'clothes_dryer', image: 'clothdryer.png', displayName: 'Clothes Dryer' },
+        { name: 'dishwasher', image: 'dishwasher.png', displayName: 'Dishwasher' },
+        { name: 'electric_light', image: 'electriclight.png', displayName: 'Electric Light' },
+        { name: 'florescent_lamp', image: 'florescentlamp.png', displayName: 'Florescent Lamp' },
+        { name: 'heater', image: 'heater.png', displayName: 'Heater' },
+        { name: 'lamp', image: 'lamp.png', displayName: 'Lamp' }
     ];
 
     const applianceCardsRef = useRef(null);
     const brandComparisonRef = useRef(null);
     const modelSuggestionRef = useRef(null);
-
     const energyChartRef = useRef(null);
 
     useEffect(() => {
@@ -37,8 +40,6 @@ const BuyNew = () => {
 
     // Add this function to sort brands
     const sortedBrands = [...brands].sort((a, b) => a.consumption - b.consumption);
-
-
 
 
     useEffect(() => {
@@ -83,38 +84,47 @@ const BuyNew = () => {
 
 
     useEffect(() => {
-        // Simulating API call to get brands for the selected appliance
-        const fetchBrands = () => {
-            const brandData = [
-                { id: 1, name: 'Sony', consumption: Math.random() * 100 + 50 },
-                { id: 2, name: 'AGL', consumption: Math.random() * 100 + 50 },
-                { id: 3, name: 'STK', consumption: Math.random() * 100 + 50 },
-                { id: 4, name: 'HX', consumption: Math.random() * 100 + 50 },
-                { id: 5, name: 'Hisense', consumption: Math.random() * 100 + 50 },
-                { id: 6, name: 'Newbie', consumption: Math.random() * 100 + 50 },
-                { id: 7, name: 'Dafuq', consumption: Math.random() * 100 + 50 },
-                { id: 8, name: 'Very Long Brand Name', consumption: Math.random() * 100 + 50 },
-                { id: 9, name: 'Another Long Brand Name', consumption: Math.random() * 100 + 50 },
-            ];
-            setBrands(brandData);
+        const fetchBrands = async () => {
+            try {
+                setError(null);
+                const apiUrl = getApiBaseUrl();
+                const encodedAppliance = encodeURIComponent(selectedAppliance.toLowerCase().replace(' ', '_'));
+                const url = `${apiUrl}/brand-data?appliance=${encodedAppliance}`;
+                console.log(`Fetching brand data from: ${url}`);
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Received brand data:', data);
+                setBrands(data);
+            } catch (error) {
+                console.error('Error fetching brand data:', error);
+                setError(`Failed to fetch brand data: ${error.message}`);
+            }
         };
 
         fetchBrands();
         setSelectedBrand(null);
     }, [selectedAppliance]);
-
     useEffect(() => {
-        // Simulating API call to get models for the selected appliance and brand
-        const fetchModels = () => {
+        const fetchModels = async () => {
             if (selectedBrand) {
-                const modelData = [
-                    { id: 1, name: 'Model A', rating: 3.5, consumption: 1.2 },
-                    { id: 2, name: 'Model B', rating: 4.0, consumption: 1.0 },
-                    { id: 3, name: 'Model C', rating: 3.8, consumption: 1.1 },
-                    { id: 4, name: 'Model D', rating: 4.2, consumption: 0.9 },
-                    { id: 5, name: 'Model E', rating: 3.7, consumption: 1.3 },
-                ];
-                setModels(modelData);
+                try {
+                    setError(null);
+                    const apiUrl = getApiBaseUrl();
+                    console.log(`Fetching model data from: ${apiUrl}/model-data?appliance=${selectedAppliance}&brand=${selectedBrand.Brand}`);
+                    const response = await fetch(`${apiUrl}/model-data?appliance=${selectedAppliance}&brand=${selectedBrand.Brand}`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    console.log('Received model data:', data);
+                    setModels(data);
+                } catch (error) {
+                    console.error('Error fetching model data:', error);
+                    setError(`Failed to fetch model data: ${error.message}`);
+                }
             } else {
                 setModels([]);
             }
@@ -122,6 +132,7 @@ const BuyNew = () => {
 
         fetchModels();
     }, [selectedAppliance, selectedBrand]);
+
 
     const highlightText = (text) => {
         return text.split(' ').map((word, index) =>
@@ -164,7 +175,15 @@ const BuyNew = () => {
         setSelectedBrand(brand);
     };
 
-    const maxConsumption = Math.max(...brands.map(b => b.consumption));
+
+
+    const getNumericValue = (value) => {
+        const num = parseFloat(value);
+        return isNaN(num) ? 0 : num;
+    };
+
+    const maxConsumption = Math.max(...brands.map(b => getNumericValue(b.Average_Energy_Consumption)));
+
 
 
 
@@ -211,19 +230,20 @@ const BuyNew = () => {
                     </div>
 
                     <div className="energy-chart" ref={energyChartRef}>
-                        {sortedBrands.map((brand) => {
-                            const heightPercentage = (brand.consumption / maxConsumption) * 90; // Scale to 90% of chart height
+                        {brands.map((brand, index) => {
+                            const consumption = getNumericValue(brand.Average_Energy_Consumption);
+                            const heightPercentage = (consumption / maxConsumption) * 90; // Scale to 90% of chart height
                             return (
                                 <div
-                                    key={brand.id}
+                                    key={index}
                                     className={`chart-bar ${selectedBrand === brand ? 'selected' : ''} ${heightPercentage >= 90 ? 'max-height' : ''}`}
                                     style={{ height: `${heightPercentage}%` }}
                                     onClick={() => handleBrandSelect(brand)}
                                 >
                                     <div className="tooltip">
-                                        {brand.consumption.toFixed(2)} kWh/year
+                                        {consumption.toFixed(2)} kWh/year
                                     </div>
-                                    <span className="brand-name">{brand.name}</span>
+                                    <span className="brand-name">{brand.Brand}</span>
                                 </div>
                             );
                         })}
@@ -232,13 +252,13 @@ const BuyNew = () => {
             </section>
 
             <div className="brand-selection">
-                {brands.map((brand) => (
+                {brands.map((brand, index) => (
                     <button
-                        key={brand.id}
+                        key={index}
                         className={`brand-button ${selectedBrand === brand ? 'selected' : ''}`}
                         onClick={() => handleBrandSelect(brand)}
                     >
-                        {brand.name}
+                        {brand.Brand}
                     </button>
                 ))}
             </div>
@@ -246,11 +266,11 @@ const BuyNew = () => {
             <section className="model-suggestion" ref={modelSuggestionRef}>
                 <h3>Top pick for your selected appliances</h3>
                 <div className="model-list">
-                    {models.map((model) => (
-                        <div key={model.id} className="model-item">
-                            <span>{model.name}</span>
-                            <span>{model.rating.toFixed(2)} Stars</span>
-                            <span>{model.consumption.toFixed(2)} kWh/hour</span>
+                    {models.map((model, index) => (
+                        <div key={index} className="model-item">
+                            <span>{model.Model_No}</span>
+                            <span>{getNumericValue(model.Star_Rating).toFixed(2)} Stars</span>
+                            <span>{getNumericValue(model.Energy_Consumption_kWh_per_hour).toFixed(2)} kWh/hour</span>
                         </div>
                     ))}
                 </div>

@@ -69,11 +69,15 @@ app.get('/api/benchmark-vic', (req, res) => {
 //for buynew.js 
 app.get('/api/brand-data', (req, res) => {
     const appliance = req.query.appliance;
+    console.log(`Received request for appliance: ${appliance}`);
     const query = 'SELECT * FROM app_brand_data_iter2 WHERE Device = ?';
+    console.log(`Executing query: ${query} with parameter: ${appliance}`);
     connection.query(query, [appliance], (error, results) => {
         if (error) {
+            console.error('Database error:', error);
             return res.status(500).json({ error: error.message });
         }
+        console.log(`Query results:`, results);
         res.json(results);
     });
 });
