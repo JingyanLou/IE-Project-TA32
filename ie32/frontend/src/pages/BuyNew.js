@@ -13,8 +13,10 @@ const BuyNew = () => {
 
     const [totalModelCount, setTotalModelCount] = useState(0);
 
-
     const [error, setError] = useState(null);
+
+    const [brandFilter, setBrandFilter] = useState('all-low-high');
+
 
 
     const appliances = [
@@ -208,11 +210,28 @@ const BuyNew = () => {
     });
 
 
-
-
-
-
     const maxConsumption = Math.max(...brands.map(b => getNumericValue(b.Average_Energy_Consumption)));
+
+    const filterAndSortBrands = () => {
+        let sortedBrands = [...brands].sort((a, b) =>
+            getNumericValue(a.Average_Energy_Consumption) - getNumericValue(b.Average_Energy_Consumption)
+        );
+
+        switch (brandFilter) {
+            case 'top-5':
+                return sortedBrands.slice(0, 5);
+            case 'top-10':
+                return sortedBrands.slice(0, 10);
+            case 'all-high-low':
+                return sortedBrands.reverse();
+            default:
+                return sortedBrands;
+        }
+    };
+
+    const filteredBrands = filterAndSortBrands();
+
+
 
 
 
@@ -254,7 +273,7 @@ const BuyNew = () => {
                 <div className="brand-comparison-content">
                     <div className="brand-comparison-text">
                         <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest  to highest")}</h3>
-                        <p>Your Selected Appliance: {selectedAppliance}</p>
+                        <p>Showing all the brand for: {selectedAppliance}</p>
                     </div>
 
                     <div className="energy-chart" ref={energyChartRef}>
@@ -279,8 +298,21 @@ const BuyNew = () => {
                 </div>
             </section>
 
+            <div className="brand-filter-container">
+                <select
+                    className="brand-filter"
+                    value={brandFilter}
+                    onChange={(e) => setBrandFilter(e.target.value)}
+                >
+                    <option value="all-low-high">All Brands (Lowest to Highest)</option>
+                    <option value="all-high-low">All Brands (Highest to Lowest)</option>
+                    <option value="top-5">Top 5 Energy Efficient Brands</option>
+                    <option value="top-10">Top 10 Energy Efficient Brands</option>
+                </select>
+            </div>
+
             <div className="brand-selection">
-                {brands.map((brand, index) => (
+                {filteredBrands.map((brand, index) => (
                     <button
                         key={index}
                         className={`brand-button ${selectedBrand === brand ? 'selected' : ''}`}
@@ -290,7 +322,6 @@ const BuyNew = () => {
                     </button>
                 ))}
             </div>
-
             <section className="model-suggestion" ref={modelSuggestionRef}>
                 <h3>Top picks for your selected appliance</h3>
                 <div className="model-list">
