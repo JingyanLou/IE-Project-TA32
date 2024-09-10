@@ -50,13 +50,16 @@ const Homepage = () => {
                 <Estimation />
             </div>
 
-            <div id="why-choose-us-section">
-                <WhyChooseUs />
-            </div>
+
 
             <div id="saving-tips">
                 <Savingtips />
             </div>
+
+            <div id="why-choose-us-section">
+                <WhyChooseUs />
+            </div>
+
         </div>
     );
 }
