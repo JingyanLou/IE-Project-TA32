@@ -17,6 +17,8 @@
     height: 56%;
     z-index: 1;
     animation: rotate 40s linear infinite;
+    margin-left: -70px;
+    /* Moves the image 20px to the left */
 }
 
 @keyframes rotate {
