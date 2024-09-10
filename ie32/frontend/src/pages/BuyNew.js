@@ -206,7 +206,7 @@ const BuyNew = () => {
             <section className="brand-comparison" ref={brandComparisonRef}>
                 <div className="brand-comparison-content">
                     <div className="brand-comparison-text">
-                        <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest to highest")}</h3>
+                        <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest  to highest")}</h3>
                         <p>Your Selected Appliances: {selectedAppliance}</p>
                     </div>
 

@@ -66,6 +66,35 @@ app.get('/api/benchmark-vic', (req, res) => {
     });
 });
 
+//for buynew.js 
+app.get('/api/brand-data', (req, res) => {
+    const appliance = req.query.appliance;
+    const query = 'SELECT * FROM app_brand_data_iter2 WHERE Device = ?';
+    connection.query(query, [appliance], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+
+app.get('/api/model-data', (req, res) => {
+    const appliance = req.query.appliance;
+    const brand = req.query.brand;
+    const query = 'SELECT * FROM app_recomm_iter2 WHERE Device = ? AND Brand = ?';
+    connection.query(query, [appliance, brand], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+
+
+
+
 // Proxy requests to /iteration1 to the Iteration 1 frontend running on port 3001
 app.use('/iteration1', createProxyMiddleware({
     target: 'http://localhost:3001',  // Iteration 1 frontend

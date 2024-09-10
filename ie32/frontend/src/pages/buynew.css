@@ -388,9 +388,6 @@ html {
     opacity: 1;
 }
 
-.chart-bar:hover .tooltip {
-    opacity: 1;
-}
 
 /* Updated styles for brand selection buttons */
 .brand-selection {
