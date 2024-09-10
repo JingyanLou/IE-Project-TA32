@@ -299,6 +299,7 @@ html {
     scrollbar-color: #444 #222;
 }
 
+/* Custom scrollbar styles */
 .energy-chart::-webkit-scrollbar {
     height: 8px;
 }
@@ -316,15 +317,14 @@ html {
 
 .chart-bar {
     width: 35px;
-    /* Slightly reduced width */
     background: linear-gradient(to top, #ff00ff, #8000ff);
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-right: 25px;
-    /* Increased spacing between bars */
     flex-shrink: 0;
 }
+
 
 .brand-name {
     position: absolute;
@@ -382,6 +382,10 @@ html {
     white-space: nowrap;
     z-index: 10;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chart-bar:hover .tooltip {
+    opacity: 1;
 }
 
 .chart-bar:hover .tooltip {

@@ -164,6 +164,11 @@ const BuyNew = () => {
         setSelectedBrand(brand);
     };
 
+    const maxConsumption = Math.max(...brands.map(b => b.consumption));
+
+
+
+
     return (
         <div className="buy-new-container">
             <section className="appliance-selection">
@@ -206,19 +211,22 @@ const BuyNew = () => {
                     </div>
 
                     <div className="energy-chart" ref={energyChartRef}>
-                        {sortedBrands.map((brand) => (
-                            <div
-                                key={brand.id}
-                                className={`chart-bar ${selectedBrand === brand ? 'selected' : ''}`}
-                                style={{ height: `${(brand.consumption / Math.max(...brands.map(b => b.consumption))) * 100}%` }}
-                                onClick={() => handleBrandSelect(brand)}
-                            >
-                                <span className="brand-name">{brand.name}</span>
-                                <div className="tooltip">
-                                    Energy Consumption: {brand.consumption.toFixed(2)} kWh/year
+                        {sortedBrands.map((brand) => {
+                            const heightPercentage = (brand.consumption / maxConsumption) * 90; // Scale to 90% of chart height
+                            return (
+                                <div
+                                    key={brand.id}
+                                    className={`chart-bar ${selectedBrand === brand ? 'selected' : ''} ${heightPercentage >= 90 ? 'max-height' : ''}`}
+                                    style={{ height: `${heightPercentage}%` }}
+                                    onClick={() => handleBrandSelect(brand)}
+                                >
+                                    <div className="tooltip">
+                                        {brand.consumption.toFixed(2)} kWh/year
+                                    </div>
+                                    <span className="brand-name">{brand.name}</span>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
