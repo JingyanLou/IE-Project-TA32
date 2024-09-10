@@ -200,6 +200,17 @@ const BuyNew = () => {
         getNumericValue(a.Average_Energy_Consumption) - getNumericValue(b.Average_Energy_Consumption)
     );
 
+    // Sort models by Star Rating (descending) and Energy Consumption (ascending)
+    const sortedModels = [...models].sort((a, b) => {
+        const starRatingDiff = getNumericValue(b.Star_Rating) - getNumericValue(a.Star_Rating);
+        if (starRatingDiff !== 0) return starRatingDiff;
+        return getNumericValue(a.Energy_Consumption_kWh_per_hour) - getNumericValue(b.Energy_Consumption_kWh_per_hour);
+    });
+
+
+
+
+
 
     const maxConsumption = Math.max(...brands.map(b => getNumericValue(b.Average_Energy_Consumption)));
 
@@ -281,9 +292,9 @@ const BuyNew = () => {
             </div>
 
             <section className="model-suggestion" ref={modelSuggestionRef}>
-                <h3>Top pick for your selected appliances</h3>
+                <h3>Top picks for your selected appliance</h3>
                 <div className="model-list">
-                    {models.map((model, index) => (
+                    {sortedModels.map((model, index) => (
                         <div key={index} className="model-item">
                             <span>{model.Model_No}</span>
                             <span>{getNumericValue(model.Star_Rating).toFixed(2)} Stars</span>
