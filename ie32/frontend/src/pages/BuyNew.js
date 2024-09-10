@@ -41,9 +41,6 @@ const BuyNew = () => {
         }
     }, [selectedBrand]);
 
-    // Add this function to sort brands
-    const sortedBrands = [...brands].sort((a, b) => a.consumption - b.consumption);
-
 
     useEffect(() => {
         const animateOnScroll = (entries, observer) => {
@@ -151,7 +148,6 @@ const BuyNew = () => {
     }, [selectedAppliance, selectedBrand]);
 
 
-
     const highlightText = (text) => {
         return text.split(' ').map((word, index) =>
             word.toLowerCase() === 'lowest' || word.toLowerCase() === 'highest' ?
@@ -188,16 +184,22 @@ const BuyNew = () => {
             setIsChanging(false);
         }, 300);
     };
+
     const handleBrandSelect = (brand) => {
         setSelectedBrand(brand);
     };
-
 
 
     const getNumericValue = (value) => {
         const num = parseFloat(value);
         return isNaN(num) ? 0 : num;
     };
+
+    // Sort brands by Average_Energy_Consumption
+    const sortedBrands = [...brands].sort((a, b) =>
+        getNumericValue(a.Average_Energy_Consumption) - getNumericValue(b.Average_Energy_Consumption)
+    );
+
 
     const maxConsumption = Math.max(...brands.map(b => getNumericValue(b.Average_Energy_Consumption)));
 
@@ -241,11 +243,11 @@ const BuyNew = () => {
                 <div className="brand-comparison-content">
                     <div className="brand-comparison-text">
                         <h3>{highlightText("Compare annual energy consumption across brands for your selected appliance from the lowest  to highest")}</h3>
-                        <p>Your Selected Appliances: {selectedAppliance}</p>
+                        <p>Your Selected Appliance: {selectedAppliance}</p>
                     </div>
 
                     <div className="energy-chart" ref={energyChartRef}>
-                        {brands.map((brand, index) => {
+                        {sortedBrands.map((brand, index) => {
                             const consumption = getNumericValue(brand.Average_Energy_Consumption);
                             const heightPercentage = (consumption / maxConsumption) * 90; // Scale to 90% of chart height
                             return (
