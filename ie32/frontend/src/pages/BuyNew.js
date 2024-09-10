@@ -3,7 +3,7 @@ import './buynew.css';
 import { getApiBaseUrl } from '../utils/api';
 
 const BuyNew = () => {
-    const [selectedAppliance, setSelectedAppliance] = useState('air_conditioner');
+    const [selectedAppliance, setSelectedAppliance] = useState('air conditioner');
     const [selectedApplianceImage, setSelectedApplianceImage] = useState('/images/aircondition.png');
     const [selectedBrand, setSelectedBrand] = useState(null);
     const [brands, setBrands] = useState([]);
@@ -107,6 +107,8 @@ const BuyNew = () => {
         fetchBrands();
         setSelectedBrand(null);
     }, [selectedAppliance]);
+
+
     useEffect(() => {
         const fetchModels = async () => {
             if (selectedBrand) {
@@ -186,8 +188,6 @@ const BuyNew = () => {
 
 
 
-
-
     return (
         <div className="buy-new-container">
             <section className="appliance-selection">
@@ -214,7 +214,7 @@ const BuyNew = () => {
                 {appliances.map((appliance, index) => (
                     <div
                         key={index}
-                        className="appliance-card"
+                        className={`appliance-card ${selectedAppliance === appliance.name ? 'selected' : ''} show`}
                         onClick={() => handleApplianceSelect(appliance)}
                     >
                         <img src={`/images/${appliance.image}`} alt={appliance.name} />

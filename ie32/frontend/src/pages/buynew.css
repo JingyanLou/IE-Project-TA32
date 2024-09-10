@@ -223,9 +223,24 @@ html {
     transform: scale(0.5);
 }
 
+.appliance-card.selected {
+    box-shadow: inset 0 0 20px whitesmoke,
+        inset 10px 0 20px #f0f,
+        inset -10px 0 20px #0ff,
+        0 0 20px #fff,
+        -5px 0 20px #f0f,
+        5px 0 20px #0ff;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
+
 .appliance-card.show {
     opacity: 1;
     transform: scale(1);
+}
+
+.appliance-card:first-child {
+    margin-left: 12px;
 }
 
 .appliance-card:hover {
