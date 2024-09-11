@@ -1,19 +1,71 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import './step4container.css';
 import ChoroplethMap from './ChoroplethMap';
 import ApplianceBarChart from './ApplianceBarChart';
 
-const Step4Container = ({ data }) => {
+const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice, topBrands, setTopBrands, appRecommData }) => {
     const treemapRef = useRef(null);
     const appliances = data['Appliances-list'] || []; // Ensure appliances is an array
     const userInformation = data['User information'] || []; // Ensure userInformation is defined
+
+    const uniqueDevices = useMemo(() => {
+        // Get unique devices from appliances list
+        const applianceDevices = [...new Set(appliances.map(appliance => appliance[0]))];
+        
+        // Get unique devices from brand data
+        const brandDevices = [...new Set(appBrandData.map(item => item.Device))];
+        
+        // Filter for devices that exist in both lists
+        return applianceDevices.filter(device => brandDevices.includes(device));
+    }, [appliances, appBrandData]);
+
+    //const filteredData = appBrandData.filter(item => item.Device === selectedDevice);
+    //console.log('filteredData in Step4Container:', filteredData);
+    const [filteredData, setFilteredData] = useState([]);
+    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [applianceSuggestions, setApplianceSuggestions] = useState([]);
 
     // Log the user information when the component mounts
     console.log('Received User Information:', userInformation);
     console.log('Received Appliances List:', appliances);
     console.log(data);
+
+    useEffect(() => {
+        if (uniqueDevices.length > 0 && !selectedDevice) {
+            setSelectedDevice(uniqueDevices[0]);
+        }
+    }, [uniqueDevices, selectedDevice, setSelectedDevice]);
+
+    useEffect(() => {
+        const filtered = appBrandData.filter(item => item.Device === selectedDevice)
+            .map(item => ({
+                ...item,
+                Average_Energy_Consumption: item.Average_Energy_Consumption * 1000,
+                Lowest_Energy_Consumption: item.Lowest_Energy_Consumption * 1000,
+                Highest_Energy_Consumption: item.Highest_Energy_Consumption * 1000
+            }));
+        setFilteredData(filtered);
+    }, [selectedDevice, appBrandData]);
+
+    useEffect(() => {
+        if (selectedBrand && selectedDevice) {
+            const suggestions = appRecommData.filter(
+                item => item.Brand === selectedBrand && item.Device === selectedDevice
+            ).map(item => ({
+                ...item,
+                Energy_Consumption_kWh_per_hour: item.Energy_Consumption_kWh_per_hour * 1000
+            }));
+            setApplianceSuggestions(suggestions);
+        } else {
+            setApplianceSuggestions([]);
+        }
+    }, [selectedBrand, selectedDevice, appRecommData]);
+
+    const handleBarClick = (brand) => {
+        setSelectedBrand(brand);
+    };
 
     useEffect(() => {
 
@@ -226,18 +278,6 @@ const Step4Container = ({ data }) => {
     console.log(`Total Supply Charge Cost: ${totalSupplyChargeCostAUD} AUD`);
     console.log(`Estimated Monthly Bill: ${estimatedMonthlyBillAUD} AUD`);
 
-    // Mock data for the appliance suggestions
-    const applianceSuggestions = [
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-        { brand: 'SAMSUNG', model: 'AC160T', output: '24kwh/hour', eer: '3.54' },
-
-    ];
-
 
     return (
         <div className="step4-container">
@@ -296,33 +336,68 @@ const Step4Container = ({ data }) => {
                     />
                 </div>
             </div>
-
             <div className="appliances-section">
                 <div className="barchart-section">
-                    <h3>Energy-efficient appliance suggestions for your selection.</h3>
-                    <ApplianceBarChart /> {/* Render the ApplianceBarChart here */}
+                    <h3>Energy Consumption by Brand for {selectedDevice}</h3>
+                    <div className="barchart-container">
+                        <div className="barchart-and-filters">
+                            <div className="filters">
+                                <label htmlFor="device-select">Device:</label>
+                                <select
+                                    id="device-select"
+                                    value={selectedDevice}
+                                    onChange={(e) => setSelectedDevice(e.target.value)}
+                                >
+                                    {uniqueDevices.map(device => (
+                                        <option key={device} value={device}>{device}</option>
+                                    ))}
+                                </select>
+                                <label htmlFor="brand-select">Range:</label>
+                                <select
+                                    id="brand-select"
+                                    value={topBrands}
+                                    onChange={(e) => setTopBrands(Number(e.target.value))}
+                                >
+                                    <option value={5}>Top 5</option>
+                                    <option value={10}>Top 10</option>
+                                    <option value={filteredData.length}>All</option>
+                                </select>
+                            </div>
+                            <ApplianceBarChart data={filteredData} topBrands={topBrands} onBarClick={handleBarClick}/>
+                        </div>
+                        <div className="barchart-description">
+                        <h4>Energy Efficiency Comparison</h4>
+                            <p>This chart compares the energy consumption of different brands for the selected device type. Each bar represents a brand's average energy consumption in Watt-hours (Wh).</p>
+                            <p className="highlight">Lower bars indicate more energy-efficient options.</p>
+                            <p>Hover over each bar to see detailed information about the brand's energy consumption range.</p>
+                            <p className="action-text">Click on a bar to see top picks from that brand!</p>
+                        </div>
+                    </div>
                 </div>
-
                 <div className="suggestion-section">
-                    <h3>Energy-efficient appliance suggestions.</h3>
-                    <ul className="suggestion-list">
-                        {applianceSuggestions.map((item, index) => (
-                            <li key={index} className="suggestion-item">
-                                <div>
-                                    <strong>{item.brand}</strong>
-                                    <br />
-                                    {item.model}
-                                    <br />
-                                    Output range: {item.output}
-                                    <br />
-                                    EER: {item.eer}
+                    <h3>Top picks for {selectedDevice}</h3>
+                    {applianceSuggestions.length > 0 ? (
+                        <div className="suggestion-list-container">
+                            {applianceSuggestions.map((item, index) => (
+                                <div key={index} className="suggestion-item">
+                                    <span className="brand-model">{item.Brand} {item.Model_No}</span>
+                                    <span className="star-rating">
+                                        {typeof item.Star_Rating === 'number' 
+                                            ? item.Star_Rating.toFixed(2) 
+                                            : item.Star_Rating} Stars
+                                    </span>
+                                    <span className="energy-consumption">
+                                        {item.Energy_Consumption_kWh_per_hour.toFixed(2)} Wh/hour
+                                    </span>
                                 </div>
-                                <button className="buy-now">Buy now <span role="img" aria-label="buy now">🔗</span></button>
-                            </li>
-                        ))}
-                    </ul>
+                            ))}
+                        </div>
+                    ) : (
+                        <p>Click on a bar in the chart to see top picks for the selected brand and device.</p>
+                    )}
                 </div>
             </div>
+
 
             <div className="explore-more-section">
                 <div className="explore-more-card">
@@ -364,6 +439,7 @@ Step4Container.propTypes = {
         'Appliances-list': PropTypes.array.isRequired,
         'User information': PropTypes.array.isRequired
     }).isRequired,
+    appRecommData: PropTypes.array.isRequired,
 };
 
 export default Step4Container;

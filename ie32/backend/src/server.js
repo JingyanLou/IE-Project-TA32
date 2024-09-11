@@ -55,9 +55,33 @@ app.get('/api/energy-providers', (req, res) => {
     });
 });
 
+
+
 // Route to fetch benchmark data
 app.get('/api/benchmark-vic', (req, res) => {
     const query = 'SELECT * FROM benchmark_vic';
+    connection.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route to fetch data for app_brand_data_iter2
+app.get('/api/app_brand_data_iter2', (req, res) => {
+    const query = 'SELECT * FROM app_brand_data_iter2';
+    connection.query(query, (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route to fetch data for app_brand_data_iter2
+app.get('/api/app_recomm_iter2', (req, res) => {
+    const query = 'SELECT * FROM app_recomm_iter2';
     connection.query(query, (error, results) => {
         if (error) {
             return res.status(500).json({ error: error.message });
@@ -101,10 +125,6 @@ app.get('/api/model-data', (req, res) => {
         res.json(results);
     });
 });
-
-
-
-
 
 // Proxy requests to /iteration1 to the Iteration 1 frontend running on port 3001
 app.use('/iteration1', createProxyMiddleware({

@@ -43,67 +43,100 @@
     /* Add some padding to align with the suggestions */
 }
 
-/* Suggestion Section */
+/* Suggestion section styling */
 .suggestion-section {
-    width: 40%;
-    margin-left: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
+    margin: 40px 0;
+}
+
+.suggestion-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .suggestion-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-height: 250px;
-    /* Adjust the max height based on your layout */
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: white black;
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-/* Styling for suggestion items */
 .suggestion-item {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid white;
-    border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #222;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Styling for the "Buy now" button */
-.buy-now {
-    background: none;
-    border: 1px solid white;
-    border-radius: 15px;
-    padding: 5px 15px;
-    color: white;
-    cursor: pointer;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.suggestion-item:last-child {
+    border-bottom: none;
 }
 
-.buy-now:hover {
-    background: rgba(255, 255, 255, 0.2);
+.suggestion-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
-/* Custom scrollbar styling */
-.suggestion-list::-webkit-scrollbar {
+.suggestion-item:hover::before {
+    border-color: #f0f;
+    box-shadow: 
+        0 0 5px #f0f,
+        0 0 10px #f0f,
+        0 0 15px #f0f,
+        0 0 20px #f0f;
+}
+
+.brand-model {
+    font-size: 18px;
+    color: #ffffff;
+    flex: 1;
+}
+
+.star-rating {
+    font-size: 16px;
+    color: #888888;
+    flex: 1;
+    text-align: center;
+}
+
+.energy-consumption {
+    font-size: 16px;
+    color: #ffffff;
+    flex: 1;
+    text-align: right;
+}
+
+/* Scrollbar styles */
+.suggestion-list-container::-webkit-scrollbar {
     width: 10px;
-    background-color: black;
 }
 
-.suggestion-list::-webkit-scrollbar-thumb {
-    background-color: white;
+.suggestion-list-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
     border-radius: 10px;
 }
 
+.suggestion-list-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.suggestion-list-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 /* Left section containing insights and treemap */
 .left-section {
@@ -498,4 +531,249 @@
 .treemap-tooltip strong {
     color: grey;
     font-weight: bold;
+}
+
+
+
+.filters {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px; /* Spacing between filters */
+    margin-bottom: 10px; /* Adjust spacing as needed */
+}
+
+.filters label {
+    margin-right: 2px; /* Spacing between label and select box */
+    font-size: 16px;
+    color: white;
+}
+
+.filters select {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 150px; /* Reduced width of filter box */
+}
+
+.filters select:focus {
+    outline: none;
+}
+
+
+.appliances-section {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 75px;
+}
+
+.barchart-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+
+.barchart-description {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+.suggestion-section {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.suggestion-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.suggestion-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.suggestion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #222;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background: linear-gradient(90deg, #292828 0%, #292828 70%, transparent 100%);
+    box-shadow: 
+        inset 0 0 30px whitesmoke,
+        inset 10px 0 40px #f0f,
+        inset -10px 0 40px #0ff;
+}
+
+.brand-model {
+    font-size: 18px;
+    color: #ffffff;
+    flex: 1;
+}
+
+.star-rating {
+    font-size: 16px;
+    color: #888888;
+    flex: 1;
+    text-align: center;
+}
+
+.energy-consumption {
+    font-size: 16px;
+    color: #ffffff;
+    flex: 1;
+    text-align: right;
+}
+
+
+.barchart-section {
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.barchart-section h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.barchart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 10px;
+    min-height: 250px; /* Ensure minimum height for content */
+}
+
+.barchart-and-filters {
+    flex: 0 1 auto; /* Allow shrinking but not growing */
+    max-width: 80%; /* Maximum width of the chart area */
+    min-width: 50%; /* Minimum width to ensure readability */
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.filters label {
+    margin-right: 5px;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+.filters select {
+    margin-right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+    font-size: 14px;
+}
+
+/* Ensure the ApplianceBarChart component fits within its container */
+.barchart-and-filters .barchart-container {
+    width: 100%;
+    height: 220px;
+    overflow-x: auto;
+    padding: 0;
+    background-color: transparent;
+    margin-top: 5px;
+}
+
+.barchart-description {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.barchart-description h4 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.barchart-description p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cccccc;
+    margin-bottom: 12px;
+}
+
+.barchart-description .highlight {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.barchart-description .action-text {
+    font-size: 14px;
+    color: #4CAF50;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Add a subtle glow effect on hover */
+.barchart-description:hover {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transition: background 0.3s ease;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .barchart-container {
+        flex-direction: column;
+    }
+
+    .barchart-and-filters,
+    .barchart-description {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .barchart-description {
+        padding-top: 20px;
+        margin-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
 }

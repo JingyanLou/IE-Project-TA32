@@ -31,6 +31,12 @@ const Upload = () => {
     const [energyProviders, setEnergyProviders] = useState([]);
 
     const [benchmarkData, setBenchmarkData] = useState([]);
+    const [appBrandData, setAppBrandData] = useState([]);
+    const [selectedDevice, setSelectedDevice] = useState('');
+    const [topBrands, setTopBrands] = useState(5);
+    const [appRecommData, setAppRecommData] = useState([]);
+    
+
 
     // Fetch appliance data from the backend
     // Fetch appliance data from the backend
@@ -63,6 +69,27 @@ const Upload = () => {
                 setBenchmarkData(data);
             })
             .catch(error => console.error('Error fetching benchmark data:', error));
+
+        console.log(`Fetching from ${apiUrl}/app_recomm_iter2`);
+            fetch(`${apiUrl}/app_recomm_iter2`)
+                .then(response => response.json())
+                .then(data => {
+                    setAppRecommData(data);
+                })
+                .catch(error => console.error('Error fetching recommendation data:', error));
+
+        
+            console.log(`Fetching from ${apiUrl}/app_brand_data_iter2`);
+            fetch(`${apiUrl}/app_brand_data_iter2`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Received app brand data:', data); // Add this line
+                    setAppBrandData(data);
+                    if (data.length > 0) {
+                        setSelectedDevice(data[0].Device);
+                    }
+                })
+                .catch(error => console.error('Error fetching app brand data:', error));
 
     }, [apiUrl]);
 
@@ -265,6 +292,12 @@ const Upload = () => {
             {currentStep === 4 && (
                 <Step4Container
                     data={data}
+                    appBrandData={appBrandData}
+                    selectedDevice={selectedDevice}
+                    setSelectedDevice={setSelectedDevice}
+                    topBrands={topBrands}
+                    setTopBrands={setTopBrands}
+                    appRecommData={appRecommData}
                 />
             )}
         </div>
