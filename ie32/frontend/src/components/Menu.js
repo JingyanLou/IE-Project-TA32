@@ -12,18 +12,19 @@ const Menu = ({ isOpen, onClose }) => {
             <div className="menu-content">
                 <button className="close-button" onClick={onClose}>×</button>
                 <div className="menu-section">
-                    <h2>Estimate your home electricity bill</h2>
+                    <h2>Estimate Your home electricity bill</h2>
                     <ul>
-                        <li><Link to="/start-now" onClick={onClose}>Start now</Link></li>
-                        <li><Link to="/estimation-guide" onClick={onClose}>Estimation user guide</Link></li>
+                        <li><Link to="/upload" onClick={onClose}>Start now</Link></li>
+                        <li><Link to="/estimation-introduction" onClick={onClose}>Estimation user guide</Link></li>
                     </ul>
                 </div>
                 <div className="menu-section">
                     <h2>Explore more on home electricity saving tips</h2>
                     <ul>
-                        <li><Link to="/replace-appliances" onClick={onClose}>Replace your appliances</Link></li>
-                        <li><Link to="/saving-tips" onClick={onClose}>Appliances saving tips</Link></li>
-                        <li><Link to="/government-programs" onClick={onClose}>Government programs</Link></li>
+                        <li><Link to="/selection" onClick={onClose}>Saving tips user guide</Link></li>
+                        <li><Link to="/buynew" onClick={onClose}>Replace your appliances</Link></li>
+                        <li><Link to="/recommendations" onClick={onClose}>Appliances saving tips (3D room tour)</Link></li>
+                        <li><Link to="/governmentinfo" onClick={onClose}>Government programs</Link></li>
                     </ul>
                 </div>
             </div>

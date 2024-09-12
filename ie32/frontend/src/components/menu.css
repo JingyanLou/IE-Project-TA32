@@ -35,12 +35,17 @@
 
 .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
     font-size: 2rem;
     background: none;
     border: none;
     cursor: pointer;
+}
+
+.close-button:hover {
+    color: white;
+    background-color: black;
 }
 
 .menu-section {

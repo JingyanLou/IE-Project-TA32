@@ -18,7 +18,7 @@ const Navbar = () => {
                 </ul>
                 <ul className={`nav-items ${isMenuOpen ? 'hidden' : ''}`}>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About us</Link></li>
+
                     <li><Link to="#" onClick={toggleMenu}>Menu</Link></li>
                 </ul>
             </nav>
