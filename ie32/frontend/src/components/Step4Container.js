@@ -338,14 +338,14 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
             <div className="appliances-section">
                 <h2 className="appliances-title">Your home appliance consumption ranking</h2>
                 <div className="appliances-container">
-                    <div className="chart-section">
-                        <div className="energy-chart" ref={energyChartRef}>
+                    <div className="chart-section-step4">
+                        <div className="energy-chart-step4" ref={energyChartRef}>
                             {applianceConsumption.map((appliance, index) => {
                                 const heightPercentage = (appliance.monthlyConsumption / maxConsumption) * 100;
                                 return (
                                     <div
                                         key={index}
-                                        className={`chart-bar ${selectedAppliance === appliance.name ? 'selected' : ''}`}
+                                        className={`chart-bar-step4 ${selectedAppliance === appliance.name ? 'selected' : ''}`}
                                         style={{ height: `${heightPercentage}%` }}
                                         onClick={() => handleApplianceSelect(appliance)}
                                     >
