@@ -146,25 +146,81 @@ const rooms = {
         ]
     },
 
-
     studyroom: {
         model: "/studyroom.glb",
         cameraPositions: [
-            studyroomCameraPosition,  // Study Room Overview
-            { x: -0.1, y: 1, z: 1 },   // Desk position
-            { x: 0, y: 0.5, z: 0.5 },  // Bookshelf position
+            studyroomCameraPosition,
+            { x: -0.1, y: 1, z: 1 },   // Overview Cam1
+            { x: 0.2, y: 0, z: 0.3 },  // Cam2 Monitor
+            { x: 0.5, y: 0, z: 0.1 }, // Cam3 Printer/Scanner
+            { x: -0.1, y: 0.1, z: 0.1 }, // Cam4 Modem
+            { x: -0.3, y: 0.1, z: 0.1 }, // Cam5 Lights
         ],
         modelPositions: [
             [0.3, -0.4, 0],  // Initial position
-            [0, 0, 0],     // Desk position
-            [0, 0, 0],   // Bookshelf position
+            [0, 0, 0],     // 1st cam overview
+            [0, 0, 0],   // monitor
+            [0.5, 0, 0], // printer/scanner
+            [0, 0, 0], // modem
+            [-0.2, 0, 0], // lights
         ],
         texts: [
-            { title: "Study Room", content: "Learn about energy-saving strategies for your study area." },
-            { title: "Study Room Overview", content: "A well-lit and energy-efficient study space can boost productivity and reduce energy bills." },
-            { title: "Desk", content: "Use LED desk lamps for focused lighting that consumes less energy." },
-            { title: "Bookshelf", content: "Consider using smart power strips to eliminate standby power consumption from electronics." },
+            {
+                title: "Studyroom Overview", content: [
+                    "Montior",
+                    "Printer/Scanner",
+                    "Modem",
+                    "Lights"
+                ],
+            },
+
+            {
+                title: "Monitor",
+                content: [
+                    "Avoid using screen savers: Screen savers consume more energy; it’s better to turn off the monitor when not in use.",
+                    "Reduce screen brightness: Lowering brightness and placing the monitor away from direct sunlight can minimize energy consumption and reduce glare.",
+                    "Integrate occupancy sensors: Using occupancy sensors with smart home systems can detect when a room is unoccupied and automatically turn off monitors."
+                ]
+            },
+            {
+                title: "Printer/Scanner",
+                content: [
+                    "Enable sleep mode: Ensure the printer enters power-saving mode after a period of inactivity.",
+                    "Batch print jobs together: Group print jobs to reduce the frequency of the printer powering up and down, thereby saving energy."
+                ]
+            },
+            {
+                title: "Modem",
+                content: [
+                    "Use a smart plug: Automate modem power management during off-hours with a smart plug or smart home system.",
+                    "Place in a well-ventilated area: Ensure the modem is in a well-ventilated space to prevent overheating and reduce unnecessary power consumption."
+                ]
+            },
+
+            {
+                title: "Lights",
+                content: [
+                    "Use energy-efficient LED bulbs: LED bulbs can cut electricity consumption by up to 75%.",
+                    "Turn off the lamp: Switch off lights when leaving the room or when they are no longer needed.",
+                    "Use task lighting: Focus light only where it's needed to reduce energy waste compared to a ceiling full of downlights.",
+                    "Additional Tip: Upgrading to LED bulbs not only reduces energy use but also extends bulb life by up to 10 times, making them a more efficient and cost-effective choice."
+                ]
+            },
+
+
+
+
+        ],
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for monitor
+            { top: '25%', left: '25%', transform: 'translateX(-50%)' },  // Text for printer/scanner
+            { top: '30%', left: '64%', transform: 'translateX(-50%)' },  // Text for modem
+            { top: '20%', left: '75%', transform: 'translateX(-50%)' },  // Text for lights
+
         ]
+
     },
 
     bedroom: {
@@ -314,14 +370,14 @@ export default function RecommendationsPage() {
                     disabled={currentStep === 0}
                     className="nav-button up-button"
                 >
-                    Up
+                    Previous Appliance
                 </button>
                 <button
                     onClick={() => handleNavigation('down')}
                     disabled={currentStep === currentRoom.cameraPositions?.length - 1}
                     className="nav-button down-button"
                 >
-                    Down
+                    Next Appliance
                 </button>
             </div>
         </div>
