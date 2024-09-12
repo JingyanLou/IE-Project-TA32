@@ -99,16 +99,15 @@
     transition: all 0.5s ease;
     z-index: 10;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    /* Add backdrop filter */
     backdrop-filter: blur(10px) brightness(0.8);
-    /* Adjust the values for the desired effect */
     -webkit-backdrop-filter: blur(10px) brightness(0.8);
-    /* For Safari support */
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 
@@ -118,18 +117,35 @@
 }
 
 .recommendations-page .info-text h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
     color: var(--white);
     letter-spacing: 0.5px;
 }
 
-.recommendations-page .info-text p {
+.recommendations-page .info-text ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.recommendations-page .info-text li {
     font-size: 14px;
     line-height: 1.6;
     color: var(--white);
-    margin-bottom: 0;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
 }
+
+.recommendations-page .info-text li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--white);
+}
+
+
+
 
 .recommendations-page .navigation-buttons {
     position: fixed;
