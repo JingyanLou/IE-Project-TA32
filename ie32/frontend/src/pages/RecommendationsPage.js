@@ -226,20 +226,95 @@ const rooms = {
     bedroom: {
         model: "/bedroom.glb",
         cameraPositions: [
-            bedroomCameraPosition,   // Bedroom Overview
-            { x: -0.2, y: 1, z: 1 }, // Bed position
-            { x: 0, y: 0.5, z: 0.4 }, // Closet position
+            bedroomCameraPosition,
+            { x: -0.9, y: 0.5, z: 2 }, // Overview Cam1
+            { x: 0, y: -0.3, z: 0.2 }, // cam2 fan
+            { x: 0, y: 0, z: 0.5 }, // cam3 thermostat
+            { x: 0, y: 0, z: 0.5 }, // cam4 TV
+            { x: -0.1, y: 0.3, z: 0.1 }, // cam5 Phone Charging Station
+            { x: -0.1, y: 0.15, z: 0.1 }, // cam6 Lamp
+            { x: 0, y: 0.6, z: 0.1 }, // cam7 Electric Blanket
         ],
         modelPositions: [
-            [0, -0.3, 0],  // Initial position
-            [0, 0, 0],     // Bed position
-            [0, 0, 0], // Closet position
+            [0, -0.3, 0],  // no use
+            [-0.3, 0.4, 0],     // overview
+            [0, 0, 0], // fan
+            [0.5, 0, 0.8], // thermostat
+            [0.5, -0.2, 0.8], // tv
+            [-0.5, 0, 0.4], // phone charging station
+            [-0.8, 0.1, 0.5], // lamp
         ],
         texts: [
-            { title: "Bedroom", content: "Explore energy-saving tips for a comfortable and efficient bedroom." },
-            { title: "Bedroom Overview", content: "Your bedroom can be a haven of comfort and energy efficiency." },
-            { title: "Bed", content: "Use smart power strips to easily turn off all standby power to devices near your bed." },
-            { title: "Closet", content: "Install LED lights with motion sensors in closets to save energy." },
+            {
+                title: "Bedroom Overview", content: [
+                    "Fan",
+                    "Thermostat",
+                    "TV",
+                    "Phone Charging Station",
+                    "Lamp",
+                    "Electric Blanket"
+                ],
+            },
+            {
+                title: "Fan",
+                content: [
+                    "Use ceiling or portable fans with air conditioning: Fans can make you feel cooler by 2-3°C, allowing you to set the AC at a higher temperature.",
+                    "Fans use minimal power: Fans help reduce the need to lower the AC temperature, which increases energy use by 5-10% for each 1°C.",
+                    "Turn off fans when leaving the room: Always switch off fans when the room is unoccupied to save energy."
+                ]
+            },
+            {
+                title: "Thermostat",
+                content: [
+                    "Cooling: Set the thermostat to 22-24°C, or slightly lower if needed, to maintain comfort while reducing energy consumption.",
+                    "Heating: Set the thermostat to a higher temperature than the current room temperature to efficiently heat your space. Avoid excessive heating; each degree higher can increase costs by up to 15%.",
+                    "Turn off the thermostat overnight: Switch off the thermostat when you're away or overnight to reduce unnecessary energy use."
+                ]
+            },
+            {
+                title: "TV",
+                content: [
+                    "Turn off the TV completely: Switch off the TV at the wall or use a smart home system to automatically turn it off when not in use to avoid additional power consumption.",
+                    "Lower the TV’s brightness: Reduce brightness and explore power-saving modes to decrease energy use."
+                ]
+            },
+            {
+                title: "Phone Charging Station",
+                content: [
+                    "Unplug chargers when not in use: Chargers continue to draw power even after your phone is fully charged, so it's best to unplug them.",
+                    "Unplug after charging: To save power, unplug your charger once the device is fully charged and switch to a low power setting if possible.",
+                    "Prefer wired charging: Charging with a cable is more efficient than wireless methods, as wired connections lose less energy."
+                ]
+            },
+            {
+                title: "Lamp",
+                content: [
+                    "Replace incandescent bulbs with LEDs: Switching to LED bulbs can save up to 80% on lighting costs.",
+                    "Turn off unnecessary lighting: Turn off lamps when not needed or before leaving the room to save energy.",
+                    "Use task lighting: Disconnect lamps from multiple lamp fixtures and use task lighting where needed, such as for reading, to reduce energy use by up to 80%.",
+                    "Install motion sensors: Automatically turn lights on when someone enters the room by installing motion sensors."
+                ]
+            },
+            {
+                title: "Electric Blanket",
+                content: [
+                    "Use an electric blanket over other heaters: Electric blankets consume significantly less energy—around four cents per hour compared to some space heaters, which can cost up to 15 cents per hour—while effectively warming your bed.",
+                    "Use a timer: Preheat the bed for 10 to 30 minutes and then turn the electric blanket off before sleeping to save energy.",
+                    "Avoid running the blanket all night: Even if it has an all-night mode, turn off the electric blanket when not in use to reduce energy consumption."
+                ]
+            },
+
+        ],
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for fan
+            { top: '25%', left: '29%', transform: 'translateX(-50%)' },  // Text for Thermostat
+            { top: '25%', left: '70%', transform: 'translateX(-50%)' },  // Text for TV
+            { top: '35%', left: '75%', transform: 'translateX(-50%)' },  // Text for Phone Charging Station
+            { top: '20%', left: '75%', transform: 'translateX(-50%)' },  // Text for Lamp
+            { top: '30%', left: '85%', transform: 'translateX(-50%)' },  // Text for Electric Blanket
+
         ]
     },
 
