@@ -134,6 +134,17 @@ const rooms = {
 
             // ... other texts
         ],
+
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
+            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
+            { top: '25%', left: '40%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
+            { top: '30%', left: '55%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
+            { top: '35%', left: '50%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
+            { top: '40%', left: '45%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
+            { top: '45%', left: '50%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
+        ]
     },
 
 
@@ -249,6 +260,9 @@ export default function RecommendationsPage() {
     const currentCameraPosition = currentRoom.cameraPositions?.[currentStep] || initialCameraPosition; // Fallback to initial position
     const currentModelPosition = currentRoom.modelPositions?.[currentStep] || [0, 0, 0]; // Fallback to [0, 0, 0]
 
+    //Text position for each camera angle
+    const currentTextPosition = currentRoom.textPositions?.[currentStep] || { top: '12%', left: '50%', transform: 'translateX(-50%)' };
+
     return (
         <div className="recommendations-page">
             <div className={`text-section ${currentStep === 0 ? '' : 'hidden'}`}>
@@ -279,7 +293,14 @@ export default function RecommendationsPage() {
             </div>
 
             {currentStep > 0 && currentRoom.texts?.[currentStep - 1] && (
-                <section className="info-text visible">
+                <section
+                    className="info-text visible"
+                    style={{
+                        top: currentTextPosition.top,
+                        left: currentTextPosition.left,
+                        transform: currentTextPosition.transform
+                    }}
+                >
                     <h2>{currentRoom.texts[currentStep - 1].title}</h2>
                     <ul>
                         {currentRoom.texts[currentStep - 1].content.map((tip, index) => (
