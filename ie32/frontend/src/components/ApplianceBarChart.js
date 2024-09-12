@@ -13,10 +13,6 @@ const ApplianceBarChart = ({ data, topBrands, onBarClick }) => {
             return data.find(item => item.Brand === brand);
         });
 
-    const handleBarClick = (brand) => {
-        console.log('Bar clicked for brand:', brand);
-        onBarClick(brand);
-    };
 
     const sortedData = uniqueData
         .sort((a, b) => a.Ranking - b.Ranking)
@@ -46,7 +42,7 @@ const ApplianceBarChart = ({ data, topBrands, onBarClick }) => {
             y,
         });
     };
-    
+
     const handleMouseOut = () => {
         setTooltip({ show: false, content: {}, x: 0, y: 0 });
     };
@@ -58,7 +54,7 @@ const ApplianceBarChart = ({ data, topBrands, onBarClick }) => {
                     <div key={index} className="barchart-item">
                         <div
                             className="barchart-bar"
-                            style={{ 
+                            style={{
                                 height: `${(item.Average_Energy_Consumption / maxConsumption) * 200}px`,
                                 minHeight: '1px'
                             }}

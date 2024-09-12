@@ -4,6 +4,9 @@ import * as d3 from 'd3';
 import './step4container.css';
 import ChoroplethMap from './ChoroplethMap';
 import ApplianceBarChart from './ApplianceBarChart';
+{/* Add this import at the top of your file */ }
+
+
 
 const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice, topBrands, setTopBrands, appRecommData }) => {
     const treemapRef = useRef(null);
@@ -13,10 +16,10 @@ const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice,
     const uniqueDevices = useMemo(() => {
         // Get unique devices from appliances list
         const applianceDevices = [...new Set(appliances.map(appliance => appliance[0]))];
-        
+
         // Get unique devices from brand data
         const brandDevices = [...new Set(appBrandData.map(item => item.Device))];
-        
+
         // Filter for devices that exist in both lists
         return applianceDevices.filter(device => brandDevices.includes(device));
     }, [appliances, appBrandData]);
@@ -216,8 +219,6 @@ const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice,
 
 
 
-
-
     // Extract user information
     // Extract user information
     const userLocation = userInformation[0];
@@ -281,6 +282,8 @@ const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice,
 
     return (
         <div className="step4-container">
+
+
             <div className="upper-section">
                 <div className="left-section">
                     <div className="insight-section">
@@ -336,67 +339,65 @@ const Step4Container = ({ data, appBrandData, selectedDevice, setSelectedDevice,
                     />
                 </div>
             </div>
+
+
+
             <div className="appliances-section">
-                <div className="barchart-section">
-                    <h3>Energy Consumption by Brand for {selectedDevice}</h3>
-                    <div className="barchart-container">
-                        <div className="barchart-and-filters">
-                            <div className="filters">
-                                <label htmlFor="device-select">Device:</label>
-                                <select
-                                    id="device-select"
-                                    value={selectedDevice}
-                                    onChange={(e) => setSelectedDevice(e.target.value)}
-                                >
-                                    {uniqueDevices.map(device => (
-                                        <option key={device} value={device}>{device}</option>
-                                    ))}
-                                </select>
-                                <label htmlFor="brand-select">Range:</label>
-                                <select
-                                    id="brand-select"
-                                    value={topBrands}
-                                    onChange={(e) => setTopBrands(Number(e.target.value))}
-                                >
-                                    <option value={5}>Top 5</option>
-                                    <option value={10}>Top 10</option>
-                                    <option value={filteredData.length}>All</option>
-                                </select>
-                            </div>
-                            <ApplianceBarChart data={filteredData} topBrands={topBrands} onBarClick={handleBarClick}/>
+                <h2 className="appliances-title">Your home appliance consumption ranking</h2>
+                <div className="appliances-container">
+                    <div className="barchart-section">
+                        <div className="filters">
+                            <label htmlFor="device-select">Device:</label>
+                            <select
+                                id="device-select"
+                                value={selectedDevice}
+                                onChange={(e) => setSelectedDevice(e.target.value)}
+                            >
+                                {uniqueDevices.map(device => (
+                                    <option key={device} value={device}>{device}</option>
+                                ))}
+                            </select>
+                            <label htmlFor="brand-select">Range:</label>
+                            <select
+                                id="brand-select"
+                                value={topBrands}
+                                onChange={(e) => setTopBrands(Number(e.target.value))}
+                            >
+                                <option value={5}>Top 5</option>
+                                <option value={10}>Top 10</option>
+                                <option value={filteredData.length}>All</option>
+                            </select>
                         </div>
-                        <div className="barchart-description">
-                        <h4>Energy Efficiency Comparison</h4>
-                            <p>This chart compares the energy consumption of different brands for the selected device type. Each bar represents a brand's average energy consumption in Watt-hours (Wh).</p>
-                            <p className="highlight">Lower bars indicate more energy-efficient options.</p>
-                            <p>Hover over each bar to see detailed information about the brand's energy consumption range.</p>
-                            <p className="action-text">Click on a bar to see top picks from that brand!</p>
+                        <div className="barchart-container">
+                            <ApplianceBarChart data={filteredData} topBrands={topBrands} onBarClick={handleBarClick} />
+                        </div>
+                    </div>
+                    <div className="suggestion-section">
+                        <h3 className="suggestion-title">Energy-efficient appliance suggestions for your selection</h3>
+                        <div className="suggestion-list-container">
+                            {applianceSuggestions.length > 0 ? (
+                                <ul className="suggestion-list">
+                                    {applianceSuggestions.map((item, index) => (
+                                        <li key={index} className="suggestion-item">
+                                            <div className="suggestion-info">
+                                                <p className="suggestion-brand">{item.Brand}</p>
+                                                <p className="suggestion-model">{item.Model_No}</p>
+                                                <p className="suggestion-output">Output range: {item.Energy_Consumption_kWh_per_hour.toFixed(2)} kWh/hour</p>
+                                            </div>
+                                            <button className="buy-now-btn">Buy now</button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="no-suggestions">Click on a bar in the chart to see top picks for the selected brand and device.</p>
+                            )}
                         </div>
                     </div>
                 </div>
-                <div className="suggestion-section">
-                    <h3>Top picks for {selectedDevice}</h3>
-                    {applianceSuggestions.length > 0 ? (
-                        <div className="suggestion-list-container">
-                            {applianceSuggestions.map((item, index) => (
-                                <div key={index} className="suggestion-item">
-                                    <span className="brand-model">{item.Brand} {item.Model_No}</span>
-                                    <span className="star-rating">
-                                        {typeof item.Star_Rating === 'number' 
-                                            ? item.Star_Rating.toFixed(2) 
-                                            : item.Star_Rating} Stars
-                                    </span>
-                                    <span className="energy-consumption">
-                                        {item.Energy_Consumption_kWh_per_hour.toFixed(2)} Wh/hour
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p>Click on a bar in the chart to see top picks for the selected brand and device.</p>
-                    )}
-                </div>
             </div>
+
+
+
 
 
             <div className="explore-more-section">
