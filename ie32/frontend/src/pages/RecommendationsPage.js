@@ -322,21 +322,65 @@ const rooms = {
         model: "/garden.glb",
         cameraPositions: [
             initialCameraPosition,  // Initial camera position for landing page
-            { x: -0.2, y: 1, z: 1.2 },    // Garden Overview
-            { x: 0, y: 0.5, z: 0.3 },     // Plant position
-            { x: -0.2, y: 0.5, z: 0.4 },  // Outdoor lighting position
+            { x: -0.7, y: 1, z: 2 },    // Garden Overview
+            { x: -0.9, y: 1, z: 1 },     // Solar Panels
+            { x: 0.3, y: 0.2, z: 1 },  // Swimming Pool Pump
+            { x: 0.4, y: 0.4, z: 1 }, ,  // Ventilation Pump
         ],
         modelPositions: [
             [0, -0.5, -0.7],  // Initial position
-            [0, 0, 0],     // Garden Overview
-            [0, 0.5, 0],   // Plant position
-            [0.3, 0, 0],   // Outdoor lighting position
+            [-0.6, 0.3, 0],     // Garden Overview
+            [-0.7, 0.1, 0.4],   // solar panels
+            [0.3, 0.3, 0],   // swimming pool pump
+            [0.7, 0.5, 0],   // Ventilation Pump
         ],
         texts: [
-            { title: "Garden", content: "Discover energy-saving techniques for your outdoor spaces." },
-            { title: "Garden Overview", content: "An energy-efficient garden can reduce your overall energy consumption and create a sustainable outdoor space." },
-            { title: "Plants", content: "Strategic placement of trees and shrubs can provide natural cooling and reduce the need for air conditioning." },
-            { title: "Outdoor Lighting", content: "Use solar-powered or LED outdoor lighting to illuminate your garden efficiently." },
+            {
+                title: "Garden Overview", content: [
+                    "Solar Panels",
+                    "Swimming Pool Pump",
+                    "Ventilation Pump",
+                ],
+            },
+
+            {
+                title: "Solar Panels",
+                content: [
+                    "Implement Smart Controls: Use smart technology to optimize energy usage, such as adjusting panel angles based on weather forecasts or energy needs.",
+                    "Integrate with Home Automation: Integrate solar panels with home automation systems to optimize energy usage throughout the day.",
+                    "Regularly Check Panel Wiring: Inspect and maintain panel wiring and connections to prevent energy losses due to wear or damage."
+                ]
+            },
+            {
+                title: "Swimming Pool Pump",
+                content: [
+                    "Switch to a Pentair IntelliFlo Variable-Speed Pump: Known for its high energy efficiency and programmability, it can save up to 90% on energy costs compared to traditional pumps.",
+                    "Use a Pool Cover: Install a pool cover to reduce heat loss and evaporation, which can lessen the workload on the pump.",
+                    "Optimize Water Circulation: Regularly check and adjust the water circulation system to ensure efficient operation and reduce the need for excessive pumping.",
+                    "Install a Pool Pump Timer: Set the timer to run the pump during off-peak hours and for optimal durations, such as 4-6 hours per day, depending on pool size and usage.",
+                    "Install a Skimmer and Leaf Catcher: These devices help keep debris out of the pump and filter, improving efficiency and reducing maintenance needs."
+                ]
+            },
+
+            {
+                title: "Ventilation Pump",
+                content: [
+                    "Implement Demand-Controlled Ventilation: Use sensors to adjust ventilation based on real-time air quality and occupancy levels, optimizing energy use.",
+                    "Regular System Checks: Periodically inspect the entire ventilation system, including ductwork and vents, for issues that could impact efficiency and address them promptly."
+                ]
+            },
+
+
+
+
+
+        ],
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '25%', left: '80%', transform: 'translateX(-50%)' },  // Text for solar panels
+            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for Swimming Pool Pump
+            { top: '30%', left: '75%', transform: 'translateX(-50%)' },  // Text for Ventilation Pump
         ]
     },
 
