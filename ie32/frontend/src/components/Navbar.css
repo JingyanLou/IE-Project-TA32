@@ -25,6 +25,12 @@
 .navbar ul.nav-items {
     justify-content: flex-end;
     margin-left: auto;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar ul.nav-items.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .navbar ul li {
@@ -57,58 +63,4 @@
     color: black;
     border: 2px solid white;
     text-shadow: none;
-}
-
-/* Dropdown styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 10px);
-    /* Add spacing between features item and dropdown */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    padding: 10px 0;
-    min-width: 200px;
-    /* Increase width to accommodate text */
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid rgba(0, 0, 0, 0.8);
-}
-
-.dropdown-menu li {
-    margin: 0;
-}
-
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 15px;
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    font-size: 14px;
-    /* Decrease font size */
-    white-space: nowrap;
-    /* Prevent text wrapping */
-}
-
-.dropdown-menu li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: none;
 }

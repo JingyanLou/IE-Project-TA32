@@ -1,37 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import Menu from './Menu';
 
 const Navbar = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <nav className="navbar">
-            <ul className="brand">
-                <li><Link to="/">EnergiseSmart</Link></li>
-            </ul>
-            <ul className="nav-items">
-                <li><Link to="/">Home</Link></li>
-                <li
-                    className={`dropdown ${isDropdownOpen ? 'active' : ''}`}
-                    onMouseEnter={() => setIsDropdownOpen(true)}
-                    onMouseLeave={() => setIsDropdownOpen(false)}
-                >
-                    <span onClick={toggleDropdown}>Features</span>
-                    {isDropdownOpen && (
-                        <ul className="dropdown-menu">
-                            <li><Link to="/estimation-introduction">Estimation</Link></li>
-                            <li><Link to="/selection">Energy Saving Tips</Link></li>
-                        </ul>
-                    )}
-                </li>
-                <li><Link to="/">About us</Link></li>
-            </ul>
-        </nav>
+        <>
+            <nav className="navbar">
+                <ul className="brand">
+                    <li><Link to="/">EnergiseSmart</Link></li>
+                </ul>
+                <ul className={`nav-items ${isMenuOpen ? 'hidden' : ''}`}>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About us</Link></li>
+                    <li><Link to="#" onClick={toggleMenu}>Menu</Link></li>
+                </ul>
+            </nav>
+            <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+        </>
     );
 }
 
