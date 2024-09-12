@@ -32,6 +32,12 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
 
     const maxConsumption = Math.max(...applianceConsumption.map(a => a.monthlyConsumption));
 
+    // Function to apply a square root scaling for visibility of small values
+    const scaleHeight = (consumption) => {
+        return Math.sqrt(consumption / maxConsumption) * 100; // Adjust the scaling factor as needed
+    };
+
+
     useEffect(() => {
         if (uniqueDevices.length > 0 && !selectedDevice) {
             setSelectedDevice(uniqueDevices[0]);
@@ -341,12 +347,16 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                     <div className="chart-section-step4">
                         <div className="energy-chart-step4" ref={energyChartRef}>
                             {applianceConsumption.map((appliance, index) => {
-                                const heightPercentage = (appliance.monthlyConsumption / maxConsumption) * 100;
+                                const heightPercentage = scaleHeight(appliance.monthlyConsumption); // Apply scaling function
+                                const barWidth = 100 / applianceConsumption.length; // Dynamic width based on number of appliances
                                 return (
                                     <div
                                         key={index}
                                         className={`chart-bar-step4 ${selectedAppliance === appliance.name ? 'selected' : ''}`}
-                                        style={{ height: `${heightPercentage}%` }}
+                                        style={{
+                                            height: `${heightPercentage}%`,
+                                            width: `${barWidth}%` // Dynamic width for each bar
+                                        }}
                                         onClick={() => handleApplianceSelect(appliance)}
                                     >
                                         <span className="appliance-name">{appliance.name}</span>

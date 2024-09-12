@@ -436,6 +436,7 @@
     display: flex;
     align-items: flex-end;
     /* Align the chart at the bottom */
+
 }
 
 .energy-chart-step4 {
@@ -449,12 +450,13 @@
     overflow-x: auto;
     /* Allow horizontal scrolling */
     overflow-y: hidden;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     /* Ensure space between the bottom of the chart and bars */
-    padding-top: 10px;
+
     /* Add padding at the top to prevent bars from touching the top */
     scrollbar-width: thin;
     scrollbar-color: #444 #222;
+    margin-bottom: 20px
 }
 
 .energy-chart::-webkit-scrollbar {
@@ -480,7 +482,7 @@
     transition: all 0.3s ease;
     /* Smooth transition on hover */
     cursor: pointer;
-    margin-right: 8px;
+    margin-right: 25px;
     /* Adjust spacing */
     flex-shrink: 0;
     box-shadow: 0 0 5px #fff;
@@ -498,8 +500,9 @@
 /* Ensure appliance names are correctly positioned */
 .appliance-name {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     left: 50%;
+    overflow: hidden;
     transform: translateX(-50%) rotate(-45deg);
     /* Similar rotation effect */
     font-size: 12px;
@@ -507,6 +510,8 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     /* Shadow for better readability */
     white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 40px;
 }
 
 /* Suggestion Section */
