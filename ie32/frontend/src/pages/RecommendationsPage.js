@@ -35,18 +35,22 @@ const rooms = {
         cameraPositions: [
             kitchenCameraPosition, //before click down button 
             { x: 0.9, y: 1, z: 0.7 }, //cam 1 kitchen overview
-            { x: 1, y: 0, z: 0.1 },    //cam2 dishwasher
+            { x: 1.3, y: 0, z: 1 },    //cam2 dishwasher
             { x: -0.1, y: 0, z: 0.1 },  //cam3 refrigerator
             { x: 0, y: 0, z: 0.1 },  //cam3 microwave
-            { x: 0.1, y: 0, z: 0.9 },  //cam3 oven
-            { x: 0.6, y: 0.5, z: 0.6 },  //cam3 range hoods
-            { x: 0.3, y: 0, z: 0.3 },  //cam3 blender
+            { x: 0, y: 0.1, z: 0.1 },  //cam3 oven
+            { x: 0.2, y: 0.1, z: 0.6 },  //cam3 range hoods
+            { x: 0.2, y: 0.1, z: 0.1 },  //cam3 blender
         ],
         modelPositions: [
             [0, -0.4, 0],
             [0, 0, 0], //cam1 kitchen overview
-            [0, 0, 0], //dishwasher
-            [0, 0, 0], //refrigerator
+            [0.9, 0.2, 0], //dishwasher
+            [-0.4, 0, 0], //refrigerator
+            [0, 0.2, 0], //microwave
+            [-0.2, 0.2, 0], //oven
+            [0.4, -0.3, 0.3], //exhaust
+            [0.3, 0, 0.3],
         ],
         texts: [
             {
@@ -138,11 +142,11 @@ const rooms = {
             { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
             { top: '50%', left: '18%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
             { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
-            { top: '20%', left: '85%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
+            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
             { top: '15%', left: '80%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
-            { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
+            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
             { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
-            { top: '30%', left: '20%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
+            { top: '15%', left: '25%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
         ]
     },
 
@@ -380,7 +384,7 @@ const rooms = {
             { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
             { top: '25%', left: '80%', transform: 'translateX(-50%)' },  // Text for solar panels
             { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for Swimming Pool Pump
-            { top: '30%', left: '75%', transform: 'translateX(-50%)' },  // Text for Ventilation Pump
+            { top: '30%', left: '%', transform: 'translateX(-50%)' },  // Text for Ventilation Pump
         ]
     },
 
