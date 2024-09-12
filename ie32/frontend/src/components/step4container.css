@@ -397,43 +397,40 @@
 
 .appliances-section {
     margin-top: 2rem;
+    font-family: Arial, sans-serif;
 }
 
 .appliances-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #d1d5db;
+    color: #ffffff;
     margin-bottom: 1rem;
 }
 
 .appliances-container {
     display: flex;
-    background-color: #111827;
+    background-color: #000000;
     border-radius: 0.5rem;
-    border: 1px solid #374151;
     overflow: hidden;
     height: 500px;
 }
 
-.barchart-section {
-    width: 66.666667%;
+.chart-section {
+    flex: 2;
     padding: 1.5rem;
-    border-right: 1px solid #374151;
-    display: flex;
-    flex-direction: column;
+    border-right: 1px solid #333333;
 }
 
 .energy-chart {
     display: flex;
     align-items: flex-end;
-    height: 300px;
-    padding-top: 20px;
+    height: 100%;
+    gap: 4px;
 }
 
 .chart-bar {
     flex: 1;
-    margin: 0 2px;
-    background-color: #4CAF50;
+    background-color: #4a4a4a;
     position: relative;
     transition: background-color 0.3s;
     cursor: pointer;
@@ -441,66 +438,48 @@
 
 .chart-bar:hover,
 .chart-bar.selected {
-    background-color: #45a049;
-}
-
-.chart-bar .tooltip {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.chart-bar:hover .tooltip {
-    opacity: 1;
+    background-color: #8e44ad;
 }
 
 .appliance-name {
     position: absolute;
     bottom: -20px;
     left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    font-size: 12px;
-    color: #d1d5db;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #ffffff;
     white-space: nowrap;
 }
 
-.filters {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.filters label {
-    color: #9ca3af;
-}
-
-.filters select {
-    background-color: #1f2937;
-    color: white;
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
-}
-
 .suggestion-section {
-    width: 33.333333%;
+    flex: 1;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    background-color: #111111;
+}
+
+.filters {
+    margin-bottom: 1rem;
+}
+
+.filters label {
+    color: #ffffff;
+    margin-right: 0.5rem;
+}
+
+.filters select {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
 }
 
 .suggestion-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: #d1d5db;
+    color: #9ca3af;
     margin-bottom: 1rem;
 }
 
@@ -509,62 +488,31 @@
     overflow-y: auto;
 }
 
-.suggestion-list-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.suggestion-list-container::-webkit-scrollbar-track {
-    background: #000000;
-}
-
-.suggestion-list-container::-webkit-scrollbar-thumb {
-    background-color: #4b5563;
-    border-radius: 4px;
-}
-
 .suggestion-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .suggestion-item {
     background-color: #1f2937;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.suggestion-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.suggestion-brand {
-    color: white;
+.suggestion-model {
+    color: #ffffff;
     font-weight: 600;
 }
 
-.suggestion-model,
-.suggestion-output,
-.suggestion-rating {
+.suggestion-rating,
+.suggestion-consumption {
     color: #9ca3af;
     font-size: 0.875rem;
-}
-
-.buy-now-btn {
-    background-color: #374151;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    transition: background-color 0.3s;
-}
-
-.buy-now-btn:hover {
-    background-color: #4b5563;
 }
 
 .no-suggestions {

@@ -338,29 +338,28 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
             <div className="appliances-section">
                 <h2 className="appliances-title">Your home appliance consumption ranking</h2>
                 <div className="appliances-container">
-                    <div className="barchart-section">
+                    <div className="chart-section">
                         <div className="energy-chart" ref={energyChartRef}>
                             {applianceConsumption.map((appliance, index) => {
-                                const heightPercentage = (appliance.monthlyConsumption / maxConsumption) * 90;
+                                const heightPercentage = (appliance.monthlyConsumption / maxConsumption) * 100;
                                 return (
                                     <div
                                         key={index}
-                                        className={`chart-bar ${selectedAppliance === appliance.name ? 'selected' : ''} ${heightPercentage >= 90 ? 'max-height' : ''}`}
+                                        className={`chart-bar ${selectedAppliance === appliance.name ? 'selected' : ''}`}
                                         style={{ height: `${heightPercentage}%` }}
                                         onClick={() => handleApplianceSelect(appliance)}
                                     >
-                                        <div className="tooltip">
-                                            {appliance.monthlyConsumption.toFixed(2)} kWh/month
-                                        </div>
                                         <span className="appliance-name">{appliance.name}</span>
                                     </div>
                                 );
                             })}
                         </div>
+                    </div>
+                    <div className="suggestion-section">
                         <div className="filters">
-                            <label htmlFor="brand-select">Top Brands:</label>
+                            <label htmlFor="topBrands">Top Brands:</label>
                             <select
-                                id="brand-select"
+                                id="topBrands"
                                 value={topBrands}
                                 onChange={(e) => setTopBrands(Number(e.target.value))}
                             >
@@ -368,21 +367,15 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                                 <option value={10}>Top 10</option>
                             </select>
                         </div>
-                    </div>
-                    <div className="suggestion-section">
-                        <h3 className="suggestion-title">Energy-efficient appliance suggestions for {selectedAppliance}</h3>
+                        <h3 className="suggestion-title">Energy-efficient appliance suggestions for your selection</h3>
                         <div className="suggestion-list-container">
                             {suggestions.length > 0 ? (
                                 <ul className="suggestion-list">
                                     {suggestions.map((item, index) => (
                                         <li key={index} className="suggestion-item">
-                                            <div className="suggestion-info">
-                                                <p className="suggestion-brand">{item.Brand}</p>
-                                                <p className="suggestion-model">{item.Model_No}</p>
-                                                <p className="suggestion-output">Energy Consumption: {item.Energy_Consumption_kWh_per_hour.toFixed(4)} kWh/hour</p>
-                                                <p className="suggestion-rating">Star Rating: {item.Star_Rating}</p>
-                                            </div>
-                                            <button className="buy-now-btn">Buy now</button>
+                                            <span className="suggestion-model">{item.Model_No}</span>
+                                            <span className="suggestion-rating">{item.Star_Rating} Stars</span>
+                                            <span className="suggestion-consumption">{item.Energy_Consumption_kWh_per_hour.toFixed(2)} kWh/hour</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -393,7 +386,6 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                     </div>
                 </div>
             </div>
-
 
 
 
