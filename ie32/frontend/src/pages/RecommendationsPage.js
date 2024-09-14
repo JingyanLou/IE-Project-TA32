@@ -66,24 +66,19 @@ const rooms = {
 
             {
                 title: "Dishwasher", content: [
-                    "Skip the pre-rinse: If you find yourself rinsing dishes before you load your dishwasher in fear of scraps clogging up your filter, you're wasting both hot water and time.",
-                    "Eco mode is your friend: A study found that default and quick-washing programs consume 20–30% more energy than eco modes, so you can expect to slash up to a third of your dishwasher's energy consumption just by going eco.",
-                    "Run full loads at off-peak times: To really maximise savings, program your dishwasher to come on during off-peak hours when electricity rates may be lower.",
-                    "Air-dry when possible: Since air-drying doesn't use heat, it not only saves energy but also reduces wear and tear on your dishwasher's heating element."
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
                 ]
             },
 
             {
                 title: "Refrigerator",
                 content: [
-                    "Check door seals regularly: The rubber seal is used for insulation purposes and prevents heat exchange between the ambient air and the refrigerator. It is important to regularly check that the seal is fully intact and sealing tightly.",
-                    "Fill without overfilling: Keeping your fridge full means there’s less room for warm air to slip in when you open the door. So if you’ve got any big gaps, fill them with containers of water. But don’t jam things in – cool air still needs to be able to circulate around the whole fridge easily.",
-                    "Let hot things cool first: Putting hot things in your fridge makes it work overtime to get back down to its normal temperature. To avoid this, leave hot food to cool on the bench before putting it in the fridge.",
-                    "Don’t let frost build up: Frost can accumulate on the coils that remove heat from your freezer. Those coils need to be in contact with the warmer air in order to remove it, but if there’s ice in the way, it’s a lot harder – which means your freezer has to work harder, too.",
-                    "Clean the coils: This is our top pick for a ‘weird staying at home activities’ bingo card. If you look behind or underneath your fridge, there’ll be the coils that help remove heat. Dust can settle on these and act as an insulator, so give them a brush or vacuum to help them release heat more efficiently.",
-                    "Location is crucial: Never place your refrigerator next to a heat source such as an oven, hob or radiator, and avoid direct sunlight. Regardless of whether you have a freestanding appliance or a built-in one, always ensure that your refrigerator has sufficient ventilation so that the compressor does not end up running continuously.",
-                    "Check your temperature settings: The optimum temperature for refrigerator operation is 5°C, and -18°C for freezer operation. As a rule of thumb, for each additional degree of refrigeration output about six percent more electricity is used. An accurate temperature setting can therefore directly save you money.",
-                    "Defrost food in the refrigerator: When defrosting frozen food place it in the refrigerator. Not only does this ensure that the food is carefully defrosted, its presence cools down the refrigerator interior, reducing the amount of work that the compressor has to do, and therefore lowering energy consumption."
+                    " Keep your fridge stocked but not overcrowded because it takes more energy for the engine to lower the temperature due to the limited airflow within the unit.",
+                    "Position your fridge away from heat sources like the oven or direct sunlight because the additional heat may force the engine of the freezer to work harder.",
+                    "Set it to the optimal temperature (5°C for the fridge and -18°C for the freezer) to avoid unnecessary energy consumption",
                 ]
             },
 
@@ -91,21 +86,18 @@ const rooms = {
             {
                 title: "Microwave",
                 content: [
-                    "Choose the right-sized microwave: Select a microwave that suits your needs without being excessively large. Larger microwaves may consume more electricity to heat up their larger interior space.",
-                    "Use microwave-safe cookware: Utilise microwave-safe containers and cookware that are designed for efficient heat transfer. Proper containers allow food to heat up faster and more evenly, reducing cooking time and energy usage.",
-                    "Prep and defrost efficiently: Plan ahead and thaw frozen food items in the fridge or using other thawing methods before using the microwave. This reduces the time required for defrosting in the microwave.",
-                    "Clean and maintain your oven regularly: Keep your microwave clean and well-maintained. Regular cleaning ensures optimal performance and prevents any issues that might affect energy efficiency.",
-                    "Take advantage of preset functions: Many microwaves come with preset cooking functions tailored to specific food items. Utilise these functions to minimise cooking time and optimise energy usage.",
-                    "Monitor standby power: Microwaves often consume a small amount of electricity even when not in use. Consider unplugging the microwave or using a power strip with an on/off switch to completely cut off standby power."
+                    "Many microwaves come with preset cooking functions tailored to specific food items. Utilise these functions to minimise cooking time and optimise energy usage..",
+                    " Always use microwave-safe containers that promote efficient heat transfer, allowing your food to heat more evenly and quickly, which reduces energy consumption.",
+
                 ]
             },
 
             {
                 title: "Oven",
                 content: [
-                    "Turn the oven off early: If you turn off your oven say five minutes before your dish is ready, the residual heat in the cavity will continue to cook your culinary creation without using energy. It doesn’t get more energy efficient than that!",
-                    "Don’t open the oven door during cooking: Every time you open the door, you’re letting the heat out of the cavity. Your oven then has to work hard to get the cavity back up to the desired temperature.",
-                    "Use ceramic or glass dishes: Glass and ceramic dishes retain heat a lot better than metal dishes, meaning you can use a slightly lower temperature. A lower temperature means lower energy consumption.",
+                    "Don’t put tin foil in the oven cavity: The reflective surface of the foil actually disrupts heat distribution inside the cavity. Not only this, it can also obstruct your oven’s fan, reducing its efficiency.",
+                    " Turn your oven off a few minutes before your dish is ready and let the residual heat finish the cooking, saving energy in the process.",
+                    "Use glass or ceramic dishes, which retain heat better than metal ones, allowing you to cook at slightly lower temperatures without compromising the result.",
                     "Time any self-cleaning programme wisely: If you’ve decided it’s time to clean your oven and want to use a pyrolytic self-cleaning feature, run this just after you’ve used the oven to cook. That way, the oven will already be hot and it’ll require less energy to the super-high temperature needed for pyrolytic cleaning.",
                     "Don’t put tin foil in the oven cavity: The reflective surface of the foil actually disrupts heat distribution inside the cavity. Not only this, it can also obstruct your oven’s fan, reducing its efficiency."
                 ]
@@ -114,12 +106,8 @@ const rooms = {
             {
                 title: "Range Hoods/Exhaust",
                 content: [
-                    "Regular Maintenance and Cleaning: Routine maintenance is the foundation of an energy-efficient exhaust system. Over time, grease and debris can accumulate in the ducts, reducing airflow and forcing the system to work harder.",
-                    "Variable Speed Controllers: These devices adjust the fan speed based on the cooking load, reducing energy use during periods of low activity.",
-                    "LED Lighting: Replace traditional lighting in the hood with LED lights, which use less energy and have a longer lifespan.",
-                    "Balance Your HVAC System: An unbalanced HVAC system can cause your exhaust system to work harder, consuming more energy. Ensure that your kitchen’s heating, ventilation, and air conditioning systems are properly balanced to optimize airflow and reduce strain on the exhaust system.",
-                    "Implement a Demand-Controlled Ventilation System: DCV systems use sensors to monitor cooking activity and adjust the exhaust fan speed accordingly. When cooking activity is low, the system reduces the fan speed, cutting down on energy use.",
-                    "Regularly Inspect Ductwork and Seals: Leaky ducts and poor seals can lead to energy loss, causing the exhaust system to work harder than necessary. Regular inspections by professionals can identify and fix any issues with your ductwork, ensuring optimal performance."
+                    "Demand-Controlled Ventilation System use sensors to monitor cooking activity and adjust the exhaust fan speed accordingly. When cooking activity is low, the system reduces the fan speed, cutting down on energy use.",
+
                 ]
             },
 
@@ -181,33 +169,31 @@ const rooms = {
             {
                 title: "Monitor",
                 content: [
-                    "Avoid using screen savers: Screen savers consume more energy; it’s better to turn off the monitor when not in use.",
-                    "Reduce screen brightness: Lowering brightness and placing the monitor away from direct sunlight can minimize energy consumption and reduce glare.",
-                    "Integrate occupancy sensors: Using occupancy sensors with smart home systems can detect when a room is unoccupied and automatically turn off monitors."
+                    "Avoid using screen savers as they consume more energy; the more efficient energy saving method is to turn off the monitor instead.",
+                    "Integrating occupancy sensors with smart home systems can detect when a room is unoccupied and automatically turn off monitors.",
                 ]
             },
             {
                 title: "Printer/Scanner",
                 content: [
-                    "Enable sleep mode: Ensure the printer enters power-saving mode after a period of inactivity.",
-                    "Batch print jobs together: Group print jobs to reduce the frequency of the printer powering up and down, thereby saving energy."
+                    "Enable sleep mode to ensure the printer enters power-saving mode after a period of inactivity.",
+                    "Batch print jobs together to reduce the frequency of the printer powering up and down."
                 ]
             },
             {
                 title: "Modem",
                 content: [
-                    "Use a smart plug: Automate modem power management during off-hours with a smart plug or smart home system.",
-                    "Place in a well-ventilated area: Ensure the modem is in a well-ventilated space to prevent overheating and reduce unnecessary power consumption."
+                    "Use a smart plug or smart home system to automate modem power management during off-hours.",
+                    "Place the modem in a well-ventilated area to prevent overheating and reduce unnecessary power consumption."
                 ]
             },
 
             {
                 title: "Lights",
                 content: [
-                    "Use energy-efficient LED bulbs: LED bulbs can cut electricity consumption by up to 75%.",
-                    "Turn off the lamp: Switch off lights when leaving the room or when they are no longer needed.",
-                    "Use task lighting: Focus light only where it's needed to reduce energy waste compared to a ceiling full of downlights.",
-                    "Additional Tip: Upgrading to LED bulbs not only reduces energy use but also extends bulb life by up to 10 times, making them a more efficient and cost-effective choice."
+                    "To replace the light bulb with LEDs. The US Department of Energy highlighted that LEDs use up to 75% less energy and last 25 times longer than halogen and fluorescent bulbs.",
+                    "Install smart home systems and smart switches for automate scheduling, remote control, and automatically turn off lights when no one is detected, preventing lights from staying on in empty rooms.",
+
                 ]
             },
 
@@ -262,49 +248,43 @@ const rooms = {
             {
                 title: "Fan",
                 content: [
-                    "Use ceiling or portable fans with air conditioning: Fans can make you feel cooler by 2-3°C, allowing you to set the AC at a higher temperature.",
-                    "Fans use minimal power: Fans help reduce the need to lower the AC temperature, which increases energy use by 5-10% for each 1°C.",
-                    "Turn off fans when leaving the room: Always switch off fans when the room is unoccupied to save energy."
+                    " Fans consume only about 15-90 watts per hour, which is a fraction of the energy used by an air conditioner and by using fans with AC you can cut energy consumption by up to 76% compared to using the AC alone.",
+
                 ]
             },
             {
                 title: "Thermostat",
                 content: [
-                    "Cooling: Set the thermostat to 22-24°C, or slightly lower if needed, to maintain comfort while reducing energy consumption.",
-                    "Heating: Set the thermostat to a higher temperature than the current room temperature to efficiently heat your space. Avoid excessive heating; each degree higher can increase costs by up to 15%.",
-                    "Turn off the thermostat overnight: Switch off the thermostat when you're away or overnight to reduce unnecessary energy use."
+                    "Winter: Set your heater between 18-20°C to keep warm and save on costs. Every degree above this can increase your gas bill by around 15%.",
+                    "Summer: Keep your air conditioner set between 23-26°C is the optimal energy saving degree  to maintain a cool home while keeping energy costs down.",
+
                 ]
             },
             {
                 title: "TV",
                 content: [
-                    "Turn off the TV completely: Switch off the TV at the wall or use a smart home system to automatically turn it off when not in use to avoid additional power consumption.",
-                    "Lower the TV’s brightness: Reduce brightness and explore power-saving modes to decrease energy use."
+                    "Use smart home system or smart home apps to automatically turn off the TV when it is not in used to avoid additional power consumption",
+                    " Lower the TV's brightness to around 50-60% to reduce energy consumption and ease eye strain. This simple adjustment can also cut down on electricity costs, as televisions account for an average of 13% of household energy use."
                 ]
             },
             {
                 title: "Phone Charging Station",
                 content: [
-                    "Unplug chargers when not in use: Chargers continue to draw power even after your phone is fully charged, so it's best to unplug them.",
-                    "Unplug after charging: To save power, unplug your charger once the device is fully charged and switch to a low power setting if possible.",
-                    "Prefer wired charging: Charging with a cable is more efficient than wireless methods, as wired connections lose less energy."
+                    "Prefer charging with a cable over wireless methods, as wired connections are more efficient (lesser charging time) and lose less energy.",
+
                 ]
             },
             {
                 title: "Lamp",
                 content: [
-                    "Replace incandescent bulbs with LEDs: Switching to LED bulbs can save up to 80% on lighting costs.",
-                    "Turn off unnecessary lighting: Turn off lamps when not needed or before leaving the room to save energy.",
-                    "Use task lighting: Disconnect lamps from multiple lamp fixtures and use task lighting where needed, such as for reading, to reduce energy use by up to 80%.",
-                    "Install motion sensors: Automatically turn lights on when someone enters the room by installing motion sensors."
+                    " Replace standard incandescent light bulbs with LED bulbs to save up to 80% on lighting costs.",
                 ]
             },
             {
                 title: "Electric Blanket",
                 content: [
-                    "Use an electric blanket over other heaters: Electric blankets consume significantly less energy—around four cents per hour compared to some space heaters, which can cost up to 15 cents per hour—while effectively warming your bed.",
-                    "Use a timer: Preheat the bed for 10 to 30 minutes and then turn the electric blanket off before sleeping to save energy.",
-                    "Avoid running the blanket all night: Even if it has an all-night mode, turn off the electric blanket when not in use to reduce energy consumption."
+                    "Use an electric blanket over other heaters, as it consumes significantly less energy—around four cents per hour compared to some space heaters, which can cost up to 15 cents per hour—while effectively warming your bed.",
+                    "Remember to disable its defaulted all-night mode, and turn it off when not in use to reduce energy consumption.",
                 ]
             },
 
@@ -321,7 +301,6 @@ const rooms = {
 
         ]
     },
-
     garden: {
         model: "/garden.glb",
         cameraPositions: [
@@ -329,7 +308,7 @@ const rooms = {
             { x: -0.7, y: 1, z: 2 },    // Garden Overview
             { x: -0.9, y: 1, z: 1 },     // Solar Panels
             { x: 0.3, y: 0.2, z: 1 },  // Swimming Pool Pump
-            { x: 0.4, y: 0.4, z: 1 }, ,  // Ventilation Pump
+            { x: 0.4, y: 0.4, z: 1 },   // Ventilation Pump
         ],
         modelPositions: [
             [0, -0.5, -0.7],  // Initial position
@@ -350,32 +329,24 @@ const rooms = {
             {
                 title: "Solar Panels",
                 content: [
-                    "Implement Smart Controls: Use smart technology to optimize energy usage, such as adjusting panel angles based on weather forecasts or energy needs.",
-                    "Integrate with Home Automation: Integrate solar panels with home automation systems to optimize energy usage throughout the day.",
-                    "Regularly Check Panel Wiring: Inspect and maintain panel wiring and connections to prevent energy losses due to wear or damage."
+                    " It can save you about 30 to 40% on your yearly electricity bill",
                 ]
             },
             {
                 title: "Swimming Pool Pump",
                 content: [
-                    "Switch to a Pentair IntelliFlo Variable-Speed Pump: Known for its high energy efficiency and programmability, it can save up to 90% on energy costs compared to traditional pumps.",
-                    "Use a Pool Cover: Install a pool cover to reduce heat loss and evaporation, which can lessen the workload on the pump.",
-                    "Optimize Water Circulation: Regularly check and adjust the water circulation system to ensure efficient operation and reduce the need for excessive pumping.",
-                    "Install a Pool Pump Timer: Set the timer to run the pump during off-peak hours and for optimal durations, such as 4-6 hours per day, depending on pool size and usage.",
-                    "Install a Skimmer and Leaf Catcher: These devices help keep debris out of the pump and filter, improving efficiency and reducing maintenance needs."
+                    "Install a pool cover to reduce heat loss and evaporation, which can lessen the workload on the pump.",
+                    "Install a pool pump timer to run the pump during off-peak hours and for optimal durations, such as 4-6 hours per day, depending on pool size and usage.",
+
                 ]
             },
 
             {
                 title: "Ventilation Pump",
                 content: [
-                    "Implement Demand-Controlled Ventilation: Use sensors to adjust ventilation based on real-time air quality and occupancy levels, optimizing energy use.",
-                    "Regular System Checks: Periodically inspect the entire ventilation system, including ductwork and vents, for issues that could impact efficiency and address them promptly."
+                    "Ventilation fan can reduce energy consumption by up to 30% compared using air conditioner where it improves the air quality and removes odours by constantly introducing and circulating purified air into your home.",
                 ]
             },
-
-
-
 
 
         ],
