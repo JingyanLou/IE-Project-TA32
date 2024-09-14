@@ -239,7 +239,7 @@ const BuyNew = () => {
         <div className="buy-new-container">
             <section className="appliance-selection">
                 <div className="appliance-details">
-                    <h2>Select the appliances that you are interested to replace</h2>
+                    <h2>Discover how replacing outdated appliances with energy-efficient devices can reduce your energy consumption and carbon footprint.</h2>
                     <div className={`appliance-details-bottom ${initialLoad ? 'initial' : isChanging ? 'changing' : 'show'}`}>
                         <h3>{selectedAppliance}</h3>
                         <p>{brands.length} Different Brand Options Available</p>

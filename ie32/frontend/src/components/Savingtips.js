@@ -52,9 +52,7 @@ const SavingTips = () => {
                             <p>20% Lower</p>
                         </div>
                     </div>
-                    <p className="description">
-                        Using our interactive 3D storytelling, learn how small changes can make a big difference in your energy consumption. Our tips are designed to help you reduce energy usage, lower your bills, and contribute to a greener planet
-                    </p>
+                    <p className="description">Learn how to optimise your current appliances for better efficiency and sustainability. Find out how replacing outdated, inefficient models with star-rated devices, along with leveraging government support, can reduce your consumption and lower your carbon footprint.</p>
                     <button className="discover-button" onClick={handleDiscoverClick}>
                         Discover
                     </button>

@@ -53,7 +53,7 @@ const Estimation = () => {
                             <p>18.71kWh/Day</p>
                         </div>
                     </div>
-                    <p className="description">Upload details about your appliances to identify which ones drive up your energy bill. Recieve a personalised estimate for your household, compare your usage with benchmarks, and see how it measures up against neighbouring homes..</p>
+                    <p className="description">Discover how your appliances affect your energy usage with personalised estimates and government benchmarks. Gain insights to make informed choices, enhance your home's efficiency, and pave the way for a more sustainable future..</p>
                     <button className="start-button" onClick={handleStartClick}>Analyse Now
                     </button>
                 </div>

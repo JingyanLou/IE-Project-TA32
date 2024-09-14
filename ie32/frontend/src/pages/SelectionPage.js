@@ -41,38 +41,26 @@ const SelectionPage = () => {
             </ShaderGradientCanvas>
 
             <div className="header-container">
-                <h1 className="page-title">Optimize Your Home's Energy Efficiency</h1>
-                <p>On this page, we offer various ways to reduce your energy expenses. You can explore options to replace outdated appliances with energy-efficient ones, take a 3D room tour to discover energy-saving tips for each appliance, and learn about government programs that support energy conservation efforts.</p>
+                <h1 className="page-title">Find Out Energy-Efficient and Sustainable Solutions</h1>
+                <p>Learn practical tips to optimise your current appliances, explore options for upgrading to energy-saving models, and find out how government programs can support your journey toward a greener and more efficient home.
+                </p>
             </div>
 
 
             <div className="content-container">
                 <div className="card-grid">
-                    <div className="card">
-                        <div className="face face1">
-                            <div className="content">
-                                <img src="/images/newappliances.png" alt="New Appliances" className="icon" />
-                                <h3>Replace Old Devices</h3>
-                            </div>
-                        </div>
-                        <div className="face face2">
-                            <div className="content">
-                                <p>Ready to upgrade? Select the appliance you want to replace, and we'll show you a visual comparison of average energy consumption across different brands.</p>
-                                <button onClick={() => handleExplore('/buynew')}>Explore More</button>
-                            </div>
-                        </div>
-                    </div>
+
 
                     <div className="card">
                         <div className="face face1">
                             <div className="content">
                                 <img src="/images/roomtour.png" alt="Room Tour" className="icon" />
-                                <h3>Efficient Usage Strategies</h3>
+                                <h3>Implement Energy-Saving Tips</h3>
                             </div>
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>Learn how to get the most out of your current appliances with tailored strategies for reducing energy consumption. Simple changes can make a big difference in your energy bill.</p>
+                                <p>Learn practical ways to enhance the efficiency of your existing appliances.</p>
                                 <button onClick={() => handleExplore('/recommendations')}>Explore More</button>
                             </div>
                         </div>
@@ -82,16 +70,32 @@ const SelectionPage = () => {
                         <div className="face face1">
                             <div className="content">
                                 <img src="/images/goverment.png" alt="Government Programs" className="icon" />
-                                <h3>Government Program</h3>
+                                <h3>Leverage Government Support</h3>
                             </div>
                         </div>
                         <div className="face face2">
                             <div className="content">
-                                <p>We provide the compiled information from the government that help you with utilizing your energy benefits in Melbourne.</p>
+                                <p>Find out about programs and incentives that can help you achieve a greener and more efficient home.</p>
                                 <button onClick={() => handleExplore('/governmentinfo')}>Explore More</button>
                             </div>
                         </div>
                     </div>
+
+                    <div className="card">
+                        <div className="face face1">
+                            <div className="content">
+                                <img src="/images/newappliances.png" alt="New Appliances" className="icon" />
+                                <h3>Upgrade to Energy-Saving Models</h3>
+                            </div>
+                        </div>
+                        <div className="face face2">
+                            <div className="content">
+                                <p>Explore options for replacing outdated appliances with star-rated, energy-efficient devices.</p>
+                                <button onClick={() => handleExplore('/buynew')}>Explore More</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
