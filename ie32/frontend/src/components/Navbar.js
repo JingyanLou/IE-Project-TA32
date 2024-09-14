@@ -9,6 +9,8 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    // <li><Link to="/">Home</Link></li>
+
 
     return (
         <>
@@ -17,8 +19,6 @@ const Navbar = () => {
                     <li><Link to="/">EnergiseSmart</Link></li>
                 </ul>
                 <ul className={`nav-items ${isMenuOpen ? 'hidden' : ''}`}>
-                    <li><Link to="/">Home</Link></li>
-
                     <li><Link to="#" onClick={toggleMenu}>Menu</Link></li>
                 </ul>
             </nav>

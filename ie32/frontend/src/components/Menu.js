@@ -11,6 +11,15 @@ const Menu = ({ isOpen, onClose }) => {
         <div className={`menu-overlay ${isOpen ? 'open' : ''}`}>
             <div className="menu-content">
                 <button className="close-button" onClick={onClose}>×</button>
+
+
+                <div className="menu-section">
+                    <ul>
+                        <li><Link to="/" onClick={onClose}>Home</Link></li>
+                    </ul>
+                </div>
+
+
                 <div className="menu-section">
                     <h2>Estimate Your home electricity bill</h2>
                     <ul>
@@ -18,6 +27,7 @@ const Menu = ({ isOpen, onClose }) => {
                         <li><Link to="/estimation-introduction" onClick={onClose}>Estimation user guide</Link></li>
                     </ul>
                 </div>
+
                 <div className="menu-section">
                     <h2>Explore more on home electricity saving tips</h2>
                     <ul>
