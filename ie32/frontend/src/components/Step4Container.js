@@ -19,9 +19,6 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
 
     const [hasSelectedAppliance, setHasSelectedAppliance] = useState(false);
 
-
-
-
     const uniqueDevices = useMemo(() => {
         const applianceDevices = [...new Set(appliances.map(appliance => appliance[0]))];
         const brandDevices = [...new Set(appBrandData.map(item => item.Device))];
@@ -298,7 +295,7 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                             <h3>Your Estimated Monthly Bill</h3>
                             <p className="insight-value">{estimatedMonthlyBillAUD} AUD</p>
                             {/* Tooltip */}
-                            <div className="tooltip">
+                            <div className="tooltip-bill">
                                 <div className="tooltip-title">Estimation Specification</div>
                                 <p>
                                     <strong>Electricity Usage</strong>

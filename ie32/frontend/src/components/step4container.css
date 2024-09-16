@@ -147,143 +147,71 @@
 
 
 /* Tooltip Styling */
-.tooltip {
+.tooltip-bill,
+.tooltip-benchmark {
     display: none;
     position: absolute;
     background-color: rgba(0, 0, 0, 1);
-    /* 70% transparent background */
     color: white;
     padding: 15px;
     border-radius: 20px;
-    /* Increased border-radius for rounded corners */
     white-space: nowrap;
-    /* Prevent text from wrapping */
     z-index: 10;
     width: 230px;
-    /* Fixed width */
     font-size: 0.8rem;
-    /* Smaller font size */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    /* Drop shadow for depth */
 }
 
 /* Tooltip Title Styling */
 .tooltip-title {
     font-size: 18px;
-    /* Larger font size for the title */
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
 }
 
 /* Tooltip Metric and Value Styling */
-.tooltip p {
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.tooltip strong {
-    color: grey;
-    font-weight: bold;
-    font-size: 12px;
-    /* Font size for metrics */
-    font-family: 'Arial', sans-serif;
-    text-shadow: 1px 1px 2px black;
-    /* Text shadow for contrast */
-}
-
-.tooltip-value {
-    font-size: 14px;
-    /* Larger font size for values */
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    /* Text shadow for contrast */
-}
-
-/* Show tooltip on hover */
-.insight-bill:hover .tooltip {
-    display: block;
-}
-
-/* Change color of h3 on hover of insight-bill */
-.insight-bill:hover h3 {
-    color: #ff7b00;
-}
-
-.insight-benchmark:hover h3 {
-    color: #ff7b00;
-}
-
-/* Positioning the tooltip relative to the insight-bill section */
-.insight-bill {
-    position: relative;
-}
-
-
-/* Tooltip Styling */
-.tooltip-benchmark {
-    display: none;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 1);
-    /* 100% opaque background */
-    color: white;
-    padding: 15px;
-    border-radius: 20px;
-    /* Increased border-radius for rounded corners */
-    white-space: nowrap;
-    /* Prevent text from wrapping */
-    z-index: 10;
-    width: 220px;
-    /* Fixed width */
-    font-size: 0.8rem;
-    /* Smaller font size */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    /* Drop shadow for depth */
-}
-
-/* Tooltip Title Styling */
-.tooltip-benchmark .tooltip-title {
-    font-size: 18px;
-    /* Larger font size for the title */
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* Tooltip Metric and Value Styling */
+.tooltip-bill p,
 .tooltip-benchmark p {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
 }
 
+.tooltip-bill strong,
 .tooltip-benchmark strong {
     color: grey;
     font-weight: bold;
     font-size: 12px;
-    /* Font size for metrics */
     font-family: 'Arial', sans-serif;
     text-shadow: 1px 1px 2px black;
-    /* Text shadow for contrast */
 }
 
-.tooltip-benchmark .tooltip-value {
+.tooltip-value {
     font-size: 14px;
-    /* Larger font size for values */
     color: white;
     text-shadow: 1px 1px 2px black;
-    /* Text shadow for contrast */
 }
 
 /* Show tooltip on hover */
+.insight-bill:hover .tooltip-bill {
+    display: block;
+}
+
 .insight-benchmark:hover .tooltip-benchmark {
     display: block;
 }
 
-/* Change color of h3 on hover of insight-benchmark */
+/* Change color of h3 on hover of insight-bill and insight-benchmark */
+.insight-bill:hover h3,
 .insight-benchmark:hover h3 {
     color: #ff7b00;
+}
+
+/* Positioning the tooltip relative to the insight sections */
+.insight-bill,
+.insight-benchmark {
+    position: relative;
 }
 
 /* Positioning the tooltip relative to the insight-benchmark section */
@@ -449,7 +377,6 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
-    height: calc(100% - 30px);
     /* Adjust for the bottom padding */
     min-width: 100%;
     padding-right: 20px;
