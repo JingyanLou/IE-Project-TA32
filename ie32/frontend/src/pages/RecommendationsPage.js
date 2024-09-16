@@ -9,6 +9,119 @@ const studyroomCameraPosition = { x: 0.2, y: 1, z: 2.3 };
 const bedroomCameraPosition = { x: 0.2, y: 1, z: 3 };
 
 const rooms = {
+    livingRoom: {
+        model: "/livingroom.glb",
+        cameraPositions: [
+            initialCameraPosition, // Landing page position
+            { x: -0.1, y: 1, z: 1 },    // 1st 
+            { x: 0, y: 0, z: 0.1 },    // 2nd 
+            { x: -0.1, y: 0, z: 0.1 }, // 3rd 
+        ],
+        modelPositions: [
+            [0, -0.2, 0],  // Initial position
+            [0, 0, 0],  // Move model slightly for 1st view
+            [0, 0, 0],  // Different position for 2nd view
+            [0, 0, 0],  // Different position for 3rd view
+        ],
+        texts: [
+            {
+                title: "Livingroom Overview", content: [
+                    "Televison",
+                    "Home Theater System",
+                    "Heater",
+                    "Gaming Console",
+                    "Table Lamp",
+                    "Electric Fireplace",
+                    "Smart Speakers",
+                ]
+            },
+            {
+                title: "Televison", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Home Theater System", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Heater", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Gaming Console", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Table Lamp", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Electric Fireplace", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+
+            {
+                title: "DVD/Blu-ray Player", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Electric Fireplace", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+            {
+                title: "Smart Speakers", content: [
+                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
+                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
+                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
+
+                ]
+            },
+
+        ],
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '18%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
+            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
+            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
+            { top: '15%', left: '80%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
+            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
+            { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
+            { top: '15%', left: '25%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
+        ]
+
+    },
 
     kitchen: {
         model: "/kitchen.glb",
