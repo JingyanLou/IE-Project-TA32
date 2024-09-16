@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this correct import
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import './recommendationpage.css';
@@ -476,6 +477,15 @@ function CameraController({ cameraPosition }) {
 }
 
 export default function RecommendationsPage() {
+
+    const navigate = useNavigate();
+
+    const handleBackToDashboard = () => {
+        navigate('/selection'); // Adjust this path as needed
+    };
+
+
+
     const [selectedRoom, setSelectedRoom] = useState('kitchen'); // Ensure a default room exists
     const [currentStep, setCurrentStep] = useState(0);
 
@@ -502,6 +512,10 @@ export default function RecommendationsPage() {
 
     return (
         <div className="recommendations-page">
+            <button className="nav-link-button" onClick={handleBackToDashboard}>
+                Back
+            </button>
+
             <div className={`text-section ${currentStep === 0 ? '' : 'hidden'}`}>
                 <h1>Energy-Saving Tips for Every Room in Your Home</h1>
                 <p>Implement simple tips to make your home’s energy consumption more efficient and sustainable. Choose a room model and start the tour!</p>

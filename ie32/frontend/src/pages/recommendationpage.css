@@ -189,6 +189,30 @@
     transform: translateY(20px);
 }
 
+
+.nav-link-button {
+    position: absolute;
+    top: 70px;
+    /* Adjust this value to position the button below the navigation bar */
+    left: 40px;
+    background-color: rgba(26, 26, 26, 0.8);
+    color: var(--white);
+    border: 1px solid var(--white);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    /* Ensure the button is above other elements */
+}
+
+.nav-link-button:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+
 @media (max-width: 768px) {
     .recommendations-page .text-section h1 {
         font-size: 24px;
