@@ -54,7 +54,7 @@ const SavingTips = () => {
                     </div>
                     <p className="description">Learn how to optimise your current appliances for better efficiency and sustainability. Find out how replacing outdated, inefficient models with star-rated devices, along with leveraging government support, can reduce your consumption and lower your carbon footprint.</p>
                     <button className="discover-button" onClick={handleDiscoverClick}>
-                        Discover
+                        Discover Now
                     </button>
                 </div>
             </div>

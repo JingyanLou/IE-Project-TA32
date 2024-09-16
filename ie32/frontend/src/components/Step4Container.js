@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this correct import
+
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import './step4container.css';
 import ChoroplethMap from './ChoroplethMap';
 {/* Add this import at the top of your file */ }
+
 
 
 const Step4Container = ({ data, appRecommData, appBrandData }) => {
@@ -316,6 +319,15 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
     console.log(`Total Supply Charge Cost: ${totalSupplyChargeCostAUD} AUD`);
     console.log(`Estimated Monthly Bill: ${estimatedMonthlyBillAUD} AUD`);
 
+    const navigate = useNavigate();
+
+    const handleBackToSavingtips = () => {
+        navigate('/selection'); // Adjust this path as needed
+    };
+
+
+
+
 
     return (
         <div className="step4-container">
@@ -482,7 +494,7 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                         <p className="explore-more-description">
                             Our website also offers comprehensive energy-saving tips to help you seamlessly integrate energy efficiency into your daily routine. Whether it's adjusting your home appliances, optimizing your energy usage, or adopting sustainable practices, we've got you covered with practical advice that makes saving energy simple and effective.
                         </p>
-                        <button className="explore-more-button">Learn More</button>
+                        <button className="explore-more-button" onClick={handleBackToSavingtips}>Learn More</button>
                     </div>
                 </div>
             </div>
