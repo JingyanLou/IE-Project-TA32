@@ -9,27 +9,7 @@ const studyroomCameraPosition = { x: 0.2, y: 1, z: 2.3 };
 const bedroomCameraPosition = { x: 0.2, y: 1, z: 3 };
 
 const rooms = {
-    livingRoom: {
-        model: "/livingroom.glb",
-        cameraPositions: [
-            initialCameraPosition, // Landing page position
-            { x: -0.1, y: 1, z: 1 },    // 1st 
-            { x: 0, y: 0, z: 0.1 },    // 2nd 
-            { x: -0.1, y: 0, z: 0.1 }, // 3rd 
-        ],
-        modelPositions: [
-            [0, -0.2, 0],  // Initial position
-            [0, 0, 0],  // Move model slightly for 1st view
-            [0, 0, 0],  // Different position for 2nd view
-            [0, 0, 0],  // Different position for 3rd view
-        ],
-        texts: [
-            { title: "Living Room", content: "Explore energy-saving tips for your living room." },
-            { title: "Living Room Overview", content: "Welcome to your energy-efficient living room! Every corner of this space is packed with potential savings." },
-            { title: "Television", content: "Did you know that your TV can be an energy hog? Make sure to turn it off when not in use." },
-            { title: "Fridge", content: "Fridges can be one of the biggest energy consumers in your home. Ensure it's energy-efficient." },
-        ]
-    },
+
     kitchen: {
         model: "/kitchen.glb",
         cameraPositions: [
