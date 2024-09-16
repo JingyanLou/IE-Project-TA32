@@ -336,7 +336,11 @@ const BuyNew = () => {
                     {sortedModels.map((model, index) => (
                         <div key={index} className="model-item">
                             <span>{model.Model_No}</span>
-                            <span>{getNumericValue(model.Star_Rating).toFixed(2)} Stars</span>
+                            <span>
+                                {getNumericValue(model.Star_Rating) === 0
+                                    ? "Star ratings not found"
+                                    : `${getNumericValue(model.Star_Rating).toFixed(2)} Stars`}
+                            </span>
                             <span>{getNumericValue(model.Energy_Consumption_kWh_per_hour).toFixed(2)} kWh/hour</span>
                         </div>
                     ))}

@@ -447,7 +447,11 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                                         {suggestions.map((item, index) => (
                                             <tr key={index} className="suggestion-item">
                                                 <td>{item.Model_No}</td>
-                                                <td>{item.Star_Rating} Stars</td>
+                                                <td>
+                                                    {item.Star_Rating === null || item.Star_Rating === undefined
+                                                        ? "Star rating not found"
+                                                        : `${item.Star_Rating} Stars`}
+                                                </td>
                                                 <td>{item.Energy_Consumption_kWh_per_hour.toFixed(2)} kWh/hour</td>
                                             </tr>
                                         ))}
