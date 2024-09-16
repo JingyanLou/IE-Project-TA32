@@ -344,19 +344,19 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                                 <div className="tooltip-title">Estimation Specification</div>
                                 <p>
                                     <strong>Electricity Usage</strong>
-                                    <span className="tooltip-value">${totalElectricityConsumptionKWh.toFixed(2)} kWh</span>
+                                    <span className="tooltip-value">{totalElectricityConsumptionKWh.toFixed(2)} kWh</span>
                                 </p>
                                 <p>
                                     <strong>Your Provider Rate</strong>
-                                    <span className="tooltip-value">${usageRate.toFixed(2)} AUD/kWh</span>
+                                    <span className="tooltip-value">{usageRate.toFixed(2)} AUD/kWh</span>
                                 </p>
                                 <p>
                                     <strong>Total Energy Cost</strong>
-                                    <span className="tooltip-value">${totalElectricityCostAUD} AUD</span>
+                                    <span className="tooltip-value">{totalElectricityCostAUD} AUD</span>
                                 </p>
                                 <p>
                                     <strong>Total Supply Charge</strong>
-                                    <span className="tooltip-value">${totalSupplyChargeCostAUD} AUD</span>
+                                    <span className="tooltip-value">{totalSupplyChargeCostAUD} AUD</span>
                                 </p>
                             </div>
                         </div>
