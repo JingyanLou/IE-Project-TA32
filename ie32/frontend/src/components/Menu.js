@@ -23,8 +23,9 @@ const Menu = ({ isOpen, onClose }) => {
                 <div className="menu-section">
                     <h2>Estimate Your home electricity bill</h2>
                     <ul>
-                        <li><Link to="/upload" onClick={onClose}>Start now</Link></li>
                         <li><Link to="/estimation-introduction" onClick={onClose}>Estimation user guide</Link></li>
+                        <li><Link to="/upload" onClick={onClose}>Start now</Link></li>
+
                     </ul>
                 </div>
 
