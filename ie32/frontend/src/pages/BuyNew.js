@@ -16,7 +16,7 @@ const BuyNew = () => {
 
     const [error, setError] = useState(null);
 
-    const [brandFilter, setBrandFilter] = useState('all-low-high');
+    const [brandFilter, setBrandFilter] = useState('top-5');
 
 
 
