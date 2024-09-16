@@ -8,120 +8,10 @@ const kitchenCameraPosition = { x: 0.2, y: 1.1, z: 1.9 };
 const studyroomCameraPosition = { x: 0.2, y: 1, z: 2.3 };
 const bedroomCameraPosition = { x: 0.2, y: 1, z: 3 };
 
+const livingRoomCameraPosition = { x: 0.2, y: 1, z: 2 };
+
 const rooms = {
-    livingRoom: {
-        model: "/livingroom.glb",
-        cameraPositions: [
-            initialCameraPosition, // Landing page position
-            { x: -0.1, y: 1, z: 1 },    // 1st 
-            { x: 0, y: 0, z: 0.1 },    // 2nd 
-            { x: -0.1, y: 0, z: 0.1 }, // 3rd 
-        ],
-        modelPositions: [
-            [0, -0.2, 0],  // Initial position
-            [0, 0, 0],  // Move model slightly for 1st view
-            [0, 0, 0],  // Different position for 2nd view
-            [0, 0, 0],  // Different position for 3rd view
-        ],
-        texts: [
-            {
-                title: "Livingroom Overview", content: [
-                    "Televison",
-                    "Home Theater System",
-                    "Heater",
-                    "Gaming Console",
-                    "Table Lamp",
-                    "Electric Fireplace",
-                    "Smart Speakers",
-                ]
-            },
-            {
-                title: "Televison", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
 
-                ]
-            },
-            {
-                title: "Home Theater System", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Heater", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Gaming Console", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Table Lamp", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Electric Fireplace", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-
-            {
-                title: "DVD/Blu-ray Player", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Electric Fireplace", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-            {
-                title: "Smart Speakers", content: [
-                    " Eco mode is better than quick-washing programs. Quick-washing programs consume 20–30% more energy than eco modes.",
-                    " Always run your dishwasher with full loads, preferably during off-peak hours (9pm-12am daily)",
-                    "Whenever possible, use the air-dry function instead of heat drying to save energy and reduce wear on your appliance.",
-
-                ]
-            },
-
-        ],
-        textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '50%', left: '18%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
-            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
-            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
-            { top: '15%', left: '80%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
-            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
-            { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
-            { top: '15%', left: '25%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
-        ]
-
-    },
 
     kitchen: {
         model: "/kitchen.glb",
@@ -452,6 +342,112 @@ const rooms = {
         ]
     },
 
+    livingRoom: {
+        model: "/livingroom.glb",
+        cameraPositions: [
+            livingRoomCameraPosition, // Landing page position
+            { x: 1.2, y: 1, z: 1 },    // overview
+            { x: 0.3, y: 0, z: 0 },    // tv
+            { x: 0.3, y: 0, z: -0.1 }, // home theater
+            { x: 0.3, y: 0, z: 0.4 }, // heater
+            { x: 0.4, y: 0, z: 0.1 }, // gaming console
+            { x: 0.2, y: 0, z: 0.1 }, // table lamp
+            { x: -0.9, y: 0, z: 1 }, // Electric Fireplace
+            { x: 0.4, y: 0, z: -0.1 }, // DVD/Blu-ray Player
+        ],
+        modelPositions: [
+            [0, -0.05, 0],  // Initial position
+            [0, 0.4, 0],  // overview
+            [0, 0, 0],  // tv
+            [0.7, 0.3, 0],  // home theater
+            [-0.3, 0.2, -0.9], //heater
+            [0.8, 0.3, 0.3], //gaming console
+            [0.8, 0.1, 0.4], //table lamp
+            [0.5, 0.2, 0.8], //Electric Fireplace
+            [0.7, 0.3, -0.5], //Electric Fireplace
+        ],
+        texts: [
+            {
+                title: "Livingroom Overview", content: [
+                    "Televison",
+                    "Home Theater System",
+                    "Heater",
+                    "Gaming Console",
+                    "Table Lamp",
+                    "Electric Fireplace",
+                    "Smart Speakers",
+                ]
+            },
+            {
+                title: "Televison", content: [
+                    "Set up the BroadLink RM4 Mini with the app to learn TV commands, including the power-off function, then automate a shutdown timer to turn off your TV after inactivity.",
+                    "Create an energy-saving scene to manage multiple devices (TV, AC, lights) simultaneously, enhancing energy efficiency",
+
+                ]
+            },
+            {
+                title: "Home Theater System", content: [
+                    "Disabling subwoofers and other components when not required can reduce energy consumption by 20-40%, as subwoofers consume significant power during bass amplification",
+                    "Soundbars are more energy-efficient than full surround sound systems, consolidating multiple components into a single unit, which reduces power consumption during regular TV use",
+
+                ]
+            },
+            {
+                title: "Heater", content: [
+                    " Remember to clean the filters regularly. This is because dirty filters reduce energy efficiency. When airflow is restricted, the system's fan motor run longer to circulate air, consuming more energy.",
+                    "Integrate a smart thermostat into your home automation system to control temperature settings remotely and automatically adjust based on your daily routines. Smart thermostats can learn your preferences and reduce energy consumption by optimising heating and cooling when you're away.",
+
+                ]
+            },
+            {
+                title: "Gaming Console", content: [
+                    "Gaming consoles like the Xbox Series X/S and PlayStation offer instant-on or similar standby modes to allow faster startup times. However, these modes keep certain components, such as network connectivity and power to the console's memory, active to ensure the system is ready for quick use.",
+                    " Many consoles download game updates, patches, and system firmware while in standby mode to keep the system up to date. While convenient, this process draws additional power because the system must keep network components and storage devices active.",
+
+                ]
+            },
+            {
+                title: "Table Lamp", content: [
+                    "Use LED bulbs: They use up to 80% less energy and last longer than incandescent bulbs.",
+                    "Add motion sensors: Install motion sensors or timers to automatically turn off lamps when not in use.",
+
+
+                ]
+            },
+            {
+                title: "Electric Fireplace", content: [
+                    "Use zone heating: Only use the fireplace in the room where it's needed, rather than heating the entire house.",
+                    "Keep the doors closed: Prevent drafts to make your fireplace more energy-efficient.",
+
+                ]
+            },
+
+            {
+                title: "DVD/Blu-ray Player", content: [
+                    " Switch off when not in use: Avoid keeping the player in standby mode, as it continues to draw power.",
+                    "Use streaming services with efficient devices: Instead of using a player for physical media, consider a more energy-efficient streaming device.",
+
+
+                ]
+            },
+
+
+        ],
+        textPositions: [
+            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '30%', left: '18%', transform: 'translateX(-50%)' },  // Text for overview (cam 1)
+            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for tv
+            { top: '20%', left: '70%', transform: 'translateX(-50%)' },  // Text for home theater
+            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for heater
+            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for  gaming console
+            { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for    table lamp
+            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for  Electric Fireplace
+            { top: '15%', left: '20%', transform: 'translateX(-50%)' }    // Text for  DVD/Blu-ray Player
+        ]
+
+    },
+
+
 
     // Add the rest of the rooms...
 };
@@ -480,7 +476,7 @@ function CameraController({ cameraPosition }) {
 }
 
 export default function RecommendationsPage() {
-    const [selectedRoom, setSelectedRoom] = useState('livingRoom'); // Ensure a default room exists
+    const [selectedRoom, setSelectedRoom] = useState('kitchen'); // Ensure a default room exists
     const [currentStep, setCurrentStep] = useState(0);
 
     const handleRoomSelection = (room) => {
