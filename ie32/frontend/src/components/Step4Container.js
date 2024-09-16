@@ -17,6 +17,11 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
     const [topBrands, setTopBrands] = useState(5);
     const energyChartRef = useRef(null);
 
+    const [hasSelectedAppliance, setHasSelectedAppliance] = useState(false);
+
+
+
+
     const uniqueDevices = useMemo(() => {
         const applianceDevices = [...new Set(appliances.map(appliance => appliance[0]))];
         const brandDevices = [...new Set(appBrandData.map(item => item.Device))];
@@ -46,7 +51,7 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
 
     useEffect(() => {
         if (selectedAppliance) {
-            updateSuggestions();
+            updateSuggestions(selectedAppliance);
         }
     }, [selectedAppliance, topBrands]);
 
@@ -58,16 +63,19 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
 
     const handleApplianceSelect = (appliance) => {
         setSelectedAppliance(appliance.name);
+        setHasSelectedAppliance(true);
+        updateSuggestions(appliance.name);
     };
 
-    const updateSuggestions = () => {
+    const updateSuggestions = (applianceName) => {
         const filteredSuggestions = appRecommData
-            .filter(item => item.Device === selectedAppliance)
+            .filter(item => item.Device === applianceName)
             .sort((a, b) => b.Star_Rating - a.Star_Rating)
             .slice(0, topBrands);
 
         setSuggestions(filteredSuggestions);
     };
+
 
     useEffect(() => {
 
@@ -380,7 +388,9 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                             </div>
                         </div>
                         <div className="suggestion-list-container">
-                            {suggestions.length > 0 ? (
+                            {!hasSelectedAppliance ? (
+                                <p className="suggestion-message">Please select an appliance to see model options.</p>
+                            ) : suggestions.length > 0 ? (
                                 <table className="suggestion-table">
                                     <thead>
                                         <tr>
@@ -400,13 +410,12 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                                     </tbody>
                                 </table>
                             ) : (
-                                <p className="no-suggestions">Select an appliance from the chart to see top picks.</p>
+                                <p className="suggestion-message">No model suggestions available for the selected appliance.</p>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
-
 
 
 
