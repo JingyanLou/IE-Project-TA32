@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './buynew.css';
+import { useNavigate } from 'react-router-dom'; // Add this correct import
 import { getApiBaseUrl } from '../utils/api';
 
 const BuyNew = () => {
@@ -231,12 +232,19 @@ const BuyNew = () => {
 
     const filteredBrands = filterAndSortBrands();
 
+    const navigate = useNavigate();
 
+    const handleBackToDashboard = () => {
+        navigate('/selection'); // Adjust this path as needed
+    };
 
 
 
     return (
         <div className="buy-new-container">
+            <button className="nav-link-button-buynew" onClick={handleBackToDashboard}>
+                Back
+            </button>
             <section className="appliance-selection">
                 <div className="appliance-details">
                     <h2>Discover how replacing outdated appliances with energy-efficient devices can reduce your energy consumption and carbon footprint.</h2>

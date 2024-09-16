@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './governmentinfo.css';
+import { useNavigate } from 'react-router-dom'; // Add this correct import
 
 const Section = ({ title, description, imageSrc, reverse, link }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -49,9 +50,20 @@ const Section = ({ title, description, imageSrc, reverse, link }) => {
 };
 
 const GovernmentInfo = () => {
+
+    const navigate = useNavigate();
+
+    const handleBackToDashboard = () => {
+        navigate('/selection'); // Adjust this path as needed
+    };
+
     return (
         <div className="government-info-wrapper">
+
             <div className="government-info-page">
+                <button className="nav-link-button-recom" onClick={handleBackToDashboard}>
+                    Back
+                </button>
                 <header className="gov-info-header fade-in">
                     <h1>Government Program</h1>
                     <p>Explore more to understand your electricity benefits living in Melbourne</p>
