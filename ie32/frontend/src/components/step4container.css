@@ -145,8 +145,7 @@
 
 }
 
-
-/* Tooltip Styling */
+/* Common styles for all tooltips */
 .tooltip-bill,
 .tooltip-benchmark {
     display: none;
@@ -155,31 +154,55 @@
     color: white;
     padding: 15px;
     border-radius: 20px;
-    white-space: nowrap;
-    z-index: 10;
+    z-index: 1000;
     width: 230px;
     font-size: 0.8rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+.tooltip-barchart {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    z-index: 1000;
+    width: 250px;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Specific positioning for bar chart tooltip */
+.tooltip-barchart {
+    position: fixed;
+    pointer-events: none;
+}
+
 /* Tooltip Title Styling */
-.tooltip-title {
+.tooltip-bill .tooltip-title,
+.tooltip-benchmark .tooltip-title,
+.tooltip-barchart .tooltip-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
+    color: white;
 }
 
 /* Tooltip Metric and Value Styling */
 .tooltip-bill p,
-.tooltip-benchmark p {
+.tooltip-benchmark p,
+.tooltip-barchart p {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
 }
 
 .tooltip-bill strong,
-.tooltip-benchmark strong {
+.tooltip-benchmark strong,
+.tooltip-barchart strong {
     color: grey;
     font-weight: bold;
     font-size: 12px;
@@ -187,31 +210,29 @@
     text-shadow: 1px 1px 2px black;
 }
 
-.tooltip-value {
+.tooltip-value,
+.tooltip-barchart span {
     font-size: 14px;
     color: white;
     text-shadow: 1px 1px 2px black;
 }
 
 /* Show tooltip on hover */
-.insight-bill:hover .tooltip-bill {
-    display: block;
-}
-
+.insight-bill:hover .tooltip-bill,
 .insight-benchmark:hover .tooltip-benchmark {
     display: block;
-}
-
-/* Change color of h3 on hover of insight-bill and insight-benchmark */
-.insight-bill:hover h3,
-.insight-benchmark:hover h3 {
-    color: #ff7b00;
 }
 
 /* Positioning the tooltip relative to the insight sections */
 .insight-bill,
 .insight-benchmark {
     position: relative;
+}
+
+/* Change color of h3 on hover of insight-bill and insight-benchmark */
+.insight-bill:hover h3,
+.insight-benchmark:hover h3 {
+    color: #ff7b00;
 }
 
 /* Positioning the tooltip relative to the insight-benchmark section */
@@ -515,6 +536,7 @@
     border-radius: 8px;
     margin-top: 20px;
 }
+
 
 
 /* Media Queries for Responsiveness */

@@ -16,6 +16,8 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [topBrands, setTopBrands] = useState(5);
     const energyChartRef = useRef(null);
+    const [hoveredAppliance, setHoveredAppliance] = useState(null);
+
 
     const [hasSelectedAppliance, setHasSelectedAppliance] = useState(false);
 
@@ -26,11 +28,42 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
     }, [appliances, appBrandData]);
 
     // Calculate energy consumption for each appliance
-    const applianceConsumption = appliances.map(appliance => {
-        const [name, quantity, dailyUsageHours, energyConsumptionKWh] = appliance;
-        const monthlyConsumption = energyConsumptionKWh * quantity * dailyUsageHours * 30;
-        return { name, monthlyConsumption };
-    }).sort((a, b) => b.monthlyConsumption - a.monthlyConsumption);
+    const applianceConsumption = useMemo(() => {
+        const totalConsumption = appliances.reduce((total, appliance) => {
+            const [, quantity, dailyUsageHours, energyConsumptionKWh] = appliance;
+            return total + (energyConsumptionKWh * quantity * dailyUsageHours * 30);
+        }, 0);
+
+        return appliances.map(appliance => {
+            const [name, quantity, dailyUsageHours, energyConsumptionKWh] = appliance;
+            const monthlyConsumption = energyConsumptionKWh * quantity * dailyUsageHours * 30;
+            const percentage = (monthlyConsumption / totalConsumption) * 100;
+            return {
+                name,
+                quantity: parseInt(quantity),
+                dailyUsageHours: parseFloat(dailyUsageHours),
+                energyConsumptionKWh: parseFloat(energyConsumptionKWh),
+                monthlyConsumption,
+                percentage
+            };
+        }).sort((a, b) => b.monthlyConsumption - a.monthlyConsumption);
+    }, [appliances]);
+
+    const handleBarHover = (appliance, event) => {
+        setHoveredAppliance(appliance);
+        const tooltip = document.getElementById('tooltip-barchart');
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${event.clientX + 10}px`;
+        tooltip.style.top = `${event.clientY + 10}px`;
+    };
+
+    const handleBarLeave = () => {
+        setHoveredAppliance(null);
+        const tooltip = document.getElementById('tooltip-barchart');
+        tooltip.style.display = 'none';
+    };
+
+
 
     const maxConsumption = Math.max(...applianceConsumption.map(a => a.monthlyConsumption));
 
@@ -360,6 +393,8 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                                             className={`chart-bar ${selectedAppliance === appliance.name ? 'selected' : ''}`}
                                             style={{ height: `${heightPercentage}%` }}
                                             onClick={() => handleApplianceSelect(appliance)}
+                                            onMouseEnter={(e) => handleBarHover(appliance, e)}
+                                            onMouseLeave={handleBarLeave}
                                         >
                                             <span className="appliance-name">{appliance.name}</span>
                                         </div>
@@ -413,6 +448,21 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                     </div>
                 </div>
             </div>
+
+            {/* Bar Chart Tooltip */}
+            <div id="tooltip-barchart" className="tooltip-barchart">
+                {hoveredAppliance && (
+                    <>
+                        <div className="tooltip-title">{hoveredAppliance.name}</div>
+                        <p><strong>Daily Usage:</strong> <span>{hoveredAppliance.dailyUsageHours.toFixed(2)} hours</span></p>
+                        <p><strong>Consumption per Hour:</strong> <span>{hoveredAppliance.energyConsumptionKWh.toFixed(2)} kWh</span></p>
+                        <p><strong>Total Consumption:</strong> <span>{hoveredAppliance.monthlyConsumption.toFixed(2)} kWh/month</span></p>
+                        <p><strong>Quantity:</strong> <span>{hoveredAppliance.quantity}</span></p>
+                        <p><strong>Percentage:</strong> <span>{hoveredAppliance.percentage.toFixed(2)}%</span></p>
+                    </>
+                )}
+            </div>
+
 
 
 
