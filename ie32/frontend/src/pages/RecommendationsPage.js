@@ -343,7 +343,7 @@ const rooms = {
         ]
     },
 
-    livingRoom: {
+    livingroom: {
         model: "/livingroom.glb",
         cameraPositions: [
             livingRoomCameraPosition, // Landing page position

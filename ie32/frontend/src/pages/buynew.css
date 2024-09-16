@@ -218,6 +218,8 @@ select::-ms-expand {
     margin: 0 auto;
     height: 40vh;
     padding-top: 20px;
+    margin-bottom: 180px;
+
 }
 
 .appliance-details {
@@ -227,10 +229,12 @@ select::-ms-expand {
     justify-content: space-between;
     height: 100%;
     animation: slideInLeft 1s ease-out both;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .appliance-details h2 {
-    font-size: 32px;
+    font-size: 29px;
     line-height: 1.2;
     margin-bottom: 0;
     width: 60%;
@@ -257,7 +261,7 @@ select::-ms-expand {
 }
 
 .appliance-details h3 {
-    font-size: 28px;
+    font-size: 23px;
     margin-bottom: 10px;
 }
 
@@ -269,8 +273,9 @@ select::-ms-expand {
 
 .appliance-image {
     width: 40%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
+
 }
 
 .appliance-image.initial {
