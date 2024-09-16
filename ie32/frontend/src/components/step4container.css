@@ -400,43 +400,42 @@
     font-family: Arial, sans-serif;
 }
 
-/* Title Styles */
-.appliances-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    /* Adding shadow for better readability */
-}
-
-/* Container Flexbox */
 .appliances-container {
     display: flex;
     background-color: #000;
-    /* Make the container background black */
-    border-radius: 0.5rem;
+    border-radius: 20px;
     overflow: hidden;
     height: 500px;
-    align-items: flex-end;
-    /* Align items at the bottom */
-    padding: 20px;
-    /* Add padding to ensure space around content */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Adding shadow for depth */
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Chart Section */
-.chart-section-step4 {
-    flex: 2;
-    padding-right: 1.5rem;
-    border-right: 1px solid #333;
-    height: 100%;
-    /* Ensure the section takes the full height */
+.chart-section {
+    flex: 0 0 40%;
+    padding: 1.5rem;
+    border-right: 1px solid white;
     display: flex;
-    align-items: flex-end;
-    /* Align the chart at the bottom */
+    flex-direction: column;
+    overflow: hidden;
+}
 
+.section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.energy-chart-wrapper {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .energy-chart-step4 {
@@ -444,98 +443,74 @@
     align-items: flex-end;
     justify-content: flex-start;
     height: 100%;
-    /* Set to 100% to match the chart section */
-    width: 100%;
-    gap: 4px;
-    overflow-x: auto;
-    /* Allow horizontal scrolling */
-    overflow-y: hidden;
-    padding-bottom: 40px;
-    /* Ensure space between the bottom of the chart and bars */
-
-    /* Add padding at the top to prevent bars from touching the top */
-    scrollbar-width: thin;
-    scrollbar-color: #444 #222;
-    margin-bottom: 20px
+    padding-bottom: 30px;
+    min-width: 100%;
 }
 
-.energy-chart::-webkit-scrollbar {
+.energy-chart-wrapper::-webkit-scrollbar {
     height: 8px;
+    width: 0px;
 }
 
-.energy-chart::-webkit-scrollbar-track {
-    background: #222;
+.energy-chart-wrapper::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.energy-chart-wrapper::-webkit-scrollbar-thumb {
+    background-color: #333;
     border-radius: 4px;
 }
 
-.energy-chart::-webkit-scrollbar-thumb {
-    background-color: #444;
-    border-radius: 4px;
-    border: 2px solid #222;
-}
-
-/* Chart Bar Styles */
 .chart-bar-step4 {
     width: 35px;
     background: linear-gradient(to top, #ff00ff, #8000ff);
     position: relative;
     transition: all 0.3s ease;
-    /* Smooth transition on hover */
     cursor: pointer;
-    margin-right: 25px;
-    /* Adjust spacing */
+    margin-right: 15px;
     flex-shrink: 0;
-    box-shadow: 0 0 5px #fff;
-    /* Glowing effect */
-    height: calc(90%);
-    /* Ensure the bar takes 90% of the available chart height */
+    min-height: 10px;
+    /* Ensure a minimum height for visibility */
 }
 
-/* Ensure selected bars have emphasis */
-.chart-bar.selected {
-    box-shadow: 0 0 5px #fff, 0 0 20px #ff00ff;
-    /* Emphasize selected bar */
+.chart-bar-step4.selected {
+    box-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
 }
 
-/* Ensure appliance names are correctly positioned */
 .appliance-name {
     position: absolute;
-    bottom: -25px;
+    bottom: -30px;
     left: 50%;
-    overflow: hidden;
     transform: translateX(-50%) rotate(-45deg);
-    /* Similar rotation effect */
     font-size: 12px;
     color: #ccc;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    /* Shadow for better readability */
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 40px;
+    max-width: 60px;
+    overflow: hidden;
 }
 
-/* Suggestion Section */
-/* Adjust suggestion section for alignment */
 .suggestion-section {
     flex: 1;
     padding: 1.5rem;
-    background-color: #000;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
-    /* Align content to the bottom */
+    overflow: hidden;
 }
 
-/* Filter Styles */
-.filters {
+.suggestion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
-.filters label {
+.suggestion-title {
+    font-size: 1rem;
+    font-weight: 600;
     color: #ffffff;
-    margin-right: 0.5rem;
-    font-weight: bold;
+    flex: 1;
+    margin-right: 1rem;
 }
 
 .filters select {
@@ -547,70 +522,48 @@
     font-size: 14px;
 }
 
-/* Suggestion Title */
-.suggestion-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #9ca3af;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-/* Suggestion List Styles */
 .suggestion-list-container {
     flex-grow: 1;
     overflow-y: auto;
-    border: 1px solid #333;
-    border-radius: 0.25rem;
+    border: 1px solid white;
+    border-radius: 10px;
     padding: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #000;
 }
 
-.suggestion-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.suggestion-list-container::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* Suggestion Item Background Adjustment */
-.suggestion-item {
-    background-color: #000000;
-    /* Set background to black */
-    border-radius: 0.25rem;
-    padding: 0.75rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-    /* Smooth hover transition */
+.suggestion-list-container::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.suggestion-list-container::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+.suggestion-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.suggestion-table th,
+.suggestion-table td {
+    text-align: left;
+    padding: 0.5rem;
+    color: #ffffff;
+}
+
+.suggestion-table th {
+    font-weight: bold;
+    border-bottom: 1px solid #333;
 }
 
 .suggestion-item:hover {
-    background-color: #2c3e50;
-    box-shadow: inset 0 0 10px whitesmoke,
-        inset 5px 0 10px #f0f,
-        inset -5px 0 10px #0ff,
-        0 0 10px #fff,
-        -2px 0 10px #f0f,
-        2px 0 10px #0ff;
-    /* Hover effect */
+    background-color: #1a1a1a;
 }
 
-.suggestion-model {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.suggestion-rating,
-.suggestion-consumption {
-    color: #9ca3af;
-    font-size: 14px;
-}
-
-/* No Suggestions Message */
 .no-suggestions {
     color: #9ca3af;
     font-size: 14px;
@@ -622,11 +575,10 @@
     .appliances-container {
         flex-direction: column;
         height: auto;
-        /* Adjust height for smaller screens */
     }
 
     .chart-section {
         border-right: none;
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid white;
     }
 }

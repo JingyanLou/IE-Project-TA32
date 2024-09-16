@@ -340,55 +340,65 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
             </div>
 
 
-
             <div className="appliances-section">
-                <h2 className="appliances-title">Your home appliance consumption ranking</h2>
                 <div className="appliances-container">
-                    <div className="chart-section-step4">
-                        <div className="energy-chart-step4" ref={energyChartRef}>
-                            {applianceConsumption.map((appliance, index) => {
-                                const heightPercentage = scaleHeight(appliance.monthlyConsumption); // Apply scaling function
-                                const barWidth = 100 / applianceConsumption.length; // Dynamic width based on number of appliances
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`chart-bar-step4 ${selectedAppliance === appliance.name ? 'selected' : ''}`}
-                                        style={{
-                                            height: `${heightPercentage}%`,
-                                            width: `${barWidth}%` // Dynamic width for each bar
-                                        }}
-                                        onClick={() => handleApplianceSelect(appliance)}
-                                    >
-                                        <span className="appliance-name">{appliance.name}</span>
-                                    </div>
-                                );
-                            })}
+                    <div className="chart-section">
+                        <h2 className="section-title">Your home appliances consumption ranking</h2>
+                        <p className="section-subtitle">Select an appliance and see model options.</p>
+                        <div className="energy-chart-wrapper">
+                            <div className="energy-chart-step4" ref={energyChartRef}>
+                                {applianceConsumption.map((appliance, index) => {
+                                    const heightPercentage = scaleHeight(appliance.monthlyConsumption);
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`chart-bar-step4 ${selectedAppliance === appliance.name ? 'selected' : ''}`}
+                                            style={{ height: `${heightPercentage}%` }}
+                                            onClick={() => handleApplianceSelect(appliance)}
+                                        >
+                                            <span className="appliance-name">{appliance.name}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                     <div className="suggestion-section">
-                        <div className="filters">
-                            <label htmlFor="topBrands">Top Brands:</label>
-                            <select
-                                id="topBrands"
-                                value={topBrands}
-                                onChange={(e) => setTopBrands(Number(e.target.value))}
-                            >
-                                <option value={5}>Top 5</option>
-                                <option value={10}>Top 10</option>
-                            </select>
+                        <div className="suggestion-header">
+                            <h3 className="suggestion-title">
+                                Consider to upgrade your appliances and enhance your energy savings? Here is top model for your selected appliances
+                            </h3>
+                            <div className="filters">
+                                <select
+                                    id="topBrands"
+                                    value={topBrands}
+                                    onChange={(e) => setTopBrands(Number(e.target.value))}
+                                >
+                                    <option value={5}>Top 5</option>
+                                    <option value={10}>Top 10</option>
+                                </select>
+                            </div>
                         </div>
-                        <h3 className="suggestion-title">Energy-efficient appliance suggestions for your selection</h3>
                         <div className="suggestion-list-container">
                             {suggestions.length > 0 ? (
-                                <ul className="suggestion-list">
-                                    {suggestions.map((item, index) => (
-                                        <li key={index} className="suggestion-item">
-                                            <span className="suggestion-model">{item.Model_No}</span>
-                                            <span className="suggestion-rating">{item.Star_Rating} Stars</span>
-                                            <span className="suggestion-consumption">{item.Energy_Consumption_kWh_per_hour.toFixed(2)} kWh/hour</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <table className="suggestion-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Model Name</th>
+                                            <th>Star ratings</th>
+                                            <th>Energy Consumption per hour</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {suggestions.map((item, index) => (
+                                            <tr key={index} className="suggestion-item">
+                                                <td>{item.Model_No}</td>
+                                                <td>{item.Star_Rating} Stars</td>
+                                                <td>{item.Energy_Consumption_kWh_per_hour.toFixed(2)} kWh/hour</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             ) : (
                                 <p className="no-suggestions">Select an appliance from the chart to see top picks.</p>
                             )}
@@ -396,6 +406,10 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                     </div>
                 </div>
             </div>
+
+
+
+
 
 
 
