@@ -396,7 +396,7 @@ const Step4Container = ({ data, appRecommData, appBrandData }) => {
                         <h2 className="section-title">Your home appliances consumption ranking</h2>
                         <p className="section-subtitle">Select an appliance and see model options.</p>
                         <div className="energy-chart-wrapper">
-                            <div className="energy-chart" ref={energyChartRef}>
+                            <div className="energy-chart-step4" ref={energyChartRef}>
                                 {applianceConsumption.map((appliance, index) => {
                                     const heightPercentage = scaleHeight(appliance.monthlyConsumption);
                                     return (

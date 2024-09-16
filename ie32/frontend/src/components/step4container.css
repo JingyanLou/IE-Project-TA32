@@ -394,13 +394,18 @@
 }
 
 
-.energy-chart {
+.energy-chart-step4 {
+    width: 100%;
     display: flex;
-    align-items: flex-end;
     justify-content: flex-start;
-    /* Adjust for the bottom padding */
-    min-width: 100%;
-    padding-right: 20px;
+    align-items: flex-end;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #444 #222;
 }
 
 .energy-chart-wrapper::-webkit-scrollbar {
