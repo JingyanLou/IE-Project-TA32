@@ -1,0 +1,24 @@
+.problem-section {
+    height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.problem-text-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.problem-text {
+    font-size: 4rem;
+    white-space: nowrap;
+    padding: 0 50px;
+    flex-shrink: 0;
+}

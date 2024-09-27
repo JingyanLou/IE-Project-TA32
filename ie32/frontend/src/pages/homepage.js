@@ -7,6 +7,7 @@ import { ShaderGradient, ShaderGradientCanvas } from 'shadergradient';
 import * as fiber from '@react-three/fiber';
 import * as drei from '@react-three/drei';
 import MissionSection from '../components/MissionSection';
+import ProblemSection from '../components/ProblemSection';
 
 const Homepage = () => {
     const scrollToEstimation = () => {
@@ -46,9 +47,8 @@ const Homepage = () => {
                     </div>
                 </div>
             </div>
+
             <MissionSection />
-
-
 
             <div id="estimation-section">
                 <Estimation />
