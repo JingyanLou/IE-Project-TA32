@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300&display=swap');
+
+.mission-section {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mission-content {
+    align-self: flex-end;
+    width: 50%;
+    margin-bottom: 80px;
+}
+
+.mission-heading {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
+    font-size: 70px;
+    line-height: 1.2;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.problem {
+    position: relative;
+}
+
+.problem-underscore {
+    width: 400px;
+    height: 2px;
+    background-color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.problem-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
+    font-size: 32.5px;
+    margin-bottom: 10px;
+}
+
+.problem-description {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 100;
+    font-size: 23.5px;
+    line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
+    .mission-content {
+        width: 70%;
+    }
+
+    .problems-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-section {
+        padding: 40px 20px;
+    }
+
+    .mission-content {
+        width: 100%;
+        align-self: flex-start;
+    }
+
+    .mission-heading {
+        font-size: 40px;
+    }
+
+    .problems-grid {
+        grid-template-columns: 1fr;
+    }
+}
