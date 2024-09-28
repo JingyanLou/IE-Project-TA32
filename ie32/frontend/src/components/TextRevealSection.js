@@ -11,32 +11,43 @@ const TextRevealSection = () => {
 
     useEffect(() => {
         const section = sectionRef.current;
-        const text = textRef.current;
+        const words = textRef.current.children;
 
         // Set initial state
-        gsap.set(text.children, { autoAlpha: 0, y: 20 });
+        gsap.set(words, {
+            opacity: 0,
+            rotationX: () => gsap.utils.random(-90, 90),
+            rotationY: () => gsap.utils.random(-90, 90),
+            rotationZ: () => gsap.utils.random(-45, 45),
+            x: () => gsap.utils.random(-500, 500),
+            y: () => gsap.utils.random(-300, 300),
+            z: () => gsap.utils.random(-500, 500),
+        });
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
                 start: "top top",
-                end: "+=100%", // This makes the animation complete over one full scroll of the section
+                end: "+=150%",
                 pin: true,
                 anticipatePin: 1,
                 scrub: 1,
-                onComplete: () => {
-                    ScrollTrigger.getById("textRevealTrigger").kill();
-                },
-                id: "textRevealTrigger"
+                markers: true, // Remove this in production
             }
         });
 
         // Reveal words
-        tl.to(text.children, {
-            autoAlpha: 1,
+        tl.to(words, {
+            opacity: 1,
+            rotationX: 0,
+            rotationY: 0,
+            rotationZ: 0,
+            x: 0,
             y: 0,
-            stagger: 0.05,
-            duration: 0.5,
+            z: 0,
+            stagger: 0.1,
+            duration: 2,
+            ease: "power3.out",
         });
 
         return () => {
