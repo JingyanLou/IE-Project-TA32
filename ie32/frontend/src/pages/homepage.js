@@ -7,16 +7,9 @@ import { ShaderGradient, ShaderGradientCanvas } from 'shadergradient';
 import * as fiber from '@react-three/fiber';
 import * as drei from '@react-three/drei';
 import MissionSection from '../components/MissionSection';
-import ProblemSection from '../components/ProblemSection';
+import HorizontalScroll from '../components/HorizontalScroll';
 
 const Homepage = () => {
-    const scrollToEstimation = () => {
-        const estimationSection = document.getElementById('estimation-section');
-        if (estimationSection) {
-            estimationSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     return (
         <div className="homepage">
             <div className="hero">
@@ -38,23 +31,17 @@ const Homepage = () => {
                 </ShaderGradientCanvas>
                 <div className="hero-content">
                     <h1>Make your Energy Visible and Sustainable.</h1>
-                    <p>Our goal is to make Melbourne one of the world's most sustainable cities by empowering residents to control their energy costs and reduce consumption. We’re committed to driving energy efficiency and sustainability for a greener future.</p>
-                    <div className="arrow-down-container" onClick={scrollToEstimation}>
-                        <div className="scroll-down-text">Scroll Down</div>
-                        <div className="arrow-down">
-                            <span>&#9662;</span>
-                        </div>
-                    </div>
+                    <p>Our goal is to make Melbourne one of the world's most sustainable cities by empowering residents to control their energy costs and reduce consumption. We're committed to driving energy efficiency and sustainability for a greener future.</p>
                 </div>
             </div>
 
             <MissionSection />
 
+            <HorizontalScroll />
+
             <div id="estimation-section">
                 <Estimation />
             </div>
-
-
 
             <div id="saving-tips">
                 <Savingtips />
@@ -63,7 +50,6 @@ const Homepage = () => {
             <div id="why-choose-us-section">
                 <WhyChooseUs />
             </div>
-
         </div>
     );
 }
