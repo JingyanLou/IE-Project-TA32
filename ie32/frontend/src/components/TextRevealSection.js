@@ -16,37 +16,39 @@ const TextRevealSection = () => {
         // Set initial state
         gsap.set(words, {
             opacity: 0,
+            scale: 3,
+            z: 1000,
+            x: () => gsap.utils.random(-1000, 1000),
+            y: () => gsap.utils.random(-500, 500),
             rotationX: () => gsap.utils.random(-90, 90),
             rotationY: () => gsap.utils.random(-90, 90),
             rotationZ: () => gsap.utils.random(-45, 45),
-            x: () => gsap.utils.random(-500, 500),
-            y: () => gsap.utils.random(-300, 300),
-            z: () => gsap.utils.random(-500, 500),
         });
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
                 start: "top top",
-                end: "+=150%",
+                end: "+=300%",
                 pin: true,
                 anticipatePin: 1,
                 scrub: 1,
-                markers: true, // Remove this in production
+                // Remove this in production
             }
         });
 
         // Reveal words
         tl.to(words, {
             opacity: 1,
+            scale: 1,
+            z: 0,
+            x: 0,
+            y: 0,
             rotationX: 0,
             rotationY: 0,
             rotationZ: 0,
-            x: 0,
-            y: 0,
-            z: 0,
             stagger: 0.1,
-            duration: 2,
+            duration: 5,
             ease: "power3.out",
         });
 

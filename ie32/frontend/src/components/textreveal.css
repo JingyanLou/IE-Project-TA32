@@ -6,7 +6,8 @@
     align-items: center;
     background-color: #060606;
     position: relative;
-    /* Added to ensure proper stacking */
+    overflow: hidden;
+    perspective: 1000px;
 }
 
 .text-container {
@@ -19,13 +20,15 @@
     justify-content: center;
     align-items: center;
     transition: all 0.5s ease;
+    transform-style: preserve-3d;
 }
 
 .text-container span {
     margin: 0 5px;
     display: inline-block;
-    /* Ensures each word can be animated individually */
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
     font-size: 70px;
+    color: #ffffff;
+    will-change: transform, opacity;
 }
