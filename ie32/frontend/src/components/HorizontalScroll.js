@@ -13,27 +13,25 @@ const HorizontalScroll = () => {
         const races = racesRef.current;
         const racesWrapper = racesWrapperRef.current;
         const numSections = races.querySelectorAll('h2').length;
-        const racesWidth = numSections * 100; // Use percentage instead of window.innerWidth
+        const racesWidth = numSections * 100; // 40vw content + 20vw margin per section
 
-        races.style.width = `${racesWidth}%`;
+        races.style.width = `${racesWidth}vw`;
 
         const animation = gsap.to(races, {
-            x: () => `-${(numSections - 1) * 100}%`,
+            x: () => `-${(numSections - 1) * 100}vw`,
             ease: "none",
             scrollTrigger: {
                 trigger: racesWrapper,
                 start: "top top",
-                end: () => `+=${racesWidth}%`,
+                end: () => `+=${racesWidth * 1}vw`,
                 pin: true,
-                scrub: 1,
-                snap: 1 / (numSections - 1),
+                scrub: 0.8,
                 invalidateOnRefresh: true,
-
             }
         });
 
         const handleResize = () => {
-            races.style.width = `${numSections * 100}%`;
+            races.style.width = `${numSections * 100}vw`;
             ScrollTrigger.refresh();
         };
 
