@@ -8,6 +8,7 @@ import * as fiber from '@react-three/fiber';
 import * as drei from '@react-three/drei';
 import MissionSection from '../components/MissionSection';
 import HorizontalScroll from '../components/HorizontalScroll';
+import TextRevealSection from '../components/TextRevealSection';
 
 const Homepage = () => {
     return (
@@ -38,6 +39,9 @@ const Homepage = () => {
             <MissionSection />
 
             <HorizontalScroll />
+
+            <TextRevealSection />
+
 
             <div id="estimation-section">
                 <Estimation />
