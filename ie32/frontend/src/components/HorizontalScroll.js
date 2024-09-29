@@ -34,7 +34,7 @@ const HorizontalScroll = () => {
     useEffect(() => {
         const races = racesRef.current;
         const racesWrapper = racesWrapperRef.current;
-        const numSections = races.querySelectorAll('h2').length;
+        const numSections = races.querySelectorAll('.horizontal-card-title').length;
         const racesWidth = numSections * 100; // 40vw content + 20vw margin per section
 
         races.style.width = `${racesWidth}vw`;
@@ -69,12 +69,12 @@ const HorizontalScroll = () => {
         <div ref={racesWrapperRef} className="racesWrapper">
             <div ref={racesRef} className="races">
                 {cardData.map((card, index) => (
-                    <div key={index} className="card">
-                        <img src={card.image} alt={card.title} className="card-image" />
-                        <div className="card-content">
-                            <p className="card-year">{card.year}</p>
-                            <h2 className="card-title">{card.title}</h2>
-                            <p className="card-description">{card.description}</p>
+                    <div key={index} className="horizontal-card">
+                        <img src={card.image} alt={card.title} className="horizontal-card-image" />
+                        <div className="horizontal-card-content">
+                            <p className="horizontal-card-year">{card.year}</p>
+                            <h2 className="horizontal-card-title">{card.title}</h2>
+                            <p className="horizontal-card-description">{card.description}</p>
                         </div>
                     </div>
                 ))}

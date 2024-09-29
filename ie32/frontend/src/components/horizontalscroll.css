@@ -10,7 +10,7 @@
     will-change: transform;
 }
 
-.card {
+.horizontal-card {
     margin-top: 40vh;
     flex: 0 0 80vw;
     display: flex;
@@ -20,35 +20,35 @@
     margin-right: 20vw;
 }
 
-.card:first-child {
+.horizontal-card:first-child {
     margin-left: 0;
 }
 
-.card-image {
+.horizontal-card-image {
     width: 40%;
     border-radius: 20px;
     margin-right: 40px;
 }
 
-.card-content {
+.horizontal-card-content {
     width: 60%;
 }
 
-.card-year {
+.horizontal-card-year {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
     font-size: 32.5px;
     margin-bottom: 10px;
 }
 
-.card-title {
+.horizontal-card-title {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
     font-size: 32.5px;
     margin-bottom: 20px;
 }
 
-.card-description {
+.horizontal-card-description {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 100;
     font-size: 23.5px;
