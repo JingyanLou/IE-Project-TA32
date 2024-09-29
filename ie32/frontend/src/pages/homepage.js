@@ -9,6 +9,7 @@ import * as drei from '@react-three/drei';
 import MissionSection from '../components/MissionSection';
 import HorizontalScroll from '../components/HorizontalScroll';
 import TextRevealSection from '../components/TextRevealSection';
+import FeaturesOverview from '../components/FeaturesOverview';
 
 const Homepage = () => {
     return (
@@ -41,6 +42,8 @@ const Homepage = () => {
             <HorizontalScroll />
 
             <TextRevealSection />
+
+            <FeaturesOverview />
 
 
             <div id="estimation-section">
