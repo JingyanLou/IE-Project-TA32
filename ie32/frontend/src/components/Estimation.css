@@ -63,9 +63,10 @@
 .info-section h1 {
     font-size: 48px;
     /* Reduced font size */
-    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     z-index: 3;
     text-align: right;
     align-self: flex-end;
@@ -85,7 +86,7 @@
 .info-section .stats {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     gap: 10px;
     z-index: 3;
     margin-right: -7%;
@@ -111,7 +112,8 @@
 .info-section .stat-item h2 {
     font-size: 18px;
     /* Reduced font size */
-    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     color: grey;
     margin: 0;
@@ -120,7 +122,8 @@
 .info-section .stat-item p {
     font-size: 20px;
     /* Reduced font size */
-    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     margin: 0;
 }
@@ -128,10 +131,11 @@
 .info-section .description {
     font-size: 22px;
     /* Reduced font size */
-    font-weight: 300;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
     text-align: right;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     z-index: 2;
     margin-right: -4%;
     opacity: 0;
@@ -147,7 +151,8 @@
 
 .info-section .start-button {
     padding: 10px 20px;
-    font-size: 14px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
     /* Reduced font size */
     border: 2px solid white;
     border-radius: 5px;
