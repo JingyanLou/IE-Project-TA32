@@ -207,6 +207,7 @@ select::-ms-expand {
     min-height: 100vh;
     padding: 0 10%;
     margin-top: 5%;
+    overflow-y: hidden;
 }
 
 /* Appliance selection section */

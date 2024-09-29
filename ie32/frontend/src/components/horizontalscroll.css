@@ -11,7 +11,7 @@
 }
 
 .horizontal-card {
-    margin-top: 40vh;
+
     flex: 0 0 80vw;
     display: flex;
     align-items: center;
