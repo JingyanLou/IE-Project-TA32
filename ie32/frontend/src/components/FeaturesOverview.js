@@ -57,7 +57,6 @@ const FeaturesOverview = () => {
                     </div>
                 </div>
                 <div className="feature-cards">
-                    <div className="empty-space"></div>
                     {features.map((feature, index) => (
                         <FeatureCard key={index} {...feature} />
                     ))}
