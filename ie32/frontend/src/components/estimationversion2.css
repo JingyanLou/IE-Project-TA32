@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@200;300;400&display=swap');
+
+.estimation-container-v2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
+}
+
+.content-wrapper-v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.title-v2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.stats-container-v2 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.stat-item-v2 {
+    text-align: center;
+}
+
+.stat-value-v2 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+    font-weight: 300;
+}
+
+.stat-label-v2 {
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.description-v2 {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.estimate-button-v2 {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+}
+
+.estimate-button-v2:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.image-section-v2 {
+    width: 100%;
+    max-width: 800px;
+    perspective: 1500px;
+}
+
+.image-container-v2 {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+}
+
+.product-image-v2 {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.image-layer-v2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    opacity: 0.1;
+}
+
+.layer-1-v2 {
+    background-color: #007bff;
+    transform: translateZ(-40px);
+}
+
+.layer-2-v2 {
+    background-color: #00ff00;
+    transform: translateZ(-80px);
+}
+
+.image-container-v2:hover {
+    transform: rotateY(-15deg) rotateX(3deg);
+}
+
+@media (max-width: 768px) {
+    .stats-container-v2 {
+        flex-direction: column;
+    }
+
+    .stat-item-v2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .image-container-v2 {
+        transform: rotateY(-10deg) rotateX(3deg);
+    }
+}
