@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 .footer-footer {
-    height: 60vh;
+    height: 80vh;
     width: 100vw;
     overflow: hidden;
 }
@@ -11,30 +11,42 @@
     width: 100vw;
     overflow: hidden;
     background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 10%;
     font-family: 'Roboto Condensed', sans-serif;
-    color: black;
+    color: rgb(0, 0, 0);
     position: relative;
     z-index: 10;
 }
 
+.footer-content-footer {
+    display: flex;
+    height: 100%;
+    padding: 40px;
+}
+
 .brand-title-footer {
-    font-size: 70px;
-    font-weight: 400;
+    font-size: 120px;
+    font-weight: 500;
+    line-height: 0.9;
     margin: 0;
-    line-height: 1;
+    align-self: flex-start;
+    flex: 0 0 auto;
+}
+
+.footer-features-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 100px;
+    flex: 1;
 }
 
 .feature-section-footer {
-    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .feature-title-footer {
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 700;
     margin: 0 0 20px 0;
 }
 
