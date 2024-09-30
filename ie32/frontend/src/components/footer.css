@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500&display=swap');
+
+.footer-footer {
+    height: 60vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.footer-container-footer {
+    height: 80vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+    position: relative;
+    z-index: 10;
+}
+
+.brand-title-footer {
+    font-size: 70px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+}
+
+.feature-section-footer {
+    margin-top: 40px;
+}
+
+.feature-title-footer {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+}
+
+.feature-list-footer {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-item-footer {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
