@@ -35,6 +35,7 @@ const Upload = () => {
     const [selectedDevice, setSelectedDevice] = useState('');
     const [topBrands, setTopBrands] = useState(5);
     const [appRecommData, setAppRecommData] = useState([]);
+    const [uploadedImages, setUploadedImages] = useState([]);
 
 
 
@@ -130,57 +131,32 @@ const Upload = () => {
         }
     };
 
-    // Handle input change for form fields
-    const handleInputChange = (e) => {
+    const handleInputChange = (e, index) => {
         const { name, value } = e.target;
-
-        setFormInput((prevFormInput) => {
-            let updatedFormInput = {
-                ...prevFormInput,
-                [name]: value
-            };
-
-            // If the applianceType is changed, update the dailyHours to match the selected appliance's default
-            if (name === 'applianceType') {
-                const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
-                if (selectedAppliance) {
-                    updatedFormInput.dailyHours = selectedAppliance['Average Daily Hours'] || 10;
-                }
-            }
-
-            console.log('Updated formInput:', updatedFormInput);
-            return updatedFormInput;
-        });
+        if (index !== undefined) {
+            setData(prevData => ({
+                ...prevData,
+                'Appliances-list': prevData['Appliances-list'].map((appliance, i) =>
+                    i === index ? { ...appliance, [name]: value } : appliance
+                )
+            }));
+        } else {
+            setFormInput(prevInput => ({ ...prevInput, [name]: value }));
+        }
     };
 
-
     const handleAddAppliance = () => {
-
-        // Find the selected appliance in the applianceData array
-        const selectedAppliance = applianceData.find(appliance => appliance.Device === formInput.applianceType);
-        // If the selected appliance is found, extract its energy consumption (kWh/hour)
-        const energyConsumptionKWh = selectedAppliance ? selectedAppliance['Energy Consumption (kWh/hour)'] : 0;
-
-
         const newAppliance = [
             formInput.applianceType,
             formInput.quantity,
             formInput.dailyHours,
-            energyConsumptionKWh // Energy Consumption (kWh/hour)
+            0, // Energy Consumption (kWh/hour)
+            'manual' // Source
         ];
-
-        console.log('Adding new appliance:', newAppliance);
-
         setData(prevData => ({
             ...prevData,
             'Appliances-list': [...prevData['Appliances-list'], newAppliance]
         }));
-
-        setFormInput({
-            applianceType: applianceData[0]?.Device || '',
-            dailyHours: applianceData[0]?.['Average Daily Hours'] || 10,
-            quantity: 1
-        });
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
@@ -190,15 +166,67 @@ const Upload = () => {
         }));
     };
 
+    const handleUploadImage = (files) => {
+        const newImages = files.map(file => ({
+            name: file.name,
+            thumbnail: URL.createObjectURL(file),
+            status: 'uploading',
+            progress: 0
+        }));
+        setUploadedImages(prevImages => [...prevImages, ...newImages]);
+
+        // Simulate upload process (replace with actual API call)
+        newImages.forEach(image => {
+            const interval = setInterval(() => {
+                setUploadedImages(prevImages =>
+                    prevImages.map(img =>
+                        img.name === image.name
+                            ? { ...img, progress: Math.min(img.progress + 10, 100) }
+                            : img
+                    )
+                );
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                setUploadedImages(prevImages =>
+                    prevImages.map(img =>
+                        img.name === image.name
+                            ? { ...img, status: 'uploaded', progress: 100 }
+                            : img
+                    )
+                );
+                // Simulate detection process (replace with actual API call)
+                setTimeout(() => {
+                    handleDetectedAppliance(image.name);
+                }, 1000);
+            }, 5000);
+        });
+    };
+
+    const handleDetectedAppliance = (imageName) => {
+        // Simulate detected appliance (replace with actual detection logic)
+        const detectedAppliance = [
+            'Detected Appliance',
+            1, // quantity
+            0, // daily hours
+            0, // Energy Consumption (kWh/hour)
+            'detected' // Source
+        ];
+        setData(prevData => ({
+            ...prevData,
+            'Appliances-list': [...prevData['Appliances-list'], detectedAppliance]
+        }));
+    };
+
     const handleUserInformation = () => {
         console.log('Saving user information with current formInput:', formInput);
 
-        // Ensure all necessary values are set before saving
         setData(prevData => ({
             ...prevData,
             'User information': [
                 formInput.userLocation,
-                formInput.energyProvider || 'Not provided', //if empty or not selected, default to 'Not provided'
+                formInput.energyProvider || 'Not provided',
                 formInput.household || 'Not provided',
                 formInput.usageRate || 'Not provided',
                 formInput.supplyCharge,
@@ -218,7 +246,7 @@ const Upload = () => {
             ]
         });
 
-        handleNextStep(); // Proceed to the next step only after setting data
+        handleNextStep(); // Proceed to the next step after setting data
     };
 
 
@@ -274,6 +302,9 @@ const Upload = () => {
                     handleInputChange={handleInputChange}
                     handleAddAppliance={handleAddAppliance}
                     handleDeleteAppliance={handleDeleteAppliance}
+                    handleUploadImage={handleUploadImage}
+                    uploadedImages={uploadedImages}
+                    handleDetectedAppliance={handleDetectedAppliance}
                 />
             )}
 

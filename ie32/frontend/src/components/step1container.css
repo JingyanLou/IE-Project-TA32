@@ -1,206 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
 .step1-container {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    color: white;
+    padding: 20px;
+    width: 90%;
+    margin-top: 9%;
+    overflow-y: hidden;
+}
+
+.input-method-toggle {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 30%;
+}
+
+.toggle-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+
+.toggle-button.active {
+    background-color: #ff7b00;
+}
+
+.content-columns {
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    margin-top: 250px;
-    z-index: 2;
-    padding-top: 20px;
-    padding-left: 0px;
-    padding-right: 128px;
-    opacity: 0;
-    /* Start hidden */
-    transform: translateY(20px);
-    /* Start slightly below the final position */
-    animation: revealStep1Container 0.8s ease-out forwards;
-    /* Smooth reveal animation */
-}
-
-/* Animation for the entire Step1 container */
-@keyframes revealStep1Container {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        /* Final position */
-    }
-}
-
-.form-title,
-.appliance-title {
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
-    position: relative;
-    right: -5.5%;
-    top: -21%;
-    transform: translateX(50%);
-    white-space: nowrap;
-}
-
-/* Form container */
-.form-container {
-    width: 45%;
     height: 400px;
+    /* Fixed height for all columns */
+}
+
+.column {
+    width: 30%;
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
     border-radius: 10px;
+    padding: 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    opacity: 0;
-    /* Start hidden */
-    transform: translateY(20px);
-    /* Start slightly below the final position */
-    animation: revealFormContainer 0.8s ease-out forwards;
-    /* Smooth reveal animation */
-    animation-delay: 0.3s;
-    /* Delay to start after Step1 container animation */
+    overflow-y: auto;
+    margin: 0 10px;
 }
 
-/* Animation for the form container */
-@keyframes revealFormContainer {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        /* Final position */
-    }
+.column-title {
+    color: white;
+    text-align: left;
+    margin-bottom: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
 }
 
+/* Manual input styles */
 .form-group {
-    display: flex;
-    align-items: center;
     margin-bottom: 15px;
 }
 
 .form-group label {
-    flex: 1;
+    display: block;
     color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .form-group select,
-.form-group input {
-    flex: 2;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 5px;
-    color: grey;
-    font-weight: bold;
-    transition: background-color 0.3s ease, border 0.3s ease;
-    padding-left: 10px;
-}
-
-.form-group select:hover,
-.form-group input:hover,
-.form-group input:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 0px solid #ff7b00;
-}
-
-/* Add appliance button */
+.form-group input,
 .add-appliance-button {
-    padding: 10px 20px;
-    background-color: #ff7b00;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 5px;
     color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+
+.add-appliance-button {
+    background-color: #ff7b00;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 0 auto;
-    display: block;
+    transition: background-color 0.3s;
 }
 
 .add-appliance-button:hover {
     background-color: #e66a00;
 }
 
-.appliance-display {
-    width: 45%;
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0);
-    padding: 0px;
+/* Image upload styles */
+.upload-container {
+    text-align: center;
+}
+
+.drag-drop-area {
+    border: 2px dashed #ff7b00;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    overflow-y: scroll;
-    opacity: 0;
-    /* Start hidden */
-    transform: translateY(20px);
-    /* Start slightly below the final position */
-    animation: revealApplianceDisplay 0.8s ease-out forwards;
-    /* Smooth reveal animation */
-    animation-delay: 0.6s;
-    /* Delay to start after form container animation */
-}
-
-/* Animation for the appliance display container */
-@keyframes revealApplianceDisplay {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        /* Final position */
-    }
-}
-
-/* Custom scrollbar for the appliance display container */
-.appliance-display::-webkit-scrollbar {
-    width: 12px;
-}
-
-.appliance-display::-webkit-scrollbar-track {
-    background: black;
-    border-radius: 10px;
-}
-
-.appliance-display::-webkit-scrollbar-thumb {
-    background-color: grey;
-    border-radius: 10px;
-    border: 3px solid black;
-}
-
-.appliance-display ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.appliance-display li {
-    margin-bottom: 10px;
-    background-color: black;
-    /* Change background color to black */
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    position: relative;
-    border: 0.2px solid white;
-    /* Add a thick white border */
-    box-shadow: 0 0 5px white;
-    /* Add a white stroke-like shadow effect */
-}
-
-.appliance-display li:hover {
-    filter: saturate(0.5);
-    /* Decrease saturation on hover */
-    background-color: rgba(232, 232, 232, 0.358);
-    /* Keep the background black and fully opaque */
-    opacity: 1;
-    /* Make the item fully opaque */
-}
-
-
-/* Delete button styling */
-.delete-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: rgb(183, 181, 181);
+    padding: 20px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
-.delete-button:hover {
-    color: #ff0000;
+.file-input-label {
+    background-color: #ff7b00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.file-input-label input {
+    display: none;
+}
+
+.file-info {
+    color: #888;
+    font-size: 12px;
+}
+
+/* Uploaded images styles */
+.uploaded-image-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.image-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.image-info {
+    flex-grow: 1;
+}
+
+.image-name {
+    margin-bottom: 5px;
+}
+
+.progress-bar-image {
+    height: 5px;
+    background-color: #333;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-image {
+    height: 100%;
+    background-color: #ff7b00;
+}
+
+.status {
+    color: #888;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Appliances list styles */
+.appliance-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.appliance-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.appliance-info {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.appliance-name-step1 {
+    margin-right: 10px;
+    flex: 1;
+}
+
+.appliance-info input {
+    width: 60px;
+    padding: 5px;
+    margin-right: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #ff7b00;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .content-columns {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
