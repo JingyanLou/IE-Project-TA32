@@ -127,7 +127,7 @@ const Step1Container = ({
             </div>
             <div className="content-columns">
                 <div className="column input-column">
-                    <h2 className="column-title">{inputMethod === 'manual' ? 'Manually fill-in' : 'Upload Picture'}</h2>
+
                     {inputMethod === 'manual' ? renderManualInput() : renderImageUpload()}
                 </div>
 
