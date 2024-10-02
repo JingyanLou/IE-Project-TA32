@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './step1container.css';
 
@@ -15,27 +15,14 @@ const Step1Container = ({
     handleDeleteImage = () => { }
 }) => {
     const [inputMethod, setInputMethod] = useState('manual');
-    const [selectedAppliance, setSelectedAppliance] = useState(null);
-
-    useEffect(() => {
-        if (selectedAppliance) {
-            const defaultHours = applianceData.find(a => a.Device === selectedAppliance)?.['Daily Hours'] || 1;
-            handleInputChange({ target: { name: 'dailyHours', value: defaultHours } });
-            handleInputChange({ target: { name: 'quantity', value: 1 } });
-        }
-    }, [selectedAppliance, applianceData]);
 
     const handleDailyHoursInput = (e, index) => {
-        let value = e.target.value.replace(/[^0-9]/g, '');
+        let value = e.target.value.replace(/[^0-9.]/g, '');
         if (value !== '') {
-            value = Math.max(1, Math.min(24, parseInt(value)));
+            value = Math.max(0.1, Math.min(24, parseFloat(value))).toFixed(1);
         }
         e.target.value = value;
-        if (index !== undefined) {
-            handleApplianceUpdate(index, 'dailyHours', value);
-        } else {
-            handleInputChange(e);
-        }
+        handleInputChange(e, index);
     };
 
     const handleQuantityInput = (e, index) => {
@@ -44,21 +31,7 @@ const Step1Container = ({
             value = Math.max(1, Math.min(10, parseInt(value)));
         }
         e.target.value = value;
-        if (index !== undefined) {
-            handleApplianceUpdate(index, 'quantity', value);
-        } else {
-            handleInputChange(e);
-        }
-    };
-
-    const handleApplianceUpdate = (index, field, value) => {
-        const updatedAppliances = [...appliances];
-        if (field === 'dailyHours') {
-            updatedAppliances[index][2] = value;
-        } else if (field === 'quantity') {
-            updatedAppliances[index][1] = value;
-        }
-        handleInputChange({ target: { name: 'appliances', value: updatedAppliances } });
+        handleInputChange(e, index);
     };
 
     const renderManualInput = () => (
@@ -68,10 +41,7 @@ const Step1Container = ({
                 <select
                     name="applianceType"
                     value={formInput.applianceType}
-                    onChange={(e) => {
-                        setSelectedAppliance(e.target.value);
-                        handleInputChange(e);
-                    }}
+                    onChange={handleInputChange}
                 >
                     <option value="">Select an appliance</option>
                     {applianceData.map((appliance, index) => (
@@ -88,9 +58,10 @@ const Step1Container = ({
                     name="dailyHours"
                     value={formInput.dailyHours}
                     onChange={handleInputChange}
-                    onInput={handleDailyHoursInput}
-                    min="1"
+                    onInput={(e) => handleDailyHoursInput(e)}
+                    min="0.1"
                     max="24"
+                    step="0.1"
                 />
             </div>
             <div className="form-group">
@@ -100,7 +71,7 @@ const Step1Container = ({
                     name="quantity"
                     value={formInput.quantity}
                     onChange={handleInputChange}
-                    onInput={handleQuantityInput}
+                    onInput={(e) => handleQuantityInput(e)}
                     min="1"
                     max="10"
                 />
@@ -211,6 +182,7 @@ const Step1Container = ({
                                                 onChange={(e) => handleDailyHoursInput(e, index)}
                                                 min="1"
                                                 max="24"
+                                                step="0.1"
                                                 placeholder="Hours"
                                             />
                                             <label htmlFor={`quantity-${index}`}>Quantity:</label>
@@ -221,6 +193,7 @@ const Step1Container = ({
                                                 onChange={(e) => handleQuantityInput(e, index)}
                                                 min="1"
                                                 max="10"
+                                                step="0.1"
                                                 placeholder="Qty"
                                             />
                                         </div>

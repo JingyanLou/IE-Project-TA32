@@ -141,18 +141,19 @@ const Upload = () => {
                 )
             }));
         } else {
-            setFormInput(prevInput => ({ ...prevInput, [name]: value }));
+            setFormInput(prevInput => {
+                let updatedInput = { ...prevInput, [name]: value };
 
-            // If the appliance type changes, update the daily hours
-            if (name === 'applianceType') {
-                const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
-                if (selectedAppliance) {
-                    setFormInput(prevInput => ({
-                        ...prevInput,
-                        dailyHours: selectedAppliance['Average Daily Hours'] || ''
-                    }));
+                // If the appliance type changes, update the daily hours
+                if (name === 'applianceType') {
+                    const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
+                    if (selectedAppliance) {
+                        updatedInput.dailyHours = selectedAppliance['Average Daily Hours'] || '';
+                    }
                 }
-            }
+
+                return updatedInput;
+            });
         }
     };
 
