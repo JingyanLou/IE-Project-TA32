@@ -4,28 +4,34 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     color: white;
-    padding: 20px;
     width: calc(100% - 60px);
-    /* Adjust width to account for left and right margins */
     max-width: 100%;
-    margin: 9% 30px;
-    /* 9% top and bottom, 30px left and right */
+    margin: 12% 30px;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
+    /* Change from hidden to auto */
+    height: auto;
+    /* Remove fixed height */
+    min-height: 400px;
+    /* Add minimum height */
 }
 
 .content-columns {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
+    /* Change from flex-start to stretch */
     gap: 5%;
-    /* Adjust gap between columns */
-
+    height: 100%;
+    /* Ensure full height */
 }
 
 .column-wrapper {
     width: 30%;
-    /* Fixed width for each column */
+    display: flex;
+    /* Add display flex */
+    flex-direction: column;
+    /* Stack children vertically */
 }
 
 .column {
@@ -33,9 +39,10 @@
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    height: 400px;
-    /* Fixed height */
+    flex-grow: 1;
+    /* Allow column to grow */
     overflow-y: auto;
+    /* Enable scrolling if content overflows */
 }
 
 .input-method-toggle {
@@ -365,14 +372,22 @@
     color: #ff9933;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .content-columns {
         flex-direction: column;
+        height: auto;
+        /* Allow height to adjust on mobile */
     }
 
     .column-wrapper {
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    .column {
+        height: auto;
+        /* Allow height to adjust on mobile */
+        min-height: 300px;
+        /* Set a minimum height for mobile */
     }
 }
