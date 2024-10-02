@@ -82,7 +82,7 @@ const Step1Container = ({
     const renderImageUpload = () => (
         <div className="upload-container">
             <div className="drag-drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
-                <img src="/images/upload-icon.png" alt="Upload" />
+                <img src="/images/upload.png" alt="Upload" />
                 <p>Drag and drop to upload</p>
                 <p>Or</p>
                 <label className="file-input-label">
@@ -111,45 +111,56 @@ const Step1Container = ({
     };
     return (
         <div className="step1-container">
-            <div className="input-method-toggle">
-                <button
-                    className={`toggle-button ${inputMethod === 'manual' ? 'active' : ''}`}
-                    onClick={() => setInputMethod('manual')}
-                >
-                    Manual
-                </button>
-                <button
-                    className={`toggle-button ${inputMethod === 'upload' ? 'active' : ''}`}
-                    onClick={() => setInputMethod('upload')}
-                >
-                    Upload Picture
-                </button>
-            </div>
-            <div className="content-columns">
-                <div className="column input-column">
 
-                    {inputMethod === 'manual' ? renderManualInput() : renderImageUpload()}
+
+            <div className="content-columns">
+
+                <div className="column-wrapper">
+
+                    <div className="input-method-toggle">
+                        <button
+                            className={`toggle-button ${inputMethod === 'manual' ? 'active' : ''}`}
+                            onClick={() => setInputMethod('manual')}
+                        >
+                            Manual
+                        </button>
+                        <button
+                            className={`toggle-button ${inputMethod === 'upload' ? 'active' : ''}`}
+                            onClick={() => setInputMethod('upload')}
+                        >
+                            Upload Picture
+                        </button>
+                    </div>
+
+                    <div className="column input-column">
+                        {inputMethod === 'manual' ? renderManualInput() : renderImageUpload()}
+                    </div>
+
                 </div>
 
-                <div className="column uploaded-images-column">
+
+
+                <div className="column-wrapper">
                     <h2 className="column-title">Uploaded Images</h2>
-                    <div className="uploaded-images-list">
-                        {uploadedImages && uploadedImages.map((image, index) => (
-                            <div key={index} className="uploaded-image-item">
-                                <img src={image.thumbnail} alt={image.name} className="image-thumbnail" />
-                                <div className="image-info">
-                                    <p className="image-name">{image.name}</p>
-                                    <div className="progress-bar-image">
-                                        <div className="progress-image" style={{ width: `${image.progress}%` }}></div>
+                    <div className="column uploaded-images-column">
+                        <div className="uploaded-images-list">
+                            {uploadedImages && uploadedImages.map((image, index) => (
+                                <div key={index} className="uploaded-image-item">
+                                    <img src={image.thumbnail} alt={image.name} className="image-thumbnail" />
+                                    <div className="image-info">
+                                        <p className="image-name">{image.name}</p>
+                                        <div className="progress-bar-image">
+                                            <div className="progress-image" style={{ width: `${image.progress}%` }}></div>
+                                        </div>
+                                        <p className="status">{image.status}</p>
                                     </div>
-                                    <p className="status">{image.status}</p>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
 
-                <div className="column appliances-column">
+                <div className="column-wrapper">
                     <h2 className="column-title">Your Appliances</h2>
                     <div className="appliances-list">
                         {appliances && appliances.map((appliance, index) => (
