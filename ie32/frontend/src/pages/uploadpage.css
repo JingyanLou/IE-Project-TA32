@@ -48,7 +48,8 @@
 
 /* Progress bar styling */
 .progress-bar-container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     position: absolute;
     top: 110px;
     left: 50%;
@@ -63,7 +64,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -40px;
 }
 
 .nav-arrow {
@@ -98,6 +98,7 @@
     align-items: center;
     position: relative;
     padding: 0 20px;
+    margin: 0 10px;
 }
 
 .step {
@@ -105,6 +106,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    z-index: 3;
 }
 
 .circle {
@@ -125,26 +127,83 @@
 
 .circle.active {
     background-color: #ff7b00;
-    z-index: 4;
 }
 
 .line {
     position: absolute;
     height: 2px;
-    width: 86%;
     background-color: gray;
-    top: 29%;
-    left: 7%;
+    top: 19px;
+    left: 50px;
+    right: 50px;
     z-index: 1;
 }
 
 .step-label {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     white-space: normal;
-    width: 159px;
+    width: 100px;
     line-height: 1.2;
     position: relative;
     z-index: 4;
+}
+
+
+
+@media (max-width: 768px) {
+    .progress-bar-container {
+        width: 95%;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .circle {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .line {
+        top: 14px;
+        left: 30px;
+        right: 30px;
+    }
+
+    .step-label {
+        font-size: 12px;
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .progress-bar-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-arrow-container {
+        margin: 10px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .step-label {
+        display: none;
+    }
+
+    .line {
+        left: 48px;
+        right: 48px;
+    }
 }
