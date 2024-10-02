@@ -114,9 +114,7 @@ const Step1Container = ({
 
 
             <div className="content-columns">
-
                 <div className="column-wrapper">
-
                     <div className="input-method-toggle">
                         <button
                             className={`toggle-button ${inputMethod === 'manual' ? 'active' : ''}`}
@@ -137,8 +135,6 @@ const Step1Container = ({
                     </div>
 
                 </div>
-
-
 
                 <div className="column-wrapper">
                     <h2 className="column-title">Uploaded Images</h2>

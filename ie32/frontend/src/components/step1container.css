@@ -5,11 +5,37 @@
     font-weight: 300;
     color: white;
     padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: calc(100% - 60px);
+    /* Adjust width to account for left and right margins */
+    max-width: 100%;
+    margin: 9% 30px;
+    /* 9% top and bottom, 30px left and right */
     overflow-x: hidden;
-    margin-top: 10%;
+    overflow-y: hidden;
+}
+
+.content-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5%;
+    /* Adjust gap between columns */
+
+}
+
+.column-wrapper {
+    width: 30%;
+    /* Fixed width for each column */
+}
+
+.column {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    height: 400px;
+    /* Fixed height */
+    overflow-y: auto;
 }
 
 .input-method-toggle {
@@ -33,33 +59,20 @@
     background-color: #ff7b00;
 }
 
-.content-columns {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.column {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-    height: 400px;
-    overflow-y: auto;
-}
-
 .column-title {
     color: white;
-    text-align: left;
-    margin-bottom: 10px;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
     font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
-/* Manual input styles */
+/* Form styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -81,19 +94,57 @@
     color: white;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
+    -webkit-appearance: none;
+    /* Remove default styling on WebKit browsers */
+    -moz-appearance: none;
+    /* Remove default styling on Mozilla browsers */
+    appearance: none;
+    /* Standard syntax */
+}
+
+/* Style the select dropdown arrow */
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+    /* Make room for custom dropdown arrow */
+}
+
+/* Ensure consistent styling on focus */
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 123, 0, 0.5);
+    /* Orange glow, matching the theme */
+}
+
+/* Style placeholder text */
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure consistent height */
+.form-group select,
+.form-group input {
+    height: 40px;
+    /* Set a fixed height */
 }
 
 .add-appliance-button {
     background-color: #ff7b00;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 .add-appliance-button:hover {
     background-color: #e66a00;
 }
 
-/* Image upload styles */
+/* Upload styles */
 .upload-container {
     text-align: center;
 }
@@ -109,6 +160,15 @@
     align-items: center;
     justify-content: center;
     height: 200px;
+}
+
+.drag-drop-area img {
+    width: 60px;
+    /* Adjust size as needed */
+    height: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    /* Make the image white */
 }
 
 .file-input-label {
@@ -131,8 +191,15 @@
     margin-top: 10px;
 }
 
-/* Uploaded images styles */
-.uploaded-image-item {
+/* Uploaded images and appliances list styles */
+.uploaded-images-list,
+.appliances-list {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.uploaded-image-item,
+.appliance-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -141,19 +208,24 @@
     border-radius: 5px;
 }
 
-.image-thumbnail {
-    width: 60px;
-    height: 60px;
+.image-thumbnail,
+.appliance-icon {
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     margin-right: 10px;
     border-radius: 5px;
 }
 
-.image-info {
+.image-info,
+.appliance-info {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.image-name {
+.image-name,
+.appliance-name-step1 {
     margin-bottom: 5px;
     font-weight: 400;
 }
@@ -174,34 +246,6 @@
     color: #888;
     font-size: 12px;
     margin-top: 5px;
-}
-
-/* Appliances list styles */
-.appliance-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-}
-
-.appliance-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-}
-
-.appliance-info {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-}
-
-.appliance-name-step1 {
-    margin-right: 10px;
-    flex: 1;
-    font-weight: 400;
 }
 
 .appliance-info input {
@@ -228,7 +272,7 @@
         flex-direction: column;
     }
 
-    .column {
+    .column-wrapper {
         width: 100%;
         margin-bottom: 20px;
     }
