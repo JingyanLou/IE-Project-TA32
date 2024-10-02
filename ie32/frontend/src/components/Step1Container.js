@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './step1container.css';
 
@@ -11,26 +11,54 @@ const Step1Container = ({
     handleDeleteAppliance = () => { },
     handleUploadImage = () => { },
     uploadedImages = [],
-    handleDetectedAppliance = () => { }
+    handleDetectedAppliance = () => { },
+    handleDeleteImage = () => { }
 }) => {
     const [inputMethod, setInputMethod] = useState('manual');
+    const [selectedAppliance, setSelectedAppliance] = useState(null);
 
-    const handleDailyHoursInput = (e) => {
+    useEffect(() => {
+        if (selectedAppliance) {
+            const defaultHours = applianceData.find(a => a.Device === selectedAppliance)?.['Daily Hours'] || 1;
+            handleInputChange({ target: { name: 'dailyHours', value: defaultHours } });
+            handleInputChange({ target: { name: 'quantity', value: 1 } });
+        }
+    }, [selectedAppliance, applianceData]);
+
+    const handleDailyHoursInput = (e, index) => {
         let value = e.target.value.replace(/[^0-9]/g, '');
         if (value !== '') {
             value = Math.max(1, Math.min(24, parseInt(value)));
         }
         e.target.value = value;
-        handleInputChange(e);
+        if (index !== undefined) {
+            handleApplianceUpdate(index, 'dailyHours', value);
+        } else {
+            handleInputChange(e);
+        }
     };
 
-    const handleQuantityInput = (e) => {
+    const handleQuantityInput = (e, index) => {
         let value = e.target.value.replace(/[^0-9]/g, '');
         if (value !== '') {
             value = Math.max(1, Math.min(10, parseInt(value)));
         }
         e.target.value = value;
-        handleInputChange(e);
+        if (index !== undefined) {
+            handleApplianceUpdate(index, 'quantity', value);
+        } else {
+            handleInputChange(e);
+        }
+    };
+
+    const handleApplianceUpdate = (index, field, value) => {
+        const updatedAppliances = [...appliances];
+        if (field === 'dailyHours') {
+            updatedAppliances[index][2] = value;
+        } else if (field === 'quantity') {
+            updatedAppliances[index][1] = value;
+        }
+        handleInputChange({ target: { name: 'appliances', value: updatedAppliances } });
     };
 
     const renderManualInput = () => (
@@ -40,8 +68,12 @@ const Step1Container = ({
                 <select
                     name="applianceType"
                     value={formInput.applianceType}
-                    onChange={handleInputChange}
+                    onChange={(e) => {
+                        setSelectedAppliance(e.target.value);
+                        handleInputChange(e);
+                    }}
                 >
+                    <option value="">Select an appliance</option>
                     {applianceData.map((appliance, index) => (
                         <option key={index} value={appliance.Device}>
                             {appliance.Device}
@@ -109,10 +141,9 @@ const Step1Container = ({
         const files = Array.from(e.target.files);
         handleUploadImage(files);
     };
+
     return (
         <div className="step1-container">
-
-
             <div className="content-columns">
                 <div className="column-wrapper">
                     <div className="input-method-toggle">
@@ -133,7 +164,6 @@ const Step1Container = ({
                     <div className="column input-column">
                         {inputMethod === 'manual' ? renderManualInput() : renderImageUpload()}
                     </div>
-
                 </div>
 
                 <div className="column-wrapper">
@@ -150,10 +180,12 @@ const Step1Container = ({
                                         </div>
                                         <p className="status">{image.status}</p>
                                     </div>
+                                    <button className="delete-button" onClick={() => handleDeleteImage(index)}>
+                                        ✕
+                                    </button>
                                 </div>
                             ))}
                         </div>
-
                     </div>
                 </div>
 
@@ -176,8 +208,7 @@ const Step1Container = ({
                                                 type="number"
                                                 name="dailyHours"
                                                 value={appliance[2]}
-                                                onChange={(e) => handleInputChange(e, index)}
-                                                onInput={(e) => handleDailyHoursInput(e, index)}
+                                                onChange={(e) => handleDailyHoursInput(e, index)}
                                                 min="1"
                                                 max="24"
                                                 placeholder="Hours"
@@ -187,8 +218,7 @@ const Step1Container = ({
                                                 type="number"
                                                 name="quantity"
                                                 value={appliance[1]}
-                                                onChange={(e) => handleInputChange(e, index)}
-                                                onInput={(e) => handleQuantityInput(e, index)}
+                                                onChange={(e) => handleQuantityInput(e, index)}
                                                 min="1"
                                                 max="10"
                                                 placeholder="Qty"
@@ -218,6 +248,7 @@ Step1Container.propTypes = {
     handleUploadImage: PropTypes.func,
     uploadedImages: PropTypes.array,
     handleDetectedAppliance: PropTypes.func,
+    handleDeleteImage: PropTypes.func,
 };
 
 export default Step1Container;

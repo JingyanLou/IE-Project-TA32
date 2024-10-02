@@ -20,12 +20,12 @@ const Upload = () => {
     const [applianceData, setApplianceData] = useState([]);
 
     const [formInput, setFormInput] = useState({
-        applianceType: '', // Default to empty string
-        dailyHours: 10,
+        applianceType: '',
+        dailyHours: '',
         quantity: 1,
         userLocation: '',
         energyProvider: '',
-        household: '1', // Default to '1'
+        household: '1',
     });
 
     const [energyProviders, setEnergyProviders] = useState([]);
@@ -142,6 +142,17 @@ const Upload = () => {
             }));
         } else {
             setFormInput(prevInput => ({ ...prevInput, [name]: value }));
+
+            // If the appliance type changes, update the daily hours
+            if (name === 'applianceType') {
+                const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
+                if (selectedAppliance) {
+                    setFormInput(prevInput => ({
+                        ...prevInput,
+                        dailyHours: selectedAppliance['Average Daily Hours'] || ''
+                    }));
+                }
+            }
         }
     };
 
@@ -157,6 +168,12 @@ const Upload = () => {
             ...prevData,
             'Appliances-list': [...prevData['Appliances-list'], newAppliance]
         }));
+    };
+
+    const handleDeleteImage = (indexToDelete) => {
+        setUploadedImages(prevImages =>
+            prevImages.filter((_, index) => index !== indexToDelete)
+        );
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
@@ -305,6 +322,7 @@ const Upload = () => {
                     handleUploadImage={handleUploadImage}
                     uploadedImages={uploadedImages}
                     handleDetectedAppliance={handleDetectedAppliance}
+                    handleDeleteImage={handleDeleteImage}
                 />
             )}
 
