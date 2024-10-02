@@ -266,6 +266,105 @@
     font-size: 18px;
 }
 
+
+
+
+.appliances-column {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    height: 400px;
+    overflow-y: auto;
+}
+
+.appliances-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appliance-item {
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.appliance-item:hover {
+    background-color: #333333;
+}
+
+.appliance-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+.appliance-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.appliance-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 0;
+}
+
+.appliance-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 12px;
+    color: #b0b0b0;
+}
+
+.input-group input {
+    width: 60px;
+    padding: 8px;
+    background-color: #3a3a3a;
+    border: 1px solid #4a4a4a;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ff7b00;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #ff7b00;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.delete-button:hover {
+    color: #ff9933;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .content-columns {

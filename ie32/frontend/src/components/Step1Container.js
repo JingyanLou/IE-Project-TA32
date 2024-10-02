@@ -170,6 +170,7 @@ const Step1Container = ({
                                     <div className="appliance-info">
                                         <p className="appliance-name-step1">{appliance[0]}</p>
                                         <div className="appliance-inputs">
+                                            <label htmlFor={`dailyHours-${index}`}>Daily Hours:</label>
                                             <input
                                                 type="number"
                                                 name="dailyHours"
@@ -180,6 +181,7 @@ const Step1Container = ({
                                                 max="24"
                                                 placeholder="Hours"
                                             />
+                                            <label htmlFor={`quantity-${index}`}>Quantity:</label>
                                             <input
                                                 type="number"
                                                 name="quantity"
