@@ -131,20 +131,17 @@ const Upload = () => {
         }
     };
 
-    const handleInputChange = (e, index) => {
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
-        if (index !== undefined) {
+        if (name === 'Appliances-list') {
             setData(prevData => ({
                 ...prevData,
-                'Appliances-list': prevData['Appliances-list'].map((appliance, i) =>
-                    i === index ? { ...appliance, [name]: value } : appliance
-                )
+                [name]: value
             }));
         } else {
             setFormInput(prevInput => {
                 let updatedInput = { ...prevInput, [name]: value };
 
-                // If the appliance type changes, update the daily hours
                 if (name === 'applianceType') {
                     const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
                     if (selectedAppliance) {

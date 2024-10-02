@@ -21,8 +21,15 @@ const Step1Container = ({
         if (value !== '') {
             value = Math.max(0.1, Math.min(24, parseFloat(value))).toFixed(1);
         }
-        e.target.value = value;
-        handleInputChange(e, index);
+        if (index !== undefined) {
+            // Update appliance list item
+            const updatedAppliances = [...appliances];
+            updatedAppliances[index][2] = value;
+            handleInputChange({ target: { name: 'Appliances-list', value: updatedAppliances } });
+        } else {
+            // Update form input
+            handleInputChange({ ...e, target: { ...e.target, value } });
+        }
     };
 
     const handleQuantityInput = (e, index) => {
@@ -30,8 +37,15 @@ const Step1Container = ({
         if (value !== '') {
             value = Math.max(1, Math.min(10, parseInt(value)));
         }
-        e.target.value = value;
-        handleInputChange(e, index);
+        if (index !== undefined) {
+            // Update appliance list item
+            const updatedAppliances = [...appliances];
+            updatedAppliances[index][1] = value;
+            handleInputChange({ target: { name: 'Appliances-list', value: updatedAppliances } });
+        } else {
+            // Update form input
+            handleInputChange({ ...e, target: { ...e.target, value } });
+        }
     };
 
     const renderManualInput = () => (
@@ -180,7 +194,8 @@ const Step1Container = ({
                                                 name="dailyHours"
                                                 value={appliance[2]}
                                                 onChange={(e) => handleDailyHoursInput(e, index)}
-                                                min="1"
+                                                onInput={(e) => handleDailyHoursInput(e, index)}
+                                                min="0.1"
                                                 max="24"
                                                 step="0.1"
                                                 placeholder="Hours"
@@ -191,9 +206,9 @@ const Step1Container = ({
                                                 name="quantity"
                                                 value={appliance[1]}
                                                 onChange={(e) => handleQuantityInput(e, index)}
+                                                onInput={(e) => handleQuantityInput(e, index)}
                                                 min="1"
                                                 max="10"
-                                                step="0.1"
                                                 placeholder="Qty"
                                             />
                                         </div>
