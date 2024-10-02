@@ -145,7 +145,7 @@ const Upload = () => {
                 if (name === 'applianceType') {
                     const selectedAppliance = applianceData.find(appliance => appliance.Device === value);
                     if (selectedAppliance) {
-                        updatedInput.dailyHours = selectedAppliance['Average Daily Hours'] || '';
+                        updatedInput.dailyHours = selectedAppliance['Average Daily Hours'] ?? 0;
                     }
                 }
 

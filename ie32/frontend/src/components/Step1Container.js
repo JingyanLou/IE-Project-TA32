@@ -17,10 +17,14 @@ const Step1Container = ({
     const [inputMethod, setInputMethod] = useState('manual');
 
     const handleDailyHoursInput = (e, index) => {
-        let value = e.target.value.replace(/[^0-9.]/g, '');
+        let value = e.target.value;
+
+        // Allow empty string for user typing
         if (value !== '') {
-            value = Math.max(0.1, Math.min(24, parseFloat(value))).toFixed(1);
+            value = Math.min(24, Math.max(0, parseFloat(value)));
+            value = isNaN(value) ? 0 : Number(value.toFixed(1));
         }
+
         if (index !== undefined) {
             // Update appliance list item
             const updatedAppliances = [...appliances];
@@ -28,15 +32,19 @@ const Step1Container = ({
             handleInputChange({ target: { name: 'Appliances-list', value: updatedAppliances } });
         } else {
             // Update form input
-            handleInputChange({ ...e, target: { ...e.target, value } });
+            handleInputChange({ target: { name: 'dailyHours', value } });
         }
     };
 
     const handleQuantityInput = (e, index) => {
-        let value = e.target.value.replace(/[^0-9]/g, '');
+        let value = e.target.value;
+
+        // Allow empty string for user typing
         if (value !== '') {
-            value = Math.max(1, Math.min(10, parseInt(value)));
+            value = Math.min(10, Math.max(1, parseInt(value)));
+            value = isNaN(value) ? 1 : value;
         }
+
         if (index !== undefined) {
             // Update appliance list item
             const updatedAppliances = [...appliances];
@@ -44,7 +52,7 @@ const Step1Container = ({
             handleInputChange({ target: { name: 'Appliances-list', value: updatedAppliances } });
         } else {
             // Update form input
-            handleInputChange({ ...e, target: { ...e.target, value } });
+            handleInputChange({ target: { name: 'quantity', value } });
         }
     };
 
@@ -71,9 +79,9 @@ const Step1Container = ({
                     type="number"
                     name="dailyHours"
                     value={formInput.dailyHours}
-                    onChange={handleInputChange}
-                    onInput={(e) => handleDailyHoursInput(e)}
-                    min="0.1"
+                    onChange={(e) => handleDailyHoursInput(e)}
+                    onBlur={(e) => handleDailyHoursInput(e)}
+                    min="0"
                     max="24"
                     step="0.1"
                 />
@@ -84,8 +92,8 @@ const Step1Container = ({
                     type="number"
                     name="quantity"
                     value={formInput.quantity}
-                    onChange={handleInputChange}
-                    onInput={(e) => handleQuantityInput(e)}
+                    onChange={(e) => handleQuantityInput(e)}
+                    onBlur={(e) => handleQuantityInput(e)}
                     min="1"
                     max="10"
                 />
@@ -194,8 +202,8 @@ const Step1Container = ({
                                                 name="dailyHours"
                                                 value={appliance[2]}
                                                 onChange={(e) => handleDailyHoursInput(e, index)}
-                                                onInput={(e) => handleDailyHoursInput(e, index)}
-                                                min="0.1"
+                                                onBlur={(e) => handleDailyHoursInput(e, index)}
+                                                min="0"
                                                 max="24"
                                                 step="0.1"
                                                 placeholder="Hours"
@@ -206,7 +214,7 @@ const Step1Container = ({
                                                 name="quantity"
                                                 value={appliance[1]}
                                                 onChange={(e) => handleQuantityInput(e, index)}
-                                                onInput={(e) => handleQuantityInput(e, index)}
+                                                onBlur={(e) => handleQuantityInput(e, index)}
                                                 min="1"
                                                 max="10"
                                                 placeholder="Qty"
