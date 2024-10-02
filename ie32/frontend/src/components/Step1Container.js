@@ -158,42 +158,46 @@ const Step1Container = ({
 
                 <div className="column-wrapper">
                     <h2 className="column-title">Your Appliances</h2>
-                    <div className="appliances-list">
-                        {appliances && appliances.map((appliance, index) => (
-                            <div key={index} className="appliance-item">
-                                <img
-                                    src={`/images/${appliance[4] === 'detected' ? 'detected.png' : 'manual.png'}`}
-                                    alt={appliance[4]}
-                                    className="appliance-icon"
-                                />
-                                <div className="appliance-info">
-                                    <p className="appliance-name-step1">{appliance[0]}</p>
-                                    <input
-                                        type="number"
-                                        name="dailyHours"
-                                        value={appliance[2]}
-                                        onChange={(e) => handleInputChange(e, index)}
-                                        onInput={(e) => handleDailyHoursInput(e, index)}
-                                        min="1"
-                                        max="24"
-                                        placeholder="Daily Hours"
+                    <div className="column">
+                        <div className="appliances-list">
+                            {appliances && appliances.map((appliance, index) => (
+                                <div key={index} className="appliance-item">
+                                    <img
+                                        src={`/images/${appliance[4] === 'detected' ? 'detected.png' : 'manual.png'}`}
+                                        alt={appliance[4]}
+                                        className="appliance-icon"
                                     />
-                                    <input
-                                        type="number"
-                                        name="quantity"
-                                        value={appliance[1]}
-                                        onChange={(e) => handleInputChange(e, index)}
-                                        onInput={(e) => handleQuantityInput(e, index)}
-                                        min="1"
-                                        max="10"
-                                        placeholder="Quantity"
-                                    />
+                                    <div className="appliance-info">
+                                        <p className="appliance-name-step1">{appliance[0]}</p>
+                                        <div className="appliance-inputs">
+                                            <input
+                                                type="number"
+                                                name="dailyHours"
+                                                value={appliance[2]}
+                                                onChange={(e) => handleInputChange(e, index)}
+                                                onInput={(e) => handleDailyHoursInput(e, index)}
+                                                min="1"
+                                                max="24"
+                                                placeholder="Hours"
+                                            />
+                                            <input
+                                                type="number"
+                                                name="quantity"
+                                                value={appliance[1]}
+                                                onChange={(e) => handleInputChange(e, index)}
+                                                onInput={(e) => handleQuantityInput(e, index)}
+                                                min="1"
+                                                max="10"
+                                                placeholder="Qty"
+                                            />
+                                        </div>
+                                    </div>
+                                    <button className="delete-button" onClick={() => handleDeleteAppliance(index)}>
+                                        ✕
+                                    </button>
                                 </div>
-                                <button className="delete-button" onClick={() => handleDeleteAppliance(index)}>
-                                    ✕
-                                </button>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
