@@ -10,6 +10,8 @@
     min-height: 100vh;
     /* Ensure it takes the full viewport height at minimum */
     /* Center the container */
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 
 }
 
@@ -249,6 +251,7 @@
     /* Center content horizontally within the section */
     margin: 140px auto 0 auto;
     /* Center the section itself */
+
 }
 
 .explore-more-card {
@@ -261,6 +264,7 @@
     padding: 20px;
     width: 80%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
 }
 
 .explore-more-image-container {
@@ -286,6 +290,8 @@
     font-size: 1.8rem;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .explore-more-info {
@@ -294,6 +300,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 20px;
+
 }
 
 .explore-more-title {
@@ -302,6 +309,8 @@
     font-weight: bold;
     font-family: 'Arial', sans-serif;
     margin-bottom: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .explore-more-description {
@@ -312,6 +321,8 @@
     font-weight: 300;
     /* Light font */
     margin-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .explore-more-button {
@@ -324,6 +335,8 @@
     font-size: 1rem;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .explore-more-button:hover {
@@ -346,7 +359,9 @@
 
 .appliances-section {
     margin-top: 4rem;
-    font-family: Arial, sans-serif;
+
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .appliances-container {
