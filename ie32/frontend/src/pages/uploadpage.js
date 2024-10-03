@@ -42,7 +42,7 @@ const Upload = () => {
     // Fetch appliance data from the backend
     // Fetch appliance data from the backend
     useEffect(() => {
-        console.log(`Fetching from ${apiUrl}/appliances`);
+        //console.log(`Fetching from ${apiUrl}/appliances`);
         fetch(`${apiUrl}/appliances`)
             .then(response => response.json())
             .then(data => {
@@ -55,7 +55,7 @@ const Upload = () => {
             })
             .catch(error => console.error('Error fetching data:', error));
 
-        console.log(`Fetching from ${apiUrl}/energy-providers`);
+        //console.log(`Fetching from ${apiUrl}/energy-providers`);
         fetch(`${apiUrl}/energy-providers`)
             .then(response => response.json())
             .then(data => {
@@ -63,7 +63,7 @@ const Upload = () => {
             })
             .catch(error => console.error('Error fetching energy providers:', error));
 
-        console.log(`Fetching from ${apiUrl}/benchmark-vic`);
+        //console.log(`Fetching from ${apiUrl}/benchmark-vic`);
         fetch(`${apiUrl}/benchmark-vic`)
             .then(response => response.json())
             .then(data => {
@@ -71,7 +71,7 @@ const Upload = () => {
             })
             .catch(error => console.error('Error fetching benchmark data:', error));
 
-        console.log(`Fetching from ${apiUrl}/app_recomm_iter2`);
+        //onsole.log(`Fetching from ${apiUrl}/app_recomm_iter2`);
         fetch(`${apiUrl}/app_recomm_iter2`)
             .then(response => response.json())
             .then(data => {
@@ -80,11 +80,11 @@ const Upload = () => {
             .catch(error => console.error('Error fetching recommendation data:', error));
 
 
-        console.log(`Fetching from ${apiUrl}/app_brand_data_iter2`);
+        //console.log(`Fetching from ${apiUrl}/app_brand_data_iter2`);
         fetch(`${apiUrl}/app_brand_data_iter2`)
             .then(response => response.json())
             .then(data => {
-                console.log('Received app brand data:', data); // Add this line
+                //console.log('Received app brand data:', data); // Add this line
                 setAppBrandData(data);
                 if (data.length > 0) {
                     setSelectedDevice(data[0].Device);
@@ -181,56 +181,72 @@ const Upload = () => {
         }));
     };
 
-    const handleUploadImage = (files) => {
-        const newImages = files.map(file => ({
+    const handleUploadImage = async (file, base64Image) => {
+        console.log("handleUploadImage called", file.name);
+        const newImage = {
             name: file.name,
             thumbnail: URL.createObjectURL(file),
             status: 'uploading',
             progress: 0
-        }));
-        setUploadedImages(prevImages => [...prevImages, ...newImages]);
+        };
+        setUploadedImages(prevImages => [...prevImages, newImage]);
 
-        // Simulate upload process (replace with actual API call)
-        newImages.forEach(image => {
-            const interval = setInterval(() => {
-                setUploadedImages(prevImages =>
-                    prevImages.map(img =>
-                        img.name === image.name
-                            ? { ...img, progress: Math.min(img.progress + 10, 100) }
-                            : img
-                    )
-                );
-            }, 500);
+        try {
+            console.log("Sending request to API");
+            const response = await fetch('https://ek4fw9pzkd.execute-api.ap-southeast-2.amazonaws.com/v1/detect-appliance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: base64Image, filename: file.name }),
+            });
 
-            setTimeout(() => {
-                clearInterval(interval);
-                setUploadedImages(prevImages =>
-                    prevImages.map(img =>
-                        img.name === image.name
-                            ? { ...img, status: 'uploaded', progress: 100 }
-                            : img
-                    )
-                );
-                // Simulate detection process (replace with actual API call)
-                setTimeout(() => {
-                    handleDetectedAppliance(image.name);
-                }, 1000);
-            }, 5000);
-        });
+            console.log("Response received", response.status);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('API response:', result);
+
+            setUploadedImages(prevImages =>
+                prevImages.map(img =>
+                    img.name === file.name
+                        ? { ...img, status: 'uploaded', progress: 100 }
+                        : img
+                )
+            );
+
+
+            // Handle the detected appliance
+            if (result.detectedAppliance) {
+                console.log("Detected appliance:", result.detectedAppliance);
+                handleDetectedAppliance(result.detectedAppliance, file.name);
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            setUploadedImages(prevImages =>
+                prevImages.map(img =>
+                    img.name === file.name
+                        ? { ...img, status: 'error', progress: 0 }
+                        : img
+                )
+            );
+        }
     };
 
-    const handleDetectedAppliance = (imageName) => {
-        // Simulate detected appliance (replace with actual detection logic)
-        const detectedAppliance = [
-            'Detected Appliance',
-            1, // quantity
-            0, // daily hours
-            0, // Energy Consumption (kWh/hour)
-            'detected' // Source
+    const handleDetectedAppliance = (detectedAppliance, imageName) => {
+        const newAppliance = [
+            detectedAppliance.name || 'Detected Appliance',
+            detectedAppliance.quantity || 1,
+            detectedAppliance.dailyHours || 0,
+            detectedAppliance.energyConsumption || 0,
+            'detected'
         ];
         setData(prevData => ({
             ...prevData,
-            'Appliances-list': [...prevData['Appliances-list'], detectedAppliance]
+            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
         }));
     };
 

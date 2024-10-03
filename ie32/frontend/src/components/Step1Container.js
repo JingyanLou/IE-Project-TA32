@@ -120,20 +120,40 @@ const Step1Container = ({
         </div>
     );
 
-    const handleDrop = (e) => {
+    const handleDrop = async (e) => {
+        console.log("image dropped");
         e.preventDefault();
         const files = Array.from(e.dataTransfer.files);
-        handleUploadImage(files);
+        for (const file of files) {
+            const base64Image = await convertToBase64(file);
+            handleUploadImage(file, base64Image);
+        }
     };
 
     const handleDragOver = (e) => {
         e.preventDefault();
     };
 
-    const handleFileSelect = (e) => {
-        const files = Array.from(e.target.files);
-        handleUploadImage(files);
+    const convertToBase64 = (file) => {
+        console.log("converting to base64");
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
     };
+
+    const handleFileSelect = async (e) => {
+        console.log("image selected");
+        const files = Array.from(e.target.files);
+        for (const file of files) {
+            const base64Image = await convertToBase64(file);
+            handleUploadImage(file, base64Image);
+        }
+    };
+
+
 
     return (
         <div className="step1-container">
