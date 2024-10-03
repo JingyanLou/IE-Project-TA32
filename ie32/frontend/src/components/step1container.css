@@ -83,6 +83,8 @@
     display: block;
     color: white;
     margin-bottom: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .form-group select,
@@ -220,6 +222,7 @@
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+
 }
 
 .image-thumbnail {
@@ -228,6 +231,7 @@
     object-fit: cover;
     margin-right: 10px;
     border-radius: 5px;
+
 }
 
 .appliance-icon {
@@ -317,7 +321,7 @@
     align-items: center;
     background-color: #2a2a2a;
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px;
     transition: background-color 0.3s ease;
 }
 
@@ -326,29 +330,34 @@
 }
 
 .appliance-icon {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 25px;
     object-fit: contain;
     margin-right: 15px;
+    filter: brightness(0) invert(1);
 }
 
 .appliance-info {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
-.appliance-name {
+.appliance-name-step1 {
     font-size: 16px;
-    font-weight: 500;
     color: #ffffff;
     margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
 }
 
 .appliance-inputs {
     display: flex;
     gap: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    color: grey
 }
 
 .input-group {
