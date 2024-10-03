@@ -33,7 +33,8 @@
 }
 
 .problem-underscore {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 2px;
     background-color: #ffffff;
     margin-bottom: 15px;
@@ -79,5 +80,31 @@
 
     .problems-grid {
         grid-template-columns: 1fr;
+    }
+
+    .problem-underscore {
+        max-width: 100%;
+    }
+
+    .problem-title {
+        font-size: 28px;
+    }
+
+    .problem-description {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mission-heading {
+        font-size: 32px;
+    }
+
+    .problem-title {
+        font-size: 24px;
+    }
+
+    .problem-description {
+        font-size: 18px;
     }
 }
