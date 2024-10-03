@@ -148,6 +148,32 @@
     background-color: #e66a00;
 }
 
+
+/* Styling for webkit-based browsers (Chrome, Safari, newer versions of Edge) */
+.appliances-list::-webkit-scrollbar,
+.uploaded-images-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.appliances-list::-webkit-scrollbar-track,
+.uploaded-images-list::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    /* Dark gray for the track */
+}
+
+.appliances-list::-webkit-scrollbar-thumb,
+.uploaded-images-list::-webkit-scrollbar-thumb {
+    background: #ff7b00;
+    /* Orange color for the thumb, matching the theme */
+    border-radius: 5px;
+}
+
+.appliances-list::-webkit-scrollbar-thumb:hover,
+.uploaded-images-list::-webkit-scrollbar-thumb:hover {
+    background: #e66a00;
+    /* Slightly darker orange on hover */
+}
+
 /* Upload styles */
 .upload-container {
     text-align: center;
@@ -195,6 +221,8 @@
     margin-top: 10px;
 }
 
+
+
 /* Uploaded images and appliances list styles */
 .uploaded-images-list {
     height: 100%;
@@ -213,6 +241,8 @@
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+    border: 0.3px solid white;
+    margin-right: 5px;
 }
 
 .appliance-item {
@@ -222,6 +252,10 @@
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
+
+    border: 0.3px solid white;
+    /* Adds a white border around the item */
+    margin-right: 5px;
 
 }
 
