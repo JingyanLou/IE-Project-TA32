@@ -9,6 +9,7 @@
     overflow: hidden;
     margin-top: 12%;
     width: calc(100% - 60px);
+    max-height: calc(100vh - 300px);
 }
 
 .content-columns {
@@ -27,6 +28,8 @@
     /* Add display flex */
     flex-direction: column;
     /* Stack children vertically */
+
+
 }
 
 .column {
@@ -453,5 +456,9 @@
         /* Allow height to adjust on mobile */
         min-height: 300px;
         /* Set a minimum height for mobile */
+    }
+
+    .step1-container {
+        overflow-y: auto;
     }
 }
