@@ -60,11 +60,14 @@ const TextRevealSection = () => {
     return (
         <div ref={sectionRef} className="text-reveal-section">
             <div ref={textRef} className="text-container">
-                <span>When</span> <span>starting</span> <span>a</span> <span>new</span> <span>project,</span> <span>it's</span>
-                <span>crucial</span> <span>to</span> <span>choose</span> <span>the</span> <span>appropriate</span>
-                <span>tools.</span> <span>With</span> <span>prior</span> <span>experience</span> <span>in</span> <span>this</span>
-                <span>area,</span> <span>I</span> <span>am</span> <span>confident</span> <span>in</span> <span>selecting</span> <span>the</span>
-                <span>tools</span> <span>that</span> <span>will</span> <span>guide</span> <span>us</span> <span>to</span> <span>success.</span>
+                <span>In</span> <span>30</span> <span>years,</span> <span>we</span> <span>envision</span> <span>a</span>
+                <span>sustainable,</span> <span>energy-efficient</span> <span>Melbourne.</span> <span>Future</span>
+                <span>generations</span> <span>will</span> <span>be</span> <span>proud</span> <span>of</span>
+                <span>our</span> <span>resilience</span> <span>and</span> <span>innovation</span> <span>in</span>
+                <span>facing</span> <span>environmental</span> <span>challenges.</span> <span>We</span>
+                <span>hope</span> <span>they'll</span> <span>continue</span> <span>making</span> <span>responsible</span>
+                <span>energy</span> <span>choices,</span> <span>ensuring</span> <span>a</span> <span>greener,</span>
+                <span>affordable</span> <span>future</span> <span>for</span> <span>all.</span>
             </div>
         </div>
     );
