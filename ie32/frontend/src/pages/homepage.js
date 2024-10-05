@@ -55,7 +55,11 @@ const Homepage = () => {
                 <Savingtips />
             </div>
 
-            <HistoricalInsights />
+            <div id="hisorical-scrollto">
+                <HistoricalInsights />
+            </div>
+
+
 
             <Footer />
 
