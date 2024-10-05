@@ -32,6 +32,14 @@
     position: relative;
 }
 
+.problems-heading {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 200;
+    font-size: 42.5px;
+    margin-bottom: 40px;
+    color: #fc6203;
+}
+
 .problem-underscore {
     width: 100%;
     max-width: 400px;

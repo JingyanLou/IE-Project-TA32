@@ -7,6 +7,7 @@ const MissionSection = () => {
             <div className="mission-content">
                 <h2 className="mission-heading">Our mission is to contribute to the development of resilient, inclusive cities that promote sustainability and enhance the well-being of all residents. We are dedicated to fostering communities where people can thrive, with a focus on environmental responsibility and long-term urban sustainability.</h2>
             </div>
+            <h2 className="problems-heading">Current Problems</h2>
             <div className="problems-grid">
                 <div className="problem">
                     <div className="problem-underscore"></div>
