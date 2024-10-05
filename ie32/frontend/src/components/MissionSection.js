@@ -4,8 +4,14 @@ import './missionsection.css';
 const MissionSection = () => {
     return (
         <div className="mission-section">
-            <div className="mission-content">
-                <h2 className="mission-heading">Our mission is to contribute to the development of resilient, inclusive cities that promote sustainability and enhance the well-being of all residents. We are dedicated to fostering communities where people can thrive, with a focus on environmental responsibility and long-term urban sustainability.</h2>
+            <div className="mission-content-wrapper">
+                <div className="images-container">
+                    <img src="images/melbourne1.jpg" alt="Melbourne cityscape 1" className="melbourne-image melbourne1" />
+                    <img src="images/melbourne2.jpg" alt="Melbourne cityscape 2" className="melbourne-image melbourne2" />
+                </div>
+                <div className="mission-content">
+                    <h2 className="mission-heading">Our mission is to contribute to the development of resilient, inclusive cities that promote sustainability and enhance the well-being of all residents. We are dedicated to fostering communities where people can thrive, with a focus on environmental responsibility and long-term urban sustainability.</h2>
+                </div>
             </div>
             <h2 className="problems-heading">Current Problems</h2>
             <div className="problems-grid">
