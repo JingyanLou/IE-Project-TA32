@@ -11,14 +11,15 @@
 
 .mission-content {
     align-self: flex-end;
-    width: 50%;
-    margin-bottom: 80px;
+    width: 40%;
+    margin-bottom: 5px;
+
 }
 
 .mission-heading {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
-    font-size: 70px;
+    font-size: 45px;
     line-height: 1.2;
 }
 
@@ -51,14 +52,14 @@
 .problem-title {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 200;
-    font-size: 32.5px;
+    font-size: 25px;
     margin-bottom: 10px;
 }
 
 .problem-description {
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 100;
-    font-size: 23.5px;
+    font-size: 19px;
     line-height: 1.4;
 }
 
