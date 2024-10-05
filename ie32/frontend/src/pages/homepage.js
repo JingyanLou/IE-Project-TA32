@@ -9,7 +9,7 @@ import * as drei from '@react-three/drei';
 import MissionSection from '../components/MissionSection';
 import HorizontalScroll from '../components/HorizontalScroll';
 import TextRevealSection from '../components/TextRevealSection';
-import FeaturesOverview from '../components/FeaturesOverview';
+import FeaturesOverviewv2 from '../components/FeaturesOverviewv2';
 import Footer from '../components/Footer';
 import HistoricalInsights from '../components/HistoricalInsights';
 const Homepage = () => {
@@ -45,7 +45,7 @@ const Homepage = () => {
 
             <TextRevealSection />
 
-            <FeaturesOverview />
+            <FeaturesOverviewv2 />
 
             <div id="estimation-section">
                 <Estimation />
