@@ -111,14 +111,14 @@ const rooms = {
         ],
 
         textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '50%', left: '18%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
-            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
-            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
-            { top: '15%', left: '80%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
-            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
-            { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
-            { top: '15%', left: '25%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
+            { top: '50%', left: '50%', bottom: '30%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '40%', left: '18%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for kitchen overview (cam 1)
+            { top: '20%', left: '18%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for dishwasher (cam 2)
+            { top: '20%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for refrigerator (cam 3)
+            { top: '15%', left: '80%', bottom: '10%', transform: 'translateX(-50%)' },  // Text for microwave (cam 3)
+            { top: '20%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for oven (cam 3)
+            { top: '10%', left: '20%', bottom: '10%', transform: 'translateX(-50%)' },  // Text for range hoods (cam 3)
+            { top: '15%', left: '25%', bottom: '10%', transform: 'translateX(-50%)' }   // Text for blender (cam 3)
         ]
     },
 
@@ -186,12 +186,12 @@ const rooms = {
 
         ],
         textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
-            { top: '20%', left: '18%', transform: 'translateX(-50%)' },  // Text for monitor
-            { top: '25%', left: '25%', transform: 'translateX(-50%)' },  // Text for printer/scanner
-            { top: '30%', left: '64%', transform: 'translateX(-50%)' },  // Text for modem
-            { top: '20%', left: '75%', transform: 'translateX(-50%)' },  // Text for lights
+            { top: '50%', left: '50%', bottom: '30%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '20%', left: '18%', bottom: '30%', transform: 'translateX(-50%)' },  // Text for monitor
+            { top: '25%', left: '25%', bottom: '30%', transform: 'translateX(-50%)' },  // Text for printer/scanner
+            { top: '30%', left: '64%', bottom: '30%', transform: 'translateX(-50%)' },  // Text for modem
+            { top: '20%', left: '75%', bottom: '30%', transform: 'translateX(-50%)' },  // Text for lights
 
         ]
 
@@ -274,14 +274,14 @@ const rooms = {
 
         ],
         textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
-            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for fan
-            { top: '25%', left: '29%', transform: 'translateX(-50%)' },  // Text for Thermostat
-            { top: '25%', left: '70%', transform: 'translateX(-50%)' },  // Text for TV
-            { top: '35%', left: '75%', transform: 'translateX(-50%)' },  // Text for Phone Charging Station
-            { top: '20%', left: '75%', transform: 'translateX(-50%)' },  // Text for Lamp
-            { top: '30%', left: '85%', transform: 'translateX(-50%)' },  // Text for Electric Blanket
+            { top: '50%', left: '50%', bottom: '20%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '20%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '30%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for fan
+            { top: '25%', left: '29%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Thermostat
+            { top: '25%', left: '70%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for TV
+            { top: '35%', left: '75%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Phone Charging Station
+            { top: '20%', left: '75%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Lamp
+            { top: '30%', left: '85%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Electric Blanket
 
         ]
     },
@@ -335,11 +335,11 @@ const rooms = {
 
         ],
         textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '50%', left: '80%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
-            { top: '25%', left: '80%', transform: 'translateX(-50%)' },  // Text for solar panels
-            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for Swimming Pool Pump
-            { top: '30%', left: '%', transform: 'translateX(-50%)' },  // Text for Ventilation Pump
+            { top: '50%', left: '50%', bottom: '20%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '50%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Overview (cam 1)
+            { top: '25%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for solar panels
+            { top: '15%', left: '25%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Swimming Pool Pump
+            { top: '30%', left: '25%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for Ventilation Pump
         ]
     },
 
@@ -435,15 +435,15 @@ const rooms = {
 
         ],
         textPositions: [
-            { top: '50%', left: '50%', transform: 'translateX(-50%)' },  // this is no used...
-            { top: '30%', left: '18%', transform: 'translateX(-50%)' },  // Text for overview (cam 1)
-            { top: '20%', left: '80%', transform: 'translateX(-50%)' },  // Text for tv
-            { top: '20%', left: '70%', transform: 'translateX(-50%)' },  // Text for home theater
-            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for heater
-            { top: '30%', left: '80%', transform: 'translateX(-50%)' },  // Text for  gaming console
-            { top: '10%', left: '20%', transform: 'translateX(-50%)' },  // Text for    table lamp
-            { top: '15%', left: '25%', transform: 'translateX(-50%)' },  // Text for  Electric Fireplace
-            { top: '15%', left: '20%', transform: 'translateX(-50%)' }    // Text for  DVD/Blu-ray Player
+            { top: '50%', left: '50%', bottom: '20%', transform: 'translateX(-50%)' },  // this is no used...
+            { top: '30%', left: '18%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for overview (cam 1)
+            { top: '20%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for tv
+            { top: '20%', left: '70%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for home theater
+            { top: '15%', left: '25%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for heater
+            { top: '30%', left: '80%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for  gaming console
+            { top: '10%', left: '20%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for    table lamp
+            { top: '15%', left: '25%', bottom: '20%', transform: 'translateX(-50%)' },  // Text for  Electric Fireplace
+            { top: '15%', left: '20%', bottom: '20%', transform: 'translateX(-50%)' }    // Text for  DVD/Blu-ray Player
         ]
 
     },
@@ -475,54 +475,103 @@ function CameraController({ cameraPosition }) {
 
     return null;
 }
-
 export default function RecommendationsPage() {
-
     const navigate = useNavigate();
+    const [selectedRoom, setSelectedRoom] = useState('kitchen');
+    const [currentStep, setCurrentStep] = useState(0);
+    const [isExploring, setIsExploring] = useState(false);
 
     const handleBackToDashboard = () => {
-        navigate('/selection'); // Adjust this path as needed
+        navigate('/selection');
     };
-
-
-
-    const [selectedRoom, setSelectedRoom] = useState('kitchen'); // Ensure a default room exists
-    const [currentStep, setCurrentStep] = useState(0);
 
     const handleRoomSelection = (room) => {
         setSelectedRoom(room);
-        setCurrentStep(0); // Reset to the first step of the room
+        setCurrentStep(0);
+        setIsExploring(false);
     };
 
-    const handleNavigation = (direction) => {
-        const newStep = direction === 'up' ? currentStep - 1 : currentStep + 1;
-        const maxSteps = rooms[selectedRoom]?.cameraPositions.length || 0; // Fallback in case `selectedRoom` is invalid
+    const handleExplore = () => {
+        setCurrentStep(1);
+        setIsExploring(true);
+    };
 
-        if (newStep >= 0 && newStep < maxSteps) {
-            setCurrentStep(newStep);
+    const handleNavigation = (step) => {
+        const maxSteps = rooms[selectedRoom]?.cameraPositions.length || 0;
+        if (step >= 0 && step < maxSteps) {
+            setCurrentStep(step);
         }
     };
 
-    const currentRoom = rooms[selectedRoom] || {}; // Ensure `currentRoom` is always an object
-    const currentCameraPosition = currentRoom.cameraPositions?.[currentStep] || initialCameraPosition; // Fallback to initial position
-    const currentModelPosition = currentRoom.modelPositions?.[currentStep] || [0, 0, 0]; // Fallback to [0, 0, 0]
+    const handleBackToMain = () => {
+        setCurrentStep(0);
+        setIsExploring(false);
+    };
 
-    //Text position for each camera angle
+    const currentRoom = rooms[selectedRoom] || {};
+    const currentCameraPosition = currentRoom.cameraPositions?.[currentStep] || initialCameraPosition;
+    const currentModelPosition = currentRoom.modelPositions?.[currentStep] || [0, 0, 0];
     const currentTextPosition = currentRoom.textPositions?.[currentStep] || { top: '12%', left: '50%', transform: 'translateX(-50%)' };
+
+    const renderProgressionBar = () => {
+        if (!isExploring) return null;
+
+        const appliances = currentRoom.texts.map((text) => text.title);
+        return (
+            <div className="progression-bar-appliances">
+                <button
+                    onClick={handleBackToMain}
+                    className="nav-button-appliances back-to-main-button-appliances"
+                >
+                    Back to Main
+                </button>
+                <div className="appliance-circles-container">
+                    {appliances.map((appliance, index) => (
+                        <div key={index} className="appliance-item">
+                            <button
+                                onClick={() => handleNavigation(index + 1)}
+                                className={`appliance-circle-appliances ${currentStep === index + 1 ? 'active-appliances' : ''}`}
+                            >
+                                {index + 1}
+                            </button>
+                            <span className="appliance-title">{appliance}</span>
+                        </div>
+                    ))}
+                </div>
+                <div className="nav-arrows-container">
+                    <button
+                        onClick={() => handleNavigation(currentStep - 1)}
+                        disabled={currentStep <= 1}
+                        className="nav-button-appliances previous-button-appliances"
+                    >
+                        &#8592;
+                    </button>
+                    <button
+                        onClick={() => handleNavigation(currentStep + 1)}
+                        disabled={currentStep === appliances.length}
+                        className="nav-button-appliances next-button-appliances"
+                    >
+                        &#8594;
+                    </button>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <div className="recommendations-page">
-            <button className="nav-link-button" onClick={handleBackToDashboard}>
-                Back
-            </button>
+            {!isExploring && (
+                <button className="nav-link-button" onClick={handleBackToDashboard}>
+                    Back
+                </button>
+            )}
 
-            <div className={`text-section ${currentStep === 0 ? '' : 'hidden'}`}>
+            <div className={`text-section ${isExploring ? 'hidden' : ''}`}>
                 <h1>Energy-Saving Tips for Every Room in Your Home</h1>
-                <p>Implement simple tips to make your home’s energy consumption more efficient and sustainable. Choose a room model and start the tour!</p>
-
+                <p>Implement simple tips to make your home's energy consumption more efficient and sustainable. Choose a room model and start the tour!</p>
             </div>
 
-            <div className={`room-buttons ${currentStep === 0 ? '' : 'hidden'}`}>
+            <div className={`room-buttons ${isExploring ? 'hidden' : ''}`}>
                 {Object.keys(rooms).map((room) => (
                     <button
                         key={room}
@@ -534,6 +583,12 @@ export default function RecommendationsPage() {
                 ))}
             </div>
 
+            {!isExploring && (
+                <button className="explore-button" onClick={handleExplore}>
+                    Explore
+                </button>
+            )}
+
             <div className="model-view">
                 <Canvas>
                     <ambientLight intensity={0.5} />
@@ -543,12 +598,13 @@ export default function RecommendationsPage() {
                 </Canvas>
             </div>
 
-            {currentStep > 0 && currentRoom.texts?.[currentStep - 1] && (
+            {isExploring && currentRoom.texts?.[currentStep - 1] && (
                 <section
                     className="info-text visible"
                     style={{
                         top: currentTextPosition.top,
                         left: currentTextPosition.left,
+                        bottom: currentTextPosition.bottom,
                         transform: currentTextPosition.transform
                     }}
                 >
@@ -561,22 +617,7 @@ export default function RecommendationsPage() {
                 </section>
             )}
 
-            <div className="navigation-buttons">
-                <button
-                    onClick={() => handleNavigation('up')}
-                    disabled={currentStep === 0}
-                    className="nav-button up-button"
-                >
-                    Previous Appliance
-                </button>
-                <button
-                    onClick={() => handleNavigation('down')}
-                    disabled={currentStep === currentRoom.cameraPositions?.length - 1}
-                    className="nav-button down-button"
-                >
-                    Next Appliance
-                </button>
-            </div>
+            {renderProgressionBar()}
         </div>
     );
 }
