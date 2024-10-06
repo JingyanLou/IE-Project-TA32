@@ -193,7 +193,9 @@ const Upload = () => {
 
         try {
             console.log("Sending request to API");
-            const response = await fetch('https://ek4fw9pzkd.execute-api.ap-southeast-2.amazonaws.com/v1/detect-appliance', {
+
+            console.log("Sending request to API");
+            const response = await fetch('https://5r1du6iita.execute-api.ap-southeast-2.amazonaws.com/v3/detection', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -201,29 +203,16 @@ const Upload = () => {
                 body: JSON.stringify({ image: base64Image, filename: file.name }),
             });
 
-            console.log("Response received", response.status);
+            console.log("Response received", response.status, response.headers);
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error('API error:', response.status, errorText);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const result = await response.json();
             console.log('API response:', result);
-
-            setUploadedImages(prevImages =>
-                prevImages.map(img =>
-                    img.name === file.name
-                        ? { ...img, status: 'uploaded', progress: 100 }
-                        : img
-                )
-            );
-
-
-            // Handle the detected appliance
-            if (result.detectedAppliance) {
-                console.log("Detected appliance:", result.detectedAppliance);
-                handleDetectedAppliance(result.detectedAppliance, file.name);
-            }
         } catch (error) {
             console.error('Error uploading image:', error);
             setUploadedImages(prevImages =>
@@ -236,18 +225,20 @@ const Upload = () => {
         }
     };
 
-    const handleDetectedAppliance = (detectedAppliance, imageName) => {
-        const newAppliance = [
-            detectedAppliance.name || 'Detected Appliance',
-            detectedAppliance.quantity || 1,
-            detectedAppliance.dailyHours || 0,
-            detectedAppliance.energyConsumption || 0,
-            'detected'
-        ];
-        setData(prevData => ({
-            ...prevData,
-            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
-        }));
+    const handleDetectedAppliance = (detectedAppliances, imageName) => {
+        detectedAppliances.forEach(appliance => {
+            const newAppliance = [
+                appliance,
+                1, // Default quantity
+                0, // Default daily hours
+                0, // Default energy consumption
+                'detected'
+            ];
+            setData(prevData => ({
+                ...prevData,
+                'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+            }));
+        });
     };
 
     const handleUserInformation = () => {

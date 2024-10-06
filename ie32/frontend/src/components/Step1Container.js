@@ -16,6 +16,7 @@ const Step1Container = ({
 }) => {
     const [inputMethod, setInputMethod] = useState('manual');
 
+
     const handleDailyHoursInput = (e, index) => {
         let value = e.target.value;
 
@@ -135,11 +136,14 @@ const Step1Container = ({
     };
 
     const convertToBase64 = (file) => {
-        console.log("converting to base64");
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
+            reader.onload = () => {
+                console.log("Base64 string length:", reader.result.length);
+                console.log("Base64 string prefix:", reader.result.substring(0, 50));
+                resolve(reader.result.split(',')[1]); // Remove the data URL prefix
+            };
             reader.onerror = (error) => reject(error);
         });
     };
