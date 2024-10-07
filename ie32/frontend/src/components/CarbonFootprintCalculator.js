@@ -2,12 +2,24 @@ import React, { useState } from 'react';
 import './carbonfootprintcalculator.css'
 
 const CarbonFootprintCalculator = () => {
-  const [monthlyConsumption, setMonthlyConsumption] = useState(500);
+  const [monthlyConsumption, setMonthlyConsumption] = useState('500');
   const [result, setResult] = useState(null);
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    // Only allow positive integers
+    if (value === '' || /^[1-9]\d*$/.test(value)) {
+      setMonthlyConsumption(value);
+    }
+  };
+
   const calculateEmissions = () => {
+    if (monthlyConsumption === '') {
+      alert('Please enter a valid monthly consumption value.');
+      return;
+    }
     const emissionFactor = 1.17;
-    const emissions = (parseFloat(monthlyConsumption) * emissionFactor) / 1000; // Convert to tonnes
+    const emissions = (parseInt(monthlyConsumption) * emissionFactor) / 1000; // Convert to tonnes
     setResult(emissions.toFixed(3));
   };
 
@@ -29,10 +41,12 @@ const CarbonFootprintCalculator = () => {
               <div className="input-button-wrapper">
                 <input
                   id="monthlyConsumption"
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[1-9][0-9]*"
                   placeholder="500"
                   value={monthlyConsumption}
-                  onChange={(e) => setMonthlyConsumption(e.target.value)}
+                  onChange={handleInputChange}
                   className="input-field"
                 />
                 <button onClick={calculateEmissions} className="calculate-button">
