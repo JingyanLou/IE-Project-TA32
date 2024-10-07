@@ -121,14 +121,10 @@ const Step1Container = ({
         </div>
     );
 
-    const handleDrop = async (e) => {
-        console.log("image dropped");
+    const handleDrop = (e) => {
         e.preventDefault();
         const files = Array.from(e.dataTransfer.files);
-        for (const file of files) {
-            const base64Image = await convertToBase64(file);
-            handleUploadImage(file, base64Image);
-        }
+        handleUploadImage(files);
     };
 
     const handleDragOver = (e) => {
@@ -148,13 +144,9 @@ const Step1Container = ({
         });
     };
 
-    const handleFileSelect = async (e) => {
-        console.log("image selected");
+    const handleFileSelect = (e) => {
         const files = Array.from(e.target.files);
-        for (const file of files) {
-            const base64Image = await convertToBase64(file);
-            handleUploadImage(file, base64Image);
-        }
+        handleUploadImage(files);
     };
 
 

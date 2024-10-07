@@ -94,7 +94,17 @@ const Upload = () => {
 
     }, [apiUrl]);
 
-    console.log("Appliance Data: ", applianceData);
+    //console.log("Appliance Data: ", applianceData);
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                resolve(reader.result.split(',')[1]); // Remove the data URL prefix
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    };
     const handleNextStep = () => {
         if (currentStep === 1 && data['Appliances-list'].length === 0) {
             alert("Please add at least one appliance before proceeding.");
@@ -191,8 +201,8 @@ const Upload = () => {
         }));
     };
 
-    const handleUploadImage = async (file, base64Image) => {
-        console.log("handleUploadImage called", file.name);
+    const uploadSingleImage = async (file, base64Image) => {
+        console.log("Uploading image:", file.name);
         const newImage = {
             name: file.name,
             thumbnail: URL.createObjectURL(file),
@@ -202,7 +212,6 @@ const Upload = () => {
         setUploadedImages(prevImages => [...prevImages, newImage]);
 
         try {
-            console.log("Sending request to API");
             const response = await fetch('https://5r1du6iita.execute-api.ap-southeast-2.amazonaws.com/v3/detection', {
                 method: 'POST',
                 headers: {
@@ -211,8 +220,6 @@ const Upload = () => {
                 body: JSON.stringify({ image: base64Image, filename: file.name }),
             });
 
-            console.log("Response received", response.status, response.headers);
-
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('API error:', response.status, errorText);
@@ -220,9 +227,8 @@ const Upload = () => {
             }
 
             const result = await response.json();
-            console.log('API response:', result);
+            console.log('API response for', file.name, ':', result);
 
-            // Update the uploaded image status and add detection results
             setUploadedImages(prevImages =>
                 prevImages.map(img =>
                     img.name === file.name
@@ -245,8 +251,8 @@ const Upload = () => {
                     );
                     if (applianceInfo) {
                         const newAppliance = [
-                            applianceInfo.Device, // Use the correctly capitalized name from applianceData
-                            1, // Default quantity
+                            applianceInfo.Device,
+                            1,
                             applianceInfo['Average Daily Hours'],
                             applianceInfo['Energy Consumption (kWh/hour)'],
                             'detected'
@@ -269,6 +275,15 @@ const Upload = () => {
             );
         }
     };
+
+    const handleUploadImage = async (files) => {
+        for (const file of files) {
+            const base64Image = await convertToBase64(file);
+            await uploadSingleImage(file, base64Image);
+            await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay between uploads
+        }
+    };
+
     const handleDetectedAppliance = (detectedAppliances, imageName) => {
         detectedAppliances.forEach(appliance => {
             const newAppliance = [
