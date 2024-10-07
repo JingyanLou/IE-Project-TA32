@@ -269,7 +269,7 @@ const Upload = () => {
             }
         } catch (error) {
             console.error('Error uploading image:', error);
-            updateImageStatus(image.name, 'error', 'Image not supported');
+            updateImageStatus(image.name, 'Image not supported', 'Image not supported');
         }
     };
 
