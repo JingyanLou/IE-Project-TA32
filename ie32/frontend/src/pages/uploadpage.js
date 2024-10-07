@@ -173,7 +173,7 @@ const Upload = () => {
             setFormInput(prevInput => ({
                 ...prevInput,
                 quantity: 1,
-                dailyHours: ''
+                dailyHours: selectedAppliance['Average Daily Hours'] || ''
             }));
         }
     };
