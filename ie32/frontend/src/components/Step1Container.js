@@ -225,12 +225,19 @@ const Step1Container = ({
                     <div className="column">
                         <div className="appliances-list">
                             {appliances && appliances.map((appliance, index) => (
-                                <div key={index} className="appliance-item">
+                                <div
+                                    key={index}
+                                    className={`appliance-item ${appliance[4] === 'detected' ? 'detected-appliance' : ''}`}
+                                >
                                     <img
                                         src={`/images/${appliance[4] === 'detected' ? 'detected.png' : 'manual.png'}`}
                                         alt={appliance[4]}
                                         className="appliance-icon"
                                     />
+
+
+
+
                                     <div className="appliance-info">
                                         <p className="appliance-name-step1">{appliance[0]}</p>
                                         <div className="appliance-inputs">
