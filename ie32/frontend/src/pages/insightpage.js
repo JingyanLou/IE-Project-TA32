@@ -93,7 +93,7 @@ const Insight = () => {
           </p>
         </div>
         <div className="header-image">
-          <img src="/images/sample_insights.png" alt="Electricity Insights" />
+          <img src="/images/decolight.png" alt="Electricity Insights" />
         </div>
       </div>
       <div className="content-wrapper">
