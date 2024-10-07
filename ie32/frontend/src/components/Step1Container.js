@@ -123,8 +123,12 @@ const Step1Container = ({
                     Add files
                 </label>
             </div>
-            <p className="file-info">Supported file type: Jpeg,png</p>
-            <p className="file-info">Maximum upload files size: 128MB</p>
+            <p className="file-info">Supported file type: JPEG</p>
+            <p className="file-info">You can upload up to 5 images.</p>
+            <p className="file-info">Maximum file size: 10MB per image</p>
+            <p className="file-info">Our system can detect common household appliances.</p>
+            <p className="file-info">Your images will not be stored or shared.</p>
+
         </div>
     );
 
@@ -162,13 +166,25 @@ const Step1Container = ({
 
     const handleFilesSelected = (files) => {
         const duplicates = [];
-        const newImages = files.filter(file => {
-            // Check if an image with the same name already exists
+        const oversizedFiles = [];
+        const maxFileSize = 10 * 1024 * 1024; // 10MB in bytes
+        const remainingSlots = 5 - uploadedImages.length;
+
+        const newImages = Array.from(files).slice(0, remainingSlots).filter(file => {
+            // Check for duplicates
             const isDuplicate = uploadedImages.some(img => img.name === file.name);
             if (isDuplicate) {
                 duplicates.push(file.name);
+                return false;
             }
-            return !isDuplicate;
+
+            // Check file size
+            if (file.size > maxFileSize) {
+                oversizedFiles.push(file.name);
+                return false;
+            }
+
+            return true;
         }).map(file => ({
             file,
             name: file.name,
@@ -178,7 +194,15 @@ const Step1Container = ({
         }));
 
         if (duplicates.length > 0) {
-            alert(`Duplicate image(s) detected: ${duplicates.join(', ')}. You can only upload each image once. Duplicate image(s) have been removed.`);
+            alert(`Duplicate image(s) detected: ${duplicates.join(', ')}. You can only upload each image once.`);
+        }
+
+        if (oversizedFiles.length > 0) {
+            alert(`The following file(s) exceed the 10MB size limit: ${oversizedFiles.join(', ')}`);
+        }
+
+        if (files.length > remainingSlots) {
+            alert(`You can only upload a maximum of 5 images.`);
         }
 
         if (newImages.length > 0) {

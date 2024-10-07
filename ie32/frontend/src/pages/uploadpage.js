@@ -274,6 +274,10 @@ const Upload = () => {
     };
 
     const handleUploadImage = (newImages) => {
+        if (uploadedImages.length + newImages.length > 5) {
+            alert("You can only upload a maximum of 5 images.");
+            return;
+        }
         setUploadedImages(prevImages => [...prevImages, ...newImages]);
         setUploadQueue(prevQueue => [...prevQueue, ...newImages]);
     };
