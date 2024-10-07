@@ -240,10 +240,12 @@ const Upload = () => {
             // Process detected appliances
             if (result.filtered_objects && result.filtered_objects.length > 0) {
                 result.filtered_objects.forEach(detectedAppliance => {
-                    const applianceInfo = applianceData.find(item => item.Device === detectedAppliance);
+                    const applianceInfo = applianceData.find(item =>
+                        item.Device.toLowerCase() === detectedAppliance.toLowerCase()
+                    );
                     if (applianceInfo) {
                         const newAppliance = [
-                            detectedAppliance,
+                            applianceInfo.Device, // Use the correctly capitalized name from applianceData
                             1, // Default quantity
                             applianceInfo['Average Daily Hours'],
                             applianceInfo['Energy Consumption (kWh/hour)'],
