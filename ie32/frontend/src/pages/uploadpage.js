@@ -213,6 +213,34 @@ const Upload = () => {
 
             const result = await response.json();
             console.log('API response:', result);
+
+            // Update the uploaded image status
+            setUploadedImages(prevImages =>
+                prevImages.map(img =>
+                    img.name === file.name
+                        ? { ...img, status: 'uploaded', progress: 100 }
+                        : img
+                )
+            );
+
+            // Add detected appliances to the appliances list
+            if (result.filtered_objects && result.filtered_objects.length > 0) {
+                result.filtered_objects.forEach(appliance => {
+                    const newAppliance = [
+                        appliance,
+                        1, // Default quantity
+                        0, // Default daily hours
+                        0, // Default energy consumption
+                        'detected'
+                    ];
+                    setData(prevData => ({
+                        ...prevData,
+                        'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+                    }));
+                });
+            }
+
+
         } catch (error) {
             console.error('Error uploading image:', error);
             setUploadedImages(prevImages =>
