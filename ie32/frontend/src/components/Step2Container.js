@@ -33,7 +33,7 @@ const Step2Container = ({ appliances }) => {
                             </span>
                             <div className="appliance-details">
                                 <div>Appliance Type: {appliance.applianceType}</div>
-                                <div>Total Consumption: {appliance.consumption.toFixed(5)} kWh/day</div>
+                                <div>Total Consumption: {appliance.consumption.toFixed(3)} kWh/day</div>
                                 <div>Quantity: {appliance.quantity}</div>
                                 <div>Daily Hours: {appliance.dailyHours}</div>
                                 <div>Energy Consumption: {appliance.energyConsumption} kWh/hour</div>
