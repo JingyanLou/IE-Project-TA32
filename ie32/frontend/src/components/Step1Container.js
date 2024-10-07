@@ -107,7 +107,7 @@ const Step1Container = ({
 
     const renderImageUpload = () => (
         <div className="upload-container">
-            <div className="drag-drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
+            <div className="drag-drop-area" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
                 <img src="/images/upload.png" alt="Upload" />
                 <p>Drag and drop to upload</p>
                 <p>Or</p>
@@ -124,7 +124,7 @@ const Step1Container = ({
     const handleDrop = (e) => {
         e.preventDefault();
         const files = Array.from(e.dataTransfer.files);
-        handleUploadImage(files);
+        handleFilesSelected(files);
     };
 
     const handleDragOver = (e) => {
@@ -146,7 +146,18 @@ const Step1Container = ({
 
     const handleFileSelect = (e) => {
         const files = Array.from(e.target.files);
-        handleUploadImage(files);
+        handleFilesSelected(files);
+    };
+
+    const handleFilesSelected = (files) => {
+        const newImages = files.map(file => ({
+            file,
+            name: file.name,
+            thumbnail: URL.createObjectURL(file),
+            status: 'queued',
+            progress: 0
+        }));
+        handleUploadImage(newImages);
     };
 
 
@@ -179,7 +190,7 @@ const Step1Container = ({
                     <h2 className="column-title">Uploaded Images</h2>
                     <div className="column uploaded-images-column">
                         <div className="uploaded-images-list">
-                            {uploadedImages && uploadedImages.map((image, index) => (
+                            {uploadedImages.map((image, index) => (
                                 <div key={index} className="uploaded-image-item">
                                     <img src={image.thumbnail} alt={image.name} className="image-thumbnail" />
                                     <div className="image-info">
@@ -192,20 +203,22 @@ const Step1Container = ({
                                     <button className="delete-button" onClick={() => handleDeleteImage(index)}>
                                         ✕
                                     </button>
-                                    <div className="s1c-tooltip">
-                                        <strong>Detected Objects:</strong>
-                                        <ul>
-                                            {image.detectedObjects && image.detectedObjects.map((obj, i) => (
-                                                <li key={i}>{obj}</li>
-                                            ))}
-                                        </ul>
-                                        <strong>Filter Appliances:</strong>
-                                        <ul>
-                                            {image.filteredObjects && image.filteredObjects.map((obj, i) => (
-                                                <li key={i}>{obj}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    {image.status === 'uploaded' && (
+                                        <div className="s1c-tooltip">
+                                            <strong>Detected Objects:</strong>
+                                            <ul>
+                                                {image.detectedObjects && image.detectedObjects.map((obj, i) => (
+                                                    <li key={i}>{obj}</li>
+                                                ))}
+                                            </ul>
+                                            <strong>Filter Appliances:</strong>
+                                            <ul>
+                                                {image.filteredObjects && image.filteredObjects.map((obj, i) => (
+                                                    <li key={i}>{obj}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>

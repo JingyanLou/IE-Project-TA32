@@ -37,6 +37,15 @@ const Upload = () => {
     const [appRecommData, setAppRecommData] = useState([]);
     const [uploadedImages, setUploadedImages] = useState([]);
 
+    const [uploadQueue, setUploadQueue] = useState([]);
+    const [isUploading, setIsUploading] = useState(false);
+
+    useEffect(() => {
+        if (uploadQueue.length > 0 && !isUploading) {
+            uploadNextImage();
+        }
+    }, [uploadQueue, isUploading]);
+
 
 
     // Fetch appliance data from the backend
@@ -189,9 +198,11 @@ const Upload = () => {
     };
 
     const handleDeleteImage = (indexToDelete) => {
-        setUploadedImages(prevImages =>
-            prevImages.filter((_, index) => index !== indexToDelete)
-        );
+        setUploadedImages(prevImages => {
+            const newImages = prevImages.filter((_, index) => index !== indexToDelete);
+            setUploadQueue(newImages.filter(img => img.status === 'queued'));
+            return newImages;
+        });
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
@@ -201,15 +212,8 @@ const Upload = () => {
         }));
     };
 
-    const uploadSingleImage = async (file, base64Image) => {
-        console.log("Uploading image:", file.name);
-        const newImage = {
-            name: file.name,
-            thumbnail: URL.createObjectURL(file),
-            status: 'uploading',
-            progress: 0
-        };
-        setUploadedImages(prevImages => [...prevImages, newImage]);
+    const uploadSingleImage = async (image, base64Image) => {
+        updateImageStatus(image.name, 'uploading');
 
         try {
             const response = await fetch('https://5r1du6iita.execute-api.ap-southeast-2.amazonaws.com/v3/detection', {
@@ -217,21 +221,20 @@ const Upload = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ image: base64Image, filename: file.name }),
+                body: JSON.stringify({ image: base64Image, filename: image.name }),
             });
 
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('API error:', response.status, errorText);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const result = await response.json();
-            console.log('API response for', file.name, ':', result);
+            console.log('API response for', image.name, ':', result);
 
+            updateImageStatus(image.name, 'uploaded');
             setUploadedImages(prevImages =>
                 prevImages.map(img =>
-                    img.name === file.name
+                    img.name === image.name
                         ? {
                             ...img,
                             status: 'uploaded',
@@ -266,22 +269,44 @@ const Upload = () => {
             }
         } catch (error) {
             console.error('Error uploading image:', error);
-            setUploadedImages(prevImages =>
-                prevImages.map(img =>
-                    img.name === file.name
-                        ? { ...img, status: 'error', progress: 0 }
-                        : img
-                )
-            );
+            updateImageStatus(image.name, 'error', 'Image not supported');
         }
     };
 
-    const handleUploadImage = async (files) => {
-        for (const file of files) {
-            const base64Image = await convertToBase64(file);
-            await uploadSingleImage(file, base64Image);
-            await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay between uploads
+    const handleUploadImage = (newImages) => {
+        setUploadedImages(prevImages => [...prevImages, ...newImages]);
+        setUploadQueue(prevQueue => [...prevQueue, ...newImages]);
+    };
+
+    const uploadNextImage = async () => {
+        if (uploadQueue.length === 0) {
+            setIsUploading(false);
+            return;
         }
+
+        setIsUploading(true);
+        const imageToUpload = uploadQueue[0];
+
+        try {
+            const base64Image = await convertToBase64(imageToUpload.file);
+            await uploadSingleImage(imageToUpload, base64Image);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            updateImageStatus(imageToUpload.name, 'error', 'Image not supported');
+        }
+
+        setUploadQueue(prevQueue => prevQueue.slice(1));
+        setIsUploading(false);
+    };
+
+    const updateImageStatus = (imageName, status, message = '') => {
+        setUploadedImages(prevImages =>
+            prevImages.map(img =>
+                img.name === imageName
+                    ? { ...img, status, message }
+                    : img
+            )
+        );
     };
 
     const handleDetectedAppliance = (detectedAppliances, imageName) => {
