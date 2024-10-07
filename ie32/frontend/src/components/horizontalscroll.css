@@ -56,3 +56,34 @@
     line-height: 1.5;
     max-width: 50%;
 }
+
+
+/* Media query for 14-inch screens */
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .horizontal-card {
+        flex: 0 0 100vw;
+        /* 50% of 80vw */
+        padding: 0 20px;
+        /* 50% of 40px */
+        margin-right: 10vw;
+        /* 50% of 20vw */
+    }
+
+    .horizontal-card-image {
+        margin-right: 20px;
+        /* 50% of 40px */
+    }
+
+    .horizontal-card-year,
+    .horizontal-card-title {
+        font-size: 35px;
+        /* 50% of 32.5px */
+        margin-bottom: 10px;
+        /* 50% of 20px for title */
+    }
+
+    .horizontal-card-description {
+        font-size: 25px;
+        /* 50% of 23.5px */
+    }
+}
