@@ -37,6 +37,15 @@ const Upload = () => {
     const [appRecommData, setAppRecommData] = useState([]);
     const [uploadedImages, setUploadedImages] = useState([]);
 
+    const [uploadQueue, setUploadQueue] = useState([]);
+    const [isUploading, setIsUploading] = useState(false);
+
+    useEffect(() => {
+        if (uploadQueue.length > 0 && !isUploading) {
+            uploadNextImage();
+        }
+    }, [uploadQueue, isUploading]);
+
 
 
     // Fetch appliance data from the backend
@@ -94,6 +103,17 @@ const Upload = () => {
 
     }, [apiUrl]);
 
+    //console.log("Appliance Data: ", applianceData);
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                resolve(reader.result.split(',')[1]); // Remove the data URL prefix
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    };
     const handleNextStep = () => {
         if (currentStep === 1 && data['Appliances-list'].length === 0) {
             alert("Please add at least one appliance before proceeding.");
@@ -155,23 +175,34 @@ const Upload = () => {
     };
 
     const handleAddAppliance = () => {
-        const newAppliance = [
-            formInput.applianceType,
-            formInput.quantity,
-            formInput.dailyHours,
-            0, // Energy Consumption (kWh/hour)
-            'manual' // Source
-        ];
-        setData(prevData => ({
-            ...prevData,
-            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
-        }));
+        const selectedAppliance = applianceData.find(appliance => appliance.Device === formInput.applianceType);
+        if (selectedAppliance) {
+            const newAppliance = [
+                formInput.applianceType,
+                parseInt(formInput.quantity) || 1,
+                parseFloat(formInput.dailyHours) || 0,
+                selectedAppliance['Energy Consumption (kWh/hour)'],
+                'manual'
+            ];
+            setData(prevData => ({
+                ...prevData,
+                'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+            }));
+            // Reset form inputs after adding
+            setFormInput(prevInput => ({
+                ...prevInput,
+                quantity: 1,
+                dailyHours: selectedAppliance['Average Daily Hours'] || ''
+            }));
+        }
     };
 
     const handleDeleteImage = (indexToDelete) => {
-        setUploadedImages(prevImages =>
-            prevImages.filter((_, index) => index !== indexToDelete)
-        );
+        setUploadedImages(prevImages => {
+            const newImages = prevImages.filter((_, index) => index !== indexToDelete);
+            setUploadQueue(newImages.filter(img => img.status === 'queued'));
+            return newImages;
+        });
     };
 
     const handleDeleteAppliance = (indexToDelete) => {
@@ -181,48 +212,101 @@ const Upload = () => {
         }));
     };
 
-    const handleUploadImage = async (file, base64Image) => {
-        console.log("handleUploadImage called", file.name);
-        const newImage = {
-            name: file.name,
-            thumbnail: URL.createObjectURL(file),
-            status: 'uploading',
-            progress: 0
-        };
-        setUploadedImages(prevImages => [...prevImages, newImage]);
+    const uploadSingleImage = async (image, base64Image) => {
+        updateImageStatus(image.name, 'uploading');
 
         try {
-            console.log("Sending request to API");
-
-            console.log("Sending request to API");
             const response = await fetch('https://5r1du6iita.execute-api.ap-southeast-2.amazonaws.com/v3/detection', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ image: base64Image, filename: file.name }),
+                body: JSON.stringify({ image: base64Image, filename: image.name }),
             });
 
-            console.log("Response received", response.status, response.headers);
-
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('API error:', response.status, errorText);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const result = await response.json();
-            console.log('API response:', result);
-        } catch (error) {
-            console.error('Error uploading image:', error);
+            console.log('API response for', image.name, ':', result);
+
+            updateImageStatus(image.name, 'uploaded');
             setUploadedImages(prevImages =>
                 prevImages.map(img =>
-                    img.name === file.name
-                        ? { ...img, status: 'error', progress: 0 }
+                    img.name === image.name
+                        ? {
+                            ...img,
+                            status: 'uploaded',
+                            progress: 100,
+                            detectedObjects: result.detected_objects || [],
+                            filteredObjects: result.filtered_objects || []
+                        }
                         : img
                 )
             );
+
+            // Process detected appliances
+            if (result.filtered_objects && result.filtered_objects.length > 0) {
+                result.filtered_objects.forEach(detectedAppliance => {
+                    const applianceInfo = applianceData.find(item =>
+                        item.Device.toLowerCase() === detectedAppliance.toLowerCase()
+                    );
+                    if (applianceInfo) {
+                        const newAppliance = [
+                            applianceInfo.Device,
+                            1,
+                            applianceInfo['Average Daily Hours'],
+                            applianceInfo['Energy Consumption (kWh/hour)'],
+                            'detected'
+                        ];
+                        setData(prevData => ({
+                            ...prevData,
+                            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+                        }));
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            updateImageStatus(image.name, 'error', 'Image not supported');
         }
+    };
+
+    const handleUploadImage = (newImages) => {
+        setUploadedImages(prevImages => [...prevImages, ...newImages]);
+        setUploadQueue(prevQueue => [...prevQueue, ...newImages]);
+    };
+
+    const uploadNextImage = async () => {
+        if (uploadQueue.length === 0) {
+            setIsUploading(false);
+            return;
+        }
+
+        setIsUploading(true);
+        const imageToUpload = uploadQueue[0];
+
+        try {
+            const base64Image = await convertToBase64(imageToUpload.file);
+            await uploadSingleImage(imageToUpload, base64Image);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            updateImageStatus(imageToUpload.name, 'error', 'Image not supported');
+        }
+
+        setUploadQueue(prevQueue => prevQueue.slice(1));
+        setIsUploading(false);
+    };
+
+    const updateImageStatus = (imageName, status, message = '') => {
+        setUploadedImages(prevImages =>
+            prevImages.map(img =>
+                img.name === imageName
+                    ? { ...img, status, message }
+                    : img
+            )
+        );
     };
 
     const handleDetectedAppliance = (detectedAppliances, imageName) => {

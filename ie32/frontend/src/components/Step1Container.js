@@ -107,7 +107,7 @@ const Step1Container = ({
 
     const renderImageUpload = () => (
         <div className="upload-container">
-            <div className="drag-drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
+            <div className="drag-drop-area" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
                 <img src="/images/upload.png" alt="Upload" />
                 <p>Drag and drop to upload</p>
                 <p>Or</p>
@@ -121,14 +121,10 @@ const Step1Container = ({
         </div>
     );
 
-    const handleDrop = async (e) => {
-        console.log("image dropped");
+    const handleDrop = (e) => {
         e.preventDefault();
         const files = Array.from(e.dataTransfer.files);
-        for (const file of files) {
-            const base64Image = await convertToBase64(file);
-            handleUploadImage(file, base64Image);
-        }
+        handleFilesSelected(files);
     };
 
     const handleDragOver = (e) => {
@@ -148,13 +144,20 @@ const Step1Container = ({
         });
     };
 
-    const handleFileSelect = async (e) => {
-        console.log("image selected");
+    const handleFileSelect = (e) => {
         const files = Array.from(e.target.files);
-        for (const file of files) {
-            const base64Image = await convertToBase64(file);
-            handleUploadImage(file, base64Image);
-        }
+        handleFilesSelected(files);
+    };
+
+    const handleFilesSelected = (files) => {
+        const newImages = files.map(file => ({
+            file,
+            name: file.name,
+            thumbnail: URL.createObjectURL(file),
+            status: 'queued',
+            progress: 0
+        }));
+        handleUploadImage(newImages);
     };
 
 
@@ -187,7 +190,7 @@ const Step1Container = ({
                     <h2 className="column-title">Uploaded Images</h2>
                     <div className="column uploaded-images-column">
                         <div className="uploaded-images-list">
-                            {uploadedImages && uploadedImages.map((image, index) => (
+                            {uploadedImages.map((image, index) => (
                                 <div key={index} className="uploaded-image-item">
                                     <img src={image.thumbnail} alt={image.name} className="image-thumbnail" />
                                     <div className="image-info">
@@ -200,6 +203,22 @@ const Step1Container = ({
                                     <button className="delete-button" onClick={() => handleDeleteImage(index)}>
                                         ✕
                                     </button>
+                                    {image.status === 'uploaded' && (
+                                        <div className="s1c-tooltip">
+                                            <strong>Detected Objects:</strong>
+                                            <ul>
+                                                {image.detectedObjects && image.detectedObjects.map((obj, i) => (
+                                                    <li key={i}>{obj}</li>
+                                                ))}
+                                            </ul>
+                                            <strong>Filter Appliances:</strong>
+                                            <ul>
+                                                {image.filteredObjects && image.filteredObjects.map((obj, i) => (
+                                                    <li key={i}>{obj}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -211,12 +230,19 @@ const Step1Container = ({
                     <div className="column">
                         <div className="appliances-list">
                             {appliances && appliances.map((appliance, index) => (
-                                <div key={index} className="appliance-item">
+                                <div
+                                    key={index}
+                                    className={`appliance-item ${appliance[4] === 'detected' ? 'detected-appliance' : ''}`}
+                                >
                                     <img
                                         src={`/images/${appliance[4] === 'detected' ? 'detected.png' : 'manual.png'}`}
                                         alt={appliance[4]}
                                         className="appliance-icon"
                                     />
+
+
+
+
                                     <div className="appliance-info">
                                         <p className="appliance-name-step1">{appliance[0]}</p>
                                         <div className="appliance-inputs">
