@@ -1,0 +1,22 @@
+.historical-trend-chart {
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #444;
+}
+
+.recharts-xAxis .recharts-cartesian-axis-tick-value,
+.recharts-yAxis .recharts-cartesian-axis-tick-value {
+  fill: #fff;
+}
+
+.recharts-legend-item-text {
+  color: #fff !important;
+}
+

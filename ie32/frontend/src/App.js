@@ -8,6 +8,7 @@ import EstimationIntroductionPage from './pages/EstimationIntroductionPage';
 import SelectionPage from './pages/SelectionPage';
 import GovernmentInfo from './pages/GovernmentInfo';
 import BuyNew from './pages/BuyNew'; // Correct import
+import Insight from './pages/insightpage';
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
           <Route path="/estimation-introduction" element={<EstimationIntroductionPage />} />
           <Route path="/selection" element={<SelectionPage />} />
           <Route path="/governmentinfo" element={<GovernmentInfo />} />
+          <Route path="/governmentinfo" element={<GovernmentInfo />} />
+          <Route path="/insight" element={<Insight />} />
           <Route path="/buynew" element={<BuyNew />} /> {/* Fixed path */}
+
         </Routes>
       </div>
     </Router>

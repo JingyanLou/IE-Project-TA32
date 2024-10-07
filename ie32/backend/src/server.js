@@ -106,6 +106,55 @@ app.get('/api/brand-data', (req, res) => {
     });
 });
 
+app.get('/api/historical-trend', (req, res) => {
+    const query = 'SELECT * FROM historical_trend_iter3';
+    console.log(`Executing query: ${query}`);
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+app.get('/api/household-consumption', (req, res) => {
+    const query = 'SELECT * FROM household_consumption_iter3';
+    console.log(`Executing query: ${query}`);
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route for price demand data
+app.get('/api/price-demand', (req, res) => {
+    const query = 'SELECT * FROM price_demand';
+    console.log(`Executing query: ${query}`);
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
+
+// Route for forecast results data
+app.get('/api/forecast-results', (req, res) => {
+    const query = 'SELECT * FROM forecast_results';
+    console.log(`Executing query: ${query}`);
+    connection.query(query, (error, results) => {
+        if (error) {
+            console.error('Database error:', error);
+            return res.status(500).json({ error: error.message });
+        }
+        res.json(results);
+    });
+});
 
 app.get('/api/model-data', (req, res) => {
     const appliance = req.query.appliance;

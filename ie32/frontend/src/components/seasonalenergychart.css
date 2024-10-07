@@ -1,0 +1,107 @@
+.custom-chart-container {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #fff;
+  background-color: #000;
+}
+
+.seasonal-trend-chart {
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.chart-description {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.chart-title {
+  font-size: 50px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.chart-description p {
+  font-size: 30px;
+  color: #7D7B7B;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.chart-wrapper {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+}
+
+.chart-controls {
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+
+.chart-controls label {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.chart-controls select {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Custom tooltip styles */
+.custom-tooltip {
+  background-color: rgba(51, 51, 51, 0.9);
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.custom-tooltip .label {
+  margin: 0;
+  font-weight: bold;
+}
+
+.custom-tooltip .value {
+  margin: 5px 0 0;
+}
+
+/* Ensure chart background is black */
+.custom-chart-container .recharts-wrapper,
+.custom-chart-container .recharts-surface {
+  background-color: #000;
+}
+
+/* Remove any potential white backgrounds */
+.custom-chart-container .recharts-tooltip-cursor {
+  fill: rgba(255, 255, 255, 0.1);
+}
+
+/* Customize the chart appearance */
+.custom-chart-container .recharts-cartesian-grid-horizontal line {
+  stroke: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .seasonal-trend-chart {
+    flex-direction: column;
+  }
+
+  .chart-description {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .chart-controls {
+    align-self: center;
+  }
+}
