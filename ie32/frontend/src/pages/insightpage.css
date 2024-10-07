@@ -1,0 +1,234 @@
+.insight-container {
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  max-width: 1300px; /* Add max-width to limit overall width */
+  margin: 0 auto; /* Center the container */
+}
+
+.insight-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px; 
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.header-text {
+  text-align: left;
+}
+
+.insight-title {
+  font-size: 60px;
+  font-weight: 300; 
+  line-height: 1.2;
+  margin-bottom: 5px;
+  color: #fff;
+  font-family: 'Roboto Condensed';
+}
+
+.insight-subtitle {
+  font-size: 35px;
+  font-weight: 300;
+  color: #7D7B7B;
+  line-height: 1.4;
+  font-family: 'Roboto Condensed';
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.header-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px; /* Adjust as needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .insight-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-text {
+    text-align: center;
+  }
+
+  .insight-title {
+    font-size: 36px;
+  }
+  
+  .insight-subtitle {
+    font-size: 16px;
+  }
+  
+  .header-image img {
+    max-height: 100px; 
+  }
+}
+
+.content-wrapper {
+  border: 1px solid #fff;
+  border-radius: 15px; /* Add rounded corners */
+  padding: 20px;
+  margin-bottom: 20px; /* Add space between sections */
+  margin-left: 20px;
+}
+
+.chart-description {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.chart-title {
+  font-size: 42px;
+  font-weight: 300; /* Light */
+  margin-bottom: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: white;
+  text-align: left;
+}
+
+.chart-description ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.chart-description li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 28px;
+  color: #7D7B7B;
+  text-align: left;
+
+}
+
+.chart-description li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  border: 2px solid #8884d8;
+  border-radius: 50%;
+}
+
+.chart-description li::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: #8884d8;
+  border-radius: 50%;
+}
+
+.chart-wrapper {
+  flex: 2;
+  background-color: #000;
+}
+
+/* Remove any potential inner borders */
+.chart-wrapper > div {
+  border: none !important;
+}
+
+/* Add this new rule for flexible layout */
+@media (min-width: 768px) {
+  .content-wrapper {
+    display: flex;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .insight-title {
+    font-size: 48px;
+  }
+
+  .chart-title {
+    font-size: 36px;
+  }
+
+  .chart-description li {
+    font-size: 24px;
+    text-align: left;
+  }
+}
+
+
+.future-prediction-chart {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 0 auto;
+  font-family: 'Roboto Condensed', sans-serif;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.future-prediction-chart h2 {
+  font-size: 52px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.chart-description {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #7D7B7B;
+  
+}
+
+.chart-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.chart-controls select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .future-prediction-chart h2 {
+    font-size: 24px;
+  }
+
+  .chart-description {
+    font-size: 14px;
+  }
+
+  .chart-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-controls select {
+    margin-bottom: 10px;
+  }
+}
