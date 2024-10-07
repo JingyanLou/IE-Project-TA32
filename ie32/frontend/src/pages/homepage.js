@@ -40,7 +40,8 @@ const Homepage = () => {
                     />
                 </ShaderGradientCanvas>
                 <div className="hero-content">
-                    <h1>Maximize Efficiency, Minimize Costs: Take Control of Your Energy!</h1>
+                    <h1>Make your Energy Visible and Sustainable</h1>
+                    <p>Take control of your energy consumption and watch your costs drop! With smart, sustainable solutions, you can easily track, manage, and optimize your usage, leading to more savings and a greener lifestyle. Make your energy visible and sustainable today!</p>
                 </div>
 
                 <div className="scroll-indicator" onClick={scrollToMission}>
