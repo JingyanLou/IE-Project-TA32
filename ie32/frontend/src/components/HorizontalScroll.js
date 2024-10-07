@@ -10,21 +10,21 @@ const cardData = [
         image: '/images/problem1.jpg',
         year: '2024',
         title: 'Electricity Rate Increase',
-        description: 'Easily estimate your electricity costs by entering your household details. Receive a personalized breakdown of your expected energy expenses, and see where you can reduce costs.'
+        description: 'Electricity peak prices in Victoria have nearly doubled over the last six months, significantly impacting households. The average customer now faces an annual increase of $352 in electricity costs, marking a 25% rise compared to last year.'
     },
     {
         image: '/images/problem2.jpg',
         year: '2024',
-        title: 'Rising Energy Demand',
-        description: 'Analyze your energy consumption patterns and identify areas of high usage. Get tailored recommendations for energy-efficient appliances and practices.'
+        title: 'Energy Poverty',
+        description: "Rising energy prices are forcing Melbourne's middle-to low-income families to cut back on essentials like heating. During winter, energy poverty threatens even more households with cold homes and health risks due to disconnections."
     },
     {
         image: '/images/problem3.jpg',
         year: '2024',
-        title: 'Sustainable Solutions',
-        description: 'Explore renewable energy options suitable for your home. Learn about solar panel installation, energy storage solutions, and government incentives for green energy adoption.'
-    },
-    // Add more card data as needed
+        title: 'Residents struggle to pay bills',
+        description: 'Energy affordability has shifted from a marginal concern to a mainstream crisis. Recent research shows that over a quarter (28%) of people struggled to pay their energy bills in the past year, and 37% expect to face even greater difficulties in the coming years.'
+        // Add more card data as needed
+    }
 ];
 
 const HorizontalScroll = () => {
