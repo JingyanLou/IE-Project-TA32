@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './step1container.css';
 
@@ -15,6 +15,7 @@ const Step1Container = ({
     handleDeleteImage = () => { }
 }) => {
     const [inputMethod, setInputMethod] = useState('manual');
+    const fileInputRef = useRef(null);
 
 
     const handleDailyHoursInput = (e, index) => {
@@ -112,7 +113,13 @@ const Step1Container = ({
                 <p>Drag and drop to upload</p>
                 <p>Or</p>
                 <label className="file-input-label">
-                    <input type="file" onChange={handleFileSelect} accept="image/*" multiple />
+                    <input
+                        type="file"
+                        onChange={handleFileSelect}
+                        accept="image/*"
+                        multiple
+                        ref={fileInputRef}
+                    />
                     Add files
                 </label>
             </div>
@@ -147,17 +154,36 @@ const Step1Container = ({
     const handleFileSelect = (e) => {
         const files = Array.from(e.target.files);
         handleFilesSelected(files);
+        // Clear the file input
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
     };
 
     const handleFilesSelected = (files) => {
-        const newImages = files.map(file => ({
+        const duplicates = [];
+        const newImages = files.filter(file => {
+            // Check if an image with the same name already exists
+            const isDuplicate = uploadedImages.some(img => img.name === file.name);
+            if (isDuplicate) {
+                duplicates.push(file.name);
+            }
+            return !isDuplicate;
+        }).map(file => ({
             file,
             name: file.name,
             thumbnail: URL.createObjectURL(file),
             status: 'queued',
             progress: 0
         }));
-        handleUploadImage(newImages);
+
+        if (duplicates.length > 0) {
+            alert(`Duplicate image(s) detected: ${duplicates.join(', ')}. You can only upload each image once. Duplicate image(s) have been removed.`);
+        }
+
+        if (newImages.length > 0) {
+            handleUploadImage(newImages);
+        }
     };
 
 
@@ -239,9 +265,6 @@ const Step1Container = ({
                                         alt={appliance[4]}
                                         className="appliance-icon"
                                     />
-
-
-
 
                                     <div className="appliance-info">
                                         <p className="appliance-name-step1">{appliance[0]}</p>
