@@ -32,3 +32,19 @@
     color: #ffffff;
     will-change: transform, opacity;
 }
+
+/* New media query for 14-inch laptop screens */
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .text-container span {
+        font-size: 42px;
+        /* 70px reduced by 40% */
+    }
+}
+
+/* New media query for phone-sized screens */
+@media screen and (max-width: 767px) {
+    .text-container span {
+        font-size: 24px;
+        /* Further reduced for phone screens */
+    }
+}

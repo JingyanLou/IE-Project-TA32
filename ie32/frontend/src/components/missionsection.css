@@ -65,6 +65,7 @@
     font-size: 42.5px;
     margin-bottom: -17%;
     color: #fc6203;
+    z-index: 300;
 }
 
 .problems-grid {
@@ -170,5 +171,31 @@
 
     .problem-description {
         font-size: 18px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .mission-heading {
+        font-size: 35px;
+        /* 50% of original 55px */
+    }
+
+    .mission-content {
+        width: 30%;
+    }
+
+    .problems-heading {
+        font-size: 35px;
+        /* 50% of original 42.5px */
+    }
+
+    .problem-title {
+        font-size: 20px;
+        /* 50% of original 25px */
+    }
+
+    .problem-description {
+        font-size: 15px;
+        /* 50% of original 19px */
     }
 }
