@@ -200,6 +200,20 @@ const Step1Container = ({
                                     <button className="delete-button" onClick={() => handleDeleteImage(index)}>
                                         ✕
                                     </button>
+                                    <div className="s1c-tooltip">
+                                        <strong>Detected Objects:</strong>
+                                        <ul>
+                                            {image.detectedObjects && image.detectedObjects.map((obj, i) => (
+                                                <li key={i}>{obj}</li>
+                                            ))}
+                                        </ul>
+                                        <strong>Filter Appliances:</strong>
+                                        <ul>
+                                            {image.filteredObjects && image.filteredObjects.map((obj, i) => (
+                                                <li key={i}>{obj}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
                             ))}
                         </div>

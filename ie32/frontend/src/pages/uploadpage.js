@@ -222,11 +222,17 @@ const Upload = () => {
             const result = await response.json();
             console.log('API response:', result);
 
-            // Update the uploaded image status
+            // Update the uploaded image status and add detection results
             setUploadedImages(prevImages =>
                 prevImages.map(img =>
                     img.name === file.name
-                        ? { ...img, status: 'uploaded', progress: 100 }
+                        ? {
+                            ...img,
+                            status: 'uploaded',
+                            progress: 100,
+                            detectedObjects: result.detected_objects || [],
+                            filteredObjects: result.filtered_objects || []
+                        }
                         : img
                 )
             );
