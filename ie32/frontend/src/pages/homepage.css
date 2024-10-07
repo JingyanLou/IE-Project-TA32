@@ -36,7 +36,7 @@ body {
 }
 
 .hero h1 {
-    font-size: clamp(40px, 8vw, 94px);
+    font-size: 75px;
     margin: 0;
     padding: 0;
     font-weight: 900;
@@ -44,6 +44,7 @@ body {
     max-width: 70%;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
 }
+
 
 .hero p {
     font-size: clamp(16px, 3vw, 19px);
@@ -73,4 +74,45 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
+}
+
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 17px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-indicator span {
+    margin-bottom: 5px;
+}
+
+.scroll-indicator .arrow {
+    width: 20px;
+    height: 20px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg);
+    animation: bounce 2s infinite;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .hero h1 {
+        font-size: 55px;
+        /* Reduced from 75px */
+    }
 }

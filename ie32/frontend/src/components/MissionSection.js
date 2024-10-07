@@ -10,7 +10,7 @@ const MissionSection = () => {
                     <img src="images/melbourne2.jpg" alt="Melbourne cityscape 2" className="melbourne-image melbourne2" />
                 </div>
                 <div className="mission-content">
-                    <h2 className="mission-heading">Our mission is to contribute to the development of resilient, inclusive cities that promote sustainability and enhance the well-being of all residents. We are dedicated to fostering communities where people can thrive, with a focus on environmental responsibility and long-term urban sustainability.</h2>
+                    <h2 className="mission-heading">Our goal is to make Melbourne one of the world's most sustainable cities by empowering residents to control their energy costs and reduce consumption. We're committed to driving energy efficiency and sustainability for a greener future.</h2>
                 </div>
             </div>
             <h2 className="problems-heading">Current Problems</h2>
