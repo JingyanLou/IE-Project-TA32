@@ -33,7 +33,7 @@ const HistoricalInsights = () => {
     }, []);
 
     const handleLearnMoreClick = () => {
-        navigate('/historical-data');
+        navigate('/insight');
     };
 
     return (

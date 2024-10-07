@@ -36,7 +36,14 @@ const Menu = ({ isOpen, onClose }) => {
                         <li><Link to="/buynew" onClick={onClose}>Replace your appliances</Link></li>
                         <li><Link to="/recommendations" onClick={onClose}>Appliances saving tips (3D room tour)</Link></li>
                         <li><Link to="/governmentinfo" onClick={onClose}>Government programs</Link></li>
-                        <li><Link to="/insight" onClick={onClose}>Insight Page</Link></li> 
+
+                    </ul>
+                </div>
+
+                <div className="menu-section">
+                    <h2>Discover historical energy insights</h2>
+                    <ul>
+                        <li><Link to="/insight" onClick={onClose}>Discover now</Link></li>
                     </ul>
                 </div>
             </div>

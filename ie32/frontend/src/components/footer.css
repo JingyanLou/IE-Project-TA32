@@ -61,3 +61,14 @@
     font-weight: 300;
     margin-bottom: 10px;
 }
+
+/* New styles for links */
+.feature-item-footer a {
+    text-decoration: none;
+    color: inherit;
+    transition: text-decoration 0.3s ease;
+}
+
+.feature-item-footer a:hover {
+    text-decoration: underline;
+}
