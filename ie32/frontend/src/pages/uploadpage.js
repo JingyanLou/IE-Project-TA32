@@ -94,6 +94,7 @@ const Upload = () => {
 
     }, [apiUrl]);
 
+    console.log("Appliance Data: ", applianceData);
     const handleNextStep = () => {
         if (currentStep === 1 && data['Appliances-list'].length === 0) {
             alert("Please add at least one appliance before proceeding.");
@@ -155,17 +156,26 @@ const Upload = () => {
     };
 
     const handleAddAppliance = () => {
-        const newAppliance = [
-            formInput.applianceType,
-            formInput.quantity,
-            formInput.dailyHours,
-            0, // Energy Consumption (kWh/hour)
-            'manual' // Source
-        ];
-        setData(prevData => ({
-            ...prevData,
-            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
-        }));
+        const selectedAppliance = applianceData.find(appliance => appliance.Device === formInput.applianceType);
+        if (selectedAppliance) {
+            const newAppliance = [
+                formInput.applianceType,
+                parseInt(formInput.quantity) || 1,
+                parseFloat(formInput.dailyHours) || 0,
+                selectedAppliance['Energy Consumption (kWh/hour)'],
+                'manual'
+            ];
+            setData(prevData => ({
+                ...prevData,
+                'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+            }));
+            // Reset form inputs after adding
+            setFormInput(prevInput => ({
+                ...prevInput,
+                quantity: 1,
+                dailyHours: ''
+            }));
+        }
     };
 
     const handleDeleteImage = (indexToDelete) => {
@@ -192,8 +202,6 @@ const Upload = () => {
         setUploadedImages(prevImages => [...prevImages, newImage]);
 
         try {
-            console.log("Sending request to API");
-
             console.log("Sending request to API");
             const response = await fetch('https://5r1du6iita.execute-api.ap-southeast-2.amazonaws.com/v3/detection', {
                 method: 'POST',
@@ -223,24 +231,25 @@ const Upload = () => {
                 )
             );
 
-            // Add detected appliances to the appliances list
+            // Process detected appliances
             if (result.filtered_objects && result.filtered_objects.length > 0) {
-                result.filtered_objects.forEach(appliance => {
-                    const newAppliance = [
-                        appliance,
-                        1, // Default quantity
-                        0, // Default daily hours
-                        0, // Default energy consumption
-                        'detected'
-                    ];
-                    setData(prevData => ({
-                        ...prevData,
-                        'Appliances-list': [...prevData['Appliances-list'], newAppliance]
-                    }));
+                result.filtered_objects.forEach(detectedAppliance => {
+                    const applianceInfo = applianceData.find(item => item.Device === detectedAppliance);
+                    if (applianceInfo) {
+                        const newAppliance = [
+                            detectedAppliance,
+                            1, // Default quantity
+                            applianceInfo['Average Daily Hours'],
+                            applianceInfo['Energy Consumption (kWh/hour)'],
+                            'detected'
+                        ];
+                        setData(prevData => ({
+                            ...prevData,
+                            'Appliances-list': [...prevData['Appliances-list'], newAppliance]
+                        }));
+                    }
                 });
             }
-
-
         } catch (error) {
             console.error('Error uploading image:', error);
             setUploadedImages(prevImages =>
@@ -252,7 +261,6 @@ const Upload = () => {
             );
         }
     };
-
     const handleDetectedAppliance = (detectedAppliances, imageName) => {
         detectedAppliances.forEach(appliance => {
             const newAppliance = [
