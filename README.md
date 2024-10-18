@@ -1,6 +1,3 @@
-<img width="1920" alt="Screenshot 2024-10-18 at 11 13 49 pm (2)" src="https://github.com/user-attachments/assets/2495b7fc-dc86-4a82-b2e4-9fd0fb0d6d5a"><div align="center">
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/e1aaa715-bd6e-451e-9ad8-149e6dd2b790">
-
 
 <img width="1920" alt="Screenshot 2024-10-18 at 11 09 26 pm (2)" src="https://github.com/user-attachments/assets/11a379cc-b043-4224-8e3b-2f01cb73b685">
 <img width="1920" alt="Screenshot 2024-10-18 at 11 09 23 pm (2)" src="https://github.com/user-attachments/assets/d4b62592-95b0-42ce-aae3-82b918a24558">
