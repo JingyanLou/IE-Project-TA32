@@ -25,6 +25,9 @@ What makes EnergiseSmart unique is its interactive design that inspires resident
 
 <img width="1274" alt="image" src="https://github.com/user-attachments/assets/46ad74ca-d570-47f9-8cc0-3886ba32574a">
 
+## UI Design
+<img width="1920" alt="Screenshot 2024-10-18 at 11 21 09 pm (2)" src="https://github.com/user-attachments/assets/30588aae-96e4-4c81-8fb1-d0e79463679f">
+
 ## Website Screenshot
 
 <img width="1920" alt="Screenshot 2024-10-18 at 11 09 03 pm (2)" src="https://github.com/user-attachments/assets/f5a3f371-74b8-4b51-ac63-ecdcc2491dc5">
@@ -36,7 +39,7 @@ What makes EnergiseSmart unique is its interactive design that inspires resident
 <img width="1920" alt="Screenshot 2024-10-18 at 11 11 04 pm (2)" src="https://github.com/user-attachments/assets/57381d4d-a3f5-4a9f-a4dc-5424cfb05c55">
 <img width="1920" alt="Screenshot 2024-10-18 at 11 12 28 pm (2)" src="https://github.com/user-attachments/assets/81fb70eb-d402-42dc-a78e-9a8d1e32508d">
 <img width="1920" alt="Screenshot 2024-10-18 at 11 13 49 pm (2)" src="https://github.com/user-attachments/assets/3f8d5d8b-1d95-41be-9c2d-3776cf097cf6">
-<img width="1920" alt="Screenshot 2024-10-18 at 11 21 09 pm (2)" src="https://github.com/user-attachments/assets/30588aae-96e4-4c81-8fb1-d0e79463679f">
+
 
 ## Team Info
 <p align="center">
