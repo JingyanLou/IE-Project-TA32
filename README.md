@@ -23,21 +23,21 @@ What makes EnergiseSmart unique is its interactive design that inspires resident
 
 ## Stack
 
-###Architecture: MERN (MySQL, Express.js, React.js, Node.js)
-###Frontend: REACT.js, Javascript, HTML, CSS, 
-###Frontend Liberay: GSAP, Three.js, ShaderGradient, Vanta.js, D3.js
-###Database: MySQL
-###Backend: Node.js, Express.js
-###Cloud Infrastrucutre: EC2, ECS, API Gateway, RDS
-###Deployment: Github Action, Docker, Bash
-###Image Detection Service: Flask, Python, Yolo(v8) Customized
-
+- **Architecture:** MERN (MySQL, Express.js, React.js, Node.js)
+- **Frontend:** React.js, JavaScript, HTML, CSS
+- **Frontend Libraries:** GSAP, Three.js, ShaderGradient, Vanta.js, D3.js
+- **Backend:** Node.js, Express.js
+- **Database:** MySQL
+- **Cloud (AWS):** EC2, ECS, API Gateway, RDS
+- **Deployment:** GitHub Actions, Docker, Bash
+- **Image Detection:** Flask, Python, YOLO v8 (Customized)
 
 ## Deployment
 
 <img width="1274" alt="image" src="https://github.com/user-attachments/assets/46ad74ca-d570-47f9-8cc0-3886ba32574a">
 
 ## UI Design
+
 <img width="1920" alt="Screenshot 2024-10-18 at 11 21 09 pm (2)" src="https://github.com/user-attachments/assets/30588aae-96e4-4c81-8fb1-d0e79463679f">
 
 ## Website Screenshot
