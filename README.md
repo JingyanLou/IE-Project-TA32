@@ -69,16 +69,20 @@ What makes EnergiseSmart unique is its interactive design that inspires resident
 ### 8. Bill Estimation dashboard
 <img width="1920" alt="Future Consumption Predictions" src="https://github.com/user-attachments/assets/81fb70eb-d402-42dc-a78e-9a8d1e32508d">
 
-### 9. Insight Page
+### 9. Appliance Options
+<img width="1920" alt="AppliancesRecommendation" src="https://github.com/user-attachments/assets/54b574df-5350-4c6e-8274-20228ceaf6b9">
+
+
+### 10. Insight Page
 <img width="1920" alt="Carbon Footprint Calculator" src="https://github.com/user-attachments/assets/3f8d5d8b-1d95-41be-9c2d-3776cf097cf6">
 
-### 10. Estimation User Guide
+### 11. Estimation User Guide
 <img width="1920" alt="Screenshot 2024-10-19 at 3 11 51 pm (2)" src="https://github.com/user-attachments/assets/a9e2b18e-d8b3-4978-87cf-be8f060260b1">
 
-### 11. Footer
+### 12. Footer
 <img width="1920" alt="Screenshot 2024-10-19 at 3 12 59 pm (2)" src="https://github.com/user-attachments/assets/68d74e75-e3ae-4f37-a367-8844c224bb9b">
 
-### 12. Menu
+### 13. Menu
 <img width="1920" alt="Screenshot 2024-10-19 at 3 13 38 pm (2)" src="https://github.com/user-attachments/assets/f60702da-7694-4b52-85a4-cea2b032f36e">
 
 
