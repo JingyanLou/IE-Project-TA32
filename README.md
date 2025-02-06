@@ -91,5 +91,6 @@ What makes EnergiseSmart unique is its interactive design that inspires resident
   <img src="https://github.com/user-attachments/assets/e07ae373-23b0-4d6e-8d50-cf7af52e2748" alt="image" width="600"/>
 </p>
 
+- reboot 06.fed.2025 migration to t2.micro / forest
 
 
